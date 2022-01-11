@@ -1,5 +1,10 @@
 import './App.css';
 import React, {useState, useEffect} from "react";
+import Posts from "./Components/Main/Posts";
+import Navbar from "./Components/Header/Navbar";
+import CategoryBar from "./Components/Main/CategoryBar";
+import Users from "./Components/Main/Users";
+import PostDetails from "./Components/Main/PostDetails";
 
 import {Route, Routes} from "react-router-dom";
 
@@ -65,7 +70,8 @@ function App() {
                      handleDelete={handleDelete}
                   />
                }/>
-               <Route path=""/>
+               <Route path="/users" element={<Users userData={userData}/>}/>
+               <Route path="/users/:id" element={<PostDetails userData={userData}/>}/>
             </Routes>
       </main>
 
