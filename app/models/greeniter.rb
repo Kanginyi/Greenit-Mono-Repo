@@ -1,2 +1,0 @@
-class Greeniter < ApplicationRecord
-end

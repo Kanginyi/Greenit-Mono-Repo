@@ -1,8 +1,8 @@
 class CreateBlogs < ActiveRecord::Migration[6.1]
   def change
     create_table :blogs do |t|
-    #   t.belongs_to :greeniter, null: false, foreign_key: true
-      t.integer :greeniter_id
+    #   t.belongs_to :user, null: false, foreign_key: true
+      t.integer :user_id
       t.string :title
       t.text :blog_post
       t.text :image_url
