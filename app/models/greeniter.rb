@@ -1,0 +1,2 @@
+class Greeniter < ApplicationRecord
+end
