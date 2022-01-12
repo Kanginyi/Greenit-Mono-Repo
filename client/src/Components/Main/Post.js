@@ -6,9 +6,9 @@ function Post({post, userData, handleDelete}) {
    const userObj = userData.filter(user => user.id === post.user.id);
 
    //Changing date format
-   const date = post.create_at.slice(0, 10);
-   let slash = date.replaceAll("-", "/");
-   let dateFormat = slash.slice(5) + "/" + slash.slice(0, 4);
+   const date = post?.create_at?.slice(0, 10);
+   let slash = date?.replaceAll("-", "/");
+   let dateFormat = slash?.slice(5) + "/" + slash?.slice(0, 4);
    
    // Handle likes
    const [likes, setLikes] = useState(0);
