@@ -13,7 +13,7 @@ function App() {
    const [userData, setUserData] = useState([]);
 
    useEffect(() => {
-      fetch(`http://localhost:9292/forum_posts`)
+      fetch("/blogs")
         .then(resp => resp.json())
         .then(data => setPostData(data))
     }, [])
@@ -26,7 +26,7 @@ function App() {
   
     //FORM SUBMITS
     const handleAddPost = post => {
-      fetch(`http://localhost:9292/forum_posts`, {
+      fetch("/blogs", {
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',
@@ -43,7 +43,7 @@ function App() {
   
     //post delete
     const handleDelete = id => {
-      fetch(`http://localhost:9292/forum_posts/${id}`,{
+      fetch(`/blogs/${id}`,{
         method : 'DELETE'
       })
       .then(() => {
