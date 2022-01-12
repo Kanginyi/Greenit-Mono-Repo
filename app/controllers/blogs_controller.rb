@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
    def show
       blog = Blog.find_by(id: params[:id])
       if blog
-         render json: blog, status: ok
+         render json: blog, status: :ok
       else
          render json: {errors: "Greenit Post not found :^("}, status: :not_found
       end
