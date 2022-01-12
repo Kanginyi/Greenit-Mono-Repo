@@ -17,3 +17,374 @@ code {
 *, *:before, *:after {
     box-sizing: border-box;
 }
+
+*{
+   margin: 0px;
+}
+
+body{
+   background-color: #dae6dc;
+   font-family: 'Source Sans Pro', sans-serif;
+   
+}
+
+
+
+
+/* ------------------HEADER STUFF  */
+
+
+.nav{
+   display: flex;
+   align-items: center;
+   padding: 0.5em;
+   background-color: rgb(255, 255, 255);
+}
+
+.sticky {
+   position: fixed;
+   top: 0;
+   width: 100%;
+}
+
+.logo{
+   border-radius: 25px;
+   width: 58px;
+   margin-left: 10px;
+   margin-right: 12px;
+
+}
+
+.logo-box{
+   font-size: 1.5rem;
+   color: rgb(0, 0, 0);
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+}
+
+.searchbar {
+   flex: 1 1 auto;
+   margin: 0 1rem;
+   display: flex;
+   justify-content: center;
+}
+
+.searchbar input {
+   /* width: 60%;
+   font-size: 1.5rem;
+   height: 2rem;
+   margin-right: 0.5rem;
+   border: 1px solid rgb(109, 101, 101);
+   border-radius: 3px;
+   padding-left: 0.5rem; */
+   width: 60%;
+   font-size: 1.1rem;
+   margin-left: 18%;
+   height: 2rem;
+   border: 1px solid rgb(109, 101, 101);
+   padding-left: 0.5rem;
+}
+
+.searchbar input:hover{
+   border: 1px solid rgb(7, 172, 78);
+}
+
+.searchbar button{
+width: 6%;
+font-size: 17px;
+padding: 0 0.25rem;
+background: white;
+border: 1px solid #ccc;
+border-radius: 3px;
+cursor: pointer;
+}
+
+.user-section{
+   display: flex;
+   align-items: center;
+   margin-right: 2%;
+}
+
+.log-btn button{
+   font-size: 1em;
+   border-radius: 20px;
+   padding: 0 0.25rem;
+   padding: 7px;
+   width: 8em;
+   border: 1px solid #ccc;
+   cursor: pointer;
+}
+
+.sign-btn{
+   margin-left: 12px;
+}
+
+.log-btn button:hover {
+   background-color: rgb(16, 216, 103);
+}
+
+.sign-btn button:hover{
+   background-color: rgb(16, 216, 103);
+}
+
+.sign-btn button{
+   white-space: nowrap;
+   font-size: 1em;
+   padding: 0 0.25rem;
+   border-radius: 20px;
+   padding: 7px;
+   width: 8em;
+   border: 1px solid #ccc;
+   cursor: pointer;
+}
+
+#greenit-logo {
+   margin-right: 8px;
+   width: 40px;
+   height: 40px
+}
+
+#no-underline-pls {
+   text-decoration: none;
+}
+
+
+/* ------------------MAIN CONTENT STUFF  */
+
+main {
+   width: 100vw;
+   /* max-width: 620px; */
+   max-width: 711px;
+   margin: 12rem auto;  
+}
+ 
+ 
+
+.post-div{
+   padding: 10px;
+   margin: 3rem 0;
+   background-color: white;
+}
+
+.post-div:hover{
+   box-shadow: 1px 1px 5px 3px rgba(14, 129, 64, 0.4);
+
+}
+
+.single-post{
+   cursor: pointer; 
+}
+
+.single-post img {
+   width: 100%;
+   /* height: 20rem; */
+   object-fit: cover;
+}
+
+.post-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 1.5rem;
+}
+
+.post-info h3 {
+   margin-bottom: 0;
+}
+
+.single-post content{
+   padding: 1.5rem 2rem;
+}
+
+.single-post p{
+   padding: 16px;
+}
+
+.forum-post-title {
+   font-family: 'Noto Serif Display', serif;
+   font-size: 2em;
+}
+
+.username-color {
+   color:rgb(7, 172, 78)
+}
+
+.user-div {
+   padding: 10px;
+   margin: 3rem 0;
+   background-color: white;
+}
+
+.user-div:hover {
+   box-shadow: 1px 1px 5px 3px rgba(14, 129, 64, 0.4);
+}
+
+.upvotes-button, .downvotes-button {
+   border-radius: 20px;
+   width: 150px;
+}
+
+.upvotes-button:hover {
+   background-color:rgb(7, 172, 78)
+}
+
+.downvotes-button:hover {
+   background-color:rgb(252, 57, 57)
+}
+
+.comment-btn {
+   border-radius: 20px;
+   width: 150px;
+}
+
+.user-info{
+   display: flex;
+   margin-bottom: 10px;
+   justify-content: space-between;
+}
+
+.delete-X {
+   color: white;
+   background-color: red;
+   width: 18px;
+   height: 18px;
+   padding: 1px;
+   text-align: center;
+}
+
+/* -----------------------Category STUFF */
+
+.category-bar{
+   margin-bottom: -2em;
+   background-color: white;
+}
+
+.category-bar button{
+   padding: 7px;
+   font-size: 1em;
+   font-weight: 700;
+   background-color: white;
+   border:none;
+   cursor: pointer;
+   margin: 1em;
+} 
+
+.category-bar button:hover{
+   box-shadow: inset 0 -5px 0 0 rgb(16, 216, 103); 
+}
+
+.category-bar a{
+   padding: 7px;
+   font-size: 1.1em;
+   font-weight: 700;
+   background-color: white;
+   color: black;
+   border: none;
+   margin: 1em;
+   text-decoration: none;
+}
+
+.category-bar a:hover {
+   box-shadow: inset 0 -5px 0 0 rgb(16, 216, 103); 
+}
+
+/* ------Forum Modal  */
+
+.modal-background{
+   width: 46vw;
+   height: 60vh;
+   position: fixed;
+   background-color:  rgb(224 224 224);
+   position:fixed;
+   box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+}
+
+
+.x-btn-container{
+   padding: 8px;
+}
+
+.x-btn{
+   height: 2em;
+   width: 2em;
+   background-color: rgb(255, 56, 56);
+}
+
+.form-modal{
+   padding: 10%;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   align-items: stretch;
+   justify-content: flex-end;
+}
+
+.form-modal #content{
+   height: 100px;
+}
+
+.form-modal #submit-btn{
+   color: white;
+   padding: 7px;
+   font-size: 1em;
+   font-weight: 700;
+   background-color: rgb(0 173 76);
+   cursor: pointer;
+   margin: 1em;
+}
+
+.form-modal #submit-btn:hover{
+   background-color: rgb(194, 191, 191);
+}
+
+/* -------------------COMMENT -------------------------- */
+
+.comment-username-class{
+   color:rgb(7, 172, 78);
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   flex-wrap: wrap;
+   margin-bottom: 3px;
+   margin-right: 10px;
+}
+
+.comment-text-class{
+   border: 2px solid #dedede;
+   padding: 10px;
+   color: #5e5e5e;
+   text-align: center;
+   border-radius: 25px;
+   /* margin-bottom: 3px; */
+}
+
+.comment-button-class{
+   margin-bottom: 2em;
+}
+
+.add-comment-class{
+   border: 2px solid #dedede;
+   padding: 10px;
+}
+/* ----------------------FOOTER STUFF  */
+
+.foot{
+   text-align: center;
+   color: white;
+   padding: 1rem;
+   background-color: rgb(34, 31, 31);
+}
+
+/* ----------icons */
+.upvote-fnt{
+   color: green;
+   margin-right: 10px;
+   margin-bottom: -2px;
+}
+
+.dovote-fnt{
+   color: green;
+   margin-right: 10px;
+   margin-bottom: -2px;
+}
