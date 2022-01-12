@@ -1,13 +1,13 @@
 import React from 'react';
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import SearchBar from "./SearchBar";
 import LogSign from "./LogSign";
 
-import greenit_logo from "../../../public/greenit-logo.png";
+import greenit_logo from "../../greenit-logo.png";
 
 function Navbar({search}) {
-   const history = useHistory();
+   const history = useNavigate();
 
    const goHome = () => {
       let path = "/";
