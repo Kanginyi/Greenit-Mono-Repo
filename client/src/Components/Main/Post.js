@@ -14,13 +14,13 @@ function Post({post, userData, handleDelete}) {
    const [likes, setLikes] = useState(0);
 
    useEffect(() => {
-      fetch(`http://localhost:9292/forum_posts/${post.id}`)
+      fetch(`/blogs/${post.id}`)
           .then(resp => resp.json())
           .then(data => setLikes(data.likes));
    }, []);
 
   const handleLikes = () => {
-      fetch(`http://localhost:9292/forum_posts/${post.id}/edit/likes`, {
+      fetch(`/blogs/${post.id}/edit/likes`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"},
          body: JSON.stringify({likes: likes + 1})
@@ -33,13 +33,13 @@ function Post({post, userData, handleDelete}) {
    const [dislikes, setDislikes] = useState(0);
 
    useEffect(() => {
-      fetch(`http://localhost:9292/forum_posts/${post.id}`)
+      fetch(`/${post.id}`)
          .then(resp => resp.json())
          .then(data => setDislikes(data.dislikes));
    }, []);
 
    const handleDislikes = () => {
-      fetch(`http://localhost:9292/forum_posts/${post.id}/edit/dislikes`, {
+      fetch(`/${post.id}/edit/dislikes`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"},
          body: JSON.stringify({dislikes: dislikes + 1})
@@ -52,7 +52,7 @@ function Post({post, userData, handleDelete}) {
    const [newUsernames, setNewUsernames] = useState("");
 
    useEffect(() => {
-      fetch(`http://localhost:9292/users/${post.user_id}`)
+      fetch(`/users/${post.user_id}`)
          .then(resp => resp.json())
          .then(data => setNewUsernames(data?.username));
    }, []);
