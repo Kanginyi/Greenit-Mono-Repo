@@ -5,7 +5,7 @@ function Posts({data, search, searchValue, handleDelete}) {
    const [userData, setUserData] = useState([]);
 
    useEffect(() => {
-      fetch("http://localhost:9292/users")
+      fetch("/users")
           .then(resp => resp.json())
           .then(data => setUserData(data));
    }, [])

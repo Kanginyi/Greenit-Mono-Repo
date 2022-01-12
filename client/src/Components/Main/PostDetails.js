@@ -8,7 +8,7 @@ function PostDetails({userData}) {
 
    const id = useParams().id;
    useEffect(() => {
-      fetch(`http://localhost:9292/blogs/${id}`)
+      fetch(`/blogs/${id}`)
          .then(resp => resp.json())
          .then(singlePost => {
             setOnePost(singlePost)
@@ -17,7 +17,7 @@ function PostDetails({userData}) {
    }, []);
 
    useEffect(() => {
-      fetch("http://localhost:9292/comments")
+      fetch("/comments")
          .then(resp => resp.json())
          .then(data => setComments(data));
    }, []);

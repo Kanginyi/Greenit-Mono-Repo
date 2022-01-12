@@ -5,7 +5,7 @@ function User({username, id}) {
    const [commentsData, setCommentsData] = useState([]);
 
    useEffect(() => {
-      fetch("http://localhost:9292/comments")
+      fetch("/comments")
          .then(resp => resp.json())
          .then(data => setCommentsData(data));
    }, []);
@@ -16,7 +16,7 @@ function User({username, id}) {
    const [blogsData, setBlogsData] = useState([]);
 
    useEffect(() => {
-      fetch("http://localhost:9292/blogs")
+      fetch("/blogs")
             .then(resp => resp.json())
             .then(data => setBlogsData(data));
    }, [])
