@@ -7,7 +7,7 @@ import LogSign from "./LogSign";
 import greenit_logo from "../../greenit-logo.png";
 
 function Navbar({search}) {
-   const history = useNavigate();
+   // const history = useNavigate();
 
    // const goHome = () => {
    //    let path = "/";
