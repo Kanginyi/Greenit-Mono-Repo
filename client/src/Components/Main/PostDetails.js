@@ -14,7 +14,7 @@ function PostDetails({userData}) {
             setOnePost(singlePost)
             setIsLoaded(true)
          });
-   }, []);
+   }, [id]);
 
    useEffect(() => {
       fetch("/comments")

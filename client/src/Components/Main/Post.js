@@ -17,7 +17,7 @@ function Post({post, userData, handleDelete}) {
       fetch(`/blogs/${post.id}`)
           .then(resp => resp.json())
           .then(data => setLikes(data.likes));
-   }, []);
+   }, [post.id]);
 
   const handleLikes = () => {
       fetch(`/blogs/${post.id}/edit/likes`, {
@@ -36,7 +36,7 @@ function Post({post, userData, handleDelete}) {
       fetch(`/${post.id}`)
          .then(resp => resp.json())
          .then(data => setDislikes(data.dislikes));
-   }, []);
+   }, [post.id]);
 
    const handleDislikes = () => {
       fetch(`/${post.id}/edit/dislikes`, {
@@ -55,7 +55,7 @@ function Post({post, userData, handleDelete}) {
       fetch(`/users/${post.user_id}`)
          .then(resp => resp.json())
          .then(data => setNewUsernames(data?.username));
-   }, []);
+   }, [post.user_id]);
 
    
    return (
