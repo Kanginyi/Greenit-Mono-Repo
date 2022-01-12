@@ -9,10 +9,10 @@ import greenit_logo from "../../greenit-logo.png";
 function Navbar({search}) {
    const history = useNavigate();
 
-   const goHome = () => {
-      let path = "/";
-      history.push(path);
-   }
+   // const goHome = () => {
+   //    let path = "/";
+   //    history.push(path);
+   // }
 
    return (
       <nav className="nav">
