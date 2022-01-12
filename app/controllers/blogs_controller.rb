@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
 
    def index
       blogs = Blog.all
-      blogs.to_json
+      render json: blogs, status: :ok
    end
 
    def show
