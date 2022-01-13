@@ -19,43 +19,43 @@ function Post({post, userData, handleDelete}) {
           .then(data => setLikes(data.likes));
    }, [post.id]);
 
-  const handleLikes = () => {
-      fetch(`/blogs/${post.id}/edit/likes`, {
-         method: "PATCH",
-         headers: {"Content-Type": "application/json"},
-         body: JSON.stringify({likes: likes + 1})
-      })
-         .then(resp => resp.json())
-         .then(data => setLikes(data.likes));
-   }
+//   const handleLikes = () => {
+//       fetch(`/blogs/${post.id}/edit/likes`, {
+//          method: "PATCH",
+//          headers: {"Content-Type": "application/json"},
+//          body: JSON.stringify({likes: likes + 1})
+//       })
+//          .then(resp => resp.json())
+//          .then(data => setLikes(data.likes));
+//    }
 
    // Handle dislikes
    const [dislikes, setDislikes] = useState(0);
 
    useEffect(() => {
-      fetch(`/${post.id}`)
+      fetch(`blogs/${post.id}`)
          .then(resp => resp.json())
          .then(data => setDislikes(data.dislikes));
    }, [post.id]);
 
-   const handleDislikes = () => {
-      fetch(`/${post.id}/edit/dislikes`, {
-         method: "PATCH",
-         headers: {"Content-Type": "application/json"},
-         body: JSON.stringify({dislikes: dislikes + 1})
-      })
-         .then(resp => resp.json())
-         .then(data => setDislikes(data.dislikes));
-   }
+   // const handleDislikes = () => {
+   //    fetch(`/${post.id}/edit/dislikes`, {
+   //       method: "PATCH",
+   //       headers: {"Content-Type": "application/json"},
+   //       body: JSON.stringify({dislikes: dislikes + 1})
+   //    })
+   //       .then(resp => resp.json())
+   //       .then(data => setDislikes(data.dislikes));
+   // }
 
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
 
-   useEffect(() => {
-      fetch(`/users/${post.user_id}`)
-         .then(resp => resp.json())
-         .then(data => setNewUsernames(data?.username));
-   }, [post.user_id]);
+   // useEffect(() => {
+   //    fetch(`/users/${post.user_id}`)
+   //       .then(resp => resp.json())
+   //       .then(data => setNewUsernames(data?.username));
+   // }, [post.user_id]);
 
    
    return (
@@ -80,14 +80,14 @@ function Post({post, userData, handleDelete}) {
 
          <div>
             <button
-               onClick={handleLikes}
+               // onClick={handleLikes}
                className="upvotes-button"
             >
                <BiUpvote className="upvote-fnt"/> {likes} Likes
             </button>
                &nbsp;
             <button
-               onClick={handleDislikes}
+               // onClick={handleDislikes}
                className="downvotes-button"
             >
                <BiDownvote className="dovote-fnt"/> {dislikes} Dislikes
