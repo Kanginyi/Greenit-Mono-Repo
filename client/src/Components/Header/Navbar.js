@@ -21,7 +21,7 @@ function Navbar({search}) {
                title="Greenit >:^("
                className="logo-box"
             >
-               <img ig="greenit-logo" src={greenit_logo} alt="Greenit Logo"/>
+               <img id="greenit-logo" src={greenit_logo} alt="Greenit Logo"/>
                <h4>Greenit</h4>
             </span>
          </a>
