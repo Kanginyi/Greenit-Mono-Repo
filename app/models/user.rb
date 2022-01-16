@@ -2,7 +2,8 @@ class User < ApplicationRecord
    has_many :comments
    has_many :blogs
 
-   validates :username, :password_digest, :session_token, presence: true
+   validates :username,                      :session_token, presence: true
+                        # :password_digest,
    validates :username, uniqueness: true, length: {maximum: 30}
 
    # This will create a session token if it doesn't already exist, related to the private method further down on Line 33
