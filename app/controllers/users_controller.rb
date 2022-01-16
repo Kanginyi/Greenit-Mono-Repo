@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       if new_user.valid?
          render json: new_user, status: :created
       else
-         render json: {errors: new_user.errors_full_messages}, status: :unprocessable_entity
+         render json: {errors: new_user.errors.full_messages}, status: :unprocessable_entity
       end
    end
 
