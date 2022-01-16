@@ -4,8 +4,6 @@ import Post from "./Post";
 function Posts({data, search, searchValue, handleDelete}) {
    const [userData, setUserData] = useState([]);
 
-   console.log(data);
-
    useEffect(() => {
       fetch("/users")
           .then(resp => resp.json())

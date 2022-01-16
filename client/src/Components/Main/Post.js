@@ -52,14 +52,6 @@ function Post({post, userData, handleDelete}) {
          .then(data => setNewUsernames(data?.username));
    }, [post.user_id]);
 
-   // const dateFormat = new Date(post.created_at)
-   // console.log(dateFormat)
-
-   console.log(post)
-   console.log(post.created_at)
-   console.log(new Date(post.created_at))
-   
-
    return (
       <div className="post-div">
          
