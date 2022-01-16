@@ -5,11 +5,6 @@ import {BiUpvote, BiDownvote} from "react-icons/bi";
 function Post({post, userData, handleDelete}) {
    const userObj = userData.filter(user => user.id === post.user.id);
 
-   //Changing date format
-   const date = post?.create_at?.slice(0, 10);
-   let slash = date?.replaceAll("-", "/");
-   let dateFormat = slash?.slice(5) + "/" + slash?.slice(0, 4);
-   
    // Handle likes
    const [likes, setLikes] = useState(0);
 
@@ -51,19 +46,26 @@ function Post({post, userData, handleDelete}) {
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
 
-   // useEffect(() => {
-   //    fetch(`/users/${post.user_id}`)
-   //       .then(resp => resp.json())
-   //       .then(data => setNewUsernames(data?.username));
-   // }, [post.user_id]);
+   useEffect(() => {
+      fetch(`/users/${post.user.id}`)
+         .then(resp => resp.json())
+         .then(data => setNewUsernames(data?.username));
+   }, [post.user_id]);
 
+   // const dateFormat = new Date(post.created_at)
+   // console.log(dateFormat)
+
+   console.log(post)
+   console.log(post.created_at)
+   console.log(new Date(post.created_at))
    
+
    return (
       <div className="post-div">
          
          <article className="single-post">
             <div className="user-info">
-               <h5>Posted by <span className="username-color">u/{newUsernames}</span> on {dateFormat}</h5>
+               <h5>Posted by <span className="username-color">u/{newUsernames}</span> on {post.created_at}</h5>
                <button className="delete-X" onClick={() => handleDelete(post.id)}>X</button>
             </div>
 
