@@ -68,7 +68,7 @@ function Post({post, userData, handleDelete}) {
             {post.image_url ? <img src={post.image_url} alt={post.title}/> : null}
 
             <div>
-               <p>{post.content_post}</p>
+               <p>{post.blog_post}</p>
             </div>
          </article>
 
