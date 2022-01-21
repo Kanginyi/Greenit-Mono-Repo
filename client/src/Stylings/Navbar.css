@@ -1,0 +1,15 @@
+.nav {
+   display: flex;
+   align-items: center;
+   padding: 0.5em;
+   
+   background-color: white;
+   box-shadow: 0 1px 1px 0 #afd3b5;
+}
+
+.fixed-navbar {
+   position: fixed;
+   top: 0;
+   width: 100%;
+}
+
