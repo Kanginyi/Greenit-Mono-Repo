@@ -24,10 +24,13 @@ function User({username, id}) {
    const checkBlogs = blogsData.filter(blog => blog.user_id === id);
 
    return (
-      <div className="user-div">
-         <h2 className="username-color">{username}</h2>
-         <h4>Total Posts: {checkBlogs.length}</h4>
-         <h4>Total Comments: {checkComments.length}</h4>
+      // <div className="user-div">
+      //    <h2 className="username-color">{username}</h2>
+      //    <h4>Total Posts: {checkBlogs.length}</h4>
+      //    <h4>Total Comments: {checkComments.length}</h4>
+      // </div>
+      <div>
+         asdf
       </div>
    );
 }
