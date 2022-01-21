@@ -5,7 +5,7 @@ function LogSign() {
       <div className="user-section">
 
          <button
-            className="login-button"
+            id="login-button"
             onClick={() => alert("Bing Bong")}
             type="button"
          >
@@ -13,7 +13,7 @@ function LogSign() {
          </button>
          
          <button
-            className="signup-button"
+            id="signup-button"
             onClick={() => alert("Bong Bing")}
             type="button"
          >
