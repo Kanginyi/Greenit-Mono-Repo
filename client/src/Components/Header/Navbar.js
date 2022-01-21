@@ -1,5 +1,5 @@
 import React from 'react';
-// import {useNavigate} from "react-router-dom";
+import "../../Stylings/Navbar.css";
 
 import SearchBar from "./SearchBar";
 import LogSign from "./LogSign";
@@ -7,13 +7,6 @@ import LogSign from "./LogSign";
 import greenit_logo from "../../greenit-logo.png";
 
 function Navbar({search}) {
-   // const history = useNavigate();
-
-   // const goHome = () => {
-   //    let path = "/";
-   //    history.push(path);
-   // }
-
    return (
       <nav className="nav">
          <a href="/" id="no-underline-pls">
