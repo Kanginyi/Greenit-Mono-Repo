@@ -4,14 +4,22 @@ function LogSign() {
    return (
       <div className="user-section">
 
-         <div className="log-btn">
-            <button onClick={() => alert("Bing Bong")} type="submit">Login</button>
-         </div>
-
-         <div className="sign-btn">
-            <button onClick={() => alert("Bong Bing")} type="submit">Sign Up</button>
-         </div>
+         <button
+            className="login-button"
+            onClick={() => alert("Bing Bong")}
+            type="button"
+         >
+            Login
+         </button>
          
+         <button
+            className="signup-button"
+            onClick={() => alert("Bong Bing")}
+            type="button"
+         >
+            Signup
+         </button>
+
       </div>
    );
 }
