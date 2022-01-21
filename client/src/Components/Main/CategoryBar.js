@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "../../Stylings/CategoryBar.css";
 import Form from "./Form";
 import {Link} from "react-router-dom";
 
@@ -7,7 +8,7 @@ function CategoryBar({handleAddPost}) {
 
    return (
       <>
-         <div className="category-bar">
+         <div id="category-bar">
             <button>Hot</button>
             <button>Everywhere</button>
             <button>New</button>
