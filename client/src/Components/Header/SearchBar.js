@@ -6,7 +6,7 @@ function SearchBar({search}) {
          <input
             onChange={search}
             type="text"
-            placeholder="Search Greenit"
+            placeholder="Search Greenit..."
          />
       </form>
    );
