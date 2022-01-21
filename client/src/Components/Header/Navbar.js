@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../Stylings/Navbar.css";
+import "../../Stylings/Header.css";
 
 import SearchBar from "./SearchBar";
 import LogSign from "./LogSign";
