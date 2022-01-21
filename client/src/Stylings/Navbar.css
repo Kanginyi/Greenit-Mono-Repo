@@ -64,3 +64,43 @@
    display: flex;
    margin-right: 10px;
 }
+
+.user-section button {
+   cursor: pointer;
+   width: 7em;
+   border: 1px solid rgb(200, 200, 200);
+   border-radius: 20px;
+   padding: 7px;
+   font-size: 1em;
+}
+
+#login-button {
+   margin-right: 10px;
+}
+
+#login-button:hover, #signup-button:hover {
+   background-color: rgb(0, 173, 76);
+   color: white;
+}
+
+#login-button:active, #signup-button:active {
+   animation: loginSignup 1.75s 1;
+}
+
+@keyframes loginSignup {
+   0% {
+       background: linear-gradient(to top right, rgb(0, 173, 76), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+   }
+   2% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgb(0, 173, 76), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+   }
+   4% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(0, 173, 76), rgba(220, 220, 220, 0.5));
+   }
+   6% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(0, 173, 76));
+   }
+   8% {
+       background: rgb(0, 173, 76);
+   }
+}

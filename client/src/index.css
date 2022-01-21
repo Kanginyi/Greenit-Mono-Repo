@@ -1,154 +1,31 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #DAE6DC;
+   margin: 0;
+   padding: 0;
+
+   background-color: #DAE6DC;
+   font-family: 'Source Sans Pro', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 *, *:before, *:after {
-    box-sizing: border-box;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
 }
 
-*{
-   margin: 0px;
+::selection {
+   background-color: rgb(0, 173, 76);
+   color: white;
 }
-
-body{
-   background-color: #dae6dc;
-   font-family: 'Source Sans Pro', sans-serif;
-   
-}
-
-
-
-
-/* ------------------HEADER STUFF  */
-
-
-.nav{
-   display: flex;
-   align-items: center;
-   padding: 0.5em;
-   background-color: rgb(255, 255, 255);
-}
-
-.sticky {
-   position: fixed;
-   top: 0;
-   width: 100%;
-}
-
-.logo{
-   border-radius: 25px;
-   width: 58px;
-   margin-left: 10px;
-   margin-right: 12px;
-
-}
-
-.logo-box{
-   font-size: 1.5rem;
-   color: rgb(0, 0, 0);
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-}
-
-.searchbar {
-   flex: 1 1 auto;
-   margin: 0 1rem;
-   display: flex;
-   justify-content: center;
-}
-
-.searchbar input {
-   /* width: 60%;
-   font-size: 1.5rem;
-   height: 2rem;
-   margin-right: 0.5rem;
-   border: 1px solid rgb(109, 101, 101);
-   border-radius: 3px;
-   padding-left: 0.5rem; */
-   width: 60%;
-   font-size: 1.1rem;
-   margin-left: 18%;
-   height: 2rem;
-   border: 1px solid rgb(109, 101, 101);
-   padding-left: 0.5rem;
-}
-
-.searchbar input:hover{
-   border: 1px solid rgb(7, 172, 78);
-}
-
-.searchbar button{
-width: 6%;
-font-size: 17px;
-padding: 0 0.25rem;
-background: white;
-border: 1px solid #ccc;
-border-radius: 3px;
-cursor: pointer;
-}
-
-.user-section{
-   display: flex;
-   align-items: center;
-   margin-right: 2%;
-}
-
-.log-btn button{
-   font-size: 1em;
-   border-radius: 20px;
-   padding: 0 0.25rem;
-   padding: 7px;
-   width: 8em;
-   border: 1px solid #ccc;
-   cursor: pointer;
-}
-
-.sign-btn{
-   margin-left: 12px;
-}
-
-.log-btn button:hover {
-   background-color: rgb(16, 216, 103);
-}
-
-.sign-btn button:hover{
-   background-color: rgb(16, 216, 103);
-}
-
-.sign-btn button{
-   white-space: nowrap;
-   font-size: 1em;
-   padding: 0 0.25rem;
-   border-radius: 20px;
-   padding: 7px;
-   width: 8em;
-   border: 1px solid #ccc;
-   cursor: pointer;
-}
-
-#greenit-logo {
-   margin-right: 8px;
-   width: 40px;
-   height: 40px
-}
-
-#no-underline-pls {
-   text-decoration: none;
-}
-
 
 /* ------------------MAIN CONTENT STUFF  */
 
@@ -366,14 +243,6 @@ main {
 .add-comment-class{
    border: 2px solid #dedede;
    padding: 10px;
-}
-/* ----------------------FOOTER STUFF  */
-
-.foot{
-   text-align: center;
-   color: white;
-   padding: 1rem;
-   background-color: rgb(34, 31, 31);
 }
 
 /* ----------icons */
