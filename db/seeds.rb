@@ -18,10 +18,10 @@ puts "🌱 Seeding blogs data..."
 baby_come_back = Blog.create(user_id: alan_cinsavich.id, title: "Baby Come Back", blog_post: "I have to leave and I'm sorry guys. I can't tell you why, but please remember me fondly. Alan L. Cinsavich signing out.", likes: 0, dislikes: 99999)
 
 # Post 2
-meet_rusty = Blog.create(user_id: unclaimed_yeti.id, title: "Meet Rusty!", blog_post: "Here's a picture of Rusty, one of my dogs!", image_url: "https://cdn.discordapp.com/attachments/886987849902211090/891380444904452126/20210925_134555.jpg", likes: 123, dislikes: 0)
+meet_rusty = Blog.create(user_id: unclaimed_yeti.id, title: "Meet Rusty!", blog_post: "Here's a picture of Rusty, one of my dogs!", image_url: "https://i.imgur.com/vmueRNt.jpg", likes: 123, dislikes: 0)
 
 # Post 3
-meet_freya = Blog.create(user_id: unclaimed_yeti.id, title: "Meet Freya!", blog_post: "Here's a picture of Freya, one of my dogs!", image_url: "https://cdn.discordapp.com/attachments/886987849902211090/891380444598251560/20210925_134640.jpg", likes: 321, dislikes: 0)
+meet_freya = Blog.create(user_id: unclaimed_yeti.id, title: "Meet Freya!", blog_post: "Here's a picture of Freya, one of my dogs!", image_url: "https://i.imgur.com/Ie10zAv.jpg", likes: 321, dislikes: 0)
 
 # Post 4
 daughters_first_birthday = Blog.create(user_id: pashovski.id, title: "It's My Daughter's First Birthday!", blog_post: "Hey guys, my daughter turned 1 recently! She's growing so fast already and being her father is so rewarding. I can't wait to share more updates!", likes: 540, dislikes: 0)
