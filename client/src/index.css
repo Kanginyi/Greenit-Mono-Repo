@@ -23,8 +23,8 @@ code {
 }
 
 ::selection {
-   background-color: rgb(0, 173, 76);
-   color: white;
+   background-color: #c1e6c7;
+   color: rgb(0, 90, 40);
 }
 
 /* ------------------MAIN CONTENT STUFF  */
