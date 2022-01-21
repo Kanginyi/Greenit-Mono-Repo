@@ -14,7 +14,7 @@ function App() {
    useEffect(() => {
       fetch("/blogs")
         .then(resp => resp.json())
-        .then(data => setPostData(data))
+        .then(data => setPostData(data));
     }, [])
   
     const [searchValue, setSearchValue] = useState("");
@@ -22,6 +22,12 @@ function App() {
     function search(e) {
       setSearchValue(e.target.value);
     }
+
+   useEffect(() => {
+      fetch("/users")
+         .then(resp => resp.json())
+         .then(data => setUserData(data));
+   }, []);
   
     //FORM SUBMITS
     const handleAddPost = post => {
