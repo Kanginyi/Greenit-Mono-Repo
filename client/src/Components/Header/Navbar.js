@@ -9,13 +9,13 @@ import greenit_logo from "../../greenit-logo.png";
 function Navbar({search}) {
    return (
       <nav className="nav">
-         <a href="/" id="no-underline-pls">
+         <a href="/">
             <span
                title="Greenit >:^("
                className="logo-box"
             >
                <img id="greenit-logo" src={greenit_logo} alt="Greenit Logo"/>
-               <h4>Greenit</h4>
+               <p>Greenit</p>
             </span>
          </a>
 
