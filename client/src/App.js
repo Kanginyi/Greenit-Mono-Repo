@@ -55,7 +55,7 @@ function App() {
   return (
     <div className="App">
       
-      <header className="sticky">
+      <header className="fixed-navbar">
          <Navbar search={search}/>
       </header>
 
