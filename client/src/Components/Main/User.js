@@ -4,13 +4,17 @@ function User({username, id}) {
    //This is for comments length
    const [commentsData, setCommentsData] = useState([]);
 
-   useEffect(() => {
-      fetch("/comments")
-         .then(resp => resp.json())
-         .then(data => setCommentsData(data));
-   }, []);
+
+   // useEffect(() => {
+   //    fetch("comments")
+   //       .then(resp => resp.json())
+   //       .then(data => setCommentsData(data));
+   // }, []);
+
+   // console.log(commentsData);
    
-   const checkComments = commentsData.filter(comment => comment.user_id === id);
+   // const checkComments = commentsData.filter(comment => comment.user_id === id);
+   // console.log(checkComments)
 
    //This is for blogs length
    const [blogsData, setBlogsData] = useState([]);
@@ -22,15 +26,13 @@ function User({username, id}) {
    }, [])
 
    const checkBlogs = blogsData.filter(blog => blog.user_id === id);
+   const checkComments = "asdf";
 
    return (
-      // <div className="user-div">
-      //    <h2 className="username-color">{username}</h2>
-      //    <h4>Total Posts: {checkBlogs.length}</h4>
-      //    <h4>Total Comments: {checkComments.length}</h4>
-      // </div>
-      <div>
-         asdf
+      <div className="user-div">
+         <h2 className="username-color">{username}</h2>
+         <h4>Total Posts: {checkBlogs.length}</h4>
+         <h4>Total Comments: {checkComments.length}</h4>
       </div>
    );
 }
