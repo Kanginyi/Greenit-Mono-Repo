@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 function User({username, id, comments, blogs}) {
    const checkComments = comments.filter(comment => comment.user.id === id);
