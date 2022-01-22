@@ -1,32 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
-function User({username, id}) {
-   //This is for comments length
-   const [commentsData, setCommentsData] = useState([]);
-
-   useEffect(() => {
-      fetch("comments")
-         .then(resp => resp.json())
-         .then(data => setCommentsData(data));
-   }, []);
-
-   // console.log(commentsData);
+function User({username, id, comments, blogs}) {
+   const checkComments = comments.filter(comment => comment.user.id === id);
+   const checkBlogs = blogs.filter(blog => blog.user.id === id);
    
-   const checkComments = commentsData.filter(comment => comment.user.id === id);
-   
-   // console.log(checkComments);
-
-   //This is for blogs length
-   const [blogsData, setBlogsData] = useState([]);
-
-   useEffect(() => {
-      fetch("/blogs")
-            .then(resp => resp.json())
-            .then(data => setBlogsData(data));
-   }, [])
-
-   const checkBlogs = blogsData.filter(blog => blog.user.id === id);
-
    return (
       <div className="user-div">
          <h2 className="username-color">{username}</h2>
