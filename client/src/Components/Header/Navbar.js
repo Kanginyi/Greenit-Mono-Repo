@@ -15,7 +15,7 @@ function Navbar({search}) {
                className="logo-box"
             >
                <img id="greenit-logo" src={greenit_logo} alt="Greenit Logo"/>
-               <p>Greenit</p>
+               <h1>Greenit</h1>
             </span>
          </a>
 
