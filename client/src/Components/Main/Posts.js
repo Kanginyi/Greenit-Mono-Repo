@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Post from "./Post";
 
-function Posts({data, search, searchValue, handleDelete}) {
+function Posts({data, searchValue, handleDelete}) {
    const [userData, setUserData] = useState([]);
 
    useEffect(() => {

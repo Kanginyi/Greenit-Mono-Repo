@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import User from "./User";
 
-function Users({userData}) {
+function Users({userData, searchValue}) {
    // Essentially for Blogs and Comments length in child component of User
    const [blogsData, setBlogsData] = useState([]);
    const [commentsData, setCommentsData] = useState([]);
@@ -20,9 +20,11 @@ function Users({userData}) {
    
    const checkUsers = userData?.map(user => <User key={user.id} username={user.username} id={user.id} comments={commentsData} blogs={blogsData}/>);
 
+   const filterUsers = searchValue === "" ? checkUsers : checkUsers.filter(user => user.props.username.toLowerCase().includes(searchValue.toLowerCase()));
+
    return (
       <>
-         {checkUsers}
+         {filterUsers}
       </>
    );
 }
