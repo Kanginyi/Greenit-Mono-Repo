@@ -2,22 +2,26 @@ import React, {useState} from 'react';
 import "../../Stylings/CategoryBar.css";
 import Form from "./Form";
 
-import {Link} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 function CategoryBar({handleAddPost}) {
    const [showForm, setShowForm] = useState(null);
 
+   let navigate = useNavigate();
+
    return (
       <>
-         <div id="category-bar">
+         <aside id="category-bar">
             <button>Hot</button>
             <button>Interactions</button>
             <button>New</button>
-            <Link to="/users">Users</Link>
-            <div className="show-forum">
+            <button onClick={() => navigate("/users")}>Users</button>
+            <button onClick={() => setShowForm(prevValue => !prevValue)}>Create Post</button>
+
+            {/* <div className="show-forum">
                <button onClick={() => setShowForm(true)}>Create Post</button>
-            </div>
-         </div>
+            </div> */}
+         </aside>
 
          <div>
             {showForm ? <Form setShowForm={setShowForm} handleAddPost={handleAddPost}/> : false}
