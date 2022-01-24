@@ -101,7 +101,7 @@ function Form({showForm, setShowForm, handleAddPost}) {
                      autoComplete="off"
                   />
 
-                  <button id="submit-form">Submit!</button>                     
+                  <button id="submit-form-button">Submit!</button>                     
                </form>
 
                </div>

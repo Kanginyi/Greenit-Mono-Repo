@@ -16,6 +16,8 @@
    background-color: #DAE6DC;
    width: 100%;
    text-align: center;
+
+   border-radius: 0 0 20px 20px;
 }
 
 .x-button {
@@ -23,13 +25,17 @@
    justify-content: center;
    align-items: center;
    
-   width: 15px;
-   height: 15px;
+   width: 14px;
+   height: 14px;
    padding: 8.5px;
 
    background-color: rgb(255, 55, 55);
    color: whitesmoke;
    border: 0.5px solid #CCC;
+   
+   position: absolute;
+   top: 5px;
+   right: 5px;
    
    cursor: pointer;
 }
@@ -67,7 +73,8 @@
 
    margin: 20px auto;
    padding: 15px 10px;
-   border: 2px solid green;
+   border: 2px solid rgb(0, 173, 76);
+   text-align: center;
 
    width: 90%;
    outline: none;
@@ -79,28 +86,28 @@
 
 .form-modal input:focus, .form-modal textarea:focus {
    width: 100%;
-   border-color: blue;
-
+   border-color: rgb(0, 173, 76);
 }
 
-/* ------Forum Modal  */
-
-/* 
-
-.form-modal #content{
-   height: 100px;
-}
-
-.form-modal #submit-btn{
-   color: white;
-   padding: 7px;
-   font-size: 1em;
-   font-weight: 700;
-   background-color: rgb(0 173 76);
+#submit-form-button {
    cursor: pointer;
-   margin: 1em;
+   background-color: rgb(0, 173, 76);
+   color: #DAE6DC;
+
+   font-weight: 700;
+   font-size: 1.05em;
+
+   padding: 5px;
+   margin: 8px 50px -8px;
+   border: 1px solid rgb(100, 100, 100);
+   border-radius: 20px;
 }
 
-.form-modal #submit-btn:hover{
-   background-color: rgb(194, 191, 191);
-} */
+#submit-form-button:active {
+   transform: scale(.99);
+   background-color: rgba(0, 173, 76, 0.8);
+}
+
+#submit-form-button:hover{
+   color: rgb(0, 70, 30);
+}
