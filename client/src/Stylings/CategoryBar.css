@@ -1,16 +1,13 @@
-#create-post {
+#create-post, #all-users {
    position: fixed;
-   inset: 80px 10px auto auto;
+   right: 20px;
 
    padding: 5px;
    height: 50px;
    width: 50px;
 
-   border: 1px solid #CCC;
+   border: none;
    border-radius: 50%;
-   background-color: rgb(0, 173, 76);
-   color: white;
-   font-size: 2.5em;
 
    display: flex;
    justify-content: center;
@@ -19,12 +16,30 @@
    cursor: pointer;
 }
 
-#create-post:hover {
-   box-shadow: 0 0 5px rgba(0, 173, 76, 0.8);
+#create-post {
+   top: 80px;
+
+   background-color: rgb(0, 173, 76);
+   color: white;
+   font-size: 2.5em;
+}
+
+#create-post:hover, #all-users:hover {
+   box-shadow: 0 0 6px rgba(0, 173, 76, 0.8);
 }
 
 #create-post:active {
-   transform: scale(.9);
    transform: rotate(90deg);
    transition: 0.15s;
+}
+
+#all-users {
+   top: 140px;
+
+   background-color: rgb(0, 173, 76);
+}
+
+#users-smiley {
+   color: white;
+   font-size: 2em;
 }
