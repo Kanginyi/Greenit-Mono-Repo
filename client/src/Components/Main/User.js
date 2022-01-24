@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../Stylings/Users.css";
 
 function User({username, id, comments, blogs}) {
    const checkComments = comments.filter(comment => comment.user.id === id);
@@ -6,9 +7,14 @@ function User({username, id, comments, blogs}) {
    
    return (
       <div className="user-div">
-         <h2 className="username-color">{username}</h2>
-         <h4>Total Posts: {checkBlogs.length}</h4>
-         <h4>Total Comments: {checkComments.length}</h4>
+         <h3 className="username-color">
+            <span>{username}</span>
+         </h3>
+
+         <div className="total-div">
+            <p>Total Posts: {checkBlogs.length}</p>
+            <p>Total Comments: {checkComments.length}</p>
+         </div>
       </div>
    );
 }
