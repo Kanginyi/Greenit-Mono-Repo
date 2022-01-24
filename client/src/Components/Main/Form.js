@@ -88,6 +88,7 @@ function Form({showForm, setShowForm, handleAddPost}) {
                      type="text"
                      name="content_post"
                      value={blogForm.content_post}
+                     required
                      rows="5"
                      cols="50"
                   />
