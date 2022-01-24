@@ -5,7 +5,7 @@ import Form from "./Form";
 import {useNavigate} from 'react-router-dom';
 
 function CategoryBar({handleAddPost}) {
-   const [showForm, setShowForm] = useState(null);
+   const [showForm, setShowForm] = useState(false);
 
    let navigate = useNavigate();
 
@@ -17,15 +17,13 @@ function CategoryBar({handleAddPost}) {
             <button>New</button>
             <button onClick={() => navigate("/users")}>Users</button>
             <button onClick={() => setShowForm(prevValue => !prevValue)}>Create Post</button>
-
-            {/* <div className="show-forum">
-               <button onClick={() => setShowForm(true)}>Create Post</button>
-            </div> */}
          </aside>
 
-         <div>
-            {showForm ? <Form setShowForm={setShowForm} handleAddPost={handleAddPost}/> : false}
-         </div>
+         <Form
+            showForm={showForm}
+            setShowForm={setShowForm}
+            handleAddPost={handleAddPost}
+         />
       </>
    );
 }
