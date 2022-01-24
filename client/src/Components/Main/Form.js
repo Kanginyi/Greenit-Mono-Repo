@@ -47,10 +47,10 @@ function Form({showForm, setShowForm, handleAddPost}) {
    // Animate modal popping up
    const animation = useSpring({
       config: {
-         duration: 225
+         duration: 275
       },
       opacity: showForm ? 1: 0,
-      transform: showForm ? `translateY(0%)` : `translateY(-100%)`
+      transform: showForm ? `translateY(0%)` : `translateY(-300%)`
    });
 
 
@@ -60,52 +60,51 @@ function Form({showForm, setShowForm, handleAddPost}) {
          <section className="form-background" onClick={closeForm} ref={formRef}>
             <animated.div style={animation}>
             <div className="create-post-form">
-               <div>
-                  <button onClick={() => setShowForm(false)}>X</button>
-                  <form className="form-modal" onSubmit={handleSubmit}>
-                     <p>Name <span style={{color: "red"}}>*</span></p>
-                     <input
-                        onChange={handleInputChange}
-                        type="text"
-                        name="username"
-                        value={blogForm.username}
-                        autoComplete="off"
-                        required
-                     />
+               <button onClick={() => setShowForm(false)} className="x-button">X</button>
+               <form className="form-modal" onSubmit={handleSubmit}>
+                  <p>Username <span className="required-red">*</span></p>
+                  <input
+                     onChange={handleInputChange}
+                     type="text"
+                     name="username"
+                     value={blogForm.username}
+                     autoComplete="off"
+                     required
+                  />
 
-                     <p>Title <span style={{color: "red"}}>*</span></p>
-                     <input
-                        onChange={handleInputChange}
-                        type="text"
-                        name="title"
-                        value={blogForm.title}
-                        autoComplete="off"
-                        required
-                     />
+                  <p>Title <span className="required-red">*</span></p>
+                  <input
+                     onChange={handleInputChange}
+                     type="text"
+                     name="title"
+                     value={blogForm.title}
+                     autoComplete="off"
+                     required
+                  />
 
-                     <p>Content <span style={{color: "red"}}>*</span></p>
-                     <textarea
-                        onChange={handleInputChange}
-                        type="text"
-                        name="content_post"
-                        value={blogForm.content_post}
-                        rows="4"
-                        cols="50"
-                     />
+                  <p>Content <span className="required-red">*</span></p>
+                  <textarea
+                     onChange={handleInputChange}
+                     type="text"
+                     name="content_post"
+                     value={blogForm.content_post}
+                     rows="4"
+                     cols="50"
+                  />
 
-                     <p>Image</p>
-                     <input
-                        onChange={handleInputChange}
-                        type="text"
-                        name="image_url"
-                        value={blogForm.image_url}
-                        autoComplete="off"
-                     />
+                  <p>Image</p>
+                  <input
+                     onChange={handleInputChange}
+                     type="text"
+                     name="image_url"
+                     value={blogForm.image_url}
+                     autoComplete="off"
+                  />
 
-                     <button id="submit-form">Submit!</button>                     
-                  </form>
+                  <button id="submit-form">Submit!</button>                     
+               </form>
+
                </div>
-            </div>
             </animated.div>
          </section>
       : null}
