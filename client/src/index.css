@@ -33,8 +33,16 @@ main {
    max-width: 725px;
 }
 
+.username-color {
+   color: rgb(0, 173, 76);
+}
+
 
 /* ------------------MAIN CONTENT STUFF  */
+
+.post-div:nth-child(1) {
+   margin-top: 9em;
+}
 
 .post-div{
    padding: 10px;
@@ -79,20 +87,6 @@ main {
 .forum-post-title {
    font-family: 'Noto Serif Display', serif;
    font-size: 2em;
-}
-
-.username-color {
-   color:rgb(7, 172, 78)
-}
-
-.user-div {
-   padding: 10px;
-   margin: 3rem 0;
-   background-color: white;
-}
-
-.user-div:hover {
-   box-shadow: 1px 1px 5px 3px rgba(14, 129, 64, 0.4);
 }
 
 .upvotes-button, .downvotes-button {
