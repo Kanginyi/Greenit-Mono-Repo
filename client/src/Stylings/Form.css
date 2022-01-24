@@ -27,11 +27,11 @@
    
    width: 14px;
    height: 14px;
-   padding: 8.5px;
+   padding: 8px;
 
    background-color: rgb(255, 55, 55);
-   color: whitesmoke;
-   border: 0.5px solid #CCC;
+   color: #CCC;
+   border: 0.75px solid #CCC;
    
    position: absolute;
    top: 5px;
@@ -51,9 +51,6 @@
 .form-modal {
    display: flex;
    flex-direction: column;
-   flex-wrap: nowrap;
-   justify-content: flex-end;
-   align-items: stretch;
 
    padding: 10%;
    width: 100%;
