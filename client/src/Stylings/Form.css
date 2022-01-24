@@ -1,33 +1,91 @@
-/* ------Forum Modal  */
-
-/* .modal-background{
-   width: 46vw;
-   height: 60vh;
+.form-background {
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.75);
    position: fixed;
-   background-color:  rgb(224 224 224);
-   position:fixed;
-   box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+   inset: 0 0 0 0;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   z-index: 5;
 }
 
-
-.x-btn-container{
-   padding: 8px;
+.create-post-form {
+   background-color: #DAE6DC;
+   width: 100%;
+   text-align: center;
 }
 
-.x-btn{
-   height: 2em;
-   width: 2em;
-   background-color: rgb(255, 56, 56);
+.x-button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+   width: 15px;
+   height: 15px;
+   padding: 8.5px;
+
+   background-color: rgb(255, 55, 55);
+   color: whitesmoke;
+   border: 0.5px solid #CCC;
+   
+   cursor: pointer;
 }
 
-.form-modal{
-   padding: 10%;
+.x-button:active {
+   transform: scale(.9);
+}
+
+.required-red {
+   color: red;
+}
+
+.form-modal {
    display: flex;
    flex-direction: column;
    flex-wrap: nowrap;
-   align-items: stretch;
    justify-content: flex-end;
+   align-items: stretch;
+
+   padding: 10%;
+   width: 100%;
 }
+
+.form-modal p {
+   font-size: 1.15em;
+   font-weight: 600;
+   margin-bottom: -10px;
+}
+
+/* Raleway Regular 400 Font */
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.form-modal input, .form-modal textarea {
+   background: none;
+
+   margin: 20px auto;
+   padding: 15px 10px;
+   border: 2px solid green;
+
+   width: 90%;
+   outline: none;
+   border-radius: 30px;
+   transition: 0.5s;
+
+   font-family: 'Raleway', sans-serif;
+}
+
+.form-modal input:focus, .form-modal textarea:focus {
+   width: 100%;
+   border-color: blue;
+
+}
+
+/* ------Forum Modal  */
+
+/* 
 
 .form-modal #content{
    height: 100px;
