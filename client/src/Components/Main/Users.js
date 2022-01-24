@@ -23,9 +23,9 @@ function Users({userData, searchValue}) {
    const filterUsers = searchValue === "" ? checkUsers : checkUsers.filter(user => user.props.username.toLowerCase().includes(searchValue.toLowerCase()));
 
    return (
-      <>
+      <div>
          {filterUsers}
-      </>
+      </div>
    );
 }
 
