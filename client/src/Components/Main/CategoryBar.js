@@ -16,7 +16,7 @@ function CategoryBar({handleAddPost}) {
             <button>Interactions</button>
             <button>New</button>
             <button onClick={() => navigate("/users")}>Users</button>
-            <button onClick={() => setShowForm(prevValue => !prevValue)}>Create Post</button>
+            <button onClick={() => setShowForm(true)}>Create Post</button>
          </aside>
 
          <Form
