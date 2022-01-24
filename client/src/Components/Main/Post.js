@@ -6,13 +6,13 @@ function Post({post, userData, handleDelete}) {
    const userObj = userData.filter(user => user.id === post.user.id);
 
    // Handle likes
-   const [likes, setLikes] = useState(0);
+   // const [likes, setLikes] = useState(0);
 
-   useEffect(() => {
-      fetch(`/blogs/${post.id}`)
-          .then(resp => resp.json())
-          .then(data => setLikes(data.likes));
-   }, [post.id]);
+   // useEffect(() => {
+   //    fetch(`/blogs/${post.id}`)
+   //        .then(resp => resp.json())
+   //        .then(data => setLikes(data.likes));
+   // }, [post.id]);
 
 //   const handleLikes = () => {
 //       fetch(`/blogs/${post.id}/edit/likes`, {
@@ -25,13 +25,13 @@ function Post({post, userData, handleDelete}) {
 //    }
 
    // Handle dislikes
-   const [dislikes, setDislikes] = useState(0);
+   // const [dislikes, setDislikes] = useState(0);
 
-   useEffect(() => {
-      fetch(`blogs/${post.id}`)
-         .then(resp => resp.json())
-         .then(data => setDislikes(data.dislikes));
-   }, [post.id]);
+   // useEffect(() => {
+   //    fetch(`blogs/${post.id}`)
+   //       .then(resp => resp.json())
+   //       .then(data => setDislikes(data.dislikes));
+   // }, [post.id]);
 
    // const handleDislikes = () => {
    //    fetch(`/${post.id}/edit/dislikes`, {
@@ -51,6 +51,9 @@ function Post({post, userData, handleDelete}) {
          .then(resp => resp.json())
          .then(data => setNewUsernames(data?.username));
    }, [post.user_id]);
+
+   const likes = 0;
+   const dislikes = 0;
 
    return (
       <div className="post-div">
