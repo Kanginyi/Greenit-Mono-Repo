@@ -1,0 +1,47 @@
+.user-div {
+   width: 95%;
+
+   padding: 10px;
+   margin: 2rem auto;
+   background-color: white;
+}
+
+.user-div:hover {
+   box-shadow: 1px 1px 5px 3px rgba(14, 129, 64, 0.4);
+}
+
+.user-div h3 {
+   font-size: 1.5em;
+
+   text-align: center;
+}
+
+.user-div h3 span {
+   text-decoration: none;
+   background-image: linear-gradient(90deg, rgb(245, 245, 245), rgb(127, 214, 165), rgb(0, 173, 76));
+   background-size: 0% 3px;
+   background-repeat: no-repeat;
+   background-position: left bottom;
+
+   transition: background-size 300ms ease;
+}
+
+.user-div h3 span:hover {
+   background-size: 100% 3px;
+}
+
+.total-div {
+   font-size: 1.05em;
+   font-weight: 600;
+
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.user-div:nth-child(1) {
+   margin-top: 9em;
+}
+
+
+/* afetch posts, when you click, drop a modal down and then create oen that matches the id of the person in the post */
