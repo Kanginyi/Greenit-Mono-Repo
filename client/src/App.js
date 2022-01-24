@@ -70,12 +70,16 @@ function App() {
                <Route path="/" element={
                   <Posts
                      data={postData}
-                     search={search}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
                   />
                }/>
-               <Route path="/users" element={<Users userData={userData}/>}/>
+               <Route path="/users" element={
+                  <Users
+                     userData={userData}
+                     searchValue={searchValue}
+                  />
+               }/>
                <Route path="/users/:id" element={<PostDetails userData={userData}/>}/>
             </Routes>
       </main>
