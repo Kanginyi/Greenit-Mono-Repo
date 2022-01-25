@@ -15,7 +15,7 @@ Rails.application.routes.draw do
    patch "blogs/inc_dislikes" to "blogs#increment_dislikes"
 
    patch "blogs/dec_likes", to "blogs#decrement_likes"
-   patch "blogs/dec_dislikes", to "blogs#dec_dislikes"
+   patch "blogs/dec_dislikes", to "blogs#decrement_dislikes"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
