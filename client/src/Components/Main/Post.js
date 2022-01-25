@@ -93,7 +93,7 @@ function Post({post, userData, handleDelete}) {
             <br/>
 
          <div className="post-btn-section">
-            <Link to={`/users/${post.id}`}>
+            <Link to={`/blogs/${post.id}`}>
                <button className="comment-btn">View Comments</button>
             </Link>
          </div>
