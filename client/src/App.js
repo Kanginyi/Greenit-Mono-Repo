@@ -78,7 +78,8 @@ function App() {
             <Routes>
                <Route path="/" element={
                   <Posts
-                     data={postData}
+                     postData={postData}
+                     userData={userData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
                   />
@@ -100,7 +101,7 @@ function App() {
                   />
                }/>
 
-               {/* <Route path="/posts/:id" element={<PostDetails userData={userData}/>}/> */}
+               <Route path="/blogs/:id" element={<PostDetails userData={userData}/>}/>
 
             </Routes>
       </main>
