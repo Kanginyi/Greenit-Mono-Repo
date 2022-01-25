@@ -16,6 +16,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "react-spring": "^9.4.2",
+    "react-window": "^1.8.6",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
