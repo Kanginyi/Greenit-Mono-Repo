@@ -1,12 +1,20 @@
 import React from 'react';
 import "../../Stylings/Users.css";
 
+import {useNavigate} from "react-router-dom";
+
 function User({username, id, comments, blogs}) {
-   const checkComments = comments.filter(comment => comment.user.id === id);
-   const checkBlogs = blogs.filter(blog => blog.user.id === id);
-   
+   const checkComments = comments?.filter(comment => comment?.user?.id === id);
+   const checkBlogs = blogs?.filter(blog => blog?.user?.id === id);
+
+   let navigate = useNavigate();
+
+   const checkUserInfo = () => {
+      navigate(`/users/${id}`);
+   }
+  
    return (
-      <div className="user-div">
+      <div className="user-div" onClick={checkUserInfo}>
          <h3 className="username-color">
             <span>{username}</span>
          </h3>
