@@ -1,48 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from "react-router-dom";
-import {BiUpvote, BiDownvote} from "react-icons/bi";
+import {useNavigate, Link} from "react-router-dom";
 
 function Post({post, userData, handleDelete}) {
-   const userObj = userData.filter(user => user.id === post.user.id);
-
-   // Handle likes
-   // const [likes, setLikes] = useState(0);
-
-   // useEffect(() => {
-   //    fetch(`/blogs/${post.id}`)
-   //        .then(resp => resp.json())
-   //        .then(data => setLikes(data.likes));
-   // }, [post.id]);
-
-//   const handleLikes = () => {
-//       fetch(`/blogs/${post.id}/edit/likes`, {
-//          method: "PATCH",
-//          headers: {"Content-Type": "application/json"},
-//          body: JSON.stringify({likes: likes + 1})
-//       })
-//          .then(resp => resp.json())
-//          .then(data => setLikes(data.likes));
-//    }
-
-   // Handle dislikes
-   // const [dislikes, setDislikes] = useState(0);
-
-   // useEffect(() => {
-   //    fetch(`blogs/${post.id}`)
-   //       .then(resp => resp.json())
-   //       .then(data => setDislikes(data.dislikes));
-   // }, [post.id]);
-
-   // const handleDislikes = () => {
-   //    fetch(`/${post.id}/edit/dislikes`, {
-   //       method: "PATCH",
-   //       headers: {"Content-Type": "application/json"},
-   //       body: JSON.stringify({dislikes: dislikes + 1})
-   //    })
-   //       .then(resp => resp.json())
-   //       .then(data => setDislikes(data.dislikes));
-   // }
-
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
 
@@ -52,43 +11,102 @@ function Post({post, userData, handleDelete}) {
          .then(data => setNewUsernames(data?.username));
    }, [post.user_id]);
 
-   const likes = 0;
-   const dislikes = 0;
+   const userObj = userData.filter(user => user.id === post.user.id);
+
+   // Grab the ID so we can click the name
+   let clickedID;
+   if (userObj[0]?.username === newUsernames) {
+      clickedID = userObj[0]?.id;
+   }
+
+   // Click onto username to show user's info
+   let navigate = useNavigate();
+
+   const clickUser = () => {
+      navigate(`/users/${clickedID}`);
+   }
+   
+   const [isClicked, setIsClicked] = useState(1);
+   const [postLikes, setPostLikes] = useState(post.likes);
+   const [postDisikes, setPostDisLikes] = useState(post.dislikes);
+
+   // Three states of the buttons
+   const notPressed = <>
+                        <button
+                           className="upvotes-button"
+                        >
+                           👍 {postLikes} Likes
+                        </button>
+                        &nbsp;
+                        <button
+                           className="downvotes-button"                          
+                        >
+                           {postDisikes} Dislikes 👎
+                        </button>
+                      </>
+
+   const likesPressed = <>
+                        <button
+                           className="upvotes-button"
+                           disabled="disabled"
+                        >
+                           👍 {postLikes} Likes
+                        </button>
+                        &nbsp;
+                        <button
+                           className="downvotes-button"                        
+                        >
+                           {postDisikes} Dislikes 👎
+                        </button>
+                      </>
+
+   const dislikesPressed = <>
+                        <button
+                           className="upvotes-button"                        
+                        >
+                           👍 {postLikes} Likes
+                        </button>
+                        &nbsp;
+                        <button
+                           className="downvotes-button"
+                           disabled="disabled"                      
+                        >
+                           {postDisikes} Dislikes 👎
+                        </button>
+                      </>
 
    return (
       <div className="post-div">
          
          <article className="single-post">
             <div className="user-info">
-               <h5>Posted by <span className="username-color">u/{newUsernames}</span> on {post.created_at}</h5>
-               <button className="delete-X" onClick={() => handleDelete(post.id)}>X</button>
+               <h3>
+                  Posted by&nbsp;
+                     <span
+                        className="username-color"
+                        onClick={clickUser}
+                     >
+                        u/{newUsernames}
+                     </span> on {post.created_at}
+               </h3>
+               <button className="delete-post" onClick={() => handleDelete(post.id)}>X</button>
             </div>
 
             <div className="post-info">
-               <h3 className="forum-post-title">{post.title}</h3>
+               <h3 className="post-title">{post.title}</h3>
             </div> 
 
-            {post.image_url ? <img src={post.image_url} alt={post.title}/> : null}
+            {post.image_url ? <img src={post.image_url} alt={post.title} style={{marginTop: "1rem"}}/> : null}
 
             <div>
                <p>{post.blog_post}</p>
             </div>
          </article>
 
-         <div>
-            <button
-               // onClick={handleLikes}
-               className="upvotes-button"
-            >
-               <BiUpvote className="upvote-fnt"/> {likes} Likes
-            </button>
-               &nbsp;
-            <button
-               // onClick={handleDislikes}
-               className="downvotes-button"
-            >
-               <BiDownvote className="dovote-fnt"/> {dislikes} Dislikes
-            </button>
+         <div className="likes-button-container">
+            {isClicked === 1 ? notPressed :
+             isClicked === 2 ? likesPressed :
+             dislikesPressed}
          </div>
             <br/>
 
