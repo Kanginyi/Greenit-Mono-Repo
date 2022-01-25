@@ -11,8 +11,8 @@ Rails.application.routes.draw do
    post "/login", to: "sessions#create"
    delete "/logout", to: "sessions#destroy"
 
-   patch "blogs/likes" to "blogs#increment_likes"
-   patch "blogs/dislikes" to "blogs#increment_dislikes"
+   patch "blogs/inc_likes" to "blogs#increment_likes"
+   patch "blogs/inc_dislikes" to "blogs#increment_dislikes"
 
    patch "blogs/dec_likes", to "blogs#decrement_likes"
    patch "blogs/dec_dislikes", to "blogs#dec_dislikes"
