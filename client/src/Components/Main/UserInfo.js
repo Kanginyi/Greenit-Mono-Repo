@@ -41,10 +41,7 @@ function UserInfo({userData, postData, commentData, searchValue}) {
             </div>
    });
 
-
-   console.log(checkComments);
-
-   console.log(searchValue);
+   // console.log(searchValue);
 
 
    
