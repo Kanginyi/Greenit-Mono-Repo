@@ -58,7 +58,7 @@ function App() {
    // Delete Posts
    const handleDelete = id => {
    fetch(`/blogs/${id}`,{
-      method : 'DELETE'
+      method : "DELETE"
    })
    .then(() => {
       const deletePost = postData.filter(post => post.id !== id)
@@ -101,7 +101,11 @@ function App() {
                   />
                }/>
 
-               <Route path="/blogs/:id" element={<PostDetails userData={userData}/>}/>
+               <Route path="/blogs/:id" element={
+                  <PostDetails
+                     userData={userData}
+                  />
+               }/>
 
             </Routes>
       </main>
