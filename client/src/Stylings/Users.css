@@ -1,4 +1,5 @@
 .user-div {
+   cursor: pointer;
    width: 95%;
 
    padding: 10px;
@@ -25,7 +26,7 @@
    transition: background-size 300ms ease;
 }
 
-.user-div h3 span:hover {
+.user-div span:hover {
    background-size: 100% 3px;
 }
 
@@ -41,6 +42,3 @@
 .user-div:nth-child(1) {
    margin-top: 9em;
 }
-
-
-/* afetch posts, when you click, drop a modal down and then create oen that matches the id of the person in the post */
