@@ -90,18 +90,4 @@ class BlogsController < ApplicationController
       params.permit(:user_id, :title, :blog_post, :image_url, :likes, :dislikes)
    end
 
-   # # Upvotes
-   # patch "/blogs/:id/edit/likes" do
-   #    likes = Blog.find(params[:id])
-   #    likes.update(likes: params[:likes])
-   #    likes.to_json
-   # end
-
-   # # Downvotes
-   # patch "/blogs/:id/edit/dislikes" do
-   #    dislikes = Blog.find(params[:id])
-   #    dislikes.update(dislikes: params[:dislikes])
-   #    dislikes.to_json
-   # end
-
 end
