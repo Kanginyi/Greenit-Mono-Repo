@@ -1,20 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Post from "./Post";
 
-function Posts({data, searchValue, handleDelete}) {
-   const [userData, setUserData] = useState([]);
-
-   useEffect(() => {
-      fetch("/users")
-          .then(resp => resp.json())
-          .then(data => setUserData(data));
-   }, [])
-
-   const postData = data.map(post => {
+function Posts({postData, userData, searchValue, handleDelete}) {
+   const renderPosts = postData.map(post => {
       return <Post key={post.id} post={post} userData={userData} handleDelete={handleDelete}/>
    });
 
-   const filterData = searchValue === "" ? postData : postData.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterData = searchValue === "" ? renderPosts : renderPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()));
 
    return (
       <div>
