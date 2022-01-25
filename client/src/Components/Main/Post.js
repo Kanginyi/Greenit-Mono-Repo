@@ -121,3 +121,6 @@ function Post({post, userData, handleDelete}) {
 }
 
 export default Post;
+
+// Fix the buttons onClick, the db routes
+// Change the Link to useNavi, honestly both similar af
