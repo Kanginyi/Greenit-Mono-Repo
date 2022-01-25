@@ -55,6 +55,10 @@ main {
 
 }
 
+.user-info {
+   font-size: .75em;
+}
+
 .single-post{
    cursor: pointer; 
 }
@@ -69,7 +73,6 @@ main {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   margin-bottom: 1.5rem;
 }
 
 .post-info h3 {
@@ -84,7 +87,7 @@ main {
    padding: 16px;
 }
 
-.forum-post-title {
+.post-title {
    font-family: 'Noto Serif Display', serif;
    font-size: 2em;
 }
@@ -113,13 +116,16 @@ main {
    justify-content: space-between;
 }
 
-.delete-X {
+.delete-post {
    color: white;
    background-color: red;
    width: 18px;
    height: 18px;
    padding: 1px;
-   text-align: center;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 /* -------------------COMMENT -------------------------- */
@@ -150,17 +156,4 @@ main {
 .add-comment-class{
    border: 2px solid #dedede;
    padding: 10px;
-}
-
-/* ----------icons */
-.upvote-fnt{
-   color: green;
-   margin-right: 10px;
-   margin-bottom: -2px;
-}
-
-.dovote-fnt{
-   color: green;
-   margin-right: 10px;
-   margin-bottom: -2px;
 }
