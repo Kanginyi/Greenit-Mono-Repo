@@ -43,6 +43,46 @@ class BlogsController < ApplicationController
       end
    end
 
+   # Likes and Dislikes related things
+   def increment_likes
+      blog = Blog.find_by(id: params[:id])
+      if blog
+         blog.update(likes: blog.likes + 1), status: :ok
+         render json: blog
+      else
+         render json: {message: "Greenit Post not found :^("}, status: :not_found
+      end
+   end
+
+   def increment_dislikes
+      blog = Blog.find_by(id: params[:id])
+      if blog
+         blog.update(likes: blog.likes + 1), status: :ok
+         render json: blog
+      else
+         render json: {message: "Greenit Post not found :^("}, status: :not_found
+      end
+   end
+
+   def decrement_likes
+      blog = Blog.find_by(id: params[:id])
+      if blog
+         blog.update(likes: blog.likes - 1), status: :ok
+         render json: blog
+      else
+         render json: {message: "Greenit Post not found :^("}, status: :not_found
+      end
+   end
+
+   def decrement_dislikes
+      blog = Blog.find_by(id: params[:id])
+      if blog
+         blog.update(likes: blog.likes - 1), status: :ok
+         render json: blog
+      else
+         render json: {message: "Greenit Post not found :^("}, status: :not_found
+      end
+   end
 
    private
 
