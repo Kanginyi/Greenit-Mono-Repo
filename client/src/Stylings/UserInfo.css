@@ -1,0 +1,30 @@
+#clicked-username {
+   margin-top: 9rem;
+   font-size: 2.5em;
+}
+
+.user-info-blogs {
+   border: 1px solid black;
+
+   display: flex;
+   align-items: center;
+}
+ 
+.user-info-blogs img {
+   width: 100px;
+   height: 100px;
+}
+
+.user-info-blogs div {
+   margin-left: 10px;
+}
+
+.user-info-comments {
+   border: 1px solid black;
+   padding: 10px;
+}
+
+.user-info-scroll {
+   overflow-x: scroll;
+   height: 186px;
+}
