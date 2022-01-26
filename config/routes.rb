@@ -11,11 +11,13 @@ Rails.application.routes.draw do
    post "/login", to: "sessions#create"
    delete "/logout", to: "sessions#destroy"
 
-   patch "blogs/inc_likes" to "blogs#increment_likes"
-   patch "blogs/inc_dislikes" to "blogs#increment_dislikes"
+   get "/blogs/likes/:id", to: "blogs#get_likes"
 
-   patch "blogs/dec_likes", to "blogs#decrement_likes"
-   patch "blogs/dec_dislikes", to "blogs#decrement_dislikes"
+   patch "/blogs/inc_likes/:id", to: "blogs#increment_likes"
+   patch "/blogs/inc_dislikes/:id", to: "blogs#increment_dislikes"
+
+   patch "/blogs/dec_likes/:id", to: "blogs#decrement_likes"
+   patch "/blogs/dec_dislikes/:id", to: "blogs#decrement_dislikes"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
