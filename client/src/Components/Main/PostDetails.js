@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Loader from "./Loader";
 import {useParams} from "react-router-dom";
 
 function PostDetails({userData}) {
@@ -45,11 +46,11 @@ function PostDetails({userData}) {
    });
 
    if (!isLoaded) {
-      return <h2>Loading...</h2>
+      return <Loader/>
    }
 
    return (
-      <div className="post-div">
+       <div className="post-div">
 
          <article className="single-post">
             <div className="user-info">
