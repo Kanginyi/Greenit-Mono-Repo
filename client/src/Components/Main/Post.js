@@ -11,12 +11,13 @@ function Post({post, userData, handleDelete}) {
          .then(data => setNewUsernames(data?.username));
    }, [post.user_id]);
 
-   const userObj = userData.filter(user => user.id === post.user.id);
+   const userObj = userData?.filter(user => user?.id === post?.user?.id);
+   const ID = userObj[0]?.id;
 
    // Grab the ID so we can click the name
    let clickedID;
    if (userObj[0]?.username === newUsernames) {
-      clickedID = userObj[0]?.id;
+      clickedID = ID;
    }
 
    // Click onto username to show user's info
@@ -29,17 +30,64 @@ function Post({post, userData, handleDelete}) {
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post.likes);
    const [postDisikes, setPostDisLikes] = useState(post.dislikes);
+   
+   // patch "blogs/inc_likes" to "blogs#increment_likes"
+   // patch "blogs/inc_dislikes" to "blogs#increment_dislikes"
+
+   // patch "blogs/dec_likes", to "blogs#decrement_likes"
+   // patch "blogs/dec_dislikes", to "blogs#decrement_dislikes"
+
+   // Likes and Dislikes handling functions
+   const handleLikes = () => {
+      fetch(`/blogs/inc_likes/${ID}`, {
+         method: "PATCH",
+         headers: {"Content-Type": "application/json"}
+      })
+         .then(resp => resp.json())
+         .then(data => setPostLikes(() => data.likes));
+
+       if (isClicked === 3) {
+          fetch(`/blogs/dec_dislikes/${ID}`, {
+             method: "PATCH",
+             headers: {"Content-Type": "application/json"}
+          })
+            .then(resp => resp.json())
+            .then(data => setPostDisLikes(() => data.dislikes));
+       }
+
+       setIsClicked(2);
+   }
+
+   const handleDislikes = () => {
+      fetch(`blogs/inc_dislikes/${ID}`, {
+         method: "PATCH",
+         headers: {"Content-Type": "application/json"}
+      })
+         .then(resp => resp.json())
+         .then(data => setPostDisLikes(() => data.dislikes));
+
+      if (isClicked === 2) {
+         fetch(`blogs/dec_likes/${ID}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostLikes(() => data.likes));
+      }
+   }
 
    // Three states of the buttons
    const notPressed = <>
                         <button
                            className="upvotes-button"
+                           onClick={handleLikes}
                         >
                            👍 {postLikes} Likes
                         </button>
                         &nbsp;
                         <button
-                           className="downvotes-button"                          
+                           className="downvotes-button"
+                           onClick={handleDislikes}                      
                         >
                            {postDisikes} Dislikes 👎
                         </button>
@@ -49,12 +97,14 @@ function Post({post, userData, handleDelete}) {
                         <button
                            className="upvotes-button"
                            disabled="disabled"
+                           onClick={handleLikes}
                         >
                            👍 {postLikes} Likes
                         </button>
                         &nbsp;
                         <button
-                           className="downvotes-button"                        
+                           className="downvotes-button"
+                           onClick={handleDislikes}                     
                         >
                            {postDisikes} Dislikes 👎
                         </button>
@@ -62,14 +112,16 @@ function Post({post, userData, handleDelete}) {
 
    const dislikesPressed = <>
                         <button
-                           className="upvotes-button"                        
+                           className="upvotes-button"
+                           onClick={handleLikes}                      
                         >
                            👍 {postLikes} Likes
                         </button>
                         &nbsp;
                         <button
                            className="downvotes-button"
-                           disabled="disabled"                      
+                           disabled="disabled"
+                           onClick={handleDislikes}                    
                         >
                            {postDisikes} Dislikes 👎
                         </button>
