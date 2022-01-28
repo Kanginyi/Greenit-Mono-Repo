@@ -29,51 +29,53 @@ function Post({post, userData, handleDelete}) {
    
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post.likes);
-   const [postDisikes, setPostDisLikes] = useState(post.dislikes);
+   const [postDislikes, setPostDislikes] = useState(post.dislikes); 
+
+   const postID = post?.id;
    
-   // patch "blogs/inc_likes" to "blogs#increment_likes"
-   // patch "blogs/inc_dislikes" to "blogs#increment_dislikes"
-
-   // patch "blogs/dec_likes", to "blogs#decrement_likes"
-   // patch "blogs/dec_dislikes", to "blogs#decrement_dislikes"
-
    // Likes and Dislikes handling functions
    const handleLikes = () => {
-      fetch(`/blogs/inc_likes/${ID}`, {
+      fetch(`/blogs/inc_likes/${postID}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"}
       })
          .then(resp => resp.json())
-         .then(data => setPostLikes(() => data.likes));
+         .then(data => {
+            console.log(data);
+            setPostLikes(() => data.likes)});
 
        if (isClicked === 3) {
-          fetch(`/blogs/dec_dislikes/${ID}`, {
+          fetch(`/blogs/dec_dislikes/${postID}`, {
              method: "PATCH",
              headers: {"Content-Type": "application/json"}
           })
             .then(resp => resp.json())
-            .then(data => setPostDisLikes(() => data.dislikes));
+            .then(data => setPostDislikes(() => data.dislikes));
        }
 
        setIsClicked(2);
    }
 
    const handleDislikes = () => {
-      fetch(`blogs/inc_dislikes/${ID}`, {
+      fetch(`blogs/inc_dislikes/${postID}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"}
       })
          .then(resp => resp.json())
-         .then(data => setPostDisLikes(() => data.dislikes));
+         .then(data => {
+            console.log(data);
+            setPostDislikes(() => data.dislikes)});
 
       if (isClicked === 2) {
-         fetch(`blogs/dec_likes/${ID}`, {
+         fetch(`blogs/dec_likes/${postID}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
             .then(data => setPostLikes(() => data.likes));
       }
+
+      setIsClicked(3);
    }
 
    // Three states of the buttons
@@ -89,7 +91,7 @@ function Post({post, userData, handleDelete}) {
                            className="downvotes-button"
                            onClick={handleDislikes}                      
                         >
-                           {postDisikes} Dislikes 👎
+                           {postDislikes} Dislikes 👎
                         </button>
                       </>
 
@@ -106,7 +108,7 @@ function Post({post, userData, handleDelete}) {
                            className="downvotes-button"
                            onClick={handleDislikes}                     
                         >
-                           {postDisikes} Dislikes 👎
+                           {postDislikes} Dislikes 👎
                         </button>
                       </>
 
@@ -123,7 +125,7 @@ function Post({post, userData, handleDelete}) {
                            disabled="disabled"
                            onClick={handleDislikes}                    
                         >
-                           {postDisikes} Dislikes 👎
+                           {postDislikes} Dislikes 👎
                         </button>
                       </>
 
