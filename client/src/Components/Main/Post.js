@@ -42,7 +42,7 @@ function Post({post, userData, handleDelete}) {
          .then(resp => resp.json())
          .then(data => {
             console.log(data);
-            setPostLikes(() => data.likes)});
+            setPostLikes(data.likes)});
 
        if (isClicked === 3) {
           fetch(`/blogs/dec_dislikes/${postID}`, {
@@ -50,7 +50,7 @@ function Post({post, userData, handleDelete}) {
              headers: {"Content-Type": "application/json"}
           })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(() => data.dislikes));
+            .then(data => setPostDislikes(data.dislikes));
        }
 
        setIsClicked(2);
@@ -64,7 +64,7 @@ function Post({post, userData, handleDelete}) {
          .then(resp => resp.json())
          .then(data => {
             console.log(data);
-            setPostDislikes(() => data.dislikes)});
+            setPostDislikes(data.dislikes)});
 
       if (isClicked === 2) {
          fetch(`blogs/dec_likes/${postID}`, {
@@ -72,7 +72,7 @@ function Post({post, userData, handleDelete}) {
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(() => data.likes));
+            .then(data => setPostLikes(data.likes));
       }
 
       setIsClicked(3);
