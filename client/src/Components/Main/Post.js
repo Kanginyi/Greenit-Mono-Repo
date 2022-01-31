@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigate, Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function Post({post, userData, handleDelete}) {
    // Getting the newly created usernames
@@ -25,6 +25,11 @@ function Post({post, userData, handleDelete}) {
 
    const clickUser = () => {
       navigate(`/users/${clickedID}`);
+   }
+
+   // Click to view more about the post
+   const viewMore = () => {
+      navigate(`/blogs/${post.id}`);
    }
    
    const [isClicked, setIsClicked] = useState(1);
@@ -161,9 +166,7 @@ function Post({post, userData, handleDelete}) {
             <br/>
 
          <div className="post-btn-section">
-            <Link to={`/blogs/${post.id}`}>
-               <button className="comment-btn">View Comments</button>
-            </Link>
+            <button onClick={viewMore} className="comment-btn">View Comments</button>
          </div>
       
       </div>
@@ -171,6 +174,3 @@ function Post({post, userData, handleDelete}) {
 }
 
 export default Post;
-
-// Fix the buttons onClick, the db routes
-// Change the Link to useNavi, honestly both similar af
