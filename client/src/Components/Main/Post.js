@@ -9,7 +9,7 @@ function Post({post, userData, handleDelete}) {
       fetch(`/users/${post.user.id}`)
          .then(resp => resp.json())
          .then(data => setNewUsernames(data?.username));
-   }, []);
+   }, [post.user.id]);
 
    const userObj = userData?.filter(user => user?.id === post?.user?.id);
    const ID = userObj[0]?.id;
@@ -85,14 +85,14 @@ function Post({post, userData, handleDelete}) {
                            className="upvotes-button"
                            onClick={handleLikes}
                         >
-                           👍 {postLikes} Likes
+                           👍 {postLikes}
                         </button>
-                        &nbsp;
+
                         <button
                            className="downvotes-button"
                            onClick={handleDislikes}                      
                         >
-                           {postDislikes} Dislikes 👎
+                           {postDislikes} 👎
                         </button>
                       </>
 
@@ -102,14 +102,14 @@ function Post({post, userData, handleDelete}) {
                            disabled="disabled"
                            onClick={handleLikes}
                         >
-                           👍 {postLikes} Likes
+                           👍 {postLikes}
                         </button>
-                        &nbsp;
+
                         <button
                            className="downvotes-button"
                            onClick={handleDislikes}                     
                         >
-                           {postDislikes} Dislikes 👎
+                           {postDislikes} 👎
                         </button>
                       </>
 
@@ -118,15 +118,15 @@ function Post({post, userData, handleDelete}) {
                            className="upvotes-button"
                            onClick={handleLikes}                      
                         >
-                           👍 {postLikes} Likes
+                           👍 {postLikes} 
                         </button>
-                        &nbsp;
+
                         <button
                            className="downvotes-button"
                            disabled="disabled"
                            onClick={handleDislikes}                    
                         >
-                           {postDislikes} Dislikes 👎
+                           {postDislikes} 👎
                         </button>
                       </>
 
@@ -148,6 +148,12 @@ function Post({post, userData, handleDelete}) {
             </div>
 
             <div className="post-info">
+               <div className="likes-button-container">
+                  {isClicked === 1 ? notPressed :
+                  isClicked === 2 ? likesPressed :
+                  dislikesPressed}
+               </div>
+                     &nbsp;
                <h3 className="post-title">{post.title}</h3>
             </div> 
 
@@ -158,15 +164,15 @@ function Post({post, userData, handleDelete}) {
             </div>
          </article>
 
-         <div className="likes-button-container">
+         {/* <div className="likes-button-container">
             {isClicked === 1 ? notPressed :
              isClicked === 2 ? likesPressed :
              dislikesPressed}
-         </div>
-            <br/>
+         </div> */}
+            {/* <br/> */}
 
          <div className="post-btn-section">
-            <button onClick={viewMore} className="comment-btn">View Comments</button>
+            <button onClick={viewMore} className="comment-btn">View More</button>
          </div>
       
       </div>
