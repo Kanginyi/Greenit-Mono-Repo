@@ -92,7 +92,7 @@ function Post({post, userData, handleDelete}) {
                            className="downvotes-button"
                            onClick={handleDislikes}                      
                         >
-                           {postDislikes} 👎
+                            👎 {postDislikes}
                         </button>
                       </>
 
@@ -109,7 +109,7 @@ function Post({post, userData, handleDelete}) {
                            className="downvotes-button"
                            onClick={handleDislikes}                     
                         >
-                           {postDislikes} 👎
+                            👎 {postDislikes}
                         </button>
                       </>
 
@@ -126,9 +126,17 @@ function Post({post, userData, handleDelete}) {
                            disabled="disabled"
                            onClick={handleDislikes}                    
                         >
-                           {postDislikes} 👎
+                           👎 {postDislikes}
                         </button>
                       </>
+
+   if (postLikes > 99999) {
+      setPostLikes("99999+");
+   }
+
+   if (postDislikes > 99999) {
+      setPostDislikes("99999+");
+   }
 
    return (
       <div className="post-div">
