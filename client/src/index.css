@@ -108,6 +108,7 @@ main {
 .upvotes-button, .downvotes-button {
    border-radius: 20px;
    width: 100px;
+   line-height: 1.3em;
 }
 
 .upvotes-button:hover {
