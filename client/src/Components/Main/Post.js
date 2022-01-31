@@ -4,8 +4,6 @@ import {useNavigate, Link} from "react-router-dom";
 function Post({post, userData, handleDelete}) {
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
-   
-   console.log(post);
 
    useEffect(() => {
       fetch(`/users/${post.user.id}`)
@@ -42,9 +40,7 @@ function Post({post, userData, handleDelete}) {
          headers: {"Content-Type": "application/json"}
       })
          .then(resp => resp.json())
-         .then(data => {
-            console.log(data);
-            setPostLikes(data.likes)});
+         .then(data => setPostLikes(data.likes));
 
        if (isClicked === 3) {
           fetch(`/blogs/dec_dislikes/${postID}`, {
@@ -64,9 +60,7 @@ function Post({post, userData, handleDelete}) {
          headers: {"Content-Type": "application/json"}
       })
          .then(resp => resp.json())
-         .then(data => {
-            console.log(data);
-            setPostDislikes(data.dislikes)});
+         .then(data => setPostDislikes(data.dislikes));
 
       if (isClicked === 2) {
          fetch(`blogs/dec_likes/${postID}`, {
