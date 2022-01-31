@@ -57,7 +57,7 @@ class BlogsController < ApplicationController
 
    def increment_dislikes
       blog = Blog.find_by(id: params[:id])
-      blog.update(likes: blog.dislikes + 1)
+      blog.update(dislikes: blog.dislikes + 1)
       render json: blog
    end
 
@@ -69,7 +69,7 @@ class BlogsController < ApplicationController
 
    def decrement_dislikes
       blog = Blog.find_by(id: params[:id])
-      blog.update(likes: blog.dislikes - 1)
+      blog.update(dislikes: blog.dislikes - 1)
       render json: blog
    end
 
