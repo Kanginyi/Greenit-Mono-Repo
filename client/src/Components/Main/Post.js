@@ -4,12 +4,14 @@ import {useNavigate, Link} from "react-router-dom";
 function Post({post, userData, handleDelete}) {
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
+   
+   console.log(post);
 
    useEffect(() => {
       fetch(`/users/${post.user.id}`)
          .then(resp => resp.json())
          .then(data => setNewUsernames(data?.username));
-   }, [post.user_id]);
+   }, []);
 
    const userObj = userData?.filter(user => user?.id === post?.user?.id);
    const ID = userObj[0]?.id;
@@ -28,8 +30,8 @@ function Post({post, userData, handleDelete}) {
    }
    
    const [isClicked, setIsClicked] = useState(1);
-   const [postLikes, setPostLikes] = useState(post.likes);
-   const [postDislikes, setPostDislikes] = useState(post.dislikes); 
+   const [postLikes, setPostLikes] = useState(post?.likes);
+   const [postDislikes, setPostDislikes] = useState(post?.dislikes); 
 
    const postID = post?.id;
    
