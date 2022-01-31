@@ -40,6 +40,19 @@ main {
 
 /* ------------------MAIN CONTENT STUFF  */
 
+.likes-button-container {
+   display: flex;
+   flex-direction: column;
+}
+
+.likes-button-container button {
+   margin: 2px;
+}
+
+.post-btn-section {
+   text-align: center;
+}
+
 .post-div:nth-child(1) {
    margin-top: 9em;
 }
@@ -71,7 +84,7 @@ main {
 
 .post-info {
    display: flex;
-   justify-content: space-between;
+   /* justify-content: space-between; */
    align-items: center;
 }
 
@@ -94,7 +107,7 @@ main {
 
 .upvotes-button, .downvotes-button {
    border-radius: 20px;
-   width: 150px;
+   width: 100px;
 }
 
 .upvotes-button:hover {
