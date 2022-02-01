@@ -1,3 +1,7 @@
+.user-div:nth-child(1) {
+   margin-top: 9rem;
+}
+
 .user-div {
    cursor: pointer;
    width: 95%;
@@ -37,8 +41,4 @@
    display: flex;
    justify-content: space-evenly;
    align-items: center;
-}
-
-.user-div:nth-child(1) {
-   margin-top: 9em;
 }
