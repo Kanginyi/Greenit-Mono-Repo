@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
+import "../../Stylings/Post.css";
 
 function Post({post, userData, handleDelete}) {
    // Getting the newly created usernames
@@ -138,7 +139,7 @@ function Post({post, userData, handleDelete}) {
       setPostDislikes("99999+");
    }
 
-   console.log(post.blog_post.length);
+   // Add ... after posts with more than 100 characters in length
    let renderOnMainPage;
    if (post.blog_post.length > 100) {
       renderOnMainPage = post.blog_post.slice(0, 100) + "...";
@@ -175,17 +176,12 @@ function Post({post, userData, handleDelete}) {
 
             {post.image_url ? <img src={post.image_url} alt={post.title} style={{marginTop: "1rem"}}/> : null}
 
-            <div>
-               <p>{renderOnMainPage}</p>
+            <div className="bottom-blur">
+               <p>
+                  {renderOnMainPage}
+               </p>
             </div>
          </article>
-
-         {/* <div className="likes-button-container">
-            {isClicked === 1 ? notPressed :
-             isClicked === 2 ? likesPressed :
-             dislikesPressed}
-         </div> */}
-            {/* <br/> */}
 
          <div className="post-btn-section">
             <button onClick={viewMore} className="comment-btn">View More</button>
