@@ -138,6 +138,14 @@ function Post({post, userData, handleDelete}) {
       setPostDislikes("99999+");
    }
 
+   console.log(post.blog_post.length);
+   let renderOnMainPage;
+   if (post.blog_post.length > 100) {
+      renderOnMainPage = post.blog_post.slice(0, 100) + "...";
+   } else {
+      renderOnMainPage = post.blog_post
+   }
+
    return (
       <div className="post-div">
          
@@ -168,7 +176,7 @@ function Post({post, userData, handleDelete}) {
             {post.image_url ? <img src={post.image_url} alt={post.title} style={{marginTop: "1rem"}}/> : null}
 
             <div>
-               <p>{post.blog_post}</p>
+               <p>{renderOnMainPage}</p>
             </div>
          </article>
 
