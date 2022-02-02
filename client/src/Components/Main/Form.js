@@ -6,7 +6,7 @@ function Form({showForm, setShowForm, handleAddPost}) {
    const [blogForm, setBlogForm] = useState({
       username: "",
       title: "",
-      content_post: "",
+      blog_post: "",
       image_url: "",
       likes: 0,
       dislikes: 0
@@ -86,8 +86,8 @@ function Form({showForm, setShowForm, handleAddPost}) {
                   <textarea
                      onChange={handleInputChange}
                      type="text"
-                     name="content_post"
-                     value={blogForm.content_post}
+                     name="blog_post"
+                     value={blogForm.blog_post}
                      required
                      rows="5"
                      cols="50"
