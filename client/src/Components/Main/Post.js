@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import "../../Stylings/Post.css";
 
+import {BsTrash} from "react-icons/bs";
+
 function Post({post, userData, handleDelete}) {
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
@@ -28,11 +30,6 @@ function Post({post, userData, handleDelete}) {
       navigate(`/users/${clickedID}`);
    }
 
-   // Click to view more about the post
-   const viewMore = () => {
-      navigate(`/blogs/${post.id}`);
-   }
-   
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes); 
@@ -83,14 +80,14 @@ function Post({post, userData, handleDelete}) {
    // Three states of the buttons
    const notPressed = <>
                         <button
-                           className="upvotes-button"
+                           className="likes-button"
                            onClick={handleLikes}
                         >
                            👍 {postLikes}
                         </button>
 
                         <button
-                           className="downvotes-button"
+                           className="dislikes-button"
                            onClick={handleDislikes}                      
                         >
                             👎 {postDislikes}
@@ -99,7 +96,7 @@ function Post({post, userData, handleDelete}) {
 
    const likesPressed = <>
                         <button
-                           className="upvotes-button"
+                           className="likes-pressed"
                            disabled="disabled"
                            onClick={handleLikes}
                         >
@@ -107,7 +104,7 @@ function Post({post, userData, handleDelete}) {
                         </button>
 
                         <button
-                           className="downvotes-button"
+                           className="dislikes-button"
                            onClick={handleDislikes}                     
                         >
                             👎 {postDislikes}
@@ -116,14 +113,14 @@ function Post({post, userData, handleDelete}) {
 
    const dislikesPressed = <>
                         <button
-                           className="upvotes-button"
+                           className="likes-button"
                            onClick={handleLikes}                      
                         >
                            👍 {postLikes} 
                         </button>
 
                         <button
-                           className="downvotes-button"
+                           className="dislikes-pressed"
                            disabled="disabled"
                            onClick={handleDislikes}                    
                         >
@@ -144,7 +141,7 @@ function Post({post, userData, handleDelete}) {
    if (post.blog_post.length > 100) {
       renderOnMainPage = post.blog_post.slice(0, 100) + "...";
    } else {
-      renderOnMainPage = post.blog_post
+      renderOnMainPage = post.blog_post;
    }
 
    return (
@@ -161,10 +158,11 @@ function Post({post, userData, handleDelete}) {
                         u/{newUsernames}
                      </span> on {post.created_at}
                </h3>
-               <button className="delete-post" onClick={() => handleDelete(post.id)}>X</button>
+
+               <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/>
             </div>
 
-            <div className="post-info">
+            <div className="post-header">
                <div className="likes-button-container">
                   {isClicked === 1 ? notPressed :
                   isClicked === 2 ? likesPressed :
@@ -176,15 +174,19 @@ function Post({post, userData, handleDelete}) {
 
             {post.image_url ? <img src={post.image_url} alt={post.title} style={{marginTop: "1rem"}}/> : null}
 
-            <div className="bottom-blur">
-               <p>
-                  {renderOnMainPage}
-               </p>
-            </div>
+            <p>
+               {renderOnMainPage}
+            </p>
          </article>
 
-         <div className="post-btn-section">
-            <button onClick={viewMore} className="comment-btn">View More</button>
+         <div className="view-more-container">
+            <a className="post-view-more" href={`/blogs/${post.id}`}>
+               <span>VIEW MORE</span>
+               <svg width="13px" height="10px" viewBox="0 0 13 10">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+               </svg>
+            </a>
          </div>
       
       </div>
