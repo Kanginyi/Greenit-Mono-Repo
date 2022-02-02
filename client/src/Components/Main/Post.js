@@ -144,6 +144,9 @@ function Post({post, userData, handleDelete}) {
       renderOnMainPage = post.blog_post;
    }
 
+   const postDate = new Date(post.created_at).toLocaleDateString();
+   const postTime = new Date(post.created_at).toLocaleTimeString();
+   
    return (
       <div className="post-div">
          
@@ -156,7 +159,7 @@ function Post({post, userData, handleDelete}) {
                         onClick={clickUser}
                      >
                         u/{newUsernames}
-                     </span> on {post.created_at}
+                     </span> on {postDate} at {postTime}
                </h3>
 
                <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/>
