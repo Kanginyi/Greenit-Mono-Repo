@@ -1,0 +1,262 @@
+/* PT Serif Regular 400 Font */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+
+.post-div:nth-child(1) {
+   margin-top: 9rem;
+}
+
+.post-div {
+   background-color: white;
+   padding: 10px;
+   margin: 2rem 0;
+}
+
+.post-div:hover {
+   box-shadow: 1px 1px 4px 4px rgba(0, 173, 76, 0.4);
+}
+
+.user-info {
+   font-size: .8em;
+   margin-bottom: 10px;
+
+   display: flex;
+   justify-content: space-between;
+}
+
+/* COME AND CHANGE THIS BASED ON HWOEVER THINGS MOVE */
+.delete-post {
+   height: 20px;
+   width: 20px;
+
+   color: red;
+}
+
+.delete-post:active {
+   transform: scale(.95);
+}
+
+.post-header {
+   display: flex;
+   align-items: center;
+}
+
+.likes-button-container {
+   display: flex;
+   flex-direction: column;
+}
+
+.likes-button, .dislikes-button {
+   width: 80px;
+   border-radius: 20px;
+   margin: 1.5px;
+   line-height: 1.3em;
+}
+
+.likes-button:active {
+   animation: likesActive 1.75s 1;
+}
+
+@keyframes likesActive {
+   0% {
+       background: linear-gradient(to top right, rgb(7, 172, 78), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+   }
+   2% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgb(7, 172, 78), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+   }
+   4% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(7, 172, 78), rgba(220, 220, 220, 0.5));
+   }
+   6% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(7, 172, 78));
+   }
+   8% {
+       background: rgba(220, 220, 220, 0.5);
+   }
+}
+
+.dislikes-button:active {
+   animation: dislikesActive 1.75s 1;
+}
+
+@keyframes dislikesActive {
+   0% {
+       background: linear-gradient(to top right, rgb(255, 25, 25), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+   }
+   2% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgb(255, 25, 25), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+   }
+   4% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(255, 25, 25), rgba(220, 220, 220, 0.5));
+   }
+   6% {
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(255, 25, 25));
+   }
+   8% {
+       background: rgba(220, 220, 220, 0.5);
+   }
+}
+
+.likes-pressed, .dislikes-pressed {
+   width: 80px;
+   border-radius: 20px;
+   margin: 1.5px;
+   line-height: 1.3em;
+}
+
+.likes-pressed {
+   background-color: rgb(7, 172, 78);
+   color: white;
+}
+
+.dislikes-pressed {
+   background-color: rgb(255, 75, 75);
+   color: white;
+}
+
+.post-title {
+   font-family: 'PT Serif', serif;
+   font-size: 2em;
+   margin-bottom: 0;
+}
+
+.single-post img {
+   width: 100%;
+}
+
+.single-post p {
+   padding: 15px;
+}
+
+.view-more-container {
+   display: flex;
+   justify-content: center;
+}
+
+.post-view-more {
+   text-decoration: none;
+   transition: all 0.2s ease;
+   position: relative;
+   color: black;
+}
+
+.post-view-more:before {
+   content: "";
+   position: absolute;
+   top: -3px;
+   left: -7px;
+
+   display: block;
+   border-radius: 28px;
+   background: rgba(0, 173, 76, 0.5);
+
+   height: 30px;
+   width: 30px;
+   transition: all 0.3s ease;
+}
+
+.post-view-more span {
+   position: relative;
+   font-size: 22px;
+   font-weight: 600;
+   letter-spacing: 0.1em;
+   color: black;
+   vertical-align: middle;
+}
+
+.post-view-more svg {
+   position: relative;
+   top: 0;
+   margin-left: 10px;
+
+   fill: none;
+   stroke: rgb(0, 173, 76);
+   stroke-linecap: round;
+   stroke-width: 2.1;
+
+   transform: translateX(-5px);
+   transition: all 0.3s ease;
+   margin-left: 8px;
+}
+
+.post-view-more:hover:before {
+   width: 107.5%;
+   background: rgb(0, 173, 76);
+}
+
+.post-view-more:hover svg {
+   transform: translateX(0);
+   stroke: black;
+}
+
+.post-view-more:active {
+   transform: scale(.98);
+}
+
+
+
+
+
+/* .homepage-button {
+   text-decoration: none;
+   transition: all 0.2s ease;
+   position: relative;
+}
+
+.homepage-button:before {
+   content: "";
+   position: absolute;
+   top: -5px;
+   border-radius: 28px;
+   background: rgba(255, 171, 157, 0.5);
+   width: 40px;
+   height: 40px;
+   transition: all 0.3s ease;
+
+   margin-left: -7px;
+}
+
+.homepage-button span {
+   color: var(--homepage-blue);
+   position: relative;
+   font-size: 22px;
+   font-weight: 700;
+   letter-spacing: 0.1em;
+}
+
+.homepage-button svg {
+   position: relative;
+   top: -2.75px;
+   margin-left: 4.5px;
+   fill: none;
+   stroke-linecap: round;
+   stroke: var(--homepage-blue);
+   stroke-width: 2.3;
+   transform: translateX(-5px);
+   transition: all 0.3s ease;
+}
+
+.homepage-button:hover:before {
+   width: 107.5%;
+   background: rgb(255, 171, 157);
+}
+
+.homepage-button:hover svg {
+   transform: translateX(0);
+}
+
+.homepage-button:active {
+   transform: scale(.98);
+} */
+
+
+/*
+.post-btn-section {
+   text-align: center;
+}
+
+.comment-btn {
+   border-radius: 20px;
+   width: 150px;
+   cursor: pointer;
+}
+*/
