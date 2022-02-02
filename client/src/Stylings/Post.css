@@ -23,7 +23,6 @@
    justify-content: space-between;
 }
 
-/* COME AND CHANGE THIS BASED ON HWOEVER THINGS MOVE */
 .delete-post {
    height: 20px;
    width: 20px;
@@ -115,7 +114,8 @@
 
 .post-title {
    font-family: 'PT Serif', serif;
-   font-size: 2em;
+   /* font-size: 2em; */
+   font-size: clamp(1.25em, 5vw, 2.1rem);
    margin-bottom: 0;
 }
 
@@ -156,7 +156,7 @@
 
 .post-view-more span {
    position: relative;
-   font-size: 22px;
+   font-size: 1.35em;
    font-weight: 600;
    letter-spacing: 0.1em;
    color: black;
@@ -169,7 +169,8 @@
    margin-left: 10px;
 
    fill: none;
-   stroke: rgb(0, 173, 76);
+   /* stroke: rgb(0, 173, 76); */
+   stroke: rgba(0, 173, 76, 0.5);
    stroke-linecap: round;
    stroke-width: 2.1;
 
