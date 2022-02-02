@@ -39,6 +39,7 @@
 }
 
 .searchbar {
+   margin-top: .75em;
    display: flex;
    justify-content: center;
    flex: 1 1 auto;
@@ -50,7 +51,8 @@
    padding-left: 0.75em;
 
    height: 1.75em;
-   width: 65%;
+   max-width: 725px;
+   width: 100%;
 
    font-size: 1.2rem;
    color: rgb(0, 173, 76);
