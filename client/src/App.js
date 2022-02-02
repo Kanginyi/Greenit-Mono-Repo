@@ -42,15 +42,13 @@ function App() {
    const handleAddPost = post => {
    fetch("/blogs", {
       method: "POST",
-      headers: {
-         "Content-Type" : "application/json",
-      },
+      headers: {"Content-Type" : "application/json"},
       body: JSON.stringify(post)
    })
       .then(resp => resp.json())
       .then(post => {
          setPostData([
-         ...postData, post 
+            post, ...postData
          ])
       })
    }
