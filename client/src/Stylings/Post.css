@@ -130,69 +130,23 @@
 }
 
 .view-more-container {
-   display: flex;
-   justify-content: center;
-   position: relative;
+   text-align: center;
 }
 
 .post-view-more {
-   text-decoration: none;
-   transition: all 0.2s ease;
-   position: relative;
-   color: black;
-   color: pink;
-}
+   background: none;
+   border: 3px solid rgb(0, 173, 76);
+   border-radius: 3px;
 
-.post-view-more:before {
-   content: "";
-   position: absolute;
-   top: -3px;
-   left: -7px;
+   margin: .15rem;
+   padding: .75em 1.75em;
+   transition: .35s;
 
-   display: block;
-   border-radius: 28px;
-   background: rgba(0, 173, 76, 0.4);
-
-   height: 30px;
-   width: 30px;
-   transition: all 0.4s ease;
-}
-
-.post-view-more span {
-   position: relative;
-   font-size: 1.35em;
    font-weight: 600;
-   letter-spacing: 0.1em;
-   color: black;
-   vertical-align: middle;
+   letter-spacing: 1px;
 }
 
-.post-view-more svg {
-   position: relative;
-   top: 0;
-   margin-left: 10px;
-
-   fill: none;
-   /* stroke: rgb(0, 173, 76); */
-   stroke: rgba(0, 173, 76, 0.5);
-   stroke-linecap: round;
-   stroke-width: 2.1;
-
-   transform: translateX(-5px);
-   transition: all 0.4s ease;
-   margin-left: 8px;
-}
-
-.post-view-more:hover:before {
-   width: 107.5%;
-   background: rgb(0, 173, 76);
-}
-
-.post-view-more:hover svg {
-   transform: translateX(0);
-   stroke: black;
-}
-
-.post-view-more:active {
-   transform: scale(.98);
+.post-view-more:hover, .post-view-more:focus-visible {
+   box-shadow: inset 0 0 0 2em rgb(0, 173, 76);
+   color: white;
 }
