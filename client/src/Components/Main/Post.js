@@ -30,6 +30,10 @@ function Post({post, userData, handleDelete}) {
       navigate(`/users/${clickedID}`);
    }
 
+   const viewMore = () => {
+      navigate(`/blogs/${post.id}`);
+   }
+
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes); 
@@ -183,13 +187,9 @@ function Post({post, userData, handleDelete}) {
          </article>
 
          <div className="view-more-container">
-            <a className="post-view-more" href={`/blogs/${post.id}`}>
-               <span>VIEW MORE</span>
-               <svg width="13px" height="10px" viewBox="0 0 13 10">
-                  <path d="M1,5 L11,5"></path>
-                  <polyline points="8 1 12 5 8 9"></polyline>
-               </svg>
-            </a>
+            <button onClick={viewMore} className="post-view-more">
+               VIEW MORE
+            </button>
          </div>
       
       </div>
