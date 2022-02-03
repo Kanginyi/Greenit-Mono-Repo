@@ -38,7 +38,7 @@ function Post({post, userData, handleDelete}) {
    
    // Likes and Dislikes handling functions
    const handleLikes = () => {
-      fetch(`/blogs/inc_likes/${postID}`, {
+      fetch(`/inc_likes/${postID}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"}
       })
@@ -46,7 +46,7 @@ function Post({post, userData, handleDelete}) {
          .then(data => setPostLikes(data.likes));
 
        if (isClicked === 3) {
-          fetch(`/blogs/dec_dislikes/${postID}`, {
+          fetch(`/dec_dislikes/${postID}`, {
              method: "PATCH",
              headers: {"Content-Type": "application/json"}
           })
@@ -58,7 +58,7 @@ function Post({post, userData, handleDelete}) {
    }
 
    const handleDislikes = () => {
-      fetch(`blogs/inc_dislikes/${postID}`, {
+      fetch(`/inc_dislikes/${postID}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"}
       })
@@ -66,7 +66,7 @@ function Post({post, userData, handleDelete}) {
          .then(data => setPostDislikes(data.dislikes));
 
       if (isClicked === 2) {
-         fetch(`blogs/dec_likes/${postID}`, {
+         fetch(`/dec_likes/${postID}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
