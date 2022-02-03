@@ -13,11 +13,11 @@ Rails.application.routes.draw do
 
    get "/blogs/likes/:id", to: "blogs#get_likes"
 
-   patch "/blogs/inc_likes/:id", to: "blogs#increment_likes"
-   patch "/blogs/inc_dislikes/:id", to: "blogs#increment_dislikes"
+   patch "/inc_likes/:id", to: "blogs#increment_likes"
+   patch "/inc_dislikes/:id", to: "blogs#increment_dislikes"
 
-   patch "/blogs/dec_likes/:id", to: "blogs#decrement_likes"
-   patch "/blogs/dec_dislikes/:id", to: "blogs#decrement_dislikes"
+   patch "/dec_likes/:id", to: "blogs#decrement_likes"
+   patch "/dec_dislikes/:id", to: "blogs#decrement_dislikes"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
