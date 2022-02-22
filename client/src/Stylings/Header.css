@@ -16,8 +16,8 @@
    left: 2.15em;
 
    opacity: 0;
-   transform: translateY(-100%);
-   transition: all 350ms ease-in;
+   transform: translateY(-300%);
+   transition: all 400ms ease-in;
 }
 
 #skip-nav:focus {
