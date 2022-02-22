@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Posts from "./Components/Main/Posts";
 import Navbar from "./Components/Header/Navbar";
-import CategoryBar from "./Components/Main/CategoryBar";
 import Users from "./Components/Main/Users";
 import PostDetails from "./Components/Main/PostDetails";
 
@@ -68,44 +67,43 @@ function App() {
     <div className="App">
       
       <header className="fixed-navbar">
-         <Navbar search={search}/>
+         <Navbar search={search} handleAddPost={handleAddPost}/>
       </header>
 
       <main>
-         <CategoryBar handleAddPost={handleAddPost}/>
-            <Routes>
-               <Route path="/" element={
-                  <Posts
-                     postData={postData}
-                     userData={userData}
-                     searchValue={searchValue}
-                     handleDelete={handleDelete}
-                  />
-               }/>
+         <Routes>
+            <Route path="/" element={
+               <Posts
+                  postData={postData}
+                  userData={userData}
+                  searchValue={searchValue}
+                  handleDelete={handleDelete}
+               />
+            }/>
 
-               <Route path="/users" element={
-                  <Users
-                     userData={userData}
-                     searchValue={searchValue}
-                  />
-               }/>
+            <Route path="/users" element={
+               <Users
+                  userData={userData}
+                  searchValue={searchValue}
+               />
+            }/>
 
-               <Route path="/users/:id" element={
-                  <UserInfo
-                     userData={userData}
-                     postData={postData}
-                     commentData={commentData}
-                     searchValue={searchValue}
-                  />
-               }/>
+            <Route path="/users/:id" element={
+               <UserInfo
+                  userData={userData}
+                  postData={postData}
+                  commentData={commentData}
+                  searchValue={searchValue}
+               />
+            }/>
 
-               <Route path="/blogs/:id" element={
-                  <PostDetails
-                     userData={userData}
-                  />
-               }/>
+            <Route path="/blogs/:id" element={
+               <PostDetails
+                  userData={userData}
+               />
+            }/>
 
-            </Routes>
+         </Routes>
       </main>
 
     </div>
