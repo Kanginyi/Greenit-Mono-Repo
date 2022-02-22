@@ -31,12 +31,12 @@ function Navbar({search, handleAddPost}) {
                </span>
             </a>
 
-            <div style={{display: "flex"}}>
-               <p onClick={showSearch}>Search</p>
+            <div className="category-bar">
+               <button onClick={showSearch}>Search</button>
 
-               <p onClick={() => setShowForm(true)}>Create Post</p>
+               <button onClick={() => setShowForm(true)}>Create Post</button>
 
-               <p onClick={() => navigate("/users")}>All Users</p>
+               <button onClick={() => navigate("/users")}>All Users</button>
             </div>
 
             <LogSign/>
