@@ -161,6 +161,7 @@ function Post({post, userData, handleDelete}) {
                      <span
                         className="username-color"
                         onClick={clickUser}
+                        style={{cursor: "pointer"}}
                      >
                         u/{newUsernames}
                      </span> on {postDate} at {postTime}

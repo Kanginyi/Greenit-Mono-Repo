@@ -30,6 +30,8 @@
    width: 20px;
 
    color: red;
+
+   cursor: pointer;
 }
 
 .delete-post:active {
@@ -51,6 +53,7 @@
    border-radius: 20px;
    margin: 1.5px;
    line-height: 1.3em;
+   cursor: pointer;
 }
 
 .likes-button:active {
@@ -145,6 +148,8 @@
    font-size: .9em;
    font-weight: 600;
    letter-spacing: 1px;
+
+   cursor: pointer;
 }
 
 .post-view-more:hover, .post-view-more:focus-visible {
