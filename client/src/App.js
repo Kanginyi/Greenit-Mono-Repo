@@ -67,10 +67,12 @@ function App() {
     <div className="App">
       
       <header className="fixed-navbar">
+         <a href="#main-content" id="skip-nav">Skip Navigation</a>
+
          <Navbar search={search} handleAddPost={handleAddPost}/>
       </header>
 
-      <main>
+      <main id="main-content">
          <Routes>
             <Route path="/" element={
                <Posts
