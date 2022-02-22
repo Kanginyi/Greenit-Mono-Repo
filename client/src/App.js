@@ -3,6 +3,7 @@ import Posts from "./Components/Main/Posts";
 import Navbar from "./Components/Header/Navbar";
 import Users from "./Components/Main/Users";
 import PostDetails from "./Components/Main/PostDetails";
+import LoginSignupForm from "./Components/Header/LoginSignupForm";
 
 import {Route, Routes} from "react-router-dom";
 import UserInfo from "./Components/Main/UserInfo";
@@ -63,13 +64,20 @@ function App() {
    })
    }
 
+   // Different rendering options for Login component
+   const [showSignup, setShowSignup] = useState(false);
+
   return (
     <div className="App">
       
       <header className="fixed-navbar">
          <a href="#main-content" id="skip-nav">Skip Navigation</a>
 
-         <Navbar search={search} handleAddPost={handleAddPost}/>
+         <Navbar
+            search={search}
+            handleAddPost={handleAddPost}
+            setShowSignup={setShowSignup}
+         />
       </header>
 
       <main id="main-content">
@@ -102,6 +110,13 @@ function App() {
             <Route path="/blogs/:id" element={
                <PostDetails
                   userData={userData}
+               />
+            }/>
+
+            <Route path="/welcome" element={
+               <LoginSignupForm
+                  showSignup={showSignup}
+                  setShowSignup={setShowSignup}
                />
             }/>
 
