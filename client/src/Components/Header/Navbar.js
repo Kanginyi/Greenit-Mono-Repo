@@ -8,7 +8,7 @@ import Form from "../../Components/Main/Form";
 
 import greenit_logo from "../../greenit-logo.png";
 
-function Navbar({search, handleAddPost}) {
+function Navbar({search, handleAddPost, setShowSignup}) {
    const [isClicked, setIsClicked] = useState(false);
    const [showForm, setShowForm] = useState(false);
 
@@ -39,7 +39,7 @@ function Navbar({search, handleAddPost}) {
                <button onClick={() => navigate("/users")}>All Users</button>
             </div>
 
-            <LogSign/>
+            <LogSign setShowSignup={setShowSignup}/>
          </nav>
 
          {isClicked ? <SearchBar search={search}/> : null}
