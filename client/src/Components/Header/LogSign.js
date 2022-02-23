@@ -1,12 +1,27 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
-function LogSign() {
+function LogSign({setShowSignup}) {
+   let navigate = useNavigate();
+
+   const toLogin = () => {
+      setShowSignup(false);
+
+      navigate("/welcome");
+   }
+
+   const toSignup = () => {
+      setShowSignup(true);
+
+      navigate("/welcome");
+   }
+
    return (
       <div className="user-section">
 
          <button
             id="login-button"
-            onClick={() => alert("Bing Bong")}
+            onClick={toLogin}
             type="button"
          >
             Login
@@ -14,7 +29,7 @@ function LogSign() {
          
          <button
             id="signup-button"
-            onClick={() => alert("Bong Bing")}
+            onClick={toSignup}
             type="button"
          >
             Signup
