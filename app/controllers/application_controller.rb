@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
    include ActionController::Helpers
 
    # Check if this person is logged in or not/Checks if there's a session_token active in this instance
-   helper_method :current_user, :logged_in?
+   helper_method :current_user, :logged_in?, :login!, :logout!
 
 
    private
