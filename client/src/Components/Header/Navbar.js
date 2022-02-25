@@ -3,12 +3,12 @@ import {useNavigate} from "react-router-dom";
 import "../../Stylings/Header.css";
 
 import SearchBar from "./SearchBar";
-import LogSign from "./LogSign";
+import LogSignButtons from "./LogSignButtons";
 import Form from "../../Components/Main/Form";
 
 import greenit_logo from "../../greenit-logo.png";
 
-function Navbar({search, handleAddPost, setShowSignup}) {
+function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSignup}) {
    const [isClicked, setIsClicked] = useState(false);
    const [showForm, setShowForm] = useState(false);
 
@@ -39,7 +39,7 @@ function Navbar({search, handleAddPost, setShowSignup}) {
                <button onClick={() => navigate("/users")}>All Users</button>
             </div>
 
-            <LogSign setShowSignup={setShowSignup}/>
+            <LogSignButtons currentUser={currentUser} setShowSignup={setShowSignup}/>
          </nav>
 
          {isClicked ? <SearchBar search={search}/> : null}
