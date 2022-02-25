@@ -6,7 +6,7 @@ function Posts({postData, userData, searchValue, handleDelete}) {
       return <Post key={post.id} post={post} userData={userData} handleDelete={handleDelete}/>
    });
 
-   const filterData = searchValue === "" ? renderPosts : renderPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterData = searchValue === "" ? renderPosts : renderPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.props.post.user.username.toLowerCase().includes(searchValue.toLowerCase()));
 
    return (
       <div>
