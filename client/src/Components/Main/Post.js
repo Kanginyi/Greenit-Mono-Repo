@@ -4,7 +4,7 @@ import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Post({post, userData, handleDelete}) {
+function Post({currentUser, post, userData, handleDelete}) {
    // Getting the newly created usernames
    const [newUsernames, setNewUsernames] = useState("");
 
@@ -167,7 +167,7 @@ function Post({post, userData, handleDelete}) {
                      </span> on {postDate} at {postTime}
                </h3>
 
-               <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/>
+               {currentUser?.username === newUsernames ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/> : null}
             </div>
 
             <div className="post-header">
