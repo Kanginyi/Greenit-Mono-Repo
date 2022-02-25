@@ -4,14 +4,15 @@ User.destroy_all
 Blog.destroy_all
 Comment.destroy_all
 
-alan_cinsavich = User.create(username: "AlanCinsavich")
-unclaimed_yeti = User.create(username: "UnclaimedYeti")
-pashovski = User.create(username: "Pashovski")
-uncle_sam = User.create(username: "UncleSam")
-xinyeet = User.create(username: "Xinyeet")
-quankerooskies = User.create(username: "Quankerooskies")
-sri_lankan_prince = User.create(username: "SriLankanPrince")
-adam_goatson = User.create(username: "AdamGOATson")
+guest = User.create(username: "Guest", password: "123123")
+alan_cinsavich = User.create(username: "AlanCinsavich", password: "Pleasecomeback")
+unclaimed_yeti = User.create(username: "UnclaimedYeti", password: "Ilovemydogs")
+pashovski = User.create(username: "Pashovski", password: "Pushoffme")
+uncle_sam = User.create(username: "UncleSam", password: "USAUSAUSA")
+xinyeet = User.create(username: "Xinyeet", password: "Weakkneesy")
+quankerooskies = User.create(username: "Quankerooskies", password: "TWICEBLACKPINK")
+sri_lankan_prince = User.create(username: "SriLankanPrince", password: "Apictureaday")
+adam_goatson = User.create(username: "AdamGOATson", password: "Broadwaydotcom")
 
 puts "🌱 Seeding blogs data..."
 # Post 1
