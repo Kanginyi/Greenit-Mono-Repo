@@ -39,7 +39,10 @@ function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSign
                <button onClick={() => navigate("/users")}>All Users</button>
             </div>
 
-            <LogSignButtons currentUser={currentUser} setShowSignup={setShowSignup}/>
+            <LogSignButtons
+               currentUser={currentUser}
+               setCurrentUser={setCurrentUser}
+               setShowSignup={setShowSignup}/>
          </nav>
 
          {isClicked ? <SearchBar search={search}/> : null}
