@@ -52,6 +52,24 @@
    transform: scale(.95);
 }
 
+.delete-post:hover, .delete-post:focus-visible {
+   animation: trashShake .5s infinite;
+}
+
+@keyframes trashShake {
+   0% {
+      transform: translateX(-5%);
+   }
+
+   50% {
+      transform: translateX(5%);
+   }
+
+   100% {
+      transform: translateX(-5%);
+   }
+}
+
 .post-header {
    display: flex;
    align-items: center;
