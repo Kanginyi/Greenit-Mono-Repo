@@ -2,7 +2,9 @@ class User < ApplicationRecord
    has_many :comments
    has_many :blogs
 
-   validates :username,                      :session_token, presence: true
+   has_secure_password
+
+   validates :username, :password_digest, :session_token, presence: true
                         # :password_digest,
    validates :username, uniqueness: true, length: {maximum: 30}
 
