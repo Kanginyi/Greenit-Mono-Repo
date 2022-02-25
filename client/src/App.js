@@ -108,6 +108,7 @@ function App() {
          <Routes>
             <Route path="/" element={
                <Posts
+                  currentUser={currentUser}
                   postData={postData}
                   userData={userData}
                   searchValue={searchValue}
