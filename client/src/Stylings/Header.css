@@ -107,7 +107,17 @@
 
 .user-section {
    display: flex;
+   align-items: center;
    margin-right: 10px;
+}
+
+.user-section p {
+   font-size: 1.15em;
+   font-weight: 600;
+}
+
+.user-section span {
+   cursor: pointer;
 }
 
 .user-section button {
@@ -116,6 +126,7 @@
    border: 1px solid rgb(200, 200, 200);
    border-radius: 20px;
    padding: 7px;
+   margin: 5px;
    font-size: 1em;
 }
 
