@@ -1,46 +1,34 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useNavigate} from "react-router-dom";
+import Login from './Login';
 
 // Pass down currentUser into this component
-function LoginSignupForm({showSignup, setShowSignup}) {
-   const [username, setUsername] = useState("");
-   const [password, setPassword] = useState("");
+function LoginSignupForm({currentUser, setCurrentUser, showSignup, setShowSignup}) {
+   let navigate = useNavigate();
+   
+   // Things for signing up
+   const handleSignup = e => {
+      e.preventDefault();
+
+      console.log("asdf");
+   }
   
    return (
       <>
       {showSignup
-
-         ?
-      
-         "Signup Form XD"
-         
-         :
-      <form>
-         <h1>LOGIN</h1>
-         <p>Please enter your username and password.</p>
-
-         <input 
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            autoComplete="off"
-         />
-
-         <input
-            type="password"
-            name=""
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            autoComplete="off"
-         />
-
-         <button type="submit">ENTER</button>
-      </form>
+         ? "Signup Form XD"
+         : <Login setCurrentUser={setCurrentUser}/>
       }
 
-      <button onClick={() => setShowSignup(prev => !prev)}>Swaperino</button>
+      <div>
+         <p>{showSignup ? "Already have an account?" : "Don't have an account?"}</p>
+         <button
+            onClick={() => setShowSignup(prev => !prev)}
+         >
+            {showSignup ? "Login" : "Signup" }
+         </button>
+      </div>
+
       </>
    );
 }
