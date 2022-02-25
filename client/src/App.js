@@ -31,6 +31,28 @@ function App() {
          .then(data => setCommentData(data));
    }, []);
 
+   // Getting current user information
+   const [currentUser, setCurrentUser] = useState(null);
+
+   // useEffect(() => {
+   //    fetch("/me")
+   //       .then(resp => resp.json())
+   //       .then(data => setCurrentUser(data));
+   // }, []);
+
+   useEffect(() => {
+      fetch("/me")
+         .then(resp => {
+            if (resp.ok) {
+               resp.json()
+                  .then(user => {
+                     setCurrentUser(user)
+                  })
+            }
+         })
+   }, []);
+
+
    // Search Bar
    const [searchValue, setSearchValue] = useState("");
 
@@ -74,6 +96,8 @@ function App() {
          <a href="#main-content" id="skip-nav">Skip Navigation</a>
 
          <Navbar
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
             search={search}
             handleAddPost={handleAddPost}
             setShowSignup={setShowSignup}
@@ -115,6 +139,8 @@ function App() {
 
             <Route path="/welcome" element={
                <LoginSignupForm
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
                   showSignup={showSignup}
                   setShowSignup={setShowSignup}
                />
