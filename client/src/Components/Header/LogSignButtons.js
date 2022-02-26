@@ -18,13 +18,15 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
       navigate("/welcome");
    }
 
-   // const toLogout = () => {
-   //    fetch("/logout", {
-   //       method: "DELETE"
-   //    })
-   //       // .then(resp => resp.json())
-   //       // .then(data => setCurrentUser(data));
-   // };
+   const toLogout = () => {
+      fetch("/logout", {
+         method: "DELETE"
+      })
+ 
+      setCurrentUser(null);
+
+      navigate("/");
+   };
    
    const viewProfile = () => {
       navigate(`/users/${currentUser.id}`);
@@ -48,7 +50,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
 
                <button
                   className="login-button"
-                  // onClick={toLogout}
+                  onClick={toLogout}
                >
                   Logout
                </button>
