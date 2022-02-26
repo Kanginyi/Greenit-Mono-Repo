@@ -4,7 +4,7 @@ class UsersController < ApplicationController
       users = User.all
       render json: users, status: :ok
    end
-   
+
    def show
       if current_user
          render json: current_user, status: :ok
