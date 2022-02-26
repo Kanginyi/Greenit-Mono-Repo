@@ -39,7 +39,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
             // Greetings user|Logout button
             <>
                <button
-                  className="username-color"
+                  className="username-color signup-button"
                   onClick={viewProfile}
                   style={{fontWeight: "600"}}
                >
@@ -47,7 +47,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
                </button>
 
                <button
-                  id="login-button"
+                  className="login-button"
                   // onClick={toLogout}
                >
                   Logout
@@ -57,14 +57,14 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
             // Signup|Login buttons
             <>
                <button
-                  id="signup-button"
+                  className="signup-button"
                   onClick={toSignup}
                >
                   Signup
                </button>
 
                <button
-                  id="login-button"
+                  className="login-button"
                   onClick={toLogin}
                >
                   Login

@@ -130,16 +130,16 @@
    align-items: center;
 }
 
-#login-button {
+.login-button {
    margin-right: 10px;
 }
 
-#login-button:hover, #signup-button:hover {
+.login-button:hover, .signup-button:hover {
    background-color: rgb(0, 173, 76);
    color: white;
 }
 
-#login-button:active, #signup-button:active {
+.login-button:active, .signup-button:active {
    animation: loginSignup 1.75s 1;
 }
 
