@@ -8,7 +8,7 @@ import Form from "../../Components/Main/Form";
 
 import greenit_logo from "../../greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSignup}) {
+function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSignup, numbersOfBlogs}) {
    const [isClicked, setIsClicked] = useState(false);
    const [showForm, setShowForm] = useState(false);
 
@@ -34,9 +34,11 @@ function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSign
             <div className="category-bar">
                <button onClick={showSearch}>Search</button>
 
-               <button onClick={() => setShowForm(true)}>Create Post</button>
-
                <button onClick={() => navigate("/users")}>All Users</button>
+
+               <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * numbersOfBlogs - 1) + 1}`)}>Random Post</button>
+
+               {currentUser ? <button onClick={() => setShowForm(true)}>Create Post</button> : null}
             </div>
 
             <LogSignButtons
@@ -48,6 +50,7 @@ function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSign
          {isClicked ? <SearchBar search={search}/> : null}
          
          <Form
+            currentUser={currentUser}
             showForm={showForm}
             setShowForm={setShowForm}
             handleAddPost={handleAddPost}
