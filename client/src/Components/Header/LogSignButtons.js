@@ -1,6 +1,8 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
+import {FaRegSmileBeam} from "react-icons/fa";
+
 function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
   let navigate = useNavigate();
 
@@ -36,11 +38,13 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
          ?
             // Greetings user|Logout button
             <>
-               <p>
-                  Hi <span className="username-color" onClick={viewProfile}>
-                     {currentUser.username}
-                  </span>!
-               </p>
+               <button
+                  className="username-color"
+                  onClick={viewProfile}
+                  style={{fontWeight: "600"}}
+               >
+                     <FaRegSmileBeam/>&nbsp;{currentUser.username}
+               </button>
 
                <button
                   id="login-button"
