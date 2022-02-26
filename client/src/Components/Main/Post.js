@@ -5,29 +5,13 @@ import "../../Stylings/Post.css";
 import {BsTrash} from "react-icons/bs";
 
 function Post({currentUser, post, userData, handleDelete}) {
-   // Getting the newly created usernames
-   const [newUsernames, setNewUsernames] = useState("");
-
-   useEffect(() => {
-      fetch(`/users/${post.user.id}`)
-         .then(resp => resp.json())
-         .then(data => setNewUsernames(data?.username));
-   }, [post.user.id]);
-
    const userObj = userData?.filter(user => user?.id === post?.user?.id);
    const ID = userObj[0]?.id;
 
-   // Grab the ID so we can click the name
-   let clickedID;
-   if (userObj[0]?.username === newUsernames) {
-      clickedID = ID;
-   }
-
-   // Click onto username to show user's info
    let navigate = useNavigate();
 
    const clickUser = () => {
-      navigate(`/users/${clickedID}`);
+      navigate(`/users/${userObj[0]?.id}`);
    }
 
    const postID = post?.id;
@@ -163,11 +147,11 @@ function Post({currentUser, post, userData, handleDelete}) {
                         onClick={clickUser}
                         style={{cursor: "pointer"}}
                      >
-                        u/{newUsernames}
+                        u/{userObj[0]?.username}
                      </span> on {postDate} at {postTime}
                </h3>
 
-               {currentUser?.username === newUsernames
+               {currentUser?.username === userObj[0]?.username
                   ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/>
                   : null}
             </div>
