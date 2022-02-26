@@ -89,6 +89,9 @@ function App() {
    // Different rendering options for Login component
    const [showSignup, setShowSignup] = useState(false);
 
+   // PostData.length for random page
+   const numbersOfBlogs = postData?.length;
+
   return (
     <div className="App">
       
@@ -101,6 +104,7 @@ function App() {
             search={search}
             handleAddPost={handleAddPost}
             setShowSignup={setShowSignup}
+            numbersOfBlogs={numbersOfBlogs}
          />
       </header>
 
