@@ -36,7 +36,7 @@ function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSign
 
                <button onClick={() => navigate("/users")}>All Users</button>
 
-               <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * numbersOfBlogs - 1) + 1}`)}>Random Post</button>
+               <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * numbersOfBlogs) + 1}`)}>Random Post</button>
 
                {currentUser ? <button onClick={() => setShowForm(true)}>Create Post</button> : null}
             </div>
