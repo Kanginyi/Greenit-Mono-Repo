@@ -138,7 +138,9 @@ function App() {
 
             <Route path="/blogs/:id" element={
                <PostDetails
+                  currentUser={currentUser}
                   userData={userData}
+                  handleDelete={handleDelete}
                />
             }/>
 
