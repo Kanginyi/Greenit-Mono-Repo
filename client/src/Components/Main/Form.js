@@ -2,9 +2,9 @@ import React, {useState, useRef, useCallback, useEffect} from 'react';
 import {useSpring, animated} from "react-spring";
 import "../../Stylings/Form.css";
 
-function Form({showForm, setShowForm, handleAddPost}) {
+function Form({currentUser, showForm, setShowForm, handleAddPost}) {
    const [blogForm, setBlogForm] = useState({
-      username: "",
+      username: currentUser?.username,
       title: "",
       blog_post: "",
       image_url: "",
@@ -62,7 +62,7 @@ function Form({showForm, setShowForm, handleAddPost}) {
             <div className="create-post-form">
                <button onClick={() => setShowForm(false)} className="x-button">X</button>
                <form className="form-modal" onSubmit={handleSubmit}>
-                  <p>Username <span className="required-red">*</span></p>
+                  {/* <p>Username <span className="required-red">*</span></p>
                   <input
                      onChange={handleInputChange}
                      type="text"
@@ -70,7 +70,7 @@ function Form({showForm, setShowForm, handleAddPost}) {
                      value={blogForm.username}
                      autoComplete="off"
                      required
-                  />
+                  /> */}
 
                   <p>Title <span className="required-red">*</span></p>
                   <input
