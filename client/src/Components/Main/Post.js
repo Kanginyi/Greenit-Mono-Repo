@@ -30,15 +30,15 @@ function Post({currentUser, post, userData, handleDelete}) {
       navigate(`/users/${clickedID}`);
    }
 
+   const postID = post?.id;
+
    const viewMore = () => {
-      navigate(`/blogs/${post.id}`);
+      navigate(`/blogs/${postID}`);
    }
 
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes); 
-
-   const postID = post?.id;
    
    // Likes and Dislikes handling functions
    const handleLikes = () => {
@@ -167,7 +167,9 @@ function Post({currentUser, post, userData, handleDelete}) {
                      </span> on {postDate} at {postTime}
                </h3>
 
-               {currentUser?.username === newUsernames ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/> : null}
+               {currentUser?.username === newUsernames
+                  ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/>
+                  : null}
             </div>
 
             <div className="post-header">
@@ -177,7 +179,7 @@ function Post({currentUser, post, userData, handleDelete}) {
                   dislikesPressed}
                </div>
                      &nbsp;
-               <h3 className="post-title">{post.title}</h3>
+               <h2 className="post-title">{post.title}</h2>
             </div> 
 
             {post.image_url ? <img src={post.image_url} alt={post.title} style={{marginTop: "1rem"}}/> : null}
