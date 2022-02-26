@@ -15,9 +15,9 @@ function User({username, id, comments, blogs}) {
   
    return (
       <div className="user-div" onClick={checkUserInfo}>
-         <h3 className="username-color">
+         <h2 className="username-color">
             <span>{username}</span>
-         </h3>
+         </h2>
 
          <div className="total-div">
             <p>Total Posts: {checkBlogs.length}</p>

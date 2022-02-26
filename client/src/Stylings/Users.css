@@ -15,12 +15,12 @@
    box-shadow: 1px 1px 5px 3px rgba(14, 129, 64, 0.4);
 }
 
-.user-div h3 {
+.user-div h2 {
    font-size: 1.5em;
    text-align: center;
 }
 
-.user-div h3 span {
+.user-div h2 span {
    text-decoration: none;
    background-image: linear-gradient(90deg, white, rgb(0, 173, 76));
    background-size: 0% 3px;
