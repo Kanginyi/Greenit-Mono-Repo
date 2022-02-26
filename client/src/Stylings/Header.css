@@ -111,23 +111,23 @@
    margin-right: 10px;
 }
 
-.user-section p {
+.user-section span {
    font-size: 1.15em;
    font-weight: 600;
 }
 
-.user-section span {
-   cursor: pointer;
-}
-
 .user-section button {
    cursor: pointer;
-   width: 7em;
+   min-width: 7em;
    border: 1px solid rgb(200, 200, 200);
    border-radius: 20px;
    padding: 7px;
    margin: 5px;
    font-size: 1em;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 #login-button {
