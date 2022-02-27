@@ -41,6 +41,12 @@ main {
    color: rgb(0, 173, 76);
 }
 
+.error-message {
+   color: red;
+   font-weight: 600;
+   font-size: .9em;
+}
+
 /* -------------------COMMENT -------------------------- */
 
 .comment-username-class{
