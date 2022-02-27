@@ -22,47 +22,54 @@ function Post({currentUser, post, userData, handleDelete}) {
 
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
-   const [postDislikes, setPostDislikes] = useState(post?.dislikes); 
+   const [postDislikes, setPostDislikes] = useState(post?.dislikes);
+   const [likesError, setLikesError] = useState("");
    
    // Likes and Dislikes handling functions
    const handleLikes = () => {
-      fetch(`/inc_likes/${postID}`, {
-         method: "PATCH",
-         headers: {"Content-Type": "application/json"}
-      })
-         .then(resp => resp.json())
-         .then(data => setPostLikes(data.likes));
-
-       if (isClicked === 3) {
-          fetch(`/dec_dislikes/${postID}`, {
-             method: "PATCH",
-             headers: {"Content-Type": "application/json"}
-          })
-            .then(resp => resp.json())
-            .then(data => setPostDislikes(data.dislikes));
-       }
-
-       setIsClicked(2);
-   }
-
-   const handleDislikes = () => {
-      fetch(`/inc_dislikes/${postID}`, {
-         method: "PATCH",
-         headers: {"Content-Type": "application/json"}
-      })
-         .then(resp => resp.json())
-         .then(data => setPostDislikes(data.dislikes));
-
-      if (isClicked === 2) {
-         fetch(`/dec_likes/${postID}`, {
+      if (currentUser) {
+         fetch(`/inc_likes/${postID}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
             .then(data => setPostLikes(data.likes));
-      }
 
-      setIsClicked(3);
+      if (isClicked === 3) {
+         fetch(`/dec_dislikes/${postID}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostDislikes(data.dislikes));
+      }
+         setIsClicked(2);
+      } else {
+         setLikesError("Please login");
+      }
+   }
+
+   const handleDislikes = () => {
+      if (currentUser) {
+         fetch(`/inc_dislikes/${postID}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostDislikes(data.dislikes));
+
+         if (isClicked === 2) {
+            fetch(`/dec_likes/${postID}`, {
+               method: "PATCH",
+               headers: {"Content-Type": "application/json"}
+            })
+               .then(resp => resp.json())
+               .then(data => setPostLikes(data.likes));
+         }
+            setIsClicked(3);
+      } else {
+         setLikesError("Please login");
+      }
    }
 
    // Three states of the buttons
@@ -74,6 +81,8 @@ function Post({currentUser, post, userData, handleDelete}) {
                            👍 {postLikes}
                         </button>
 
+                        <div className="error-message">{likesError}</div>
+                        
                         <button
                            className="dislikes-button"
                            onClick={handleDislikes}                      
