@@ -17,12 +17,12 @@ function Form({currentUser, showForm, setShowForm, handleAddPost}) {
          ...blogForm,
          [e.target.name]:e.target.value
       });
-   }
+   };
 
    const handleSubmit = e => {
-      e.preventDefault()
-      handleAddPost(blogForm)
-   }
+      e.preventDefault();
+      handleAddPost(blogForm);
+   };
 
    // Close the modal when clicking outside of the modal
    const formRef = useRef();
@@ -30,7 +30,7 @@ function Form({currentUser, showForm, setShowForm, handleAddPost}) {
       if (formRef.current === e.target) {
          setShowForm(false);
       }
-   }
+   };
 
    // Close the modal using the "Escape" key
    const escPress = useCallback(e => {
