@@ -59,48 +59,55 @@ function PostDetails({currentUser, userData, handleDelete}) {
    });
 
    const [isClicked, setIsClicked] = useState(1);
-   const [postLikes, setPostLikes] = useState(blogInfo?.likes);
-   const [postDislikes, setPostDislikes] = useState(blogInfo?.dislikes); 
-   
+   const [postLikes, setPostLikes] = useState(null);
+   const [postDislikes, setPostDislikes] = useState(null);
+   const [likesError, setLikesError] = useState("");
+
    // Likes and Dislikes handling functions
    const handleLikes = () => {
-      fetch(`/inc_likes/${id}`, {
-         method: "PATCH",
-         headers: {"Content-Type": "application/json"}
-      })
-         .then(resp => resp.json())
-         .then(data => setPostLikes(data.likes));
-
-       if (isClicked === 3) {
-          fetch(`/dec_dislikes/${id}`, {
-             method: "PATCH",
-             headers: {"Content-Type": "application/json"}
-          })
-            .then(resp => resp.json())
-            .then(data => setPostDislikes(data.dislikes));
-       }
-
-       setIsClicked(2);
-   }
-
-   const handleDislikes = () => {
-      fetch(`/inc_dislikes/${id}`, {
-         method: "PATCH",
-         headers: {"Content-Type": "application/json"}
-      })
-         .then(resp => resp.json())
-         .then(data => setPostDislikes(data.dislikes));
-
-      if (isClicked === 2) {
-         fetch(`/dec_likes/${id}`, {
+      if (currentUser) {
+         fetch(`/inc_likes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
             .then(data => setPostLikes(data.likes));
-      }
 
-      setIsClicked(3);
+      if (isClicked === 3) {
+         fetch(`/dec_dislikes/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostDislikes(data.dislikes));
+      }
+         setIsClicked(2);
+      } else {
+         setLikesError("Please login");
+      }
+   }
+
+   const handleDislikes = () => {
+      if (currentUser) {
+         fetch(`/inc_dislikes/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostDislikes(data.dislikes));
+
+         if (isClicked === 2) {
+            fetch(`/dec_likes/${id}`, {
+               method: "PATCH",
+               headers: {"Content-Type": "application/json"}
+            })
+               .then(resp => resp.json())
+               .then(data => setPostLikes(data.likes));
+         }
+            setIsClicked(3);
+      } else {
+         setLikesError("Please login");
+      }
    }
 
    // Three states of the buttons
@@ -109,14 +116,16 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="likes-button"
                            onClick={handleLikes}
                         >
-                           👍 {postLikes}
+                           👍 {blogInfo ? blogInfo?.likes : null}
                         </button>
+
+                        <div className="error-message">{likesError}</div>
 
                         <button
                            className="dislikes-button"
                            onClick={handleDislikes}                      
                         >
-                            👎 {postDislikes}
+                            👎 {blogInfo ? blogInfo?.dislikes : null}
                         </button>
                       </>
 
@@ -133,7 +142,7 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="dislikes-button"
                            onClick={handleDislikes}                     
                         >
-                            👎 {postDislikes}
+                            👎 {blogInfo ? blogInfo?.dislikes : null}
                         </button>
                       </>
 
@@ -142,7 +151,7 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="likes-button"
                            onClick={handleLikes}                      
                         >
-                           👍 {postLikes} 
+                           👍 {blogInfo ? blogInfo?.likes : null}
                         </button>
 
                         <button
@@ -158,8 +167,6 @@ function PostDetails({currentUser, userData, handleDelete}) {
    if (!isLoaded) {
       return <Loader/>
    }
-
-   console.log(userObj);
    
    return (
        <div className="post-div">
@@ -202,16 +209,6 @@ function PostDetails({currentUser, userData, handleDelete}) {
                <p>{blogInfo?.blog_post}</p>
             </div>
          </article>
-
-         <div className="comment-button-class">
-            <button className="upvotes-button">
-               👍 {blogInfo?.likes} Likes
-            </button>
-               &nbsp;
-            <button className="downvotes-button">
-               👎 {blogInfo?.dislikes} Dislikes
-            </button>
-         </div>
 
          {displayComments}
 
