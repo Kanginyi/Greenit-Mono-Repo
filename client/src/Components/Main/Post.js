@@ -4,7 +4,7 @@ import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Post({currentUser, post, userData, handleDelete}) {
+function Post({currentUser, post, userData, handleDelete, setClickedPostID}) {
    const userObj = userData?.filter(user => user?.id === post?.user?.id);
    const ID = userObj[0]?.id;
 
@@ -17,6 +17,7 @@ function Post({currentUser, post, userData, handleDelete}) {
    const postID = post?.id;
 
    const viewMore = () => {
+      setClickedPostID(() => postID);
       navigate(`/blogs/${postID}`);
    }
 
