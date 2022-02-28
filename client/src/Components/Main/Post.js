@@ -134,10 +134,10 @@ function Post({currentUser, post, userData, handleDelete}) {
 
    // Add ... after posts with more than 100 characters in length
    let renderOnMainPage;
-   if (post.blog_post.length > 100) {
-      renderOnMainPage = post.blog_post.slice(0, 100) + "...";
+   if (post?.blog_post?.length > 100) {
+      renderOnMainPage = post?.blog_post?.slice(0, 100) + "...";
    } else {
-      renderOnMainPage = post.blog_post;
+      renderOnMainPage = post?.blog_post;
    }
 
    const postDate = new Date(post.created_at).toLocaleDateString();
