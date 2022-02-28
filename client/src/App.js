@@ -92,9 +92,6 @@ function App() {
    // PostData.length for random page
    const numbersOfBlogs = postData?.length;
 
-   // PostID for clicked post details
-   const [clickedPostID, setClickedPostID] = useState(0);
-
   return (
     <div className="App">
       
@@ -120,7 +117,6 @@ function App() {
                   userData={userData}
                   searchValue={searchValue}
                   handleDelete={handleDelete}
-                  setClickedPostID={setClickedPostID}
                />
             }/>
 
@@ -143,8 +139,9 @@ function App() {
             <Route path="/blogs/:id" element={
                <PostDetails
                   currentUser={currentUser}
-                  clickedPostID={clickedPostID}
                   userData={userData}
+                  postData={postData}
+                  commentData={commentData}
                   handleDelete={handleDelete}
                />
             }/>
