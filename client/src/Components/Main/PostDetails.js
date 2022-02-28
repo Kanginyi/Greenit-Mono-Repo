@@ -184,6 +184,12 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
       } else {
          setCommentError("Please login");
       }
+      
+      setPostComment({
+         comment_text: "", 
+         user_id: currentUser?.id,
+         blog_id: currentBlogInfo?.id
+      });
    };
 
    // Loading screen component
