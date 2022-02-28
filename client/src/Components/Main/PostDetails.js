@@ -1,17 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import Comment from "./Comment";
 import Loader from "./Loader";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";
 
-function PostDetails({currentUser, userData, postData, commentData, searchValue, handleDelete}) {
+function PostDetails({currentUser, userData, postData, setPostData, commentData, setCommentData, searchValue, handleDelete}) {
    const URL = window.location.href;
+   const clickedID = parseInt(useParams().id);
 
-   const [comments, setComments] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
 
-   const currentBlogInfo = (postData?.filter(blog => URL.endsWith(blog?.id)))[0];
+   const blogsArray = postData?.filter(blog => blog?.id === clickedID);
+   
+   const currentBlogInfo = (blogsArray?.filter(blog => blog?.id === clickedID))[0];
+
+   // const currentBlogInfo = (postData?.filter(blog => URL.endsWith(blog?.id)))[0];
 
    const postAuthor = currentBlogInfo?.user?.username;
 
@@ -22,7 +26,6 @@ function PostDetails({currentUser, userData, postData, commentData, searchValue,
       fetch(`/blogs/${currentBlogInfo?.id}`)
          .then(resp => resp.json())
          .then(blog => {
-            setComments(blog?.comments)
             setIsLoaded(() => true);
          });
    }, []);
@@ -159,6 +162,8 @@ function PostDetails({currentUser, userData, postData, commentData, searchValue,
    const handleComment = e => {
       setPostComment({
          ...postComment,
+         user_id: currentUser?.id,
+         blog_id: currentBlogInfo?.id,
          [e.target.name]:e.target.value
       })
    }
@@ -176,9 +181,8 @@ function PostDetails({currentUser, userData, postData, commentData, searchValue,
                if (resp.ok) {
                   resp.json()
                      .then(data => {
-                        setComments([
-                           ...comments, data
-                        ])
+                        setPostData(blogs => [...blogs, data]);
+                        setCommentData(comments => [...comments, data]);
                      })
                }
             });
