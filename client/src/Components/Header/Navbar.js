@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
-import "../../Stylings/Header.css";
-
 import SearchBar from "./SearchBar";
 import LogSignButtons from "./LogSignButtons";
 import Form from "../../Components/Main/Form";
 
+import {useNavigate} from "react-router-dom";
+import "../../Stylings/Header.css";
+
 import greenit_logo from "../../greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSignup, numbersOfBlogs}) {
+function Navbar({currentUser, setCurrentUser, search, postData, setPostData, setShowSignup, numbersOfBlogs}) {
    const [isClicked, setIsClicked] = useState(false);
    const [showForm, setShowForm] = useState(false);
 
@@ -53,7 +53,8 @@ function Navbar({currentUser, setCurrentUser, search, handleAddPost, setShowSign
             currentUser={currentUser}
             showForm={showForm}
             setShowForm={setShowForm}
-            handleAddPost={handleAddPost}
+            postData={postData}
+            setPostData={setPostData}
          />
       </>
    );
