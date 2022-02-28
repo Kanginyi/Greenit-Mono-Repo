@@ -2,11 +2,11 @@ import React, {useState, useEffect} from "react";
 import Posts from "./Components/Main/Posts";
 import Navbar from "./Components/Header/Navbar";
 import Users from "./Components/Main/Users";
+import UserInfo from "./Components/Main/UserInfo";
 import PostDetails from "./Components/Main/PostDetails";
 import LoginSignupForm from "./Components/Header/LoginSignupForm";
 
 import {Route, Routes} from "react-router-dom";
-import UserInfo from "./Components/Main/UserInfo";
 
 function App() {
    const [postData, setPostData] = useState([]);
@@ -34,12 +34,6 @@ function App() {
    // Getting current user information
    const [currentUser, setCurrentUser] = useState(null);
 
-   // useEffect(() => {
-   //    fetch("/me")
-   //       .then(resp => resp.json())
-   //       .then(data => setCurrentUser(data));
-   // }, []);
-
    useEffect(() => {
       fetch("/me")
          .then(resp => {
@@ -52,29 +46,13 @@ function App() {
          })
    }, []);
 
-
    // Search Bar
    const [searchValue, setSearchValue] = useState("");
 
    function search(e) {
    setSearchValue(e.target.value);
    }
-  
-   // FORM SUBMITS
-   const handleAddPost = post => {
-   fetch("/blogs", {
-      method: "POST",
-      headers: {"Content-Type" : "application/json"},
-      body: JSON.stringify(post)
-   })
-      .then(resp => resp.json())
-      .then(post => {
-         setPostData([
-            post, ...postData
-         ])
-      })
-   }
-  
+    
    // Delete Posts
    const handleDelete = id => {
    fetch(`/blogs/${id}`,{
@@ -102,7 +80,8 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             search={search}
-            handleAddPost={handleAddPost}
+            postData={postData}
+            setPostData={setPostData}
             setShowSignup={setShowSignup}
             numbersOfBlogs={numbersOfBlogs}
          />
@@ -141,7 +120,9 @@ function App() {
                   currentUser={currentUser}
                   userData={userData}
                   postData={postData}
+                  setPostData={setPostData}
                   commentData={commentData}
+                  setCommentData={setCommentData}
                   searchValue={searchValue}
                   handleDelete={handleDelete}
                />
@@ -149,8 +130,8 @@ function App() {
 
             <Route path="/welcome" element={
                <LoginSignupForm
-                  currentUser={currentUser}
                   setCurrentUser={setCurrentUser}
+                  setUserData={setUserData}
                   showSignup={showSignup}
                   setShowSignup={setShowSignup}
                />
