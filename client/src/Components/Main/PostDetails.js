@@ -1,85 +1,70 @@
 import React, {useState, useEffect} from 'react';
+import Comment from "./Comment";
 import Loader from "./Loader";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";
 
-function PostDetails({currentUser, userData, handleDelete}) {
-   const [blogInfo, setBlogInfo] = useState([]);
-   const [isLoaded, setIsLoaded] = useState(false);
+function PostDetails({currentUser, userData, postData, commentData, searchValue, handleDelete}) {
+   const URL = window.location.href;
+
    const [comments, setComments] = useState([]);
+   const [isLoaded, setIsLoaded] = useState(false);
+
+   const currentBlogInfo = (postData?.filter(blog => URL.endsWith(blog?.id)))[0];
+
+   const postAuthor = currentBlogInfo?.user?.username;
 
    let navigate = useNavigate();
-   const id = useParams().id;
 
+   // Issue here with blogInfo, so that we can get username from it and not have it fuck everything up
    useEffect(() => {
-      fetch(`/blogs/${id}`)
+      fetch(`/blogs/${currentBlogInfo?.id}`)
          .then(resp => resp.json())
          .then(blog => {
-            setBlogInfo(blog)
-            setIsLoaded(true)
+            setComments(blog?.comments)
+            setIsLoaded(() => true);
          });
-   }, [id]);
-
-   useEffect(() => {
-      fetch("/comments")
-         .then(resp => resp.json())
-         .then(data => setComments(data));
    }, []);
 
+   const filteredComments = commentData?.filter(comment => comment?.blog?.id === currentBlogInfo?.id);
+
    // Date & Time for the post header
-   const postDate = new Date(blogInfo?.created_at).toLocaleDateString();
-   const postTime = new Date(blogInfo?.created_at).toLocaleTimeString();
-
-   // Find all comments related to the post
-   const findComments = comments?.filter(comment => comment?.blog?.id === blogInfo?.id);
-
-   // User info
-   const userObj = (userData?.filter(user => user?.id === blogInfo?.user?.id))[0];
+   const postDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
+   const postTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
 
    // Render all comments onto the page
-   const displayComments = findComments?.map(foundComment => {
-      const commentUser = (userData?.filter(user => user?.id === foundComment?.user?.id))[0];
-     
-      return (
-         <div className="comment-section">
-
-            <div className="comment-text-class">
-               <h3>{foundComment?.comment_text}</h3>
-            </div>
-
-            <div>
-               <h3 className="comment-username-class" style={{cursor: "pointer"}}>
-                  -<span onClick={() => navigate(`/users/${commentUser?.id}`)}>{commentUser?.username}</span>
-               </h3>
-            </div>
-
-         </div>
-      );
+   const displayComments = filteredComments?.map(comment => {
+      return <Comment key={comment.id} comment={comment} userData={userData}/>
    });
 
+   console.log(searchValue)
+
+   const filterComments = searchValue === "" ? displayComments : displayComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+
+   // Likes and Dislikes states
    const [isClicked, setIsClicked] = useState(1);
-   const [postLikes, setPostLikes] = useState(null);
-   const [postDislikes, setPostDislikes] = useState(null);
+   const [postLikes, setPostLikes] = useState(currentBlogInfo?.likes);
+   const [postDislikes, setPostDislikes] = useState(currentBlogInfo?.dislikes);
    const [likesError, setLikesError] = useState("");
 
    // Likes and Dislikes handling functions
    const handleLikes = () => {
       if (currentUser) {
-         fetch(`/inc_likes/${id}`, {
+         fetch(`/inc_likes/${currentBlogInfo?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data.likes));
+            .then(data => setPostLikes(data?.likes));
 
       if (isClicked === 3) {
-         fetch(`/dec_dislikes/${id}`, {
+         fetch(`/dec_dislikes/${currentBlogInfo?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data.dislikes));
+            .then(data => setPostDislikes(data?.dislikes));
       }
          setIsClicked(2);
       } else {
@@ -89,20 +74,20 @@ function PostDetails({currentUser, userData, handleDelete}) {
 
    const handleDislikes = () => {
       if (currentUser) {
-         fetch(`/inc_dislikes/${id}`, {
+         fetch(`/inc_dislikes/${currentBlogInfo?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data.dislikes));
+            .then(data => setPostDislikes(data?.dislikes));
 
          if (isClicked === 2) {
-            fetch(`/dec_likes/${id}`, {
+            fetch(`/dec_likes/${currentBlogInfo?.id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
             })
                .then(resp => resp.json())
-               .then(data => setPostLikes(data.likes));
+               .then(data => setPostLikes(data?.likes));
          }
             setIsClicked(3);
       } else {
@@ -116,7 +101,7 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="likes-button"
                            onClick={handleLikes}
                         >
-                           👍 {blogInfo ? blogInfo?.likes : null}
+                           👍 {currentBlogInfo ? currentBlogInfo?.likes : null}
                         </button>
 
                         <div className="error-message">{likesError}</div>
@@ -125,7 +110,7 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="dislikes-button"
                            onClick={handleDislikes}                      
                         >
-                            👎 {blogInfo ? blogInfo?.dislikes : null}
+                            👎 {currentBlogInfo ? currentBlogInfo?.dislikes : null}
                         </button>
                       </>
 
@@ -142,7 +127,7 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="dislikes-button"
                            onClick={handleDislikes}                     
                         >
-                            👎 {blogInfo ? blogInfo?.dislikes : null}
+                            👎 {currentBlogInfo ? currentBlogInfo?.dislikes : null}
                         </button>
                       </>
 
@@ -151,7 +136,7 @@ function PostDetails({currentUser, userData, handleDelete}) {
                            className="likes-button"
                            onClick={handleLikes}                      
                         >
-                           👍 {blogInfo ? blogInfo?.likes : null}
+                           👍 {currentBlogInfo ? currentBlogInfo?.likes : null}
                         </button>
 
                         <button
@@ -161,7 +146,46 @@ function PostDetails({currentUser, userData, handleDelete}) {
                         >
                            👎 {postDislikes}
                         </button>
-                      </>
+                      </>  
+
+   // Handle Comment Input
+   const [commentError, setCommentError] = useState("");
+   const [postComment, setPostComment] = useState({
+      comment_text: "", 
+      user_id: currentUser?.id,
+      blog_id: currentBlogInfo?.id
+   });
+
+   const handleComment = e => {
+      setPostComment({
+         ...postComment,
+         [e.target.name]:e.target.value
+      })
+   }
+
+   const submitComment = e => {
+      e.preventDefault();
+
+      if (currentUser) {
+         fetch("/comments", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(postComment)
+         })
+            .then(resp => {
+               if (resp.ok) {
+                  resp.json()
+                     .then(data => {
+                        setComments([
+                           ...comments, data
+                        ])
+                     })
+               }
+            });
+      } else {
+         setCommentError("Please login");
+      }
+   };
 
    // Loading screen component
    if (!isLoaded) {
@@ -177,15 +201,15 @@ function PostDetails({currentUser, userData, handleDelete}) {
                   Posted by&nbsp;
                      <span
                         className="username-color"
-                        onClick={() => navigate(`/users/${id}`)}
+                        onClick={() => navigate(`/users/${currentBlogInfo?.id}`)}
                         style={{cursor: "pointer"}}
                      >
-                        u/{userObj?.username}
+                        u/{postAuthor}
                      </span> on {postDate} at {postTime}
                </h3>
 
-               {currentUser?.username === userObj.username
-                  ? <BsTrash onClick={() => handleDelete(blogInfo?.id)} className="delete-post"/>
+               {currentUser?.username === postAuthor
+                  ? <BsTrash onClick={() => handleDelete(currentBlogInfo?.id)} className="delete-post"/>
                   : null}
             </div>
 
@@ -196,21 +220,43 @@ function PostDetails({currentUser, userData, handleDelete}) {
                      dislikesPressed}
                   </div>
                   &nbsp;
-               <h2 className="post-title">{blogInfo?.title}</h2>
+               <h2 className="post-title">{currentBlogInfo?.title}</h2>
             </div>
 
             {
-               blogInfo?.image_url
-               ? <img src={blogInfo?.image_url} alt={blogInfo?.title}/>
+               currentBlogInfo?.image_url
+               ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
                : null
             }
 
             <div>
-               <p>{blogInfo?.blog_post}</p>
+               <p>{currentBlogInfo?.blog_post}</p>
             </div>
          </article>
 
-         {displayComments}
+         <hr/>
+
+         <details>
+            <summary>JOIN THE CONVERSATION</summary>
+
+            <form>
+               <textarea
+                  onChange={handleComment}
+                  type="text"
+                  name="comment_text"
+                  value={postComment.comment_text}
+                  required
+                  rows="5"
+                  cols="93"
+               />
+
+               <br/>
+               <button onClick={submitComment}>Add Comment!</button>
+               <div className="error-message">{commentError}</div>
+            </form>
+         </details>
+
+      {filterComments}
 
       </div>
    );
