@@ -192,6 +192,9 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
       });
    };
 
+   // State for hiding comments
+   const [hideComments, setHideComments] = useState(false);
+
    // Loading screen component
    if (!isLoaded) {
       return <Loader/>
@@ -258,9 +261,15 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             </form>
          </details>
 
+         <div className="show-hide-container">
+            <button onClick={() => setHideComments(prev => !prev)}>
+               {hideComments ? "Show Comments" : "Hide Comments"}
+            </button>
+         </div>
+         <br/>
 
-      {filterComments}
-
+         {hideComments ? null : filterComments}
+         
       </div>
    );
 }
