@@ -38,8 +38,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
       return <Comment key={comment.id} comment={comment} userData={userData}/>
    });
 
-   console.log(searchValue)
-
    const filterComments = searchValue === "" ? displayComments : displayComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // Likes and Dislikes states
