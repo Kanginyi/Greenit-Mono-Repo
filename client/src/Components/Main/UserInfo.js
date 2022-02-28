@@ -1,24 +1,28 @@
 import React from 'react';
 import "../../Stylings/UserInfo.css";
+import { useParams } from 'react-router-dom';
 import placeholder_img from "../../placeholder.png";
 
 function UserInfo({userData, postData, commentData, searchValue}) {
    // Getting the URL of the window
    const URL = window.location.href;
+   const clickedID = parseInt(useParams().id);
 
-   // Clicked User's username
-   const checkUser = userData?.filter(user => URL.endsWith(user?.id));
-   const clickedUser = checkUser[0]?.username;
+   const checkUsersArray = userData?.filter(user => URL.endsWith(user?.id));
+
+   const checkUser = (checkUsersArray?.filter(user => user?.id === clickedID))[0];
+
+   const clickedUser = checkUser?.username;
 
    // Clicked User's blogs
-   const checkPosts = postData?.filter(blog => blog?.user?.id === checkUser[0]?.id);
+   const checkPosts = postData?.filter(blog => blog?.user?.id === checkUser?.id);
 
    const renderPosts = checkPosts?.map(blog => {
       let post;
-      if (blog.blog_post.length < 15) {
-         post = blog.blog_post;
+      if (blog?.blog_post?.length < 15) {
+         post = blog?.blog_post;
       } else {
-         post = blog.blog_post.slice(0, 15) + "...";
+         post = blog?.blog_post?.slice(0, 15) + "...";
       }
 
       return<div className="user-info-blogs">
@@ -32,7 +36,7 @@ function UserInfo({userData, postData, commentData, searchValue}) {
    });
 
    // Clicked User's comments
-   const checkComments = commentData?.filter(comment => comment?.user?.id === checkUser[0]?.id);
+   const checkComments = commentData?.filter(comment => comment?.user?.id === checkUser?.id);
 
    const renderComments = checkComments?.map(comment => {
       return<div className="user-info-comments">
@@ -41,11 +45,9 @@ function UserInfo({userData, postData, commentData, searchValue}) {
             </div>
    });
 
-   // console.log(searchValue);
+   const filterPosts = searchValue === "" ? renderPosts : renderPosts?.filter(blog => blog.props.children[1].props.children[0].props.children.toLowerCase().includes(searchValue.toLowerCase()));
 
-
-   
-
+   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment.props.children[1].props.children.toLowerCase().includes(searchValue.toLowerCase()));
 
    return (
       <div>
@@ -54,12 +56,12 @@ function UserInfo({userData, postData, commentData, searchValue}) {
          <div>
             <h3>Total Posts: {checkPosts.length}</h3>
             <div className="user-info-scroll">
-               {renderPosts}
+               {filterPosts}
             </div>
 
             <h3>Total Comments: {checkComments.length}</h3>
             <div className="user-info-scroll">
-               {renderComments}
+               {filterComments}
             </div>
          </div>
       </div>
