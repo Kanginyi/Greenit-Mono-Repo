@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 
-function Signup({setCurrentUser}) {
+function Signup({setCurrentUser, setUserData}) {
    let navigate = useNavigate();
 
    const [username, setUsername] = useState("");
@@ -21,6 +21,7 @@ function Signup({setCurrentUser}) {
                resp.json()
                   .then(user => {
                      setCurrentUser(user);
+                     setUserData(allUsers => [...allUsers, user])
                      navigate("/");
                   })
             } else {
