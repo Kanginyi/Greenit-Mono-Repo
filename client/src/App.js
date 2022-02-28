@@ -142,6 +142,7 @@ function App() {
                   userData={userData}
                   postData={postData}
                   commentData={commentData}
+                  searchValue={searchValue}
                   handleDelete={handleDelete}
                />
             }/>
