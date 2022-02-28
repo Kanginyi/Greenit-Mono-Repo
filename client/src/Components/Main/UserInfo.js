@@ -26,11 +26,11 @@ function UserInfo({userData, postData, commentData, searchValue}) {
       }
 
       return<div className="user-info-blogs">
-               <img src={blog.image_url ? blog.image_url : placeholder_img} alt={blog.title}/>
+               <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>
                <div>
-                  <h3>{blog.title}</h3>
+                  <h3>{blog?.title}</h3>
                   <p>{post}</p>
-                  <p>{blog.likes} Likes | {blog.dislikes} Dislikes</p>
+                  <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes</p>
                </div>
             </div>
    });
@@ -40,14 +40,14 @@ function UserInfo({userData, postData, commentData, searchValue}) {
 
    const renderComments = checkComments?.map(comment => {
       return<div className="user-info-comments">
-               <h3>{comment.blog.title}</h3>
-               <p>{comment.comment_text}</p>
+               <h3>{comment?.blog?.title}</h3>
+               <p>{comment?.comment_text}</p>
             </div>
    });
 
-   const filterPosts = searchValue === "" ? renderPosts : renderPosts?.filter(blog => blog.props.children[1].props.children[0].props.children.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterPosts = searchValue === "" ? renderPosts : renderPosts?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
-   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment.props.children[1].props.children.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    return (
       <div>
