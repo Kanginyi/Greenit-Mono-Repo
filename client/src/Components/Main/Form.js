@@ -1,8 +1,11 @@
 import React, {useState, useRef, useCallback, useEffect} from 'react';
 import {useSpring, animated} from "react-spring";
+import { useNavigate } from 'react-router-dom';
 import "../../Stylings/Form.css";
 
 function Form({currentUser, showForm, setShowForm, postData, setPostData}) {
+   let navigate = useNavigate();
+
    const [blogForm, setBlogForm] = useState({
       user_id: null,
       title: "",
@@ -36,6 +39,9 @@ function Form({currentUser, showForm, setShowForm, postData, setPostData}) {
                   })
             }
          })
+      setBlogForm({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: ""});
+      setShowForm(false);
+      navigate("/");
    };
 
    // Close the modal when clicking outside of the modal
