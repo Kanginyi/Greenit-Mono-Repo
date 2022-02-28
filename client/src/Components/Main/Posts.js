@@ -6,7 +6,9 @@ function Posts({currentUser, postData, userData, searchValue, handleDelete}) {
       return <Post key={post.id} currentUser={currentUser} post={post} userData={userData} handleDelete={handleDelete}/>
    });
 
-   const filterData = searchValue === "" ? renderPosts : renderPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.props.post.user.username.toLowerCase().includes(searchValue.toLowerCase()));
+   const sortPosts = renderPosts?.sort((a, b) => b.props.post.created_at.localeCompare(a.props.post.created_at));
+
+   const filterData = searchValue === "" ? sortPosts : sortPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.props.post.user.username.toLowerCase().includes(searchValue.toLowerCase()));
 
    return (
       <div>
