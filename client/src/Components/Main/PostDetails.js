@@ -233,27 +233,25 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             </div>
          </article>
 
-         <hr/>
-
          <details>
-            <summary>JOIN THE CONVERSATION</summary>
+            <summary className="post-comment-dropdown">JOIN THE CONVERSATION</summary>
 
-            <form>
+            <form className="post-comment-form">
                <textarea
                   onChange={handleComment}
                   type="text"
                   name="comment_text"
                   value={postComment.comment_text}
-                  required
                   rows="5"
-                  cols="93"
                />
 
                <br/>
                <button onClick={submitComment}>Add Comment!</button>
                <div className="error-message">{commentError}</div>
+               <br/>
             </form>
          </details>
+
 
       {filterComments}
 
