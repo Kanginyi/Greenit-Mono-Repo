@@ -15,13 +15,10 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    
    const currentBlogInfo = (blogsArray?.filter(blog => blog?.id === clickedID))[0];
 
-   // const currentBlogInfo = (postData?.filter(blog => URL.endsWith(blog?.id)))[0];
-
    const postAuthor = currentBlogInfo?.user?.username;
 
    let navigate = useNavigate();
 
-   // Issue here with blogInfo, so that we can get username from it and not have it fuck everything up
    useEffect(() => {
       fetch(`/blogs/${currentBlogInfo?.id}`)
          .then(resp => resp.json())
