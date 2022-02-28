@@ -2,9 +2,9 @@ import React, {useState, useRef, useCallback, useEffect} from 'react';
 import {useSpring, animated} from "react-spring";
 import "../../Stylings/Form.css";
 
-function Form({currentUser, showForm, setShowForm, handleAddPost}) {
+function Form({currentUser, showForm, setShowForm, postData, setPostData}) {
    const [blogForm, setBlogForm] = useState({
-      username: currentUser?.username,
+      user_id: null,
       title: "",
       blog_post: "",
       image_url: "",
@@ -15,13 +15,27 @@ function Form({currentUser, showForm, setShowForm, handleAddPost}) {
    const handleInputChange = e => {
       setBlogForm({
          ...blogForm,
+         user_id: currentUser?.id,
          [e.target.name]:e.target.value
       });
    };
 
    const handleSubmit = e => {
       e.preventDefault();
-      handleAddPost(blogForm);
+      
+      fetch("/blogs", {
+         method: "POST",
+         headers: {"Content-Type" : "application/json"},
+         body: JSON.stringify(blogForm)
+      })
+         .then(resp => {
+            if (resp.ok) {
+               resp.json()
+                  .then(post => {
+                     setPostData([post, ...postData])
+                  })
+            }
+         })
    };
 
    // Close the modal when clicking outside of the modal
@@ -62,15 +76,6 @@ function Form({currentUser, showForm, setShowForm, handleAddPost}) {
             <div className="create-post-form">
                <button onClick={() => setShowForm(false)} className="x-button">X</button>
                <form className="form-modal" onSubmit={handleSubmit}>
-                  {/* <p>Username <span className="required-red">*</span></p>
-                  <input
-                     onChange={handleInputChange}
-                     type="text"
-                     name="username"
-                     value={blogForm.username}
-                     autoComplete="off"
-                     required
-                  /> */}
 
                   <p>Title <span className="required-red">*</span></p>
                   <input
