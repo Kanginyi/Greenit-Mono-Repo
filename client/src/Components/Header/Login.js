@@ -33,10 +33,10 @@ function Login({setCurrentUser}) {
    };
 
    return (
-      <div>
+      <div className="login-container">
+         <h2>LOGIN</h2>
          <form onSubmit={handleLogin}>
-            <h1>LOGIN</h1>
-            <p>Please enter your username and password.</p>
+            <h3>Please enter your username and password!</h3>
 
             <input 
                type="text"
@@ -49,14 +49,14 @@ function Login({setCurrentUser}) {
 
             <input
                type="password"
-               name=""
+               name="password"
                placeholder="Password"
                value={password}
                onChange={e => setPassword(e.target.value)}
                autoComplete="off"
             />
 
-            <button type="submit">ENTER</button>
+            <button type="submit" className="login-button">LOGIN</button>
 
             <div>{errorMessage}</div>
          </form>
