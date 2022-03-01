@@ -125,3 +125,12 @@
    font-size: .9em;
    font-weight: 600;
 }
+
+.login-error {
+   margin-top: .5em;
+}
+
+.signup-error {
+   margin-top: -.35em;
+   margin-bottom: .5em;
+}
