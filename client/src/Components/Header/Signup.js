@@ -6,7 +6,7 @@ function Signup({setCurrentUser, setUserData}) {
 
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
-   const [errorMessage, setErrorMessage] = useState("");
+   const [errorMessage, setErrorMessage] = useState([]);
 
    const handleSignup = e => {
       e.preventDefault();
@@ -27,37 +27,44 @@ function Signup({setCurrentUser, setUserData}) {
             } else {
                resp.json()
                   .then(error => {
-                     setErrorMessage(error.errors)
+                     const errorArray = error.errors.filter(error => error !== "Password digest can't be blank");
+                     errorArray.reverse();
+                     setErrorMessage(errorArray);
                   })
             }
          })
    };
 
    return (
-      <div>
+      <div className="signup-container">
+         <h2>SIGNUP</h2>
          <form onSubmit={handleSignup}>
-            <h1>SIGNUP</h1>
+            <h3>Please enter your desired username and password!</h3>
 
-            <label>Enter a Username!</label>
             <input
                type="text"
                name="username"
+               placeholder="Enter a Username!"
                value={username}
                onChange={e => setUsername(e.target.value)}
                autoComplete="off"
             />
-
-            <label>Enter a Password!</label>
+            
             <input
                type="password"
+               name="password"
+               placeholder="Enter a Password!"
                value={password}
                onChange={e => setPassword(e.target.value)}
                autoComplete="off"
             />
 
-            <button type="submit">Signup</button>
+            <div className="error-message">
+               {errorMessage?.map(error => <p>{error}</p>)}
+            </div>
 
-            <div>{errorMessage}</div>
+            <button type="submit" className="signup-button">SIGNUP</button>
+
          </form>
       </div>
    );
