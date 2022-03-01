@@ -58,7 +58,7 @@ function Login({setCurrentUser}) {
 
             <button type="submit" className="login-button">LOGIN</button>
 
-            <div>{errorMessage}</div>
+            <div className="error-message login-error">{errorMessage}</div>
          </form>
       </div>
    );

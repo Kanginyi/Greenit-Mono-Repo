@@ -59,7 +59,7 @@ function Signup({setCurrentUser, setUserData}) {
                autoComplete="off"
             />
 
-            <div className="error-message">
+            <div className="error-message signup-error">
                {errorMessage?.map(error => <p>{error}</p>)}
             </div>
 
