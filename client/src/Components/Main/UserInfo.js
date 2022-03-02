@@ -20,7 +20,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
 
    // Clicked User's blogs
    const checkPosts = postData?.filter(blog => blog?.user?.id === checkUser?.id);
-
+   
    const renderPosts = checkPosts?.map(blog => {
       let post;
       if (blog?.blog_post?.length < 15) {
@@ -29,12 +29,16 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
          post = blog?.blog_post?.slice(0, 15) + "...";
       }
 
+      const postDate = new Date(blog?.created_at).toLocaleDateString();
+      const postTime = new Date(blog?.created_at).toLocaleTimeString();
+
       return<div className="user-info-blogs" onClick={() => navigate(`/blogs/${blog?.id}`)}>
                <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>
                <div>
                   <h4>{blog?.title}</h4>
                   <p>{post}</p>
                   <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes</p>
+                  <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
                </div>
             </div>
    });
@@ -43,10 +47,14 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const checkComments = commentData?.filter(comment => comment?.user?.id === checkUser?.id);
 
    const renderComments = checkComments?.map(comment => {
-       return<div className="user-info-comments" onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}>
-               <h4>{comment?.blog?.title}</h4>
-               <p>{comment?.comment_text}</p>
-            </div>
+      const commentDate = new Date(comment?.created_at).toLocaleDateString();
+      const commentTime = new Date(comment?.created_at).toLocaleTimeString();
+
+      return<div className="user-info-comments" onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}>
+            <h4>{comment?.blog?.title}</h4>
+            <p>{comment?.comment_text}</p>
+            <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
+         </div>
    });
 
    const filterPosts = searchValue === "" ? renderPosts : renderPosts?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
@@ -60,7 +68,11 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    // Make sure to update backend with dependent destroy, and clear all things
    // Create verification
    // Check if the session/currentUser gets deleted
-   const deleteUser = () => {    
+   const deleteUser = () => {
+      fetch("/logout", {
+         method: "DELETE"
+      });
+
       fetch(`/users/${checkUser?.id}`, {
          method: "DELETE"
       })
@@ -74,6 +86,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
             const removeComments = commentData?.filter(comment => comment?.user_id !== checkUser?.id);
             setCommentData(removeComments);
          })
+
       setCurrentUser(null);
       navigate("/");
    }
@@ -95,8 +108,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   : null
                }
             </div>
-
-            <div className="user-info-underline"></div>
 
             <div className="user-info-datetime">
                Account created on {accountDate} at {accountTime}!
