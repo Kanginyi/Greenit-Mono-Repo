@@ -6,7 +6,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import {BsTrash} from "react-icons/bs";
 
 function PostDetails({currentUser, userData, postData, setPostData, commentData, setCommentData, searchValue, handleDelete}) {
-   const URL = window.location.href;
    const clickedID = parseInt(useParams().id);
 
    const [isLoaded, setIsLoaded] = useState(false);
@@ -25,7 +24,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
          .then(blog => {
             setIsLoaded(() => true);
          });
-   }, []);
+   }, [currentBlogInfo?.id]);
 
    const filteredComments = commentData?.filter(comment => comment?.blog?.id === currentBlogInfo?.id);
 
@@ -65,6 +64,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(data => setPostDislikes(data?.dislikes));
       }
          setIsClicked(2);
+
       } else {
          setLikesError("Please login");
       }
@@ -79,18 +79,42 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => setPostDislikes(data?.dislikes));
 
-         if (isClicked === 2) {
-            fetch(`/dec_likes/${currentBlogInfo?.id}`, {
-               method: "PATCH",
-               headers: {"Content-Type": "application/json"}
-            })
-               .then(resp => resp.json())
-               .then(data => setPostLikes(data?.likes));
-         }
-            setIsClicked(3);
+      if (isClicked === 2) {
+         fetch(`/dec_likes/${currentBlogInfo?.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostLikes(data?.likes));
+      }
+         setIsClicked(3);
       } else {
          setLikesError("Please login");
       }
+   }
+
+   const handleUnlike = () => {
+      if (currentUser) {
+         fetch(`/dec_likes/${currentBlogInfo?.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostLikes(data?.likes));
+      }
+      setIsClicked(1);
+   }
+
+   const handleUndislike = () => {
+      if (currentUser) {
+         fetch(`/dec_dislikes/${currentBlogInfo?.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostDislikes(data?.dislikes));
+      }
+      setIsClicked(1);
    }
 
    // Three states of the buttons
@@ -115,8 +139,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    const likesPressed = <>
                         <button
                            className="likes-pressed"
-                           disabled="disabled"
-                           onClick={handleLikes}
+                           onClick={handleUnlike}
                         >
                            👍 {postLikes}
                         </button>
@@ -139,8 +162,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
 
                         <button
                            className="dislikes-pressed"
-                           disabled="disabled"
-                           onClick={handleDislikes}                    
+                           onClick={handleUndislike}                    
                         >
                            👎 {postDislikes}
                         </button>
@@ -262,14 +284,11 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
          </details>
 
          {filterComments?.length
-            ?  <>
-               <div className="show-hide-container">
+            ?  <div className="show-hide-container">
                   <button onClick={() => setHideComments(prev => !prev)}>
                      {hideComments ? "Show Comments" : "Hide Comments"}
                   </button>
                </div>
-               <br/>
-               </>
             : null
          }
 
