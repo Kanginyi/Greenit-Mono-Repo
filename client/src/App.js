@@ -6,12 +6,14 @@ import UserInfo from "./Components/Main/UserInfo";
 import PostDetails from "./Components/Main/PostDetails";
 import LoginSignupForm from "./Components/Header/LoginSignupForm";
 
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 function App() {
    const [postData, setPostData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
+
+   let navigate = useNavigate();
 
    useEffect(() => {
       fetch("/blogs")
@@ -55,13 +57,15 @@ function App() {
     
    // Delete Posts
    const handleDelete = id => {
-   fetch(`/blogs/${id}`,{
-      method : "DELETE"
-   })
-   .then(() => {
-      const deletePost = postData.filter(post => post.id !== id)
-      setPostData(deletePost)
-   })
+      fetch(`/blogs/${id}`,{
+         method : "DELETE"
+      })
+      .then(() => {
+         const deletePost = postData.filter(post => post.id !== id);
+         setPostData(deletePost);
+      })
+      setPostData([...postData]);
+      navigate("/");
    }
 
    // Different rendering options for Login component
