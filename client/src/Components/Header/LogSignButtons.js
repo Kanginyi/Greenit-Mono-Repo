@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 import {FaRegSmileBeam} from "react-icons/fa";
 
-function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
+function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup}) {
   let navigate = useNavigate();
 
    const toLogin = () => {
@@ -21,9 +21,13 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
    const toLogout = () => {
       fetch("/logout", {
          method: "DELETE"
-      })
+      });
  
       setCurrentUser(null);
+      
+      setPostData(postData);
+      setUserData(userData);
+      setCommentData(commentData);
 
       navigate("/");
    };
