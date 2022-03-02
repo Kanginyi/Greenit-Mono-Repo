@@ -1,30 +1,117 @@
-#clicked-username {
+.user-info-container-parent {
    margin-top: 9rem;
-   font-size: 2.5em;
+   padding: 7.5px 5px;
+
+   background-color: white;
+   box-shadow: 0 1px 8px 0 #afd3b5;
+   
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.user-info-container {
+   width: 97.5%;
+}
+
+.user-info-header {
+   display: flex;
+   justify-content: space-between;
+}
+
+#clicked-username {
+   font-size: clamp(2rem, 5vw, 3.25rem);
+   margin-bottom: -0.1em;
+}
+
+.user-info-underline {
+   background-color: rgb(0, 173, 76);
+   height: 5px;
+   margin-top: 7.5px;
+   margin-bottom: 5px;
+}
+
+.user-info-datetime {
+   font-size: clamp(1.15em, 3vw, 1.5em);
+   font-weight: 600;
+   font-style: italic;
+}
+
+.user-info-divs h3 {
+   font-size: clamp(1.25rem, 3vw, 2.25rem);
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.user-info-divs button {
+   width: fit-content;
+
+   margin: 3px;
+   padding: 5px;
+   
+   border-radius: 15px;
+
+   background-color: rgb(225, 225, 225);
+   letter-spacing: .05em;
+   color: rgb(0, 173, 76);
+
+   cursor: pointer;
+}
+
+.user-info-divs button:active, .user-info-divs button:focus-visible {
+   transform: scale(.95);
+   background-color: rgb(0, 173, 76);
+   color: rgb(225, 225, 225);
+}
+
+.user-info-blogs, .user-info-comments {
+   cursor: pointer;
+
+   border-bottom: 1px solid rgba(0, 173, 76, 0.4);
+}
+
+.user-info-blogs:last-child, .user-info-comments:last-child {
+   border-bottom: none;
 }
 
 .user-info-blogs {
-   border: 1px solid black;
-
    display: flex;
    align-items: center;
 }
- 
+
 .user-info-blogs img {
-   width: 100px;
-   height: 100px;
+   width: 15%;
+   max-width: 150px;
+   height: 15%;
+   max-height: 150px;
 }
 
 .user-info-blogs div {
-   margin-left: 10px;
+   margin-left: .5em;
 }
 
-.user-info-comments {
-   border: 1px solid black;
-   padding: 10px;
+.user-info-blogs, .user-info-comments {
+   padding: 7.5px;
+}
+
+.user-info-blogs h4, .user-info-comments h4 {
+   font-size: 1.15em;
+}
+
+.user-info-blogs:hover, .user-info-comments:hover {
+   box-shadow: 4px 0 4px 4px rgba(0, 173, 76, 0.4);
 }
 
 .user-info-scroll {
-   overflow-x: scroll;
-   height: 186px;
+   border: 2px solid rgba(0, 173, 76, 0.4);
+
+   max-height: 300px;
+   overflow-x: none;
+   overflow-y: scroll;
+
+   overflow-wrap: break-word;
+   word-break: break-word;
 }
