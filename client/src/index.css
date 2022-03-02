@@ -46,29 +46,3 @@ main {
    font-weight: 600;
    font-size: .9em;
 }
-
-/* -------------------COMMENT -------------------------- */
-
-.comment-username-class{
-   color:rgb(7, 172, 78);
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-   flex-wrap: wrap;
-   margin-bottom: 3px;
-   margin-right: 10px;
-}
-
-.comment-text-class{
-   border: 2px solid #dedede;
-   padding: 10px;
-   color: #5e5e5e;
-   text-align: center;
-   border-radius: 25px;
-   /* margin-bottom: 3px; */
-}
-
-.add-comment-class{
-   border: 2px solid #dedede;
-   padding: 10px;
-}
