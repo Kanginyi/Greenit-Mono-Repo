@@ -261,12 +261,17 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             </form>
          </details>
 
-         <div className="show-hide-container">
-            <button onClick={() => setHideComments(prev => !prev)}>
-               {hideComments ? "Show Comments" : "Hide Comments"}
-            </button>
-         </div>
-         <br/>
+         {filterComments?.length
+            ?  <>
+               <div className="show-hide-container">
+                  <button onClick={() => setHideComments(prev => !prev)}>
+                     {hideComments ? "Show Comments" : "Hide Comments"}
+                  </button>
+               </div>
+               <br/>
+               </>
+            : null
+         }
 
          {hideComments ? null : filterComments}
          
