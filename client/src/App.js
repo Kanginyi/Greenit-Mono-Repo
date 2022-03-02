@@ -9,6 +9,21 @@ import LoginSignupForm from "./Components/Header/LoginSignupForm";
 import {Route, Routes, useNavigate} from "react-router-dom";
 
 function App() {
+   // Getting current user information
+   const [currentUser, setCurrentUser] = useState(null);
+
+   useEffect(() => {
+      fetch("/me")
+         .then(resp => {
+            if (resp.ok) {
+               resp.json()
+                  .then(user => {
+                     setCurrentUser(user)
+                  })
+            }
+         })
+   }, []);
+   
    const [postData, setPostData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
@@ -33,21 +48,6 @@ function App() {
          .then(data => setCommentData(data));
    }, []);
 
-   // Getting current user information
-   const [currentUser, setCurrentUser] = useState(null);
-
-   useEffect(() => {
-      fetch("/me")
-         .then(resp => {
-            if (resp.ok) {
-               resp.json()
-                  .then(user => {
-                     setCurrentUser(user)
-                  })
-            }
-         })
-   }, []);
-
    // Search Bar
    const [searchValue, setSearchValue] = useState("");
 
@@ -64,7 +64,6 @@ function App() {
          const deletePost = postData.filter(post => post.id !== id);
          setPostData(deletePost);
       })
-      setPostData([...postData]);
       navigate("/");
    }
 
@@ -112,9 +111,14 @@ function App() {
 
             <Route path="/users/:id" element={
                <UserInfo
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
                   userData={userData}
+                  setUserData={setUserData}
                   postData={postData}
+                  setPostData={setPostData}
                   commentData={commentData}
+                  setCommentData={setCommentData}
                   searchValue={searchValue}
                />
             }/>
