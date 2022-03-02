@@ -8,11 +8,11 @@ function Posts({currentUser, postData, userData, searchValue, handleDelete}) {
 
    const sortPosts = renderPosts?.sort((a, b) => b.props.post.created_at.localeCompare(a.props.post.created_at));
 
-   const filterData = searchValue === "" ? sortPosts : sortPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.props.post.user.username.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterPosts = searchValue === "" ? sortPosts : sortPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.props.post.user.username.toLowerCase().includes(searchValue.toLowerCase()));
 
    return (
       <div>
-         {filterData}
+         {filterPosts}
       </div>
    );
 }
