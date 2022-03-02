@@ -1,6 +1,8 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
+import "../../Stylings/Comment.css";
+
 function Comment({comment, userData}) {
    let navigate = useNavigate();
 
@@ -8,16 +10,16 @@ function Comment({comment, userData}) {
 
    return (
       <div className="comment-section">
-         <div className="comment-text-class">
-            <h3>{comment?.comment_text}</h3>
+         <div className="comment-text">
+            <p>{comment?.comment_text}</p>
          </div>
 
          <div>
-            <h3 className="comment-username-class">
+            <p className="comment-username">
                -<span onClick={() => navigate(`/users/${commentUser?.id}`)} style={{cursor: "pointer"}}>
                   {commentUser?.username}
                </span>
-            </h3>
+            </p>
          </div>
 
       </div>
