@@ -7,19 +7,25 @@
    color: #5e5e5e;
 }
 
-.comment-username{
-   color:rgb(7, 172, 78);
-
+.comment-meta-data p {
    display: flex;
    justify-content: flex-end;
    align-items: center;
    flex-wrap: wrap;
 
-   font-size: 1.1em;
-   font-weight: 600;
-   letter-spacing: .025em;
-   
    margin-top: 3px;
    margin-bottom: 3px;
    margin-right: 10px;
+}
+
+.comment-date-time {
+   color: #afd3b5;
+}
+
+.comment-username{
+   color:rgb(7, 172, 78);
+
+   font-size: 1.1em;
+   font-weight: 600;
+   letter-spacing: .025em;
 }
