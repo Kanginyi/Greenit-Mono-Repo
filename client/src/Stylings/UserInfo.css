@@ -33,9 +33,10 @@
 }
 
 .user-info-datetime {
-   font-size: clamp(1.15em, 3vw, 1.5em);
+   font-size: clamp(1em, 3vw, 1.5em);
    font-weight: 600;
    font-style: italic;
+   color: #afd3b5;
 }
 
 .user-info-divs h3 {
@@ -83,17 +84,19 @@
 }
 
 .user-info-blogs img {
-   width: 15%;
-   max-width: 150px;
-   height: 15%;
    max-height: 150px;
+   height: fit-content;
+   max-width: 150px;
+   width: fit-content;
+
+   border-right: 1px solid rgba(0, 173, 76, 0.4);
 }
 
 .user-info-blogs div {
    margin-left: .5em;
 }
 
-.user-info-blogs, .user-info-comments {
+.user-info-comments {
    padding: 7.5px;
 }
 
@@ -108,12 +111,17 @@
 .user-info-scroll {
    border: 2px solid rgba(0, 173, 76, 0.4);
 
-   max-height: 300px;
-   overflow-x: none;
+   max-height: 310px;
+   overflow-x: hidden;
    overflow-y: auto;
 
    overflow-wrap: break-word;
    word-break: break-word;
+}
+
+.post-comments-footer {
+   font-size: clamp(.725em, 3vw, .95em);
+   color: #afd3b5;
 }
 
 .user-info-scroll::-webkit-scrollbar {
