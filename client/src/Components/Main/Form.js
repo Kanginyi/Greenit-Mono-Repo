@@ -39,7 +39,7 @@ function Form({currentUser, showForm, setShowForm, postData, setPostData}) {
                   })
             }
          })
-      setBlogForm({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: ""});
+      setBlogForm({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: 0});
       setShowForm(false);
       navigate("/");
    };
