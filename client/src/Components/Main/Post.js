@@ -71,6 +71,30 @@ function Post({currentUser, post, userData, handleDelete}) {
       }
    }
 
+   const handleUnlike = () => {
+      if (currentUser) {
+         fetch(`/dec_likes/${postID}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostLikes(data?.likes));
+      }
+      setIsClicked(1);
+   }
+
+   const handleUndislike = () => {
+      if (currentUser) {
+         fetch(`/dec_dislikes/${postID}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setPostDislikes(data?.dislikes));
+      }
+      setIsClicked(1);
+   }
+
    // Three states of the buttons
    const notPressed = <>
                         <button
@@ -93,8 +117,7 @@ function Post({currentUser, post, userData, handleDelete}) {
    const likesPressed = <>
                         <button
                            className="likes-pressed"
-                           disabled="disabled"
-                           onClick={handleLikes}
+                           onClick={handleUnlike}
                         >
                            👍 {postLikes}
                         </button>
@@ -117,8 +140,7 @@ function Post({currentUser, post, userData, handleDelete}) {
 
                         <button
                            className="dislikes-pressed"
-                           disabled="disabled"
-                           onClick={handleDislikes}                    
+                           onClick={handleUndislike}                    
                         >
                            👎 {postDislikes}
                         </button>
