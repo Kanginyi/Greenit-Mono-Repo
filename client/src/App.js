@@ -5,6 +5,7 @@ import Users from "./Components/Main/Users";
 import UserInfo from "./Components/Main/UserInfo";
 import PostDetails from "./Components/Main/PostDetails";
 import LoginSignupForm from "./Components/Header/LoginSignupForm";
+import Loader from "./Components/Main/Loader";
 
 import {Route, Routes, useNavigate} from "react-router-dom";
 
@@ -23,6 +24,8 @@ function App() {
             }
          })
    }, []);
+
+   const [isLoaded, setIsLoaded] = useState(false);
    
    const [postData, setPostData] = useState([]);
    const [userData, setUserData] = useState([]);
@@ -33,7 +36,10 @@ function App() {
    useEffect(() => {
       fetch("/blogs")
          .then(resp => resp.json())
-         .then(data => setPostData(data));
+         .then(data => {
+            setPostData(data);
+            setIsLoaded(true);
+         });
    }, []);
 
    useEffect(() => {
@@ -63,6 +69,8 @@ function App() {
       .then(() => {
          const deletePost = postData.filter(post => post.id !== id);
          setPostData(deletePost);
+         setUserData([...userData]);
+         setCommentData([...commentData]);
       })
       navigate("/");
    }
@@ -72,6 +80,11 @@ function App() {
 
    // PostData.length for random page
    const numbersOfBlogs = postData?.length;
+
+   // Loading screen component
+   if (!isLoaded) {
+      return <Loader/>
+   }
 
   return (
     <div className="App">
@@ -85,6 +98,10 @@ function App() {
             search={search}
             postData={postData}
             setPostData={setPostData}
+            userData={userData}
+            setUserData={setUserData}
+            commentData={commentData}
+            setCommentData={setCommentData}
             setShowSignup={setShowSignup}
             numbersOfBlogs={numbersOfBlogs}
          />
