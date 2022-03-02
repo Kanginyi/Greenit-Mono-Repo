@@ -145,6 +145,7 @@
    border-radius: 20px;
    margin: 1.5px;
    line-height: 1.3em;
+   cursor: pointer;
 }
 
 .likes-pressed {
@@ -159,12 +160,12 @@
 
 .post-title {
    font-family: 'PT Serif', serif;
-   /* font-size: 2em; */
    font-size: clamp(1.25em, 5vw, 2.1rem);
    margin-bottom: 0;
 }
 
 .single-post img {
+   margin-top: .5em;
    width: 100%;
 }
 
@@ -269,7 +270,7 @@
 .show-hide-container button {
    width: fit-content;
 
-   margin: 3px;
+   margin-bottom: 10px;
    padding: 5px;
 
    border-radius: 20px;
