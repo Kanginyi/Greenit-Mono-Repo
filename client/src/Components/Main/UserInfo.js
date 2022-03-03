@@ -69,26 +69,30 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    // Create verification
    // Check if the session/currentUser gets deleted
    const deleteUser = () => {
-      fetch("/logout", {
-         method: "DELETE"
-      });
+      let userDelete = prompt("Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n" + `-->${checkUser?.username}<--`, "Don't do it >:^(");
 
-      fetch(`/users/${checkUser?.id}`, {
-         method: "DELETE"
-      })
-         .then(() => {
-            const removeUser = userData?.filter(user => user?.id !== checkUser?.id);
-            setUserData(removeUser);
+      if (userDelete === checkUser?.username) {
+         fetch("/logout", {
+            method: "DELETE"
+         });
 
-            const removePosts = postData?.filter(post => post?.user?.id !== checkUser?.id);
-            setPostData(removePosts);
-
-            const removeComments = commentData?.filter(comment => comment?.user_id !== checkUser?.id);
-            setCommentData(removeComments);
+         fetch(`/users/${checkUser?.id}`, {
+            method: "DELETE"
          })
+            .then(() => {
+               const removeUser = userData?.filter(user => user?.id !== checkUser?.id);
+               setUserData(removeUser);
 
-      setCurrentUser(null);
-      navigate("/");
+               const removePosts = postData?.filter(post => post?.user?.id !== checkUser?.id);
+               setPostData(removePosts);
+
+               const removeComments = commentData?.filter(comment => comment?.user_id !== checkUser?.id);
+               setCommentData(removeComments);
+            })
+
+         setCurrentUser(null);
+         navigate("/");
+      }
    }
 
    const accountDate = new Date(checkUser?.created_at).toLocaleDateString();
