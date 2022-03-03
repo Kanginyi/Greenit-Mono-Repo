@@ -4,7 +4,6 @@ User.destroy_all
 Blog.destroy_all
 Comment.destroy_all
 
-guest = User.create(username: "Guest", password: "123123")
 alan_cinsavich = User.create(username: "AlanCinsavich", password: "Pleasecomeback")
 unclaimed_yeti = User.create(username: "UnclaimedYeti", password: "Ilovemydogs")
 pashovski = User.create(username: "Pashovski", password: "Pushoffme")
