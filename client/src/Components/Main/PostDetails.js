@@ -19,7 +19,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    let navigate = useNavigate();
 
    useEffect(() => {
-      fetch(`/posts/${currentBlogInfo?.id}`)
+      fetch(`/blogs/${currentBlogInfo?.id}`)
          .then(resp => resp.json())
          .then(blog => {
             setIsLoaded(() => true);

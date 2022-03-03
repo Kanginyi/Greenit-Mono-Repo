@@ -32,7 +32,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       const postDate = new Date(blog?.created_at).toLocaleDateString();
       const postTime = new Date(blog?.created_at).toLocaleTimeString();
 
-      return<div className="user-info-blogs" onClick={() => navigate(`/posts/${blog?.id}`)}>
+      return<div className="user-info-blogs" onClick={() => navigate(`/blogs/${blog?.id}`)}>
                <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>
                <div>
                   <h4>{blog?.title}</h4>
@@ -50,7 +50,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       const commentDate = new Date(comment?.created_at).toLocaleDateString();
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
 
-      return<div className="user-info-comments" onClick={() => navigate(`/posts/${comment?.blog?.id}`)}>
+      return<div className="user-info-comments" onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}>
             <h4>{comment?.blog?.title}</h4>
             <p>{comment?.comment_text}</p>
             <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>

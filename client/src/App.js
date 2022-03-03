@@ -140,7 +140,7 @@ function App() {
                />
             }/>
 
-            <Route path="/posts/:id" element={
+            <Route path="/blogs/:id" element={
                <PostDetails
                   currentUser={currentUser}
                   userData={userData}
