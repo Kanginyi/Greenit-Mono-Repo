@@ -10,7 +10,7 @@ function User({username, id, comments, blogs}) {
    let navigate = useNavigate();
 
    const checkUserInfo = () => {
-      navigate(`/users/${id}`);
+      navigate(`/all_users/${id}`);
    }
   
    return (

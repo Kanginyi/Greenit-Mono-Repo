@@ -10,7 +10,7 @@ function Post({currentUser, post, userData, handleDelete}) {
    let navigate = useNavigate();
 
    const clickUser = () => {
-      navigate(`/users/${userObj[0]?.id}`);
+      navigate(`/all_users/${userObj[0]?.id}`);
    }
 
    const postID = post?.id;

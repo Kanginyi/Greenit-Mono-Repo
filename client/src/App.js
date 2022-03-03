@@ -119,14 +119,14 @@ function App() {
                />
             }/>
 
-            <Route path="/users" element={
+            <Route path="/all_users" element={
                <Users
                   userData={userData}
                   searchValue={searchValue}
                />
             }/>
 
-            <Route path="/users/:id" element={
+            <Route path="/all_users/:id" element={
                <UserInfo
                   currentUser={currentUser}
                   setCurrentUser={setCurrentUser}

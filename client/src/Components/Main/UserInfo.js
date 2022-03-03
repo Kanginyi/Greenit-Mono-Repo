@@ -76,7 +76,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
             method: "DELETE"
          });
 
-         fetch(`/users/${checkUser?.id}`, {
+         fetch(`/all_users/${checkUser?.id}`, {
             method: "DELETE"
          })
             .then(() => {

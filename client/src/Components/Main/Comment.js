@@ -25,7 +25,7 @@ function Comment({comment, userData}) {
             </p>
 
             <p className="comment-username">
-               -<span onClick={() => navigate(`/users/${commentUser?.id}`)} style={{cursor: "pointer"}}>
+               -<span onClick={() => navigate(`/all_users/${commentUser?.id}`)} style={{cursor: "pointer"}}>
                   {commentUser?.username}
                </span>
             </p>

@@ -33,7 +33,7 @@ function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, use
    };
    
    const viewProfile = () => {
-      navigate(`/users/${currentUser.id}`);
+      navigate(`/all_users/${currentUser.id}`);
    }
 
    return (

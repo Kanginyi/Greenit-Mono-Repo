@@ -231,7 +231,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                   Posted by&nbsp;
                      <span
                         className="username-color"
-                        onClick={() => navigate(`/users/${currentBlogInfo?.user?.id}`)}
+                        onClick={() => navigate(`/all_users/${currentBlogInfo?.user?.id}`)}
                         style={{cursor: "pointer"}}
                      >
                         u/{postAuthor}

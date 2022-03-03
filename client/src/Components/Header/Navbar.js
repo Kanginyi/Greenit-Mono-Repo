@@ -34,7 +34,7 @@ function Navbar({currentUser, setCurrentUser, search, postData, setPostData, use
             <div className="category-bar">
                <button onClick={showSearch}>Search</button>
 
-               <button onClick={() => navigate("/users")}>All Users</button>
+               <button onClick={() => navigate("/all_users")}>All Users</button>
 
                <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * numbersOfBlogs) + 1}`)}>Random Post</button>
 
