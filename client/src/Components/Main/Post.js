@@ -16,7 +16,7 @@ function Post({currentUser, post, userData, handleDelete}) {
    const postID = post?.id;
 
    const viewMore = () => {
-      navigate(`/blogs/${postID}`);
+      navigate(`/posts/${postID}`);
    }
 
    const [isClicked, setIsClicked] = useState(1);

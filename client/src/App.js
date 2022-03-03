@@ -58,7 +58,7 @@ function App() {
    const [searchValue, setSearchValue] = useState("");
 
    function search(e) {
-   setSearchValue(e.target.value);
+      setSearchValue(e.target.value);
    }
     
    // Delete Posts
@@ -140,7 +140,7 @@ function App() {
                />
             }/>
 
-            <Route path="/blogs/:id" element={
+            <Route path="/posts/:id" element={
                <PostDetails
                   currentUser={currentUser}
                   userData={userData}
