@@ -29,9 +29,13 @@ https://www.youtube.com/watch?v=_H0p6rSPhKg
 
 ## Description
 
-Bingo Bango placeholder!
+Reddit inspired social networking website that allows users to upload blogs and interact with each others' posts. 
 
 ________________________________________________________________________
+
+- Implemented full CRUD actions that allows users to create, view, modify, and delete blogs
+- Integrated user authentication by identifying account information with BCrypt
+- Concentrated efforts on a creating responsive and accessible web page layout
 
 
 <a name="technologies"/>
