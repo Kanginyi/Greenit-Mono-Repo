@@ -1,15 +1,26 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
+import {BsTrash} from "react-icons/bs";
 import "../../Stylings/Comment.css";
 
-function Comment({comment, userData}) {
+function Comment({currentUser, comment, userData, commentData, setCommentData}) {
    let navigate = useNavigate();
 
    const commentUser = (userData?.filter(user => user?.id === comment?.user_id))[0];
 
    const commentDate = new Date(comment?.created_at).toLocaleDateString();
    const commentTime = new Date(comment?.created_at).toLocaleTimeString();
+
+   const deleteComment = () => {
+      fetch(`/comments/${comment?.id}`, {
+         method: "DELETE"
+      })
+         .then(() => {
+            const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
+            setCommentData(deleteComment);
+         })
+   }
 
    return (
       <div className="comment-section">
@@ -22,6 +33,14 @@ function Comment({comment, userData}) {
                <em>
                   Posted on {commentDate} at {commentTime}
                </em>
+               
+               {currentUser?.username === commentUser?.username
+                  ? <>
+                     &nbsp;
+                     <BsTrash onClick={deleteComment} className="delete-post"/>
+                    </>
+                  : null
+               }
             </p>
 
             <p className="comment-username">
