@@ -34,7 +34,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
 
    // Render all comments onto the page
    const displayComments = filteredComments?.map(comment => {
-      return <Comment key={comment.id} comment={comment} userData={userData}/>
+      return <Comment key={comment.id} currentUser={currentUser} comment={comment} userData={userData} commentData={commentData} setCommentData={setCommentData}/>
    });
 
    const filterComments = searchValue === "" ? displayComments : displayComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
@@ -198,7 +198,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                if (resp.ok) {
                   resp.json()
                      .then(data => {
-                        setPostData(blogs => [...blogs, data]);
+                        // setPostData(blogs => [...blogs, data]);
                         setCommentData(comments => [...comments, data]);
                      })
                }
