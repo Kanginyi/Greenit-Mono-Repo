@@ -65,9 +65,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const [hidePosts, setHidePosts] = useState(false);
    const [hideComments, setHideComments] = useState(false);
 
-   // Make sure to update backend with dependent destroy, and clear all things
-   // Create verification
-   // Check if the session/currentUser gets deleted
    const deleteUser = () => {
       let userDelete = prompt("Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n" + `-->${checkUser?.username}<--`, "Don't do it >:^(");
 
@@ -89,7 +86,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                const removeComments = commentData?.filter(comment => comment?.user_id !== checkUser?.id);
                setCommentData(removeComments);
             })
-
          setCurrentUser(null);
          navigate("/");
       }
