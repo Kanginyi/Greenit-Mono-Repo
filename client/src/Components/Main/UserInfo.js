@@ -69,11 +69,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       let userDelete = prompt("Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n" + `-->${checkUser?.username}<--`, "Don't do it >:^(");
 
       if (userDelete === checkUser?.username) {
-         fetch("/logout", {
-            method: "DELETE"
-         });
-
-         fetch(`/all_users/${checkUser?.id}`, {
+         fetch(`/users/${checkUser?.id}`, {
             method: "DELETE"
          })
             .then(() => {
