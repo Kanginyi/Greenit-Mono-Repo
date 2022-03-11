@@ -5,6 +5,7 @@ import Users from "./Components/Main/Users";
 import UserInfo from "./Components/Main/UserInfo";
 import PostDetails from "./Components/Main/PostDetails";
 import LoginSignupForm from "./Components/Header/LoginSignupForm";
+import EditPost from "./Components/Main/EditPost";
 import Loader from "./Components/Main/Loader";
 
 import {Route, Routes, useNavigate} from "react-router-dom";
@@ -159,6 +160,14 @@ function App() {
                   setUserData={setUserData}
                   showSignup={showSignup}
                   setShowSignup={setShowSignup}
+               />
+            }/>
+
+            <Route path="/editing/:id" element={
+               <EditPost
+                  currentUser={currentUser}
+                  postData={postData}
+                  setPostData={setPostData}
                />
             }/>
 
