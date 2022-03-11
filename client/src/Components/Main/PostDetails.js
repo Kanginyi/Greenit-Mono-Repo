@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import {useNavigate, useParams} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";
+import {FaEdit} from "react-icons/fa";
 
 function PostDetails({currentUser, userData, postData, setPostData, commentData, setCommentData, searchValue, handleDelete}) {
    const clickedID = parseInt(useParams().id);
@@ -237,11 +238,20 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                         u/{postAuthor}
                      </span> on {postDate} at {postTime}
                </h3>
-
+   
                {currentUser?.username === postAuthor
-                  ? <BsTrash onClick={() => handleDelete(currentBlogInfo?.id)} className="delete-post"/>
+                  ? <BsTrash onClick={() => handleDelete(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>
+
+            {currentUser?.username === postAuthor
+               ? <div className="edit-post-container">
+                     <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-post">
+                        <FaEdit/> Edit Post
+                     </div>
+                 </div>
+               : null
+            }
 
             <div className="post-header">
                   <div className="likes-button-container">
@@ -259,7 +269,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                : null
             }
 
-            <div>
+            <div className="post-content-container">
                <p>{currentBlogInfo?.blog_post}</p>
             </div>
          </article>
