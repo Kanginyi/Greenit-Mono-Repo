@@ -1,0 +1,33 @@
+.gtfo-logo {
+   margin-top: 10rem;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   text-align: center;
+}
+
+.gtfo-logo h2 {
+   font-size: clamp(1.75rem, 5vw, 2.75rem);
+}
+
+.gtfo-logo h3 {
+   font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+.gtfo-logo h4 {
+   font-size: clamp(1rem, 3vw, 1.75rem);
+}
+
+.gtfo-logo img {
+   height: 365px;
+   width: 365px;
+
+   cursor: pointer;
+}
+
+.gtfo-logo img:active {
+   transform: scale(0.95);
+}
