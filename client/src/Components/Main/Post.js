@@ -182,7 +182,7 @@ function Post({currentUser, post, userData, handleDelete}) {
                </h3>
 
                {currentUser?.username === userObj[0]?.username
-                  ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-post"/>
+                  ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>
 
