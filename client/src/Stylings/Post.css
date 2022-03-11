@@ -39,34 +39,39 @@
    background-size: 100% 2px;
 }
 
-.delete-post {
-   height: 20px;
-   width: 20px;
+.edit-post-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 
-   color: red;
+   margin-bottom: -0.35rem;
+}
+
+.edit-post {
+   margin-top: -0.5rem;
+
+   width: fit-content;
+
+   font-weight: 600;
+   letter-spacing: 0.05em;
+
+   padding: 5px;
+   border-radius: 20px;
 
    cursor: pointer;
+
+   animation: doubleCheck 2.25s infinite;
 }
 
-.delete-post:active {
-   transform: scale(.95);
-}
-
-.delete-post:hover, .delete-post:focus-visible {
-   animation: trashShake .5s infinite;
-}
-
-@keyframes trashShake {
+@keyframes doubleCheck {
    0% {
-      transform: translateX(-5%);
+      color: rgb(0, 173, 76);
    }
-
    50% {
-      transform: translateX(5%);
+      color: rgb(146, 221, 180);
    }
-
    100% {
-      transform: translateX(-5%);
+      color: rgb(0, 173, 76);
    }
 }
 
