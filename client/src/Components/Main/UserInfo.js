@@ -37,7 +37,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                <div>
                   <h4>{blog?.title}</h4>
                   <p>{post}</p>
-                  <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes</p>
+                  <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes | {blog?.comments?.length} Comments</p>
                   <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
                </div>
             </div>
@@ -100,7 +100,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
 
                {
                   currentUser?.username === clickedUser
-                  ? <BsTrash className="delete-post" onClick={deleteUser}/>
+                  ? <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
                   : null
                }
             </div>
