@@ -15,6 +15,8 @@
 
 `Ctrl` + `Left Click` to open in a new tab!
 
+Also as a heads up! Heroku apps may sometimes take a while to load, please be patient and give it a little time~ Thank you!! 🥰
+
 https://greenit-reddit.herokuapp.com/
 
 <a name="video-demo"/>
