@@ -37,7 +37,11 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
                {currentUser?.username === commentUser?.username
                   ? <>
                      &nbsp;
-                     <BsTrash onClick={deleteComment} className="delete-post"/>
+                     <BsTrash
+                        onClick={deleteComment}
+                        className="delete-button"
+                        title="Delete Comment"
+                     />
                     </>
                   : null
                }
