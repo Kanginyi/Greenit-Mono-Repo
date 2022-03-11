@@ -35,6 +35,17 @@ function Signup({setCurrentUser, setUserData}) {
          })
    };
 
+   // Show password functionality
+   const [inputPassword, setInputPassword] = useState("password");
+
+   const showPassword = () => {
+      if (inputPassword === "password") {
+         setInputPassword("text");
+      } else {
+         setInputPassword("password");
+      }
+   }
+
    return (
       <div className="signup-container">
          <h2>SIGNUP</h2>
@@ -51,7 +62,7 @@ function Signup({setCurrentUser, setUserData}) {
             />
             
             <input
-               type="password"
+               type={inputPassword}
                name="password"
                placeholder="Enter a Password!"
                value={password}
@@ -59,12 +70,19 @@ function Signup({setCurrentUser, setUserData}) {
                autoComplete="off"
             />
 
-            <div className="error-message signup-error">
-               {errorMessage?.map(error => <p>{error}</p>)}
-            </div>
+            <label>
+               <input
+                  type="checkbox"
+                  onChange={showPassword}
+               />
+               &nbsp;Show Password
+            </label>
 
             <button type="submit" className="signup-button">SIGNUP</button>
 
+            <div className="error-message signup-error">
+               {errorMessage?.map(error => <p>{error}</p>)}
+            </div>
          </form>
       </div>
    );

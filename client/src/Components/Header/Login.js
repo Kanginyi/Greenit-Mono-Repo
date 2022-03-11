@@ -32,6 +32,17 @@ function Login({setCurrentUser}) {
          })
    };
 
+   // Show password functionality
+   const [inputPassword, setInputPassword] = useState("password");
+
+   const showPassword = () => {
+      if (inputPassword === "password") {
+         setInputPassword("text");
+      } else {
+         setInputPassword("password");
+      }
+   }
+
    return (
       <div className="login-container">
          <h2>LOGIN</h2>
@@ -48,13 +59,21 @@ function Login({setCurrentUser}) {
             />
 
             <input
-               type="password"
+               type={inputPassword}
                name="password"
                placeholder="Password"
                value={password}
                onChange={e => setPassword(e.target.value)}
                autoComplete="off"
             />
+
+            <label>
+               <input
+                  type="checkbox"
+                  onChange={showPassword}
+               />
+               &nbsp;Show Password
+            </label>
 
             <button type="submit" className="login-button">LOGIN</button>
 
