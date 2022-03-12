@@ -64,16 +64,20 @@ function App() {
     
    // Delete Posts
    const handleDelete = id => {
-      fetch(`/blogs/${id}`,{
-         method : "DELETE"
-      })
-      .then(() => {
-         const deletePost = postData.filter(post => post.id !== id);
-         setPostData(deletePost);
-         setUserData([...userData]);
-         setCommentData([...commentData]);
-      })
-      navigate("/");
+      let checkDelete = window.confirm("Are you sure you want to delete your post?");
+
+      if (checkDelete) {
+         fetch(`/blogs/${id}`,{
+            method : "DELETE"
+         })
+         .then(() => {
+            const deletePost = postData.filter(post => post.id !== id);
+            setPostData(deletePost);
+            setUserData([...userData]);
+            setCommentData([...commentData]);
+         })
+         navigate("/");
+      }
    }
 
    // Different rendering options for Login component
@@ -114,6 +118,7 @@ function App() {
                <Posts
                   currentUser={currentUser}
                   postData={postData}
+                  setPostData={setPostData}
                   userData={userData}
                   searchValue={searchValue}
                   handleDelete={handleDelete}
