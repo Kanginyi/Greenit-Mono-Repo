@@ -54,7 +54,10 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data?.likes));
+            .then(data => {
+               setPostLikes(data?.likes);
+               setPostData([postData, data]);
+            });
 
       if (isClicked === 3) {
          fetch(`/dec_dislikes/${currentBlogInfo?.id}`, {
@@ -62,10 +65,12 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data?.dislikes));
+            .then(data => {
+               setPostDislikes(data?.dislikes);
+               setPostData([postData, data]);
+            });
       }
          setIsClicked(2);
-
       } else {
          setLikesError("Please login");
       }
@@ -78,7 +83,10 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data?.dislikes));
+            .then(data => {
+               setPostDislikes(data?.dislikes);
+               setPostData([postData, data]);
+            });
 
       if (isClicked === 2) {
          fetch(`/dec_likes/${currentBlogInfo?.id}`, {
@@ -86,7 +94,10 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data?.likes));
+            .then(data => {
+               setPostLikes(data?.likes);
+               setPostData([postData, data]);
+            });
       }
          setIsClicked(3);
       } else {
@@ -101,7 +112,10 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data?.likes));
+            .then(data => {
+               setPostLikes(data?.likes);
+               setPostData([postData, data]);
+            });
       }
       setIsClicked(1);
    }
@@ -113,7 +127,10 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data?.dislikes));
+            .then(data => {
+               setPostDislikes(data?.dislikes);
+               setPostData([postData, data]);
+            });
       }
       setIsClicked(1);
    }
@@ -199,7 +216,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                if (resp.ok) {
                   resp.json()
                      .then(data => {
-                        // setPostData(blogs => [...blogs, data]);
                         setCommentData(comments => [...comments, data]);
                      })
                }
