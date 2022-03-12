@@ -13,13 +13,17 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
    const commentTime = new Date(comment?.created_at).toLocaleTimeString();
 
    const deleteComment = () => {
-      fetch(`/comments/${comment?.id}`, {
-         method: "DELETE"
-      })
-         .then(() => {
-            const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
-            setCommentData(deleteComment);
+      let checkDelete = window.confirm("Are you sure you want to delete your comment?");
+
+      if (checkDelete) {
+         fetch(`/comments/${comment?.id}`, {
+            method: "DELETE"
          })
+            .then(() => {
+               const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
+               setCommentData(deleteComment);
+            })
+      }
    }
 
    return (
