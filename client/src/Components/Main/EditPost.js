@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ErrorPage from "../Main/ErrorPage";
 
 import {useNavigate, useParams} from "react-router-dom";
@@ -14,16 +14,39 @@ function EditPost({currentUser, postData, setPostData}) {
 
    const checkPost = (checkPostArray?.filter(post => post?.id === editingID))[0];
 
-   console.log(checkPost);
+   const [editPost, setEditPost] = useState({
+      user_id: null,
+      title: checkPost?.title,
+      blog_post: checkPost?.blog_post,
+      image_url: checkPost?.image_url,
+      likes: checkPost?.likes,
+      dislikes: checkPost?.dislikes 
+   });
 
-   // console.log(editingID);
+   const handleEditInputs = e => {
+      setEditPost({
+         ...editPost,
+         user_id: currentUser?.id,
+         [e.target.name]:e.target.value
+      });
+   };
+
+   console.log(editPost);
 
    const updatePost = () => {
-      // fetch(`/blogs/${currentBlogInfo?.id}`, {
-      //    method: "PATCH",
-      //    headers: {"Content-Type": "application/json"},
-      //    body: 
-      // })
+      fetch(`/blogs/${checkPost?.id}`, {
+         method: "PATCH",
+         headers: {"Content-Type": "application/json"},
+         body: JSON.stringify(editPost)
+      })
+         .then(resp => {
+            if (resp.ok) {
+               resp.json()
+                  .then(editedPost => {
+                     setPostData([editedPost, ...postData]);
+                  })
+            }
+         })
 
       navigate(`/blogs/${checkPost?.id}`);
    };
@@ -38,15 +61,25 @@ function EditPost({currentUser, postData, setPostData}) {
 
                <input
                   type="text"
+                  name="title"
+                  onChange={handleEditInputs}
                   defaultValue={checkPost?.title}
                   autoComplete="off"
                   spellCheck="false"
+                  required
                />
 
-               <textarea defaultValue={checkPost?.blog_post}/>
+               <textarea
+                  name="blog_post"
+                  onChange={handleEditInputs}
+                  defaultValue={checkPost?.blog_post}
+                  required
+               />
 
                <input
                   type="text"
+                  name="image_url"
+                  onChange={handleEditInputs}
                   defaultValue={checkPost?.image_url}
                   autoComplete="off"
                   spellCheck="false"
