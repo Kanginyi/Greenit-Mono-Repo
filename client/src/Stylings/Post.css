@@ -246,7 +246,7 @@
    cursor: pointer;
 }
 
-.post-comment-form button:hover, .post-comment-form .likes-button:focus-visible {
+.post-comment-form button:hover, .post-comment-form button:focus-visible {
    background-color: rgb(0, 210, 100);
 }
 
