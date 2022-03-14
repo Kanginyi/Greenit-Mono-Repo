@@ -13,14 +13,14 @@ function EditPost({currentUser, postData, setPostData}) {
    const checkPostArray = postData?.filter(post => URL.endsWith(post?.id));
 
    const checkPost = (checkPostArray?.filter(post => post?.id === editingID))[0];
-
+   
    const [editPost, setEditPost] = useState({
       user_id: null,
       title: checkPost?.title,
       blog_post: checkPost?.blog_post,
       image_url: checkPost?.image_url,
       likes: checkPost?.likes,
-      dislikes: checkPost?.dislikes 
+      dislikes: checkPost?.dislikes
    });
 
    const handleEditInputs = e => {
@@ -30,8 +30,6 @@ function EditPost({currentUser, postData, setPostData}) {
          [e.target.name]:e.target.value
       });
    };
-
-   console.log(editPost);
 
    const updatePost = () => {
       fetch(`/blogs/${checkPost?.id}`, {
@@ -43,11 +41,10 @@ function EditPost({currentUser, postData, setPostData}) {
             if (resp.ok) {
                resp.json()
                   .then(editedPost => {
-                     setPostData([editedPost, ...postData]);
+                     setPostData([editedPost, postData]);
                   })
             }
          })
-
       navigate(`/blogs/${checkPost?.id}`);
    };
       
@@ -56,9 +53,12 @@ function EditPost({currentUser, postData, setPostData}) {
       <>
       {currentUser?.id === checkPost?.user?.id
          ?
-            <div>
-               Placeholder testerino
-
+            <div className="post-div editing-post">
+               <h2 className="username-color">Hello {currentUser?.username}!</h2>
+                  <br/>
+               <h3>You're Currently Editing:</h3>
+                  <br/>
+               <h4>Title: <span className="required-red">*</span></h4>
                <input
                   type="text"
                   name="title"
@@ -69,13 +69,16 @@ function EditPost({currentUser, postData, setPostData}) {
                   required
                />
 
+               <h4>Content: <span className="required-red">*</span></h4>
                <textarea
                   name="blog_post"
                   onChange={handleEditInputs}
                   defaultValue={checkPost?.blog_post}
+                  rows="5"
                   required
                />
 
+               <h4>Image:</h4>
                <input
                   type="text"
                   name="image_url"
