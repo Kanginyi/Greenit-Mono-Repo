@@ -3,8 +3,9 @@ import {useNavigate} from "react-router-dom";
 import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
+import {FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
-function Post({currentUser, post, userData, handleDelete}) {
+function Post({currentUser, post, postData, setPostData, userData, handleDelete}) {
    const userObj = userData?.filter(user => user?.id === post?.user?.id);
 
    let navigate = useNavigate();
@@ -23,7 +24,7 @@ function Post({currentUser, post, userData, handleDelete}) {
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes);
    const [likesError, setLikesError] = useState("");
-   
+
    // Likes and Dislikes handling functions
    const handleLikes = () => {
       if (currentUser) {
@@ -32,7 +33,18 @@ function Post({currentUser, post, userData, handleDelete}) {
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data.likes));
+            .then(data => {
+               setPostLikes(data.likes);
+               // console.log(data);
+               // setPostData([postData, data]);
+               // setPostData(blogs => [...blogs, data]);
+               // setPostData(blogs => [...blogs]);
+               // setPostData(blogs => [...blogs]);
+               // setPostData([data, ...postData]);
+               // setPostData([...postData]);
+               // setPostData(postData, data);
+               // setPostData(data);
+            });
 
       if (isClicked === 3) {
          fetch(`/dec_dislikes/${postID}`, {
@@ -40,7 +52,10 @@ function Post({currentUser, post, userData, handleDelete}) {
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data.dislikes));
+            .then(data => {
+               setPostDislikes(data.dislikes);
+               // setPostData([postData, data]);
+            });
       }
          setIsClicked(2);
       } else {
@@ -55,7 +70,10 @@ function Post({currentUser, post, userData, handleDelete}) {
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data.dislikes));
+            .then(data => {
+               setPostDislikes(data.dislikes);
+               // setPostData([postData, data]);
+            });
 
          if (isClicked === 2) {
             fetch(`/dec_likes/${postID}`, {
@@ -63,7 +81,10 @@ function Post({currentUser, post, userData, handleDelete}) {
                headers: {"Content-Type": "application/json"}
             })
                .then(resp => resp.json())
-               .then(data => setPostLikes(data.likes));
+               .then(data => {
+                  setPostLikes(data.likes);
+                  // setPostData([postData, data]);
+               });
          }
             setIsClicked(3);
       } else {
@@ -78,7 +99,10 @@ function Post({currentUser, post, userData, handleDelete}) {
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data?.likes));
+            .then(data => {
+               setPostLikes(data?.likes);
+               // setPostData([postData, data]);
+            });
       }
       setIsClicked(1);
    }
@@ -90,7 +114,10 @@ function Post({currentUser, post, userData, handleDelete}) {
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data?.dislikes));
+            .then(data => {
+               setPostDislikes(data?.dislikes);
+               // setPostData([postData, data]);
+            });
       }
       setIsClicked(1);
    }
@@ -101,7 +128,7 @@ function Post({currentUser, post, userData, handleDelete}) {
                            className="likes-button"
                            onClick={handleLikes}
                         >
-                           👍 {postLikes}
+                           <FaRegThumbsUp/>&nbsp;{postLikes}
                         </button>
 
                         <div className="error-message">{likesError}</div>
@@ -110,7 +137,7 @@ function Post({currentUser, post, userData, handleDelete}) {
                            className="dislikes-button"
                            onClick={handleDislikes}                      
                         >
-                            👎 {postDislikes}
+                            <FaRegThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>
 
@@ -119,14 +146,14 @@ function Post({currentUser, post, userData, handleDelete}) {
                            className="likes-pressed"
                            onClick={handleUnlike}
                         >
-                           👍 {postLikes}
+                           <FaThumbsUp/>&nbsp;{postLikes}
                         </button>
 
                         <button
                            className="dislikes-button"
                            onClick={handleDislikes}                     
                         >
-                            👎 {postDislikes}
+                            <FaRegThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>
 
@@ -135,14 +162,14 @@ function Post({currentUser, post, userData, handleDelete}) {
                            className="likes-button"
                            onClick={handleLikes}                      
                         >
-                           👍 {postLikes} 
+                           <FaRegThumbsUp/>&nbsp;{postLikes} 
                         </button>
 
                         <button
                            className="dislikes-pressed"
                            onClick={handleUndislike}                    
                         >
-                           👎 {postDislikes}
+                           <FaThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>
 
