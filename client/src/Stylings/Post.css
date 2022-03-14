@@ -93,6 +93,12 @@
    cursor: pointer;
 }
 
+.likes-button, .dislikes-button, .likes-pressed, .dislikes-pressed {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 .likes-button:hover, .likes-button:focus-visible{
    background-color: rgb(0, 173, 76);
 }
