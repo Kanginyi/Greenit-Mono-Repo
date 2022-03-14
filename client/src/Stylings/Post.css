@@ -99,12 +99,22 @@
    align-items: center;
 }
 
+.likes-button {
+   color: rgb(0, 173, 76);
+}
+
+.dislikes-button {
+   color: rgb(255, 25, 25);
+}
+
 .likes-button:hover, .likes-button:focus-visible{
    background-color: rgb(0, 173, 76);
+   color: black;
 }
 
 .dislikes-button:hover, .dislikes-button:focus-visible {
    background-color: rgb(255, 25, 25);
+   color: black;
 }
 
 .likes-button:active {
