@@ -4,7 +4,7 @@ import Loader from "./Loader";
 import {useNavigate, useParams} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";
-import {FaEdit} from "react-icons/fa";
+import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
 function PostDetails({currentUser, userData, postData, setPostData, commentData, setCommentData, searchValue, handleDelete}) {
    const clickedID = parseInt(useParams().id);
@@ -141,7 +141,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                            className="likes-button"
                            onClick={handleLikes}
                         >
-                           👍 {currentBlogInfo ? currentBlogInfo?.likes : null}
+                           <FaRegThumbsUp/>&nbsp;{currentBlogInfo ? currentBlogInfo?.likes : null}
                         </button>
 
                         <div className="error-message">{likesError}</div>
@@ -150,7 +150,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                            className="dislikes-button"
                            onClick={handleDislikes}                      
                         >
-                            👎 {currentBlogInfo ? currentBlogInfo?.dislikes : null}
+                            <FaRegThumbsDown/>&nbsp;{currentBlogInfo ? currentBlogInfo?.dislikes : null}
                         </button>
                       </>
 
@@ -159,14 +159,14 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                            className="likes-pressed"
                            onClick={handleUnlike}
                         >
-                           👍 {postLikes}
+                           <FaThumbsUp/>&nbsp;{postLikes}
                         </button>
 
                         <button
                            className="dislikes-button"
                            onClick={handleDislikes}                     
                         >
-                            👎 {currentBlogInfo ? currentBlogInfo?.dislikes : null}
+                            <FaRegThumbsDown/>&nbsp;{currentBlogInfo ? currentBlogInfo?.dislikes : null}
                         </button>
                       </>
 
@@ -175,14 +175,14 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
                            className="likes-button"
                            onClick={handleLikes}                      
                         >
-                           👍 {currentBlogInfo ? currentBlogInfo?.likes : null}
+                           <FaRegThumbsUp/>&nbsp;{currentBlogInfo ? currentBlogInfo?.likes : null}
                         </button>
 
                         <button
                            className="dislikes-pressed"
                            onClick={handleUndislike}                    
                         >
-                           👎 {postDislikes}
+                           <FaThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>  
 
