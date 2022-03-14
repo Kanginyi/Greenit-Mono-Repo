@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Comment from "./Comment";
 import Loader from "./Loader";
+import ErrorPage from "./ErrorPage";
 import {useNavigate, useParams} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";
@@ -240,87 +241,94 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    }
    
    return (
-       <div className="post-div">
+      <>
+      {currentBlogInfo
+         ?
+            <div className="post-div">
 
-         <article className="single-post">
-            <div className="user-info">
-               <h3>
-                  Posted by&nbsp;
-                     <span
-                        className="username-color"
-                        onClick={() => navigate(`/all_users/${currentBlogInfo?.user?.id}`)}
-                        style={{cursor: "pointer"}}
-                     >
-                        u/{postAuthor}
-                     </span> on {postDate} at {postTime}
-               </h3>
-   
-               {currentUser?.username === postAuthor
-                  ? <BsTrash onClick={() => handleDelete(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
-                  : null}
-            </div>
-
-            {currentUser?.username === postAuthor
-               ? <div className="edit-post-container">
-                     <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-post">
-                        <FaEdit/> Edit Post
-                     </div>
-                 </div>
-               : null
-            }
-
-            <div className="post-header">
-                  <div className="likes-button-container">
-                     {isClicked === 1 ? notPressed :
-                     isClicked === 2 ? likesPressed :
-                     dislikesPressed}
-                  </div>
-                  &nbsp;
-               <h2 className="post-title">{currentBlogInfo?.title}</h2>
-            </div>
-
-            {
-               currentBlogInfo?.image_url
-               ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
-               : null
-            }
-
-            <div className="post-content-container">
-               <p>{currentBlogInfo?.blog_post}</p>
-            </div>
-         </article>
-
-         <details>
-            <summary className="post-comment-dropdown">JOIN THE CONVERSATION</summary>
-
-            <form className="post-comment-form">
-               <textarea
-                  onChange={handleComment}
-                  type="text"
-                  name="comment_text"
-                  value={postComment.comment_text}
-                  rows="5"
-               />
-
-               <br/>
-               <button onClick={submitComment}>Add Comment!</button>
-               <div className="error-message">{commentError}</div>
-               <br/>
-            </form>
-         </details>
-
-         {filterComments?.length
-            ?  <div className="show-hide-container">
-                  <button onClick={() => setHideComments(prev => !prev)}>
-                     {hideComments ? "Show Comments" : "Hide Comments"}
-                  </button>
-               </div>
-            : null
-         }
-
-         {hideComments ? null : filterComments}
+               <article className="single-post">
+                  <div className="user-info">
+                     <h3>
+                        Posted by&nbsp;
+                           <span
+                              className="username-color"
+                              onClick={() => navigate(`/all_users/${currentBlogInfo?.user?.id}`)}
+                              style={{cursor: "pointer"}}
+                           >
+                              u/{postAuthor}
+                           </span> on {postDate} at {postTime}
+                     </h3>
          
-      </div>
+                     {currentUser?.username === postAuthor
+                        ? <BsTrash onClick={() => handleDelete(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
+                        : null}
+                  </div>
+
+                  {currentUser?.username === postAuthor
+                     ? <div className="edit-post-container">
+                           <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-post">
+                              <FaEdit/> Edit Post
+                           </div>
+                     </div>
+                     : null
+                  }
+
+                  <div className="post-header">
+                        <div className="likes-button-container">
+                           {isClicked === 1 ? notPressed :
+                           isClicked === 2 ? likesPressed :
+                           dislikesPressed}
+                        </div>
+                        &nbsp;
+                     <h2 className="post-title">{currentBlogInfo?.title}</h2>
+                  </div>
+
+                  {
+                     currentBlogInfo?.image_url
+                     ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
+                     : null
+                  }
+
+                  <div className="post-content-container">
+                     <p>{currentBlogInfo?.blog_post}</p>
+                  </div>
+               </article>
+
+               <details>
+                  <summary className="post-comment-dropdown">JOIN THE CONVERSATION</summary>
+
+                  <form className="post-comment-form">
+                     <textarea
+                        onChange={handleComment}
+                        type="text"
+                        name="comment_text"
+                        value={postComment.comment_text}
+                        rows="5"
+                     />
+
+                     <br/>
+                     <button onClick={submitComment}>Add Comment!</button>
+                     <div className="error-message">{commentError}</div>
+                     <br/>
+                  </form>
+               </details>
+
+               {filterComments?.length
+                  ?  <div className="show-hide-container">
+                        <button onClick={() => setHideComments(prev => !prev)}>
+                           {hideComments ? "Show Comments" : "Hide Comments"}
+                        </button>
+                     </div>
+                  : null
+               }
+
+               {hideComments ? null : filterComments}
+               
+            </div>
+         :
+            <ErrorPage/>
+      }
+      </>
    );
 }
 

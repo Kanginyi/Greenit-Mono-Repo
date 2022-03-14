@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import ErrorPage from "./ErrorPage";
 import "../../Stylings/UserInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -91,68 +92,75 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const accountTime = new Date(checkUser?.created_at).toLocaleTimeString();
 
    return (
-      <div className="user-info-container-parent">
-         <div className="user-info-container">
-            <div className="user-info-header">
-               <h2 id="clicked-username" className="username-color">
-                  u/{clickedUser}
-               </h2>
+      <>
+      {checkUser
+         ?
+            <div className="user-info-container-parent">
+               <div className="user-info-container">
+                  <div className="user-info-header">
+                     <h2 id="clicked-username" className="username-color">
+                        u/{clickedUser}
+                     </h2>
 
-               {
-                  currentUser?.username === clickedUser
-                  ? <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
-                  : null
-               }
-            </div>
+                     {
+                        currentUser?.username === clickedUser
+                        ? <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
+                        : null
+                     }
+                  </div>
 
-            <div className="user-info-datetime">
-               Account created on {accountDate} at {accountTime}!
-            </div>
+                  <div className="user-info-datetime">
+                     Account created on {accountDate} at {accountTime}!
+                  </div>
 
-            <div className="user-info-underline"></div>
-             
-            <div>
-               <div className="user-info-divs">
-                  {checkPosts?.length
-                     ?  <>
-                           <h3>Total Posts: {checkPosts?.length}
-                              <button
-                                 onClick={() => setHidePosts(prev => !prev)}
-                              >
-                                 {!hidePosts ? "Hide Posts" : "Show Posts"}</button>
-                           </h3>
-                           
-                           <div className="user-info-scroll">
-                              {!hidePosts ? filterPosts : null}
-                           </div>
-                        </>
-                     : <h3>No current posts :^(</h3>
-                  }
+                  <div className="user-info-underline"></div>
+                  
+                  <div>
+                     <div className="user-info-divs">
+                        {checkPosts?.length
+                           ?  <>
+                                 <h3>Total Posts: {checkPosts?.length}
+                                    <button
+                                       onClick={() => setHidePosts(prev => !prev)}
+                                    >
+                                       {!hidePosts ? "Hide Posts" : "Show Posts"}</button>
+                                 </h3>
+                                 
+                                 <div className="user-info-scroll">
+                                    {!hidePosts ? filterPosts : null}
+                                 </div>
+                              </>
+                           : <h3>No current posts :^(</h3>
+                        }
+                     </div>
+
+                     <div className="user-info-underline"></div>
+
+                     <div className="user-info-divs">
+                        {checkComments?.length 
+                           ?  <>
+                                 <h3>Total Comments: {checkComments?.length}
+                                    <button
+                                       onClick={() => setHideComments(prev => !prev)}
+                                    >
+                                       {!hideComments ? "Hide Comments" : "Show Comments"}
+                                    </button>
+                                 </h3>
+
+                                 <div className="user-info-scroll">
+                                    {!hideComments ? filterComments : null}
+                                 </div>
+                              </>
+                           : <h3>No current comments :^(</h3>      
+                        }
+                     </div>
+                  </div>
                </div>
-
-               <div className="user-info-underline"></div>
-
-               <div className="user-info-divs">
-                  {checkComments?.length 
-                     ?  <>
-                           <h3>Total Comments: {checkComments?.length}
-                              <button
-                                 onClick={() => setHideComments(prev => !prev)}
-                              >
-                                 {!hideComments ? "Hide Comments" : "Show Comments"}
-                              </button>
-                           </h3>
-
-                           <div className="user-info-scroll">
-                              {!hideComments ? filterComments : null}
-                           </div>
-                        </>
-                     : <h3>No current comments :^(</h3>      
-                  }
-               </div>
             </div>
-         </div>
-      </div>
+         :
+            <ErrorPage/>
+      }
+      </>
    );
 }
 
