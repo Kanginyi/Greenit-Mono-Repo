@@ -103,6 +103,13 @@
    padding: 7.5px;
 }
 
+.user-info-actions {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+}
+
 .user-blog-container, .user-comment-container {
    cursor: pointer;
 }
