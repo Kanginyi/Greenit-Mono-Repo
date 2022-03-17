@@ -50,7 +50,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       return<div className="user-info-blogs">
                <div
                   onClick={() => navigate(`/blogs/${blog?.id}`)}
-                  className="user-info-data-container"
+                  className="user-blog-container"
                >
                   <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>
 
@@ -94,17 +94,22 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       }
 
       return<div className="user-info-comments">
-         <div onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}>
-            <h4>{comment?.blog?.title}</h4>
-            <p>{comment?.comment_text}</p>
-            <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
-         </div>
+               <div
+                  onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
+                  className="user-comment-container"
+               >
+                  <h4>{comment?.blog?.title}</h4>
+                  <p>{comment?.comment_text}</p>
+                  <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
+               </div>
 
-            <BsTrash
-               onClick={deleteComment}
-               className="delete-button"
-               title={`Delete your comment on "${comment?.blog?.title}"`}
-            />
+               <div className="user-info-actions">
+                  <BsTrash
+                     onClick={deleteComment}
+                     className="delete-button"
+                     title={`Delete your comment on "${comment?.blog?.title}"`}
+                  />
+               </div>
          </div>
    });
 

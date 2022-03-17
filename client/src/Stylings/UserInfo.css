@@ -94,16 +94,16 @@
    margin-left: .5em;
 }
 
-.user-info-data-container {
+.user-blog-container {
    display: flex;
    align-items: center;
 }
 
-.user-info-actions, .user-info-comments {
+.user-info-actions, .user-comment-container {
    padding: 7.5px;
 }
 
-.user-info-comments div, .user-info-data-container  {
+.user-blog-container, .user-comment-container {
    cursor: pointer;
 }
 
