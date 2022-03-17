@@ -4,6 +4,7 @@ import "../../Stylings/UserInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
 
 import {BsTrash} from "react-icons/bs";
+import {FaEdit} from "react-icons/fa";
 import placeholder_img from "../../placeholder.png";
 
 function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, searchValue}) {
@@ -62,13 +63,17 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   </div>
                </div>
 
-               <div className="user-info-actions">
-                  <BsTrash
-                     onClick={deletePost}
-                     className="delete-button"
-                     title={`Delete "${blog?.title}"`}
-                  />
-               </div>
+               {checkUser?.username === currentUser?.username
+                  ?
+                     <div className="user-info-actions">
+                        <BsTrash
+                           onClick={deletePost}
+                           className="delete-button"
+                           title={`Delete "${blog?.title}"`}
+                        />
+                     </div>
+                  : null
+               }
             </div>
    });
 
@@ -103,13 +108,17 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
-               <div className="user-info-actions">
-                  <BsTrash
-                     onClick={deleteComment}
-                     className="delete-button"
-                     title={`Delete your comment on "${comment?.blog?.title}"`}
-                  />
-               </div>
+               {checkUser?.username === currentUser?.username
+                  ?
+                     <div className="user-info-actions">
+                        <BsTrash
+                           onClick={deleteComment}
+                           className="delete-button"
+                           title={`Delete your comment on "${comment?.blog?.title}"`}
+                        />
+                     </div>
+                  : null
+               }
          </div>
    });
 
