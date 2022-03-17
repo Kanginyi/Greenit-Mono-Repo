@@ -69,8 +69,6 @@
 }
 
 .user-info-blogs, .user-info-comments {
-   cursor: pointer;
-
    border-bottom: 1px solid rgba(0, 173, 76, 0.4);
 }
 
@@ -78,9 +76,9 @@
    border-bottom: none;
 }
 
-.user-info-blogs {
+.user-info-blogs, .user-info-comments {
    display: flex;
-   align-items: center;
+   justify-content: space-between;
 }
 
 .user-info-blogs img {
@@ -96,8 +94,17 @@
    margin-left: .5em;
 }
 
-.user-info-comments {
+.user-info-data-container {
+   display: flex;
+   align-items: center;
+}
+
+.user-info-actions, .user-info-comments {
    padding: 7.5px;
+}
+
+.user-info-comments div, .user-info-data-container  {
+   cursor: pointer;
 }
 
 .user-info-blogs h4, .user-info-comments h4 {
