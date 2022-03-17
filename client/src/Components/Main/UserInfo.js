@@ -71,6 +71,12 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                            className="delete-button"
                            title={`Delete "${blog?.title}"`}
                         />
+
+                        <FaEdit
+                           onClick={() => navigate(`/editing/${blog?.id}`)}
+                           className="user-edit"
+                           title={`Edit "${blog?.title}"`}
+                        />
                      </div>
                   : null
                }
