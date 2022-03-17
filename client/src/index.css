@@ -47,20 +47,26 @@ main {
    font-size: .9em;
 }
 
-.delete-button {
+.delete-button, .user-edit {
    min-height: 20px;
    min-width: 20px;
-
-   color: red;
 
    cursor: pointer;
 }
 
-.delete-button:active {
+.delete-button {
+   color: red;
+}
+
+.user-edit {
+   color: rgb(146, 221, 180);
+}
+
+.delete-button:active, .user-edit:active {
    transform: scale(.95);
 }
 
-.delete-button:hover, .delete-button:focus-visible {
+.delete-button:hover, .delete-button:focus-visible, .user-edit:hover, .user-edit:focus-visible {
    animation: iconShake .5s infinite;
 }
 
