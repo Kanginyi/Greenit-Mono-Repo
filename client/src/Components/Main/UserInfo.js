@@ -33,13 +33,41 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       const postDate = new Date(blog?.created_at).toLocaleDateString();
       const postTime = new Date(blog?.created_at).toLocaleTimeString();
 
-      return<div className="user-info-blogs" onClick={() => navigate(`/blogs/${blog?.id}`)}>
-               <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>
-               <div>
-                  <h4>{blog?.title}</h4>
-                  <p>{post}</p>
-                  <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes | {blog?.comments?.length} Comments</p>
-                  <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
+      const deletePost = () => {
+         let checkDelete = window.confirm(`Are you sure you want to delete "${blog?.title}"?`);
+   
+         if (checkDelete) {
+            fetch(`/blogs/${blog?.id}`, {
+               method: "DELETE"
+            })
+               .then(() => {
+                  const deleteBlog = postData?.filter(singlePost => singlePost?.id !== blog?.id);
+                  setPostData(deleteBlog);
+               })
+         }
+      }
+
+      return<div className="user-info-blogs">
+               <div
+                  onClick={() => navigate(`/blogs/${blog?.id}`)}
+                  className="user-info-data-container"
+               >
+                  <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>
+
+                  <div>
+                     <h4>{blog?.title}</h4>
+                     <em>{post}</em>
+                     <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes | {blog?.comments?.length} Comments</p>
+                     <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
+                  </div>
+               </div>
+
+               <div className="user-info-actions">
+                  <BsTrash
+                     onClick={deletePost}
+                     className="delete-button"
+                     title={`Delete "${blog?.title}"`}
+                  />
                </div>
             </div>
    });
@@ -51,10 +79,32 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
       const commentDate = new Date(comment?.created_at).toLocaleDateString();
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
 
-      return<div className="user-info-comments" onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}>
+      const deleteComment = () => {
+         let checkDelete = window.confirm(`Are you sure you want to delete your comment on "${comment?.blog?.title}"?`);
+   
+         if (checkDelete) {
+            fetch(`/comments/${comment?.id}`, {
+               method: "DELETE"
+            })
+               .then(() => {
+                  const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
+                  setCommentData(deleteComment);
+               })
+         }
+      }
+
+      return<div className="user-info-comments">
+         <div onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}>
             <h4>{comment?.blog?.title}</h4>
             <p>{comment?.comment_text}</p>
             <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
+         </div>
+
+            <BsTrash
+               onClick={deleteComment}
+               className="delete-button"
+               title={`Delete your comment on "${comment?.blog?.title}"`}
+            />
          </div>
    });
 
