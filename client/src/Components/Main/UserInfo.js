@@ -89,7 +89,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const renderComments = checkComments?.map(comment => {
       const commentDate = new Date(comment?.created_at).toLocaleDateString();
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
-
+      
       const deleteComment = () => {
          let checkDelete = window.confirm(`Are you sure you want to delete your comment on "${comment?.blog?.title}"?`);
    
@@ -121,6 +121,12 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                            onClick={deleteComment}
                            className="delete-button"
                            title={`Delete your comment on "${comment?.blog?.title}"`}
+                        />
+
+                        <FaEdit
+                           onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
+                           className="user-edit"
+                           title={`Head to "${comment?.blog?.title}" to edit your comment`}
                         />
                      </div>
                   : null
