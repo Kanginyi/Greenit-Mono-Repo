@@ -1,13 +1,56 @@
 .comment-text{
    border: 2px solid rgb(220, 220, 220);
-   border-radius: 50px;
-   padding: 10px 20px;
+   border-radius: 100px;
+   padding: 7.5px 15px;
 
    text-align: center;
-   color: #5e5e5e;
+   color: #5E5E5E;
 }
 
-.comment-meta-data p {
+.comment-text-edit {
+   color: rgb(0, 173, 76);
+   font-weight: 600;
+   letter-spacing: 0.025rem;
+}
+
+.comment-text-edit input {
+   width: 100%;
+   line-height: 1.5rem;
+
+   border: 1px solid rgb(195, 195, 195);
+   border-radius: 50px;
+   
+   padding: 5px 10px;
+   margin: 10px auto;
+
+   text-align: center;
+}
+
+.comment-text-edit input:hover, .comment-text-edit input:focus-visible {
+   background-color: #AFD3B5;
+}
+
+.comment-text-edit button {
+   border: 1.5px solid rgba(0, 70, 30, 0.65);
+   border-radius: 25px;
+   padding: 3px 5px;
+   
+
+   background-color: rgb(0, 173, 76);
+   color: white;
+
+   cursor: pointer;
+}
+
+.comment-text-edit button:active {
+   transform: scale(.95);
+}
+
+.comment-text-edit button:hover, .comment-text-edit button:focus-visible {
+   color: rgb(0, 70, 30);
+}
+
+.comment-meta-data p, .comment-date-time {
    display: flex;
    justify-content: flex-end;
    align-items: center;
@@ -19,7 +62,7 @@
 }
 
 .comment-date-time {
-   color: #afd3b5;
+   color: #AFD3B5;
 }
 
 .comment-username{
