@@ -19,7 +19,7 @@ function Post({currentUser, post, postData, setPostData, userData, handleDelete}
    const viewMore = () => {
       navigate(`/blogs/${postID}`);
    }
-
+   
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes);
@@ -35,15 +35,7 @@ function Post({currentUser, post, postData, setPostData, userData, handleDelete}
             .then(resp => resp.json())
             .then(data => {
                setPostLikes(data.likes);
-               // console.log(data);
-               // setPostData([postData, data]);
-               // setPostData(blogs => [...blogs, data]);
-               // setPostData(blogs => [...blogs]);
-               // setPostData(blogs => [...blogs]);
-               // setPostData([data, ...postData]);
-               // setPostData([...postData]);
-               // setPostData(postData, data);
-               // setPostData(data);
+               setPostData(postData, data.likes);
             });
 
       if (isClicked === 3) {
