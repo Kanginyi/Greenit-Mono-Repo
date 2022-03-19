@@ -8,22 +8,27 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
 function PostDetails({currentUser, userData, postData, setPostData, commentData, setCommentData, searchValue, handleDelete}) {
-   const clickedID = parseInt(useParams().id);
-
+   const [currentBlogInfo, setCurrentBlogInfo] = useState({});
    const [isLoaded, setIsLoaded] = useState(false);
 
-   const blogsArray = postData?.filter(blog => blog?.id === clickedID);
+   // Blog Post ID
+   const clickedID = parseInt(useParams().id);
+
+   console.log(currentBlogInfo)
+
+   // const blogsArray = postData?.filter(blog => blog?.id === clickedID);
    
-   const currentBlogInfo = (blogsArray?.filter(blog => blog?.id === clickedID))[0];
+   // const currentBlogInfo = (blogsArray?.filter(blog => blog?.id === clickedID))[0];
 
    const postAuthor = currentBlogInfo?.user?.username;
 
    let navigate = useNavigate();
 
    useEffect(() => {
-      fetch(`/blogs/${currentBlogInfo?.id}`)
+      fetch(`/blogs/${clickedID}`)
          .then(resp => resp.json())
          .then(blog => {
+            setCurrentBlogInfo(blog);
             setIsLoaded(() => true);
          });
    }, [currentBlogInfo?.id]);
