@@ -6,7 +6,7 @@ import Form from "../../Components/Main/Form";
 import {useNavigate} from "react-router-dom";
 import "../../Stylings/Header.css";
 
-import greenit_logo from "../../greenit-logo.png";
+import greenit_logo from "../../Images/greenit-logo.png";
 
 function Navbar({currentUser, setCurrentUser, search, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup, numbersOfBlogs}) {
    const [isClicked, setIsClicked] = useState(false);

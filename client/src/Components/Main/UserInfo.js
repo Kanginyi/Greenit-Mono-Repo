@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
-import placeholder_img from "../../placeholder.png";
+import placeholder_img from "../../Images/placeholder.png";
 
 function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, searchValue}) {
    let navigate = useNavigate();

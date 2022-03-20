@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 
 import "../../Stylings/ErrorPage.css";
-import greenit_logo from "../../greenit-logo.png";
+import greenit_logo from "../../Images/greenit-logo.png";
 
 function ErrorPage() {
    let navigate = useNavigate();
