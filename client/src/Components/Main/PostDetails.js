@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Comment from "./Comment";
-import Loader from "./Loader";
-import ErrorPage from "./ErrorPage";
+import Loader from "../Helpers/Loader";
+import ErrorPage from "../Helpers/ErrorPage";
 import {useNavigate, useParams} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";

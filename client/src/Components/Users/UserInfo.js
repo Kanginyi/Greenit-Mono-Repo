@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ErrorPage from "../Main/ErrorPage";
+import ErrorPage from "../Helpers/ErrorPage";
 import "../../Stylings/UserInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
 

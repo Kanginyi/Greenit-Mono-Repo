@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ErrorPage from "../Main/ErrorPage";
+import ErrorPage from "../Helpers/ErrorPage";
 
 import {useNavigate, useParams} from "react-router-dom";
 import "../../Stylings/EditPost.css";
