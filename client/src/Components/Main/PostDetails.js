@@ -14,8 +14,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    // Blog Post ID
    const clickedID = parseInt(useParams().id);
 
-   console.log(currentBlogInfo)
-
    // const blogsArray = postData?.filter(blog => blog?.id === clickedID);
    
    // const currentBlogInfo = (blogsArray?.filter(blog => blog?.id === clickedID))[0];
