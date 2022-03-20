@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Loader from "./Loader";
+import Loader from "../Main/Loader";
 import User from "./User";
 
 function Users({userData, searchValue}) {
