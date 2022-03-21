@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SearchBar from "./SearchBar";
 import LogSignButtons from "./LogSignButtons";
-import Form from "../Main/CreatePost";
+import Form from "../PostRelated/Form";
 
 import {useNavigate} from "react-router-dom";
 import "../../Stylings/Header.css";

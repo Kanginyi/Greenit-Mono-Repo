@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
-import Posts from "./Components/Main/Posts";
+import Posts from "./Components/PostRelated/Posts";
 import Navbar from "./Components/Header/Navbar";
 import Users from "./Components/Users/Users";
 import UserInfo from "./Components/Users/UserInfo";
-import PostDetails from "./Components/Main/PostDetails";
+import PostDetails from "./Components/PostRelated/PostDetails";
 import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
-import EditPost from "./Components/Main/EditPost";
+import EditPost from "./Components/PostRelated/EditPost";
 import Loader from "./Components/Helpers/Loader";
 
 import {Route, Routes, useNavigate} from "react-router-dom";
