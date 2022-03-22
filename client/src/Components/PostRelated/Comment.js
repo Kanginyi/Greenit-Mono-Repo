@@ -8,7 +8,7 @@ import "../../Stylings/Comment.css";
 function Comment({currentUser, comment, userData, commentData, setCommentData}) {
    let navigate = useNavigate();
 
-   const commentUser = (userData?.filter(user => user?.id === comment?.user_id))[0];
+   const commentUser = (userData?.filter(user => user?.id === comment?.user?.id))[0];
 
    const commentDate = new Date(comment?.created_at).toLocaleDateString();
    const commentTime = new Date(comment?.created_at).toLocaleTimeString();
