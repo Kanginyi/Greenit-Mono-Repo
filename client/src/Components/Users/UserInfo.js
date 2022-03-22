@@ -53,8 +53,8 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                method: "DELETE"
             })
                .then(() => {
-                  const deleteBlog = userBlogsInfo?.filter(singlePost => singlePost?.id !== blog?.id);
-                  setUserBlogsInfo(deleteBlog);
+                  const deleteBlog = postData?.filter(singlePost => singlePost?.id !== blog?.id);
+                  setPostData(deleteBlog);
                })
          }
       }
@@ -107,11 +107,13 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                method: "DELETE"
             })
                .then(() => {
-                  const deleteComment = userCommentsInfo?.filter(singleComment => singleComment?.id !== comment?.id);
-                  setUserCommentsInfo(deleteComment);
+                  const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
+                  setCommentData(deleteComment);
                })
          }
       }
+
+      console.log(comment)
 
       return<div className="user-info-comments">
                <div
