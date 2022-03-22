@@ -14,10 +14,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    // Blog Post ID
    const clickedID = parseInt(useParams().id);
 
-   // const blogsArray = postData?.filter(blog => blog?.id === clickedID);
-   
-   // const currentBlogInfo = (blogsArray?.filter(blog => blog?.id === clickedID))[0];
-
    const postAuthor = currentBlogInfo?.user?.username;
 
    let navigate = useNavigate();
@@ -29,7 +25,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             setCurrentBlogInfo(blog);
             setIsLoaded(() => true);
          });
-   }, [currentBlogInfo?.id]);
+   }, [clickedID]);
 
    const filteredComments = commentData?.filter(comment => comment?.blog?.id === currentBlogInfo?.id);
 
