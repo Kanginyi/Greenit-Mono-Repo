@@ -66,13 +66,13 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
                ? <div className="comment-text-edit">
                      Currently Editing:
                      <input
-                     type="text"
-                     name="comment_text"
-                     onChange={handleCommentEdit}
-                     defaultValue={editComment?.comment_text}
-                     autoComplete="off"
-                     spellCheck="false"
-                     required
+                        type="text"
+                        name="comment_text"
+                        onChange={handleCommentEdit}
+                        defaultValue={editComment?.comment_text}
+                        autoComplete="off"
+                        spellCheck="false"
+                        required
                      />
 
                      <button onClick={updateComment}>Edit Comment</button>
