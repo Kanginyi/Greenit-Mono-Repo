@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Loader from "../Helpers/Loader";
 import ErrorPage from "../Helpers/ErrorPage";
 import "../../Stylings/UserInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
@@ -10,20 +11,30 @@ import placeholder_img from "../../Images/placeholder.png";
 function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, searchValue}) {
    let navigate = useNavigate();
 
-   // Getting the URL of the window
-   const URL = window.location.href;
+   const [currentUserInfo, setCurrentUserInfo] = useState({});
+   const [userBlogsInfo, setUserBlogsInfo] = useState([]);
+   const [userCommentsInfo, setUserCommentsInfo] = useState([]);
+   const [isLoaded, setIsLoaded] = useState(false);
+
    const clickedID = parseInt(useParams().id);
 
-   const checkUsersArray = userData?.filter(user => URL.endsWith(user?.id));
+   useEffect(() => {
+      fetch(`/users`)
+         .then(resp => resp.json())
+         .then(usersData => {
+            const userInfo = (usersData?.filter(user => user?.id === clickedID)[0]);
 
-   const checkUser = (checkUsersArray?.filter(user => user?.id === clickedID))[0];
+            setCurrentUserInfo(userInfo);
+            setUserBlogsInfo(userInfo?.blogs);
+            setUserCommentsInfo(userInfo?.comments);
+            setIsLoaded(true);
+         })
+   }, [clickedID]);
 
-   const clickedUser = checkUser?.username;
+   const clickedUser = currentUserInfo?.username;
 
    // Clicked User's blogs
-   const checkPosts = postData?.filter(blog => blog?.user?.id === checkUser?.id);
-   
-   const renderPosts = checkPosts?.map(blog => {
+   const renderPosts = userBlogsInfo?.map(blog => {
       let post;
       if (blog?.blog_post?.length < 15) {
          post = blog?.blog_post;
@@ -63,7 +74,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   </div>
                </div>
 
-               {checkUser?.username === currentUser?.username
+               {currentUserInfo?.username === currentUser?.username
                   ?
                      <div className="user-info-actions">
                         <BsTrash
@@ -84,9 +95,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    });
 
    // Clicked User's comments
-   const checkComments = commentData?.filter(comment => comment?.user?.id === checkUser?.id);
-
-   const renderComments = checkComments?.map(comment => {
+   const renderComments = userCommentsInfo?.map(comment => {
       const commentDate = new Date(comment?.created_at).toLocaleDateString();
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
       
@@ -104,6 +113,8 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
          }
       }
 
+      console.log(comment)
+
       return<div className="user-info-comments">
                <div
                   onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
@@ -114,7 +125,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
-               {checkUser?.username === currentUser?.username
+               {currentUserInfo?.username === currentUser?.username
                   ?
                      <div className="user-info-actions">
                         <BsTrash
@@ -143,39 +154,70 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const [hideComments, setHideComments] = useState(false);
 
    const deleteUser = () => {
-      let userDelete = prompt("Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n" + `-->${checkUser?.username}<--`, "Don't do it >:^(");
+      let userDelete = prompt(`Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n -->${currentUserInfo?.username}<--`, "Don't do it >:^(");
 
-      if (userDelete === checkUser?.username) {
-         fetch(`/users/${checkUser?.id}`, {
+      if (userDelete === currentUserInfo?.username) {
+         fetch(`/users/${currentUserInfo?.id}`, {
             method: "DELETE"
          })
             .then(() => {
-               const removeUser = userData?.filter(user => user?.id !== checkUser?.id);
+               const removeUser = userData?.filter(user => user?.id !== currentUserInfo?.id);
                setUserData(removeUser);
 
-               const removePosts = postData?.filter(post => post?.user?.id !== checkUser?.id);
+               const removePosts = postData?.filter(post => post?.user?.id !== currentUserInfo?.id);
                setPostData(removePosts);
 
-               const removeComments = commentData?.filter(comment => comment?.user_id !== checkUser?.id);
+               const removeComments = commentData?.filter(comment => comment?.user?.id !== currentUserInfo?.id);
                setCommentData(removeComments);
             })
          setCurrentUser(null);
          navigate("/");
       }
-   }
+   };
 
-   const accountDate = new Date(checkUser?.created_at).toLocaleDateString();
-   const accountTime = new Date(checkUser?.created_at).toLocaleTimeString();
+   const accountDate = new Date(currentUserInfo?.created_at).toLocaleDateString();
+   const accountTime = new Date(currentUserInfo?.created_at).toLocaleTimeString();
+
+   const [showUserInput, setShowUserInput] = useState(false);
+   
+   const handleUsername = e => {
+      console.log("bingbong")
+   };
+
+   // Loading screen component
+   if (!isLoaded) {
+      return <Loader/>
+   }
 
    return (
       <>
-      {checkUser
+      {currentUserInfo
          ?
             <div className="user-info-container-parent">
                <div className="user-info-container">
                   <div className="user-info-header">
                      <h2 id="clicked-username" className="username-color">
-                        u/{clickedUser}
+                        {showUserInput
+                           ? <input
+                              type="text"
+                              onChange={handleUsername}
+                              defaultValue={clickedUser}
+                              autoComplete="off"
+                              spellCheck="false"
+                              required
+                             />
+                           : `u/${clickedUser}`
+                        }
+
+                           &nbsp;
+                        {currentUser?.username === clickedUser
+                        ? <FaEdit
+                           onClick={() => setShowUserInput(prev => !prev)}
+                           style={{cursor: "pointer"}}
+                           title="Update Username"
+                        />
+                        : null
+                        }
                      </h2>
 
                      {
@@ -186,16 +228,16 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   </div>
 
                   <div className="user-info-datetime">
-                     Account created on {accountDate} at {accountTime}!
+                     Account created on {accountDate} at {accountTime}.
                   </div>
 
                   <div className="user-info-underline"></div>
                   
                   <div>
                      <div className="user-info-divs">
-                        {checkPosts?.length
+                        {userBlogsInfo?.length
                            ?  <>
-                                 <h3>Total Posts: {checkPosts?.length}
+                                 <h3>Total Posts: {userBlogsInfo?.length}
                                     <button
                                        onClick={() => setHidePosts(prev => !prev)}
                                     >
@@ -213,9 +255,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                      <div className="user-info-underline"></div>
 
                      <div className="user-info-divs">
-                        {checkComments?.length 
+                        {userCommentsInfo?.length 
                            ?  <>
-                                 <h3>Total Comments: {checkComments?.length}
+                                 <h3>Total Comments: {userCommentsInfo?.length}
                                     <button
                                        onClick={() => setHideComments(prev => !prev)}
                                     >
