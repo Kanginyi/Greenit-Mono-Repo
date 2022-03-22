@@ -14,13 +14,17 @@ function App() {
    // Getting current user information
    const [currentUser, setCurrentUser] = useState(null);
 
+   //To update the username on the Header
+   const [renderUsername, setRenderUsername] = useState("");
+
    useEffect(() => {
       fetch("/me")
          .then(resp => {
             if (resp.ok) {
                resp.json()
                   .then(user => {
-                     setCurrentUser(user)
+                     setRenderUsername(user?.username);
+                     setCurrentUser(user);
                   })
             }
          })
@@ -100,6 +104,7 @@ function App() {
          <Navbar
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            renderUsername={renderUsername}
             search={search}
             postData={postData}
             setPostData={setPostData}
@@ -142,6 +147,7 @@ function App() {
                   setPostData={setPostData}
                   commentData={commentData}
                   setCommentData={setCommentData}
+                  setRenderUsername={setRenderUsername}
                   searchValue={searchValue}
                />
             }/>
