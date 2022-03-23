@@ -8,7 +8,7 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 import placeholder_img from "../../Images/placeholder.png";
 
-function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, setRenderUsername, searchValue}) {
+function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, searchValue}) {
    let navigate = useNavigate();
 
    const clickedID = parseInt(useParams().id);
@@ -20,8 +20,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
 
    // Editing the Username
    const [showUserInput, setShowUserInput] = useState(false);
+   const [errorMessage, setErrorMessage] = useState("");
    const [editUsername, setEditUsername] = useState({
-      username: null
+      username: currentUser?.username
    });
    
    const handleUsername = e => {
@@ -41,9 +42,16 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
             if (resp.ok) {
                resp.json()
                   .then(updatedUser => {
-                     setRenderUsername(updatedUser?.username);
+                     setErrorMessage("");
+                     setCurrentUser(updatedUser);
+                     setCurrentUserInfo(updatedUser);
                      setUserData(userData, updatedUser);
                      setShowUserInput(false);
+                  })
+            } else {
+               resp.json()
+                  .then(error => {
+                     setErrorMessage(error.errors);
                   })
             }
          })
@@ -61,9 +69,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
             setUserCommentsInfo(userInfo?.comments);
             setIsLoaded(true);
          })
-   }, [clickedID, setRenderUsername]);
-
-   const clickedUser = currentUserInfo?.username;
+   }, [clickedID]);
 
    // Clicked User's blogs
    const renderPosts = userBlogsInfo?.map(blog => {
@@ -106,7 +112,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   </div>
                </div>
 
-               {clickedUser === currentUser?.username
+               {currentUser?.username === currentUserInfo?.username
                   ?
                      <div className="user-info-actions">
                         <BsTrash
@@ -155,7 +161,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
-               {clickedUser === currentUser?.username
+               {currentUser?.username === currentUserInfo?.username
                   ?
                      <div className="user-info-actions">
                         <BsTrash
@@ -186,7 +192,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const deleteUser = () => {
       let userDelete = prompt(`Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n -->${editUsername?.username}<--`, "Don't do it >:^(");
 
-      if (userDelete === editUsername?.username) {
+      if (userDelete === currentUser?.username) {
          fetch(`/users/${currentUserInfo?.id}`, {
             method: "DELETE"
          })
@@ -238,7 +244,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                            : `u/${editUsername?.username}`
                         }
 
-                        {currentUser?.username === clickedUser
+                        {currentUser?.username === currentUserInfo?.username
                         ? <FaEdit
                            onClick={() => setShowUserInput(prev => !prev)}
                            className="user-info-edit"
@@ -249,11 +255,13 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                      </h2>
 
                      {
-                        currentUser?.username === clickedUser
+                        currentUser?.username === currentUserInfo?.username
                         ? <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
                         : null
                      }
                   </div>
+
+                  <div className="error-message user-info-error">{errorMessage ? errorMessage : null}</div>
 
                   <div className="user-info-datetime">
                      Account created on {accountDate} at {accountTime}.
