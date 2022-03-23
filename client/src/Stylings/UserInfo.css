@@ -22,7 +22,34 @@
 
 #clicked-username {
    font-size: clamp(2rem, 5vw, 3.25rem);
-   margin-bottom: -0.1em;
+
+   display: flex;
+}
+
+#clicked-username input {
+   font-size: clamp(1.75rem, 5vw, 3rem);
+   color: rgb(0, 173, 76);
+   
+   width: clamp(50%, 5vw + 1rem, 65%);
+   border: 2px solid #AFD3B5;
+
+   padding: 0 5px;
+   margin-right: 7.5px;
+}
+
+#clicked-username button {
+   align-self: center;
+
+   border-radius: 30px;
+
+   font-weight: 600;
+   
+   padding: 8.5px;
+}
+
+.user-info-edit {
+   cursor: pointer;
+   margin-left: 7.5px;
 }
 
 .user-info-underline {
@@ -36,7 +63,7 @@
    font-size: clamp(1em, 3vw, 1.5em);
    font-weight: 600;
    font-style: italic;
-   color: #afd3b5;
+   color: #AFD3B5;
 }
 
 .user-info-divs h3 {
@@ -48,12 +75,13 @@
 }
 
 .user-info-divs button {
-   width: fit-content;
-
    margin: 3px;
    padding: 5px;
-   
    border-radius: 15px;
+}
+
+.user-info-divs button, #clicked-username button {
+   width: fit-content;
 
    background-color: rgb(225, 225, 225);
    letter-spacing: .05em;
@@ -62,7 +90,7 @@
    cursor: pointer;
 }
 
-.user-info-divs button:active, .user-info-divs button:focus-visible {
+.user-info-divs button:active, .user-info-divs button:focus-visible, #clicked-username button:active, #clicked-username button:focus-visible {
    transform: scale(.95);
    background-color: rgb(0, 173, 76);
    color: rgb(225, 225, 225);
