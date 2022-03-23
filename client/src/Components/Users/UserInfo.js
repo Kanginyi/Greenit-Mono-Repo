@@ -8,15 +8,46 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 import placeholder_img from "../../Images/placeholder.png";
 
-function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, searchValue}) {
+function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, setRenderUsername, searchValue}) {
    let navigate = useNavigate();
+
+   const clickedID = parseInt(useParams().id);
 
    const [currentUserInfo, setCurrentUserInfo] = useState({});
    const [userBlogsInfo, setUserBlogsInfo] = useState([]);
    const [userCommentsInfo, setUserCommentsInfo] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
 
-   const clickedID = parseInt(useParams().id);
+   // Editing the Username
+   const [showUserInput, setShowUserInput] = useState(false);
+   const [editUsername, setEditUsername] = useState({
+      username: null
+   });
+   
+   const handleUsername = e => {
+      setEditUsername({
+         ...editUsername,
+         [e.target.name]: e.target.value
+      })
+   };
+
+   const updateUsername = () => {
+      fetch(`/users/${clickedID}`, {
+         method: "PATCH",
+         headers: {"Content-Type": "application/json"},
+         body: JSON.stringify(editUsername) 
+      })
+         .then(resp => {
+            if (resp.ok) {
+               resp.json()
+                  .then(updatedUser => {
+                     setRenderUsername(updatedUser?.username);
+                     setUserData(userData, updatedUser);
+                     setShowUserInput(false);
+                  })
+            }
+         })
+   };
 
    useEffect(() => {
       fetch(`/users`)
@@ -25,11 +56,12 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
             const userInfo = (usersData?.filter(user => user?.id === clickedID)[0]);
 
             setCurrentUserInfo(userInfo);
+            setEditUsername({username: userInfo?.username});
             setUserBlogsInfo(userInfo?.blogs);
             setUserCommentsInfo(userInfo?.comments);
             setIsLoaded(true);
          })
-   }, [clickedID]);
+   }, [clickedID, setRenderUsername]);
 
    const clickedUser = currentUserInfo?.username;
 
@@ -74,7 +106,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   </div>
                </div>
 
-               {currentUserInfo?.username === currentUser?.username
+               {clickedUser === currentUser?.username
                   ?
                      <div className="user-info-actions">
                         <BsTrash
@@ -112,7 +144,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                })
          }
       }
-      
+
       return<div className="user-info-comments">
                <div
                   onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
@@ -123,7 +155,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
-               {currentUserInfo?.username === currentUser?.username
+               {clickedUser === currentUser?.username
                   ?
                      <div className="user-info-actions">
                         <BsTrash
@@ -152,9 +184,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const [hideComments, setHideComments] = useState(false);
 
    const deleteUser = () => {
-      let userDelete = prompt(`Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n -->${currentUserInfo?.username}<--`, "Don't do it >:^(");
+      let userDelete = prompt(`Are you sure you want to delete your Greenit account? This action cannot be undone.\nIf you'd like to continue, please type:\n -->${editUsername?.username}<--`, "Don't do it >:^(");
 
-      if (userDelete === currentUserInfo?.username) {
+      if (userDelete === editUsername?.username) {
          fetch(`/users/${currentUserInfo?.id}`, {
             method: "DELETE"
          })
@@ -176,12 +208,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    const accountDate = new Date(currentUserInfo?.created_at).toLocaleDateString();
    const accountTime = new Date(currentUserInfo?.created_at).toLocaleTimeString();
 
-   const [showUserInput, setShowUserInput] = useState(false);
-   
-   const handleUsername = e => {
-      console.log("bingbong")
-   };
-
    // Loading screen component
    if (!isLoaded) {
       return <Loader/>
@@ -196,22 +222,26 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <div className="user-info-header">
                      <h2 id="clicked-username" className="username-color">
                         {showUserInput
-                           ? <input
-                              type="text"
-                              onChange={handleUsername}
-                              defaultValue={clickedUser}
-                              autoComplete="off"
-                              spellCheck="false"
-                              required
-                             />
-                           : `u/${clickedUser}`
+                           ? <>
+                              <input
+                                 type="text"
+                                 name="username"
+                                 onChange={handleUsername}
+                                 defaultValue={editUsername?.username}
+                                 autoComplete="off"
+                                 spellCheck="false"
+                                 required
+                              />
+
+                              <button onClick={updateUsername}>Update Username</button>
+                             </>
+                           : `u/${editUsername?.username}`
                         }
 
-                           &nbsp;
                         {currentUser?.username === clickedUser
                         ? <FaEdit
                            onClick={() => setShowUserInput(prev => !prev)}
-                           style={{cursor: "pointer"}}
+                           className="user-info-edit"
                            title="Update Username"
                         />
                         : null
