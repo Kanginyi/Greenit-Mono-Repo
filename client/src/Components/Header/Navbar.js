@@ -8,7 +8,7 @@ import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, search, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup, numbersOfBlogs}) {
+function Navbar({currentUser, setCurrentUser, renderUsername, search, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup, numbersOfBlogs}) {
    const [isClicked, setIsClicked] = useState(false);
    const [showForm, setShowForm] = useState(false);
 
@@ -44,6 +44,7 @@ function Navbar({currentUser, setCurrentUser, search, postData, setPostData, use
             <LogSignButtons
                currentUser={currentUser}
                setCurrentUser={setCurrentUser}
+               renderUsername={renderUsername}
                postData={postData}
                setPostData={setPostData}
                userData={userData}
