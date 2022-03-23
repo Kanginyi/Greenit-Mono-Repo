@@ -261,7 +261,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                      }
                   </div>
 
-                  <div className="error-message user-info-error">{errorMessage ? errorMessage : null}</div>
+                  <div className="error-message user-info-error">{errorMessage}</div>
 
                   <div className="user-info-datetime">
                      Account created on {accountDate} at {accountTime}.
