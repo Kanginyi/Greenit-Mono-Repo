@@ -3,8 +3,8 @@ import {useNavigate} from "react-router-dom";
 
 import {FaRegSmileBeam} from "react-icons/fa";
 
-function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup}) {
-  let navigate = useNavigate();
+function LogSignButtons({currentUser, setCurrentUser, renderUsername, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup}) {
+   let navigate = useNavigate();
 
    const toLogin = () => {
       setShowSignup(false);
@@ -49,7 +49,7 @@ function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, use
                   onClick={viewProfile}
                   style={{fontWeight: "600"}}
                >
-                     <FaRegSmileBeam/>&nbsp;{currentUser.username}
+                     <FaRegSmileBeam/>&nbsp;{renderUsername}
                </button>
 
                <button
