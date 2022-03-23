@@ -133,6 +133,9 @@ function App() {
             <Route path="/all_users" element={
                <Users
                   userData={userData}
+                  setUserData={setUserData}
+                  postData={postData}
+                  commentData={commentData}
                   searchValue={searchValue}
                />
             }/>
