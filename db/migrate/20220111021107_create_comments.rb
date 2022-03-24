@@ -6,6 +6,8 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.integer :blog_id
 		t.integer :user_id
       t.text :comment_text
+      t.integer :likes, null: false, default: 0
+      t.integer :dislikes, null: false, default: 0
 
       t.timestamps
     end
