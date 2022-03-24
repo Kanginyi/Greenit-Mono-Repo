@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2022_01_11_221122) do
     t.integer "blog_id"
     t.integer "user_id"
     t.text "comment_text"
+    t.integer "likes", default: 0, null: false
+    t.integer "dislikes", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
