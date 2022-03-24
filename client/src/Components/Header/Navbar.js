@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SearchBar from "./SearchBar";
 import LogSignButtons from "./LogSignButtons";
-import Form from "../PostRelated/Form";
+import CreatePost from "../PostRelated/CreatePost";
 
 import {useNavigate} from "react-router-dom";
 import "../../Stylings/Header.css";
@@ -55,7 +55,7 @@ function Navbar({currentUser, setCurrentUser, search, postData, setPostData, use
 
          {isClicked ? <SearchBar search={search}/> : null}
          
-         <Form
+         <CreatePost
             currentUser={currentUser}
             showForm={showForm}
             setShowForm={setShowForm}
