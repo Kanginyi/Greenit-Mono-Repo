@@ -50,6 +50,21 @@
    color: rgb(0, 70, 30);
 }
 
+.comment-information {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.comment-likes-container {
+   display: flex;
+   flex-direction: column;
+
+   margin-top: 3px;
+   margin-bottom: 3px;
+   margin-left: 10px;
+}
+
 .comment-meta-data p, .comment-date-time {
    display: flex;
    justify-content: flex-end;
