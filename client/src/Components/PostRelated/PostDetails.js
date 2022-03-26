@@ -191,7 +191,9 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
    const [postComment, setPostComment] = useState({
       comment_text: "", 
       user_id: currentUser?.id,
-      blog_id: currentBlogInfo?.id
+      blog_id: currentBlogInfo?.id,
+      likes: 0,
+      dislikes: 0
    });
 
    const handleComment = e => {
@@ -227,7 +229,9 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
       setPostComment({
          comment_text: "", 
          user_id: currentUser?.id,
-         blog_id: currentBlogInfo?.id
+         blog_id: currentBlogInfo?.id,
+         likes: 0,
+         dislikes: 0
       });
    };
 
