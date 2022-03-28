@@ -282,6 +282,8 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
                      <h2 className="post-title">{currentBlogInfo?.title}</h2>
                   </div>
 
+                  <div className="post-info-underline"></div>
+
                   {
                      currentBlogInfo?.image_url
                      ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
