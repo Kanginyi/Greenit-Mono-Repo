@@ -1,9 +1,9 @@
 import React from 'react';
 import Post from "./Post";
 
-function Posts({currentUser, postData, setPostData, userData, searchValue, handleDelete}) {
+function Posts({currentUser, postData, userData, searchValue, handleDelete}) {
    const renderPosts = postData?.map(post => {
-      return <Post key={post.id} currentUser={currentUser} post={post} postData={postData} setPostData={setPostData} userData={userData} handleDelete={handleDelete}/>
+      return <Post key={post.id} currentUser={currentUser} post={post} postData={postData} userData={userData} handleDelete={handleDelete}/>
    });
 
    const sortPosts = renderPosts?.sort((a, b) => b?.props?.post?.created_at?.localeCompare(a?.props?.post?.created_at));
