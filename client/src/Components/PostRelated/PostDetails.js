@@ -34,11 +34,13 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
    const postTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
 
    // Render all comments onto the page
-   const displayComments = filteredComments?.map(comment => {
+   const renderComments = filteredComments?.map(comment => {
       return <Comment key={comment.id} currentUser={currentUser} comment={comment} userData={userData} commentData={commentData} setCommentData={setCommentData}/>
    });
 
-   const filterComments = searchValue === "" ? displayComments : displayComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const sortComments = renderComments?.sort((a, b) => a?.props?.comment?.created_at?.localeCompare(b?.props?.comment?.created_at));
+
+   const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // Likes and Dislikes states
    const [isClicked, setIsClicked] = useState(1);
