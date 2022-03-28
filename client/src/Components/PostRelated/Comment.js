@@ -5,7 +5,7 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 import "../../Stylings/Comment.css";
 
-function Comment({currentUser, comment, userData, commentData, setCommentData}) {
+function Comment({currentUser, comment, userData, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
    let navigate = useNavigate();
 
    const commentUser = (userData?.filter(user => user?.id === comment?.user?.id))[0];
@@ -58,6 +58,9 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
             .then(() => {
                const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
                setCommentData(deleteComment);
+
+               const deletePostComment = currentBlogComments?.filter(singleComment => singleComment?.id !== comment?.id);
+               setCurrentBlogComments(deletePostComment);
             })
       }
    };
@@ -77,6 +80,7 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
             .then(resp => resp.json())
             .then(data => {
                setCommentLikes(data.likes);
+               setEditComment({...editComment, likes: data.likes});
             });
 
       if (isClicked === 3) {
@@ -87,6 +91,7 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
             .then(resp => resp.json())
             .then(data => {
                setCommentDislikes(data.dislikes);
+               setEditComment({...editComment, dislikes: data.dislikes});
             });
       }
          setIsClicked(2);
@@ -104,6 +109,7 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
             .then(resp => resp.json())
             .then(data => {
                setCommentDislikes(data.dislikes);
+               setEditComment({...editComment, dislikes: data.dislikes});
             });
 
          if (isClicked === 2) {
@@ -114,6 +120,7 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
                .then(resp => resp.json())
                .then(data => {
                   setCommentLikes(data.likes);
+                  setEditComment({...editComment, likes: data.likes});
                });
          }
             setIsClicked(3);
@@ -131,6 +138,7 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
             .then(resp => resp.json())
             .then(data => {
                setCommentLikes(data?.likes);
+               setEditComment({...editComment, likes: data.likes});
             });
       }
       setIsClicked(1);
@@ -145,6 +153,7 @@ function Comment({currentUser, comment, userData, commentData, setCommentData}) 
             .then(resp => resp.json())
             .then(data => {
                setCommentDislikes(data?.dislikes);
+               setEditComment({...editComment, dislikes: data.dislikes});
             });
       }
       setIsClicked(1);
