@@ -3,6 +3,8 @@
    border-radius: 100px;
    padding: 7.5px 15px;
 
+   word-wrap: break-word;
+
    text-align: center;
    color: #5E5E5E;
 }
