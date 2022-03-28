@@ -5,7 +5,7 @@ import "../../Stylings/Post.css";
 import {BsTrash} from "react-icons/bs";
 import {FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
-function Post({currentUser, post, postData, setPostData, userData, handleDelete}) {
+function Post({currentUser, post, userData, handleDelete}) {
    const userObj = userData?.filter(user => user?.id === post?.user?.id);
 
    let navigate = useNavigate();
@@ -35,7 +35,6 @@ function Post({currentUser, post, postData, setPostData, userData, handleDelete}
             .then(resp => resp.json())
             .then(data => {
                setPostLikes(data.likes);
-               setPostData(postData, data.likes);
             });
 
       if (isClicked === 3) {
