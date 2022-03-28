@@ -118,7 +118,6 @@ function App() {
                <Posts
                   currentUser={currentUser}
                   postData={postData}
-                  setPostData={setPostData}
                   userData={userData}
                   searchValue={searchValue}
                   handleDelete={handleDelete}
@@ -153,8 +152,6 @@ function App() {
                <PostDetails
                   currentUser={currentUser}
                   userData={userData}
-                  postData={postData}
-                  setPostData={setPostData}
                   commentData={commentData}
                   setCommentData={setCommentData}
                   searchValue={searchValue}
