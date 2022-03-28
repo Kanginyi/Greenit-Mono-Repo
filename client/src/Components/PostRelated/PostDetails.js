@@ -27,7 +27,7 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
          });
    }, [clickedID]);
 
-   const filteredComments = commentData?.filter(comment => comment?.blog?.id === currentBlogInfo?.id);
+   const filteredComments = currentBlogInfo?.comments?.filter(comment => comment?.blog?.id === currentBlogInfo?.id);
 
    // Date & Time for the post header
    const postDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
