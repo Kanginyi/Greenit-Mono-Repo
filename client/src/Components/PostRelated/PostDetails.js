@@ -7,7 +7,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
-function PostDetails({currentUser, userData, postData, setPostData, commentData, setCommentData, searchValue, handleDelete}) {
+function PostDetails({currentUser, userData, commentData, setCommentData, searchValue, handleDelete}) {
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
    const [isLoaded, setIsLoaded] = useState(false);
 
@@ -23,7 +23,7 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
          .then(resp => resp.json())
          .then(blog => {
             setCurrentBlogInfo(blog);
-            setIsLoaded(() => true);
+            setIsLoaded(true);
          });
    }, [clickedID]);
 
@@ -56,7 +56,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => {
                setPostLikes(data?.likes);
-               setPostData([postData, data]);
             });
 
       if (isClicked === 3) {
@@ -67,7 +66,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => {
                setPostDislikes(data?.dislikes);
-               setPostData([postData, data]);
             });
       }
          setIsClicked(2);
@@ -85,7 +83,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => {
                setPostDislikes(data?.dislikes);
-               setPostData([postData, data]);
             });
 
       if (isClicked === 2) {
@@ -96,7 +93,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => {
                setPostLikes(data?.likes);
-               setPostData([postData, data]);
             });
       }
          setIsClicked(3);
@@ -114,7 +110,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => {
                setPostLikes(data?.likes);
-               setPostData([postData, data]);
             });
       }
       setIsClicked(1);
@@ -129,7 +124,6 @@ function PostDetails({currentUser, userData, postData, setPostData, commentData,
             .then(resp => resp.json())
             .then(data => {
                setPostDislikes(data?.dislikes);
-               setPostData([postData, data]);
             });
       }
       setIsClicked(1);
