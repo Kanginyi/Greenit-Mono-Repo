@@ -73,14 +73,7 @@ class CommentsController < ApplicationController
       render json: comment
    end
 
-   # get "/comments/likes/:id", to: "comments#get_likes"
-
-   # patch "/inc_comment_likes/:id", to: "comments#increment_likes"
-   # patch "/inc_comment_dislikes/:id", to: "comments#increment_dislikes"
-
-   # patch "/dec_comment_likes/:id", to: "comments#decrement_likes"
-   # patch "/dec_comment_dislikes/:id", to: "comments#decrement_dislikes"
-
+   
    private
 
    def comment_params
