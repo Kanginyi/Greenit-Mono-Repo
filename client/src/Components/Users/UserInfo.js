@@ -93,6 +93,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                .then(() => {
                   const deleteBlog = userBlogsInfo?.filter(singlePost => singlePost?.id !== blog?.id);
                   setUserBlogsInfo(deleteBlog);
+                  setPostData(deleteBlog);
                })
          }
       }
@@ -147,6 +148,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                .then(() => {
                   const deleteComment = userCommentsInfo?.filter(singleComment => singleComment?.id !== comment?.id);
                   setUserCommentsInfo(deleteComment);
+                  setCommentData(deleteComment);
                })
          }
       }
@@ -157,7 +159,8 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   className="user-comment-container"
                >
                   <h4>{comment?.blog?.title}</h4>
-                  <p>{comment?.comment_text}</p>
+                  <em>{comment?.comment_text}</em>
+                  <p>{comment?.likes} Likes | {comment?.dislikes} Dislikes</p>
                   <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
