@@ -207,9 +207,11 @@ function Post({currentUser, post, userData, handleDelete}) {
                </div>
                      &nbsp;
                <h2 className="post-title">{post.title}</h2>
-            </div> 
+            </div>
 
-            {post.image_url ? <img src={post.image_url} alt={post.title} style={{marginTop: "1rem"}}/> : null}
+            <div className="post-info-underline"></div>
+
+            {post.image_url ? <img src={post.image_url} alt={post.title}/> : null}
 
             <p>
                {renderOnMainPage}
@@ -217,6 +219,8 @@ function Post({currentUser, post, userData, handleDelete}) {
          </article>
 
          <div className="view-more-container">
+            <em>{post?.comments?.length} Total Comments</em><br/>
+
             <button onClick={viewMore} className="post-view-more">
                VIEW MORE
             </button>
