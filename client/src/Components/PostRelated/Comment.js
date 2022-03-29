@@ -16,11 +16,6 @@ function Comment({currentUser, comment, userData, commentData, setCommentData, c
    const [showCommentInput, setShowCommentInput] = useState(false);
    const [editComment, setEditComment] = useState({
       ...comment
-      // user_id: commentUser?.id,
-      // blog_id: comment?.blog?.id,
-      // comment_text: comment?.comment_text,
-      // likes: comment?.likes,
-      // dislikes: comment?.dislikes
    });
 
    const handleCommentEdit = e => {
