@@ -72,7 +72,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    }, [clickedID]);
 
    // Clicked User's blogs
-   const renderPosts = userBlogsInfo?.map(blog => {
+   const sortBlogs = userBlogsInfo?.sort((a, b) => b?.created_at?.localeCompare(a?.created_at));
+
+   const renderPosts = sortBlogs?.map(blog => {
       let post;
       if (blog?.blog_post?.length < 15) {
          post = blog?.blog_post;
@@ -142,7 +144,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
    });
 
    // Clicked User's comments
-   const renderComments = userCommentsInfo?.map(comment => {
+   const sortComments = userCommentsInfo?.sort((a, b) => b?.created_at?.localeCompare(a?.created_at));
+
+   const renderComments = sortComments?.map(comment => {
       const commentDate = new Date(comment?.created_at).toLocaleDateString();
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
       
