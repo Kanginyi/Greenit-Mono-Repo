@@ -1,12 +1,16 @@
 .comment-text{
    border: 2px solid rgb(220, 220, 220);
    border-radius: 100px;
-   padding: 7.5px 15px;
+   padding: 12.5px 50px;
 
    word-wrap: break-word;
 
    text-align: center;
    color: #5E5E5E;
+}
+
+.comment-text:hover, .comment-text:focus-visible {
+   border: 2px solid rgb(0, 173, 76);
 }
 
 .comment-text-edit {
