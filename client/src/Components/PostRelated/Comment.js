@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {useNavigate} from "react-router-dom";
 
 import {BsTrash} from "react-icons/bs";
@@ -209,6 +209,18 @@ function Comment({currentUser, comment, userData, commentData, setCommentData, c
                            <FaThumbsDown/>&nbsp;{commentDislikes}
                         </button>
                       </>
+
+   // Close commentInput using the "Escape" key
+   const escPress = useCallback(e => {
+      if (e.key === "Escape" && showCommentInput) {
+         setShowCommentInput(false);
+      }
+   }, [showCommentInput, setShowCommentInput]);
+
+   useEffect(() => {
+      document.addEventListener("keydown", escPress);
+      return () => document.removeEventListener("keydown", escPress);
+   }, [escPress]);
 
    return (
       <div className="comment-section">
