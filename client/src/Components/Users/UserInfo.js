@@ -93,9 +93,10 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                .then(() => {
                   const deleteBlog = userBlogsInfo?.filter(singlePost => singlePost?.id !== blog?.id);
 
+                  setUserBlogsInfo(deleteBlog);
+
                   const deleteRelatedComments = userCommentsInfo?.filter(singleComment => singleComment?.blog?.id !== blog?.id);
 
-                  setUserBlogsInfo(deleteBlog);
                   setUserCommentsInfo(deleteRelatedComments);
 
                   const removePost = postData?.filter(singlePost => singlePost?.id !== blog?.id);
@@ -115,7 +116,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <div>
                      <h4>{blog?.title}</h4>
                      <em>{post}</em>
-                     <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes | {blog?.comments.length} Comments</p>
+                     <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes | {blog?.comments?.length} Comments</p>
                      <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
                   </div>
                </div>
@@ -155,6 +156,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                .then(() => {
                   const deleteComment = userCommentsInfo?.filter(singleComment => singleComment?.id !== comment?.id);
 
+                  setUserCommentsInfo(deleteComment);
 
                   // const blogRelatedToDeleteComment = (userBlogsInfo?.filter(singlePost => singlePost?.id === comment?.blog?.id))[0];
 
@@ -166,8 +168,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   // console.log("DeleteCommentOnBlog:", deleteCommentOnBlog)
                   // Array that's holding remaining related comments
                   
-
-                  setUserCommentsInfo(deleteComment);
                   // setUserBlogsInfo();
 
                   const removeComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
