@@ -1,10 +1,10 @@
 import React from 'react';
 
-function SearchBar({search}) {
+function SearchBar({searchGreenit}) {
    return (
       <form className="searchbar">
          <input
-            onChange={search}
+            onChange={searchGreenit}
             type="text"
             placeholder="Search Greenit..."
          />

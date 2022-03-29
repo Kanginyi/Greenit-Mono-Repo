@@ -8,7 +8,7 @@ import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, search, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup, numbersOfBlogs}) {
+function Navbar({currentUser, setCurrentUser, searchGreenit, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup, numbersOfBlogs}) {
    const [isClicked, setIsClicked] = useState(false);
    const [showForm, setShowForm] = useState(false);
 
@@ -53,7 +53,7 @@ function Navbar({currentUser, setCurrentUser, search, postData, setPostData, use
                setShowSignup={setShowSignup}/>
          </nav>
 
-         {isClicked ? <SearchBar search={search}/> : null}
+         {isClicked ? <SearchBar searchGreenit={searchGreenit}/> : null}
          
          <CreatePost
             currentUser={currentUser}
