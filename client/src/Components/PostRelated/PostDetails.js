@@ -9,6 +9,7 @@ import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "
 
 function PostDetails({currentUser, userData, commentData, setCommentData, searchValue, handleDelete}) {
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
+   const [currentBlogComments, setCurrentBlogComments] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
 
    // Blog Post ID
@@ -23,19 +24,18 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
          .then(resp => resp.json())
          .then(blog => {
             setCurrentBlogInfo(blog);
+            setCurrentBlogComments(blog?.comments);
             setIsLoaded(true);
          });
    }, [clickedID]);
-
-   const filteredComments = currentBlogInfo?.comments?.filter(comment => comment?.blog?.id === currentBlogInfo?.id);
 
    // Date & Time for the post header
    const postDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
    const postTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
 
    // Render all comments onto the page
-   const renderComments = filteredComments?.map(comment => {
-      return <Comment key={comment.id} currentUser={currentUser} comment={comment} userData={userData} commentData={commentData} setCommentData={setCommentData}/>
+   const renderComments = currentBlogComments?.map(comment => {
+      return <Comment key={comment.id} currentUser={currentUser} comment={comment} userData={userData} commentData={commentData} setCommentData={setCommentData} currentBlogComments={currentBlogComments} setCurrentBlogComments={setCurrentBlogComments}/>
    });
 
    const sortComments = renderComments?.sort((a, b) => a?.props?.comment?.created_at?.localeCompare(b?.props?.comment?.created_at));
@@ -214,7 +214,8 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
                if (resp.ok) {
                   resp.json()
                      .then(data => {
-                        setCommentData(comments => [...comments, data]);
+                        setCurrentBlogComments(comments => [...comments, data]);
+                        setCommentData(commentData, data);
                      })
                }
             });
@@ -223,7 +224,7 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
       }
       
       setPostComment({
-         comment_text: "", 
+         comment_text: "",
          user_id: currentUser?.id,
          blog_id: currentBlogInfo?.id,
          likes: 0,
