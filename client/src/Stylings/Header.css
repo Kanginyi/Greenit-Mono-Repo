@@ -87,14 +87,14 @@
    box-shadow: inset 0 -5px 0 0 rgb(0, 173, 76);
 }
 
-.searchbar {
+.search-bar {
    margin-top: .75em;
    display: flex;
    justify-content: center;
    flex: 1 1 auto;
 }
 
-.searchbar input {
+.search-bar input {
    border: 2px solid rgb(0, 173, 76);
    border-radius: 20px;
    padding-left: 0.75em;
@@ -107,7 +107,7 @@
    color: rgb(0, 173, 76);
 }
 
-.searchbar input:focus {
+.search-bar input:focus {
    border: 2px solid rgb(0, 173, 76);
 }
 
