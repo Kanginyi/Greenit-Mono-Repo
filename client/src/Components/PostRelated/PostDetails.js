@@ -214,8 +214,9 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
                if (resp.ok) {
                   resp.json()
                      .then(data => {
+                        console.log(data);
                         setCurrentBlogComments(comments => [...comments, data]);
-                        setCommentData(commentData, data);
+                        setCommentData([...commentData, data]);
                      })
                }
             });
