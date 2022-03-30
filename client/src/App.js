@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 import Navbar from "./Components/Header/Navbar";
+import ErrorPage from "./Components/Helpers/ErrorPage";
 import Loader from "./Components/Helpers/Loader";
 import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
 import EditPost from "./Components/PostRelated/EditPost";
@@ -177,6 +178,10 @@ function App() {
                      setCommentData={setCommentData}
                      searchValue={searchValue}
                   />
+               }/>
+
+               <Route path="*" element={
+                  <ErrorPage/>
                }/>
 
             </Routes>
