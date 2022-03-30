@@ -1,7 +1,9 @@
-import React from 'react';
-import { useNavigate } from "react-router-dom";
+import React from "react";
+
+import {useNavigate} from "react-router-dom";
 
 import "../../Stylings/ErrorPage.css";
+
 import greenit_logo from "../../Images/greenit-logo.png";
 
 function ErrorPage() {
@@ -24,7 +26,7 @@ function ErrorPage() {
             You're in the wrong place, Greeniter.
          </h3>
             <br/>
-         <h4>Click <span style={{color: "rgb(0, 173, 76)"}}>Greenie</span> to head home~</h4>
+         <h4>Click <span className="username-color">Greenie</span> to head home~</h4>
       </div>
    );
 }
