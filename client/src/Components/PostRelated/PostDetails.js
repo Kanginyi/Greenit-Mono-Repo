@@ -242,7 +242,7 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
    
    return (
       <>
-      {currentBlogInfo
+      {!currentBlogInfo.errors
          ?
             <div className="post-div">
 
