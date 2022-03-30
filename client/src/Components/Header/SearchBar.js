@@ -2,13 +2,13 @@ import React from 'react';
 
 function SearchBar({searchGreenit}) {
    return (
-      <form className="searchbar">
+      <div className="search-bar">
          <input
             onChange={searchGreenit}
             type="text"
             placeholder="Search Greenit..."
          />
-      </form>
+      </div>
    );
 }
 
