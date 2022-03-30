@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
+
 import {useNavigate} from "react-router-dom";
 
 function Login({setCurrentUser}) {
    let navigate = useNavigate();
 
+   // States to handle inputted values for username & password. errorMessage will handle and render any errors related to username & password
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [errorMessage, setErrorMessage] = useState("");
 
+   // Function to handle logging in with existing user credentials. After logging in, setCurrentUser to fetched user's object
    const handleLogin = e => {
       e.preventDefault();
 
@@ -32,16 +35,17 @@ function Login({setCurrentUser}) {
          })
    };
 
-   // Show password functionality
-   const [inputPassword, setInputPassword] = useState("password");
+   // State to handle show password functionality
+   const [passwordInput, setPasswordInput] = useState("password");
 
+   // Function to show or hide password when user clicks related checkbox
    const showPassword = () => {
-      if (inputPassword === "password") {
-         setInputPassword("text");
+      if (passwordInput === "password") {
+         setPasswordInput("text");
       } else {
-         setInputPassword("password");
+         setPasswordInput("password");
       }
-   }
+   };
 
    return (
       <div className="login-container">
@@ -59,7 +63,7 @@ function Login({setCurrentUser}) {
             />
 
             <input
-               type={inputPassword}
+               type={passwordInput}
                name="password"
                placeholder="Password"
                value={password}
