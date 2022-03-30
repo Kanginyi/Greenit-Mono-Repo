@@ -1,21 +1,26 @@
-import React, {useState} from 'react';
-import SearchBar from "./SearchBar";
+import React, {useState} from "react";
+
+import CreatePost from "./CreatePost";
 import LogSignButtons from "./LogSignButtons";
-import CreatePost from "../PostRelated/CreatePost";
+import SearchBar from "./SearchBar";
 
 import {useNavigate} from "react-router-dom";
+
 import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, searchGreenit, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup, numbersOfBlogs}) {
-   const [isClicked, setIsClicked] = useState(false);
-   const [showForm, setShowForm] = useState(false);
-
+function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreenit, setShowSignup}) {
    let navigate = useNavigate();
 
-   const showSearch = () => {
-      setIsClicked(prev => !prev)
+   // State to handle whether search bar is shown or not
+   const [searchClicked, setSearchClicked] = useState(false);
+   // State to handle whether CreatePost component is shown or not
+   const [showCreatePost, setShowCreatePost] = useState(false);
+
+   // Function to show or hide search bar when user clicks related button
+   const showSearchBar = () => {
+      setSearchClicked(prev => !prev);
    }
 
    return (
@@ -32,35 +37,30 @@ function Navbar({currentUser, setCurrentUser, searchGreenit, postData, setPostDa
             </a>
 
             <div className="category-bar">
-               <button onClick={showSearch}>Search</button>
+               <button onClick={showSearchBar}>Search</button>
 
                <button onClick={() => navigate("/all_users")}>All Users</button>
 
-               <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * numbersOfBlogs) + 1}`)}>Random Post</button>
+               <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * postData?.length) + 1}`)}>Random Post</button>
 
-               {currentUser ? <button onClick={() => setShowForm(true)}>Create Post</button> : null}
+               {/* Only show create post button if currentUser object exists */}
+               {currentUser ? <button onClick={() => setShowCreatePost(true)}>Create Post</button> : null}
             </div>
 
             <LogSignButtons
                currentUser={currentUser}
                setCurrentUser={setCurrentUser}
-               postData={postData}
-               setPostData={setPostData}
-               userData={userData}
-               setUserData={setUserData}
-               commentData={commentData}
-               setCommentData={setCommentData}
                setShowSignup={setShowSignup}/>
          </nav>
 
-         {isClicked ? <SearchBar searchGreenit={searchGreenit}/> : null}
+         {searchClicked ? <SearchBar searchGreenit={searchGreenit}/> : null}
          
          <CreatePost
             currentUser={currentUser}
-            showForm={showForm}
-            setShowForm={setShowForm}
             postData={postData}
             setPostData={setPostData}
+            showCreatePost={showCreatePost}
+            setShowCreatePost={setShowCreatePost}
          />
       </>
    );
