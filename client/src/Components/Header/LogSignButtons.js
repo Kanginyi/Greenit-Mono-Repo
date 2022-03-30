@@ -1,23 +1,18 @@
 import React from 'react';
+
 import {useNavigate} from "react-router-dom";
 
 import {FaRegSmileBeam} from "react-icons/fa";
 
-function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, userData, setUserData, commentData, setCommentData, setShowSignup}) {
+function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
    let navigate = useNavigate();
 
-   const toLogin = () => {
-      setShowSignup(false);
-
-      navigate("/welcome");
+   // Function to route to user's profile when user clicks related button
+   const viewYourProfile = () => {
+      navigate(`/all_users/${currentUser.id}`);
    }
 
-   const toSignup = () => {
-      setShowSignup(true);
-
-      navigate("/welcome");
-   }
-
+   // Function to logout user, setCurrentUser to null, and route back to homepage
    const toLogout = () => {
       fetch("/logout", {
          method: "DELETE"
@@ -25,36 +20,42 @@ function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, use
  
       setCurrentUser(null);
       
-      setPostData(postData);
-      setUserData(userData);
-      setCommentData(commentData);
-
       navigate("/");
    };
-   
-   const viewProfile = () => {
-      navigate(`/all_users/${currentUser.id}`);
+
+   // Function to route to Login component because showSignup is false
+   const toLogin = () => {
+      setShowSignup(false);
+
+      navigate("/welcome");
+   }
+
+   // Function to route to Signup component because showSignup is true
+   const toSignup = () => {
+      setShowSignup(true);
+
+      navigate("/welcome");
    }
 
    return (
       <div className="user-section">
-        
+         {/* Based on if currentUser object exists, conditionally render username & logout buttons OR signup & login buttons*/}
          {
             currentUser
          ?
-            // Greetings user|Logout button
+            // Username|Logout buttons
             <>
                <button
+                  onClick={viewYourProfile}
                   className="username-color signup-button"
-                  onClick={viewProfile}
                   style={{fontWeight: "600"}}
                >
-                     <FaRegSmileBeam/>&nbsp;{currentUser?.username}
+                  <FaRegSmileBeam/>&nbsp;{currentUser?.username}
                </button>
 
                <button
-                  className="login-button"
                   onClick={toLogout}
+                  className="login-button"
                >
                   Logout
                </button>
@@ -63,15 +64,15 @@ function LogSignButtons({currentUser, setCurrentUser, postData, setPostData, use
             // Signup|Login buttons
             <>
                <button
-                  className="signup-button"
                   onClick={toSignup}
+                  className="signup-button"
                >
                   Signup
                </button>
 
                <button
-                  className="login-button"
                   onClick={toLogin}
+                  className="login-button"
                >
                   Login
                </button>
