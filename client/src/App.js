@@ -12,6 +12,8 @@ import Users from "./Components/Users/Users";
 import {Route, Routes, useNavigate} from "react-router-dom";
 
 function App() {
+   let navigate = useNavigate();
+
    // State to handle current user's information
    const [currentUser, setCurrentUser] = useState(null);
 
@@ -35,8 +37,6 @@ function App() {
    const [postData, setPostData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
-
-   let navigate = useNavigate();
 
    useEffect(() => {
       fetch("/blogs")
@@ -62,12 +62,12 @@ function App() {
    // State to handle search bar value
    const [searchValue, setSearchValue] = useState("");
 
-   // Function to update searchValue state based on search bar's inputted values
+   // Function to update searchValue's state based on search bar's inputted values
    const searchGreenit = e => {
       setSearchValue(e.target.value);
    };
     
-   // Function to handle deleting posts: The id parameter is the deleted blog's id
+   // Function to handle deleting posts using the id of the deleted blog
    const handleDelete = id => {
       let checkDelete = window.confirm("Are you sure you want to delete your post?");
 
@@ -97,97 +97,93 @@ function App() {
       return <Loader/>
    }
 
-  return (
-    <div className="App">
-      
-      <header className="fixed-navbar">
-         {/* Hidden skip navigation button to try and help with accessibility; only really works on main page though :/ */}
-         <a href="#main-content" id="skip-nav">Skip Navigation</a>
+   return (
+      <div className="App">
+         
+         <header className="fixed-navbar">
+            {/* Hidden skip navigation button to try and help with accessibility; only really works on main page though :/ */}
+            <a href="#main-content" id="skip-nav">Skip Navigation</a>
 
-         <Navbar
-            currentUser={currentUser}
-            setCurrentUser={setCurrentUser}
-            userData={userData}
-            setUserData={setUserData}
-            postData={postData}
-            setPostData={setPostData}
-            commentData={commentData}
-            setCommentData={setCommentData}
-            searchGreenit={searchGreenit}
-            setShowSignup={setShowSignup}
-         />
-      </header>
+            <Navbar
+               currentUser={currentUser}
+               setCurrentUser={setCurrentUser}
+               postData={postData}
+               setPostData={setPostData}
+               searchGreenit={searchGreenit}
+               setShowSignup={setShowSignup}
+            />
+         </header>
 
-      <main id="main-content">
-         <Routes>
+         <main id="main-content">
+            <Routes>
 
-            <Route path="/" element={
-               <Posts
-                  currentUser={currentUser}
-                  userData={userData}
-                  postData={postData}
-                  searchValue={searchValue}
-                  handleDelete={handleDelete}
-               />
-            }/>
+               <Route path="/" element={
+                  <Posts
+                     currentUser={currentUser}
+                     userData={userData}
+                     postData={postData}
+                     searchValue={searchValue}
+                     handleDelete={handleDelete}
+                  />
+               }/>
 
-            <Route path="/welcome" element={
-               <LoginSignupForm
-                  setCurrentUser={setCurrentUser}
-                  setUserData={setUserData}
-                  showSignup={showSignup}
-                  setShowSignup={setShowSignup}
-               />
-            }/>
+               <Route path="/welcome" element={
+                  <LoginSignupForm
+                     setCurrentUser={setCurrentUser}
+                     setUserData={setUserData}
+                     showSignup={showSignup}
+                     setShowSignup={setShowSignup}
+                  />
+               }/>
 
-            <Route path="/blogs/:id" element={
-               <PostDetails
-                  currentUser={currentUser}
-                  userData={userData}
-                  commentData={commentData}
-                  setCommentData={setCommentData}
-                  searchValue={searchValue}
-                  handleDelete={handleDelete}
-               />
-            }/>
+               <Route path="/blogs/:id" element={
+                  <PostDetails
+                     currentUser={currentUser}
+                     userData={userData}
+                     commentData={commentData}
+                     setCommentData={setCommentData}
+                     searchValue={searchValue}
+                     handleDelete={handleDelete}
+                  />
+               }/>
 
-            <Route path="/editing/:id" element={
-               <EditPost
-                  currentUser={currentUser}
-                  postData={postData}
-                  setPostData={setPostData}
-               />
-            }/>
+               <Route path="/editing/:id" element={
+                  <EditPost
+                     currentUser={currentUser}
+                     postData={postData}
+                     setPostData={setPostData}
+                  />
+               }/>
 
-            <Route path="/all_users" element={
-               <Users
-                  userData={userData}
-                  setUserData={setUserData}
-                  postData={postData}
-                  commentData={commentData}
-                  searchValue={searchValue}
-               />
-            }/>
+               <Route path="/all_users" element={
+                  <Users
+                     userData={userData}
+                     setUserData={setUserData}
+                     postData={postData}
+                     commentData={commentData}
+                     searchValue={searchValue}
+                  />
+               }/>
 
-            <Route path="/all_users/:id" element={
-               <UserInfo
-                  currentUser={currentUser}
-                  setCurrentUser={setCurrentUser}
-                  userData={userData}
-                  setUserData={setUserData}
-                  postData={postData}
-                  setPostData={setPostData}
-                  commentData={commentData}
-                  setCommentData={setCommentData}
-                  searchValue={searchValue}
-               />
-            }/>
+               <Route path="/all_users/:id" element={
+                  <UserInfo
+                     currentUser={currentUser}
+                     setCurrentUser={setCurrentUser}
+                     userData={userData}
+                     setUserData={setUserData}
+                     postData={postData}
+                     setPostData={setPostData}
+                     commentData={commentData}
+                     setCommentData={setCommentData}
+                     searchValue={searchValue}
+                  />
+               }/>
 
-         </Routes>
-      </main>
+            </Routes>
+         </main>
 
-    </div>
-  );
+      </div>
+   );
 }
 
 export default App;
