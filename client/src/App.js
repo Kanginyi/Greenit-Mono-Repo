@@ -1,19 +1,21 @@
 import React, {useState, useEffect} from "react";
-import Posts from "./Components/PostRelated/Posts";
+
 import Navbar from "./Components/Header/Navbar";
-import Users from "./Components/Users/Users";
-import UserInfo from "./Components/Users/UserInfo";
-import PostDetails from "./Components/PostRelated/PostDetails";
+import Loader from "./Components/Helpers/Loader";
 import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
 import EditPost from "./Components/PostRelated/EditPost";
-import Loader from "./Components/Helpers/Loader";
+import PostDetails from "./Components/PostRelated/PostDetails";
+import Posts from "./Components/PostRelated/Posts";
+import UserInfo from "./Components/Users/UserInfo";
+import Users from "./Components/Users/Users";
 
 import {Route, Routes, useNavigate} from "react-router-dom";
 
 function App() {
-   // Getting current user information
+   // State to handle current user's information
    const [currentUser, setCurrentUser] = useState(null);
 
+   // Setting current user's information when someone logs in
    useEffect(() => {
       fetch("/me")
          .then(resp => {
@@ -26,8 +28,10 @@ function App() {
          })
    }, []);
 
+   // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
    
+   // States to handle initial fetches for ALL initial posts, users, and comments
    const [postData, setPostData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
@@ -55,38 +59,40 @@ function App() {
          .then(data => setCommentData(data));
    }, []);
 
-   // Search Bar
+   // State to handle search bar value
    const [searchValue, setSearchValue] = useState("");
 
-   function search(e) {
+   // Function to update searchValue state based on search bar's inputted values
+   const searchGreenit = e => {
       setSearchValue(e.target.value);
-   }
+   };
     
-   // Delete Posts
+   // Function to handle deleting posts: The id parameter is the deleted blog's id
    const handleDelete = id => {
       let checkDelete = window.confirm("Are you sure you want to delete your post?");
 
+      // If the checkDelete returns true (because a user clicked confirm), then continue with delete actions
       if (checkDelete) {
          fetch(`/blogs/${id}`,{
             method : "DELETE"
          })
-         .then(() => {
-            const deletePost = postData.filter(post => post.id !== id);
-            setPostData(deletePost);
-            setUserData([...userData]);
-            setCommentData([...commentData]);
-         })
+            .then(() => {
+               // deletePost variable to hold array that removes the deleted post from postData and setPostData to that new array
+               const deletePost = postData?.filter(post => post?.id !== id);
+               setPostData(deletePost);
+
+               // deleteRelatedComments variable to hold array that removes the deleted post's comments from commentData and setCommentData to that new array
+               const deleteRelatedComments = commentData?.filter(comment => comment?.blog?.id !== id)
+               setCommentData(deleteRelatedComments);
+            })
          navigate("/");
       }
-   }
+   };
 
-   // Different rendering options for Login component
+   // State to handle whether to show Signup component or Login component
    const [showSignup, setShowSignup] = useState(false);
 
-   // PostData.length for random page
-   const numbersOfBlogs = postData?.length;
-
-   // Loading screen component
+   // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
    }
@@ -95,32 +101,61 @@ function App() {
     <div className="App">
       
       <header className="fixed-navbar">
+         {/* Hidden skip navigation button to try and help with accessibility; only really works on main page though :/ */}
          <a href="#main-content" id="skip-nav">Skip Navigation</a>
 
          <Navbar
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
-            search={search}
-            postData={postData}
-            setPostData={setPostData}
             userData={userData}
             setUserData={setUserData}
+            postData={postData}
+            setPostData={setPostData}
             commentData={commentData}
             setCommentData={setCommentData}
+            searchGreenit={searchGreenit}
             setShowSignup={setShowSignup}
-            numbersOfBlogs={numbersOfBlogs}
          />
       </header>
 
       <main id="main-content">
          <Routes>
+
             <Route path="/" element={
                <Posts
                   currentUser={currentUser}
-                  postData={postData}
                   userData={userData}
+                  postData={postData}
                   searchValue={searchValue}
                   handleDelete={handleDelete}
+               />
+            }/>
+
+            <Route path="/welcome" element={
+               <LoginSignupForm
+                  setCurrentUser={setCurrentUser}
+                  setUserData={setUserData}
+                  showSignup={showSignup}
+                  setShowSignup={setShowSignup}
+               />
+            }/>
+
+            <Route path="/blogs/:id" element={
+               <PostDetails
+                  currentUser={currentUser}
+                  userData={userData}
+                  commentData={commentData}
+                  setCommentData={setCommentData}
+                  searchValue={searchValue}
+                  handleDelete={handleDelete}
+               />
+            }/>
+
+            <Route path="/editing/:id" element={
+               <EditPost
+                  currentUser={currentUser}
+                  postData={postData}
+                  setPostData={setPostData}
                />
             }/>
 
@@ -145,34 +180,6 @@ function App() {
                   commentData={commentData}
                   setCommentData={setCommentData}
                   searchValue={searchValue}
-               />
-            }/>
-
-            <Route path="/blogs/:id" element={
-               <PostDetails
-                  currentUser={currentUser}
-                  userData={userData}
-                  commentData={commentData}
-                  setCommentData={setCommentData}
-                  searchValue={searchValue}
-                  handleDelete={handleDelete}
-               />
-            }/>
-
-            <Route path="/welcome" element={
-               <LoginSignupForm
-                  setCurrentUser={setCurrentUser}
-                  setUserData={setUserData}
-                  showSignup={showSignup}
-                  setShowSignup={setShowSignup}
-               />
-            }/>
-
-            <Route path="/editing/:id" element={
-               <EditPost
-                  currentUser={currentUser}
-                  postData={postData}
-                  setPostData={setPostData}
                />
             }/>
 
