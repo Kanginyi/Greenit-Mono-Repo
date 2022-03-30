@@ -1,29 +1,41 @@
-import React from 'react';
-import Signup from "./Signup";
+import React from "react";
+
 import Login from "./Login";
+import Signup from "./Signup";
+import ErrorPage from '../Helpers/ErrorPage';
 
 import "../../Stylings/LoginSignupForm.css";
 
-// Pass down currentUser into this component
-function LoginSignupForm({setCurrentUser, setUserData, showSignup, setShowSignup}) {    
+function LoginSignupForm({currentUser, setCurrentUser, setUserData, showSignup, setShowSignup}) {
    return (
-      <div className="login-signup-container">
-            
-         {showSignup
-            ? <Signup setCurrentUser={setCurrentUser} setUserData={setUserData}/>
-            : <Login setCurrentUser={setCurrentUser}/>
-         }
+      <>
+      {/* If a user is logged in already (currentUser object exists), then render ErrorPage component. If not, then show Signup/Login components*/}
+      {!currentUser
+         ?
+            <div className="login-signup-container">   
+               {showSignup
+                  ? 
+                     <Signup setCurrentUser={setCurrentUser} setUserData={setUserData}/>
+                  : 
+                     <Login setCurrentUser={setCurrentUser}/>
+               }
 
-         <div className="login-signup-footer">
-            <p>{showSignup ? "Already have an account?" : "Don't have an account?"}</p>
-            <button
-               onClick={() => setShowSignup(prev => !prev)}
-            >
-               {showSignup ? "Login" : "Signup" }
-            </button>
-         </div>
+               <div className="login-signup-footer">
+                  <p>
+                     {showSignup ? "Already have an account?" : "Don't have an account?"}
+                  </p>
 
-      </div>
+                  <button
+                     onClick={() => setShowSignup(prev => !prev)}
+                  >
+                     {showSignup ? "Login" : "Signup" }
+                  </button>
+               </div>
+            </div>
+         :
+            <ErrorPage/>
+      }
+      </>
    );
 }
 
