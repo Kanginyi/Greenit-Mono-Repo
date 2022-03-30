@@ -130,6 +130,7 @@ function App() {
 
                <Route path="/welcome" element={
                   <LoginSignupForm
+                     currentUser={currentUser}
                      setCurrentUser={setCurrentUser}
                      setUserData={setUserData}
                      showSignup={showSignup}
