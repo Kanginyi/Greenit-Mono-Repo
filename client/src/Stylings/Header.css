@@ -36,6 +36,12 @@
    box-shadow: 0 1px 1px 0 #afd3b5;
 }
 
+@media only screen and (max-width: 70em) {
+   .nav {
+      justify-content:space-around;
+   }
+}
+
 .nav a {
    text-decoration: none;
 }
