@@ -104,6 +104,10 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   const removePost = postData?.filter(singlePost => singlePost?.id !== blog?.id);
 
                   setPostData(removePost);
+
+                  const removeComments = commentData?.filter(singleComment => singleComment?.blog?.id !== blog?.id);
+
+                  setCommentData(removeComments);
                })
          }
       }
