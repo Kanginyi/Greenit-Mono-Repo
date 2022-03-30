@@ -87,42 +87,42 @@ function Form({currentUser, postData, setPostData, showCreatePost, setShowCreate
       {showCreatePost ?
          <section className="form-background" onClick={closeForm} ref={formRef}>
             <animated.div style={animation}>
-            <div className="create-post-form">
-               <button onClick={() => setShowCreatePost(false)} className="x-button">X</button>
-               <form className="form-modal" onSubmit={submitGreenitPost}>
+               <div className="create-post-form">
+                  <button onClick={() => setShowCreatePost(false)} className="x-button">X</button>
+                  <form className="form-modal" onSubmit={submitGreenitPost}>
 
-                  <p>Title <span className="required-red">*</span></p>
-                  <input
-                     onChange={handleInputChange}
-                     type="text"
-                     name="title"
-                     value={blogForm.title}
-                     autoComplete="off"
-                     required
-                  />
+                     <p>Title <span className="required-red">*</span></p>
+                     <input
+                        onChange={handleInputChange}
+                        type="text"
+                        name="title"
+                        value={blogForm.title}
+                        autoComplete="off"
+                        required
+                     />
 
-                  <p>Content <span className="required-red">*</span></p>
-                  <textarea
-                     onChange={handleInputChange}
-                     type="text"
-                     name="blog_post"
-                     value={blogForm.blog_post}
-                     required
-                     rows="5"
-                     cols="50"
-                  />
+                     <p>Content <span className="required-red">*</span></p>
+                     <textarea
+                        onChange={handleInputChange}
+                        type="text"
+                        name="blog_post"
+                        value={blogForm.blog_post}
+                        required
+                        rows="5"
+                        cols="50"
+                     />
 
-                  <p>Image</p>
-                  <input
-                     onChange={handleInputChange}
-                     type="text"
-                     name="image_url"
-                     value={blogForm.image_url}
-                     autoComplete="off"
-                  />
+                     <p>Image</p>
+                     <input
+                        onChange={handleInputChange}
+                        type="text"
+                        name="image_url"
+                        value={blogForm.image_url}
+                        autoComplete="off"
+                     />
 
-                  <button id="submit-form-button">Submit!</button>                     
-               </form>
+                     <button id="submit-form-button">Submit!</button>                     
+                  </form>
 
                </div>
             </animated.div>
