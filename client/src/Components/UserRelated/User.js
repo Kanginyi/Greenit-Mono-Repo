@@ -1,22 +1,23 @@
-import React from 'react';
-import "../../Stylings/Users.css";
+import React from "react";
 
 import {useNavigate} from "react-router-dom";
 
-function User({username, id, postData, commentData}) {
-   const checkComments = commentData?.filter(comment => comment?.user?.id === id);
-   const checkBlogs = postData?.filter(blog => blog?.user?.id === id);
+import "../../Stylings/Users.css";
+
+function User({user, postData, commentData}) {
+   const checkBlogs = postData?.filter(blog => blog?.user?.id === user?.id);
+   const checkComments = commentData?.filter(comment => comment?.user?.id === user?.id);
 
    let navigate = useNavigate();
 
    const checkUserInfo = () => {
-      navigate(`/all_users/${id}`);
+      navigate(`/all_users/${user?.id}`);
    };
   
    return (
       <div className="user-div" onClick={checkUserInfo}>
          <h2 className="username-color">
-            <span>{username}</span>
+            <span>{user?.username}</span>
          </h2>
 
          <div className="total-div">
