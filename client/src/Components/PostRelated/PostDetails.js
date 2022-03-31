@@ -35,7 +35,7 @@ function PostDetails({currentUser, userData, commentData, setCommentData, search
 
    // Render all comments onto the page
    const renderComments = currentBlogComments?.map(comment => {
-      return <Comment key={comment.id} currentUser={currentUser} comment={comment} userData={userData} commentData={commentData} setCommentData={setCommentData} currentBlogComments={currentBlogComments} setCurrentBlogComments={setCurrentBlogComments}/>
+      return <Comment key={comment.id} currentUser={currentUser} comment={comment} commentData={commentData} setCommentData={setCommentData} currentBlogComments={currentBlogComments} setCurrentBlogComments={setCurrentBlogComments}/>
    });
 
    const sortComments = renderComments?.sort((a, b) => a?.props?.comment?.created_at?.localeCompare(b?.props?.comment?.created_at));
