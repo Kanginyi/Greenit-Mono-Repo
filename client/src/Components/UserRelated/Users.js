@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import Loader from "../Helpers/Loader";
+
 import User from "./User";
+import Loader from "../Helpers/Loader";
 
 function Users({userData, postData, commentData, searchValue}) {
    // State to handle whether to show Loader component or not

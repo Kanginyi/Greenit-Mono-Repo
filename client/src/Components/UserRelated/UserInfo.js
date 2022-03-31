@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import Loader from "../Helpers/Loader";
+import React, {useState, useEffect} from "react";
+
 import ErrorPage from "../Helpers/ErrorPage";
+import Loader from "../Helpers/Loader";
+
+import {useNavigate, useParams} from "react-router-dom";
+
 import "../../Stylings/UserInfo.css";
-import { useParams, useNavigate } from 'react-router-dom';
 
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
