@@ -2,17 +2,17 @@ import React, {useState, useEffect} from 'react';
 import Loader from "../Helpers/Loader";
 import User from "./User";
 
-function Users({userData, setUserData, postData, commentData, searchValue}) {
+function Users({userData, postData, commentData, searchValue}) {
    const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
-      fetch("/users")
-         .then(resp => resp.json())
-         .then(data => {
-            setUserData(data);
-            setIsLoaded(true);
-         });
-   }, [setUserData]);
+      // const timedLoad = 
+      setTimeout(() => {
+         setIsLoaded(true);
+      }, 500);
+
+      // return clearTimeout(timedLoad);
+   }, []);
    
    const checkUsers = userData?.map(user => <User key={user.id} username={user.username} id={user.id} comments={commentData} blogs={postData}/>);
 
