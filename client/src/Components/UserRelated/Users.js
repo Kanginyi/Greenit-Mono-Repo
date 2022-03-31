@@ -14,7 +14,15 @@ function Users({userData, postData, commentData, searchValue}) {
       // return clearTimeout(timedLoad);
    }, []);
    
-   const checkUsers = userData?.map(user => <User key={user.id} username={user.username} id={user.id} comments={commentData} blogs={postData}/>);
+   const checkUsers = userData?.map(user => {
+      return <User
+               key={user.id}
+               username={user.username}
+               id={user.id}
+               postData={postData}
+               commentData={commentData}
+             />
+   });
 
    const filterUsers = searchValue === "" ? checkUsers : checkUsers.filter(user => user.props.username.toLowerCase().includes(searchValue.toLowerCase()));
 

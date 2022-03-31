@@ -3,9 +3,9 @@ import "../../Stylings/Users.css";
 
 import {useNavigate} from "react-router-dom";
 
-function User({username, id, comments, blogs}) {
-   const checkComments = comments?.filter(comment => comment?.user?.id === id);
-   const checkBlogs = blogs?.filter(blog => blog?.user?.id === id);
+function User({username, id, postData, commentData}) {
+   const checkComments = commentData?.filter(comment => comment?.user?.id === id);
+   const checkBlogs = postData?.filter(blog => blog?.user?.id === id);
 
    let navigate = useNavigate();
 

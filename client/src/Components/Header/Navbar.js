@@ -50,7 +50,8 @@ function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreen
             <LogSignButtons
                currentUser={currentUser}
                setCurrentUser={setCurrentUser}
-               setShowSignup={setShowSignup}/>
+               setShowSignup={setShowSignup}
+            />
          </nav>
 
          {searchClicked ? <SearchBar searchGreenit={searchGreenit}/> : null}

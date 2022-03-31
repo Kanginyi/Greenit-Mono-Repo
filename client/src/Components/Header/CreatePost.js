@@ -81,7 +81,6 @@ function Form({currentUser, postData, setPostData, showCreatePost, setShowCreate
       transform: showCreatePost ? `translateY(0%)` : `translateY(-300%)`
    });
 
-
    return (
       <>
       {showCreatePost

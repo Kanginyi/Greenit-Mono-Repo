@@ -10,7 +10,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
    // Function to route to user's profile when user clicks related button
    const viewYourProfile = () => {
       navigate(`/all_users/${currentUser.id}`);
-   }
+   };
 
    // Function to logout user, setCurrentUser to null, and route back to homepage
    const toLogout = () => {
@@ -28,14 +28,14 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
       setShowSignup(false);
 
       navigate("/welcome");
-   }
+   };
 
    // Function to route to Signup component because showSignup is true
    const toSignup = () => {
       setShowSignup(true);
 
       navigate("/welcome");
-   }
+   };
 
    return (
       <div className="user-section">
