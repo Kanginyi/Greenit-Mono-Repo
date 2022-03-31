@@ -122,7 +122,13 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                   <div>
                      <h4>{blog?.title}</h4>
                      <em>{post}</em>
-                     <p>{blog?.likes} Likes | {blog?.dislikes} Dislikes | {blog?.comments?.length} Comments</p>
+                     <p>
+                        {blog?.likes === 1 ? `${blog?.likes} Like` : `${blog?.likes} Likes`}
+                           &nbsp;|&nbsp;
+                        {blog?.dislikes === 1 ? `${blog?.dislikes} Dislike` : `${blog?.dislikes} Dislikes`}
+                           &nbsp;|&nbsp;
+                        {blog?.comments?.length === 1 ? `${blog?.comments?.length} Comment` : `${blog?.comments?.length} Comments`}
+                     </p>
                      <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
                   </div>
                </div>
@@ -192,7 +198,11 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                >
                   <h4>{comment?.blog?.title}</h4>
                   <em>{comment?.comment_text}</em>
-                  <p>{comment?.likes} Likes | {comment?.dislikes} Dislikes</p>
+                  <p>
+                     {comment?.likes === 1 ? `${comment?.likes} Like` : `${comment?.likes} Likes`}
+                        &nbsp;|&nbsp;
+                     {comment?.dislikes === 1 ? `${comment?.dislikes} Dislike` : `${comment?.dislikes} Dislikes`}                  
+                  </p>
                   <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
