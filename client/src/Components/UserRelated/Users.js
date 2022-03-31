@@ -29,7 +29,7 @@ function Users({userData, postData, commentData, searchValue}) {
    // Loading screen component
    if (!isLoaded) {
       return <Loader/>
-   }
+   };
 
    return (
       <div>

@@ -21,7 +21,7 @@ function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreen
    // Function to show or hide search bar when user clicks related button
    const showSearchBar = () => {
       setSearchClicked(prev => !prev);
-   }
+   };
 
    return (
       <>

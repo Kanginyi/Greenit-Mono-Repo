@@ -96,7 +96,7 @@ function App() {
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
-   }
+   };
 
    return (
       <div className="App">

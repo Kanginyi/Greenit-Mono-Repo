@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from "./Post";
 
-function Posts({currentUser, postData, userData, searchValue, handleDelete}) {
+function Posts({currentUser, userData, postData, searchValue, handleDelete}) {
    const renderPosts = postData?.map(post => {
       return <Post key={post.id} currentUser={currentUser} post={post} postData={postData} userData={userData} handleDelete={handleDelete}/>
    });

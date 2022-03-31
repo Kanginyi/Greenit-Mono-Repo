@@ -11,7 +11,7 @@ function User({username, id, postData, commentData}) {
 
    const checkUserInfo = () => {
       navigate(`/all_users/${id}`);
-   }
+   };
   
    return (
       <div className="user-div" onClick={checkUserInfo}>
