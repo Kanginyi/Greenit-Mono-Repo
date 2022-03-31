@@ -33,12 +33,8 @@ function Signup({setCurrentUser, setUserData}) {
                      // Remove "Password digest can't be blank" error message from initial errors array
                      const errorArray = error.errors.filter(error => error !== "Password digest can't be blank");
 
-                     // With the remaining possible errors, reorganize them so username errors show before password errors
-                     if (errorArray.length === 3) {
-                        const moveToFront = errorArray.pop();
-                        errorArray.unshift(moveToFront);
-                        errorArray.reverse();
-                     }
+                     // Reorganize errors so username errors show before password errors
+                     errorArray.reverse();
 
                      setErrorMessage(errorArray);
                   })
