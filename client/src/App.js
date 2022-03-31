@@ -7,8 +7,8 @@ import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
 import EditPost from "./Components/PostRelated/EditPost";
 import PostDetails from "./Components/PostRelated/PostDetails";
 import Posts from "./Components/PostRelated/Posts";
-import UserInfo from "./Components/Users/UserInfo";
-import Users from "./Components/Users/Users";
+import UserInfo from "./Components/UserRelated/UserInfo";
+import Users from "./Components/UserRelated/Users";
 
 import {Route, Routes, useNavigate} from "react-router-dom";
 
