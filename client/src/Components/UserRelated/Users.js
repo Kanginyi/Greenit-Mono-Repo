@@ -17,8 +17,7 @@ function Users({userData, postData, commentData, searchValue}) {
    const checkUsers = userData?.map(user => {
       return <User
                key={user.id}
-               username={user.username}
-               id={user.id}
+               user={user}
                postData={postData}
                commentData={commentData}
              />
