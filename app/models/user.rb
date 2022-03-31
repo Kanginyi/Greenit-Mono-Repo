@@ -7,5 +7,4 @@ class User < ApplicationRecord
    # validates :username, :password_digest, :session_token, presence: true
    validates :username, :password_digest, presence: true
    validates :username, uniqueness: true, length: {maximum: 30}
-   validates :password, length: {minimum: 5}
 end
