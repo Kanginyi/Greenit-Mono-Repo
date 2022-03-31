@@ -219,8 +219,13 @@ function Post({currentUser, post, userData, handleDelete}) {
          </article>
 
          <div className="view-more-container">
-            <em>{post?.comments?.length} Total Comments</em><br/>
-
+            <em>
+               {post?.comments?.length === 1
+                  ? `${post?.comments?.length} Total Comment`
+                  : `${post?.comments?.length} Total Comments`
+               }
+            </em>
+               <br/>
             <button onClick={viewMore} className="post-view-more">
                VIEW MORE
             </button>
