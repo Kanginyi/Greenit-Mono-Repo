@@ -3,8 +3,10 @@ import Loader from "../Helpers/Loader";
 import User from "./User";
 
 function Users({userData, postData, commentData, searchValue}) {
+   // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
 
+   // useEffect to mimic page load time; keep things commented out for future reference/just in case we may need to clear side effects later
    useEffect(() => {
       // const timedLoad = 
       setTimeout(() => {
@@ -14,7 +16,8 @@ function Users({userData, postData, commentData, searchValue}) {
       // return clearTimeout(timedLoad);
    }, []);
    
-   const checkUsers = userData?.map(user => {
+   // Map through userData and render each User component by passing in the related information as props
+   const renderUsers = userData?.map(user => {
       return <User
                key={user.id}
                user={user}
@@ -23,9 +26,10 @@ function Users({userData, postData, commentData, searchValue}) {
              />
    });
 
-   const filterUsers = searchValue === "" ? checkUsers : checkUsers.filter(user => user.props.username.toLowerCase().includes(searchValue.toLowerCase()));
+   // If searchValue is an empty string, render all users inside renderUsers. As searchValue gets updated, check each user's username to see if it includes the inputted searchValue
+   const filterUsers = searchValue === "" ? renderUsers : renderUsers.filter(user => user.props.username.toLowerCase().includes(searchValue.toLowerCase()));
 
-   // Loading screen component
+   // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
    };
