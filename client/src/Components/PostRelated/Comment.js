@@ -5,10 +5,10 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 import "../../Stylings/Comment.css";
 
-function Comment({currentUser, comment, userData, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
+function Comment({currentUser, comment, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
    let navigate = useNavigate();
 
-   const commentUser = (userData?.filter(user => user?.id === comment?.user?.id))[0];
+   const commentUser = comment?.user;
 
    const commentDate = new Date(comment?.created_at).toLocaleDateString();
    const commentTime = new Date(comment?.created_at).toLocaleTimeString();
