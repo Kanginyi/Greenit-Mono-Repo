@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import Comment from "./Comment";
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
+import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
 import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
@@ -135,24 +136,6 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
    }
 
    // Three states of the buttons
-   const notPressed = <>
-                        <button
-                           className="likes-button"
-                           onClick={handleLikes}
-                        >
-                           <FaRegThumbsUp/>&nbsp;{postLikes}
-                        </button>
-
-                        <div className="error-message">{loginError}</div>
-
-                        <button
-                           className="dislikes-button"
-                           onClick={handleDislikes}                      
-                        >
-                            <FaRegThumbsDown/>&nbsp;{postDislikes}
-                        </button>
-                      </>
-
    const likesPressed = <>
                         <button
                            className="likes-pressed"
@@ -278,9 +261,18 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
 
                   <div className="post-header">
                         <div className="likes-button-container">
-                           {isClicked === 1 ? notPressed :
-                           isClicked === 2 ? likesPressed :
-                           dislikesPressed}
+                           {isClicked === 1
+                              ? <NeitherPressed
+                                    likes={postLikes}
+                                    dislikes={postDislikes}
+                                    likesFunction={handleLikes}
+                                    dislikesFunction={handleDislikes}
+                                    errorMessage={loginError}
+                                />
+                              : isClicked === 2
+                                 ? likesPressed
+                                 : dislikesPressed
+                           }
                         </div>
                         &nbsp;
                      <h2 className="post-title">{currentBlogInfo?.title}</h2>

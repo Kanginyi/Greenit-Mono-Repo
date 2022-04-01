@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
+
 import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
@@ -119,24 +121,6 @@ function Post({currentUser, post, handleDelete}) {
    }
 
    // Three states of the buttons
-   const notPressed = <>
-                        <button
-                           className="likes-button"
-                           onClick={handleLikes}
-                        >
-                           <FaRegThumbsUp/>&nbsp;{postLikes}
-                        </button>
-
-                        <div className="error-message">{loginError}</div>
-                        
-                        <button
-                           className="dislikes-button"
-                           onClick={handleDislikes}                      
-                        >
-                            <FaRegThumbsDown/>&nbsp;{postDislikes}
-                        </button>
-                      </>
-
    const likesPressed = <>
                         <button
                            className="likes-pressed"
@@ -192,9 +176,18 @@ function Post({currentUser, post, handleDelete}) {
 
             <div className="post-header">
                <div className="likes-button-container">
-                  {isClicked === 1 ? notPressed :
-                  isClicked === 2 ? likesPressed :
-                  dislikesPressed}
+                  {isClicked === 1
+                     ? <NeitherPressed
+                           likes={postLikes}
+                           dislikes={postDislikes}
+                           likesFunction={handleLikes}
+                           dislikesFunction={handleDislikes}
+                           errorMessage={loginError}
+                       />
+                     : isClicked === 2
+                        ? likesPressed
+                        : dislikesPressed
+                  }
                </div>
                      &nbsp;
                <h2 className="post-title">{post.title}</h2>

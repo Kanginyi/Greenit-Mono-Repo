@@ -1,6 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
+
 import "../../Stylings/Comment.css";
 
 import {BsTrash} from "react-icons/bs";
@@ -156,24 +158,6 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    }
 
    // Three states of the buttons
-   const notPressed = <>
-                        <button
-                           className="likes-button"
-                           onClick={handleLikes}
-                        >
-                           <FaRegThumbsUp/>&nbsp;{commentLikes}
-                        </button>
-
-                        <div className="error-message">{commentError}</div>
-                        
-                        <button
-                           className="dislikes-button"
-                           onClick={handleDislikes}                      
-                        >
-                            <FaRegThumbsDown/>&nbsp;{commentDislikes}
-                        </button>
-                      </>
-
    const likesPressed = <>
                         <button
                            className="likes-pressed"
@@ -242,9 +226,17 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
 
          <div className="comment-information">
             <div className="comment-likes-container">
-               {isClicked === 1 ? notPressed :
-               isClicked === 2 ? likesPressed :
-               dislikesPressed}
+               {isClicked === 1
+                  ? <NeitherPressed
+                        likes={commentLikes}
+                        dislikes={commentDislikes}
+                        likesFunction={handleLikes}
+                        dislikesFunction={handleDislikes}
+                        errorMessage={commentError}
+                    />
+                  : isClicked === 2
+                     ? likesPressed
+                     : dislikesPressed}
             </div>
 
             <div className="comment-meta-data">
