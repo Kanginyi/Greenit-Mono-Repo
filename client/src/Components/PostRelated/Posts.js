@@ -2,7 +2,7 @@ import React from "react";
 
 import Post from "./Post";
 
-function Posts({currentUser, userData, postData, searchValue, handleDelete}) {
+function Posts({currentUser, postData, searchValue, handleDelete}) {
    // Map through postData and render each Post component by passing in the related information as props
    const renderPosts = postData?.map(post => {
       return <Post
