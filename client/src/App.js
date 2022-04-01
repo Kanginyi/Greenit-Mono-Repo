@@ -141,7 +141,6 @@ function App() {
                <Route path="/blogs/:id" element={
                   <PostDetails
                      currentUser={currentUser}
-                     userData={userData}
                      commentData={commentData}
                      setCommentData={setCommentData}
                      searchValue={searchValue}
