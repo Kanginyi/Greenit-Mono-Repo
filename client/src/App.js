@@ -89,6 +89,85 @@ function App() {
       }
    };
 
+   
+   // TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
+
+   // Function to handle liking posts using the id of the liked blog
+   const handlePostLikes = (id, setLikes, setDislikes, clickedNum, setClickedNum, setErrorMessage) => {
+      if (currentUser) {
+         fetch(`/inc_likes/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setLikes(data?.likes));
+
+         if (clickedNum === 3) {
+            fetch(`/dec_dislikes/${id}`, {
+               method: "PATCH",
+               headers: {"Content-Type": "application/json"}
+            })
+               .then(resp => resp.json())
+               .then(data => setDislikes(data?.dislikes));
+         }
+         setClickedNum(2); 
+      } else {
+         setErrorMessage("Please login");
+      }
+   };
+
+   // Function to handle disliking posts using the id of the disliked blog
+   const handlePostDislikes = (id, setLikes, setDislikes, clickedNum, setClickedNum, setErrorMessage) => {
+      if (currentUser) {
+         fetch(`/inc_dislikes/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setDislikes(data?.dislikes));
+
+         if (clickedNum === 2) {
+            fetch(`/dec_likes/${id}`, {
+               method: "PATCH",
+               headers: {"Content-Type": "application/json"}
+            })
+               .then(resp => resp.json())
+               .then(data => setLikes(data?.likes));
+         }
+         setClickedNum(3);
+      } else {
+         setErrorMessage("Please login");
+      }
+   };
+
+   const handleUnlikePost = (id, setLikes, setClickedNum) => {
+      if (currentUser) {
+         fetch(`/dec_likes/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setLikes(data?.likes));
+      }
+      setClickedNum(1);
+   };
+
+   const handleUndislikePost = (id, setDislikes, setClickedNum) => {
+      if (currentUser) {
+         fetch(`/dec_dislikes/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"}
+         })
+            .then(resp => resp.json())
+            .then(data => setDislikes(data?.dislikes));
+      }
+      setClickedNum(1);
+   };
+
+
+   // TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
+
+
    // State to handle whether to show Signup component or Login component
    const [showSignup, setShowSignup] = useState(false);
 
@@ -143,6 +222,10 @@ function App() {
                      setCommentData={setCommentData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
+                     handlePostLikes={handlePostLikes}
+                     handlePostDislikes={handlePostDislikes}
+                     handleUnlikePost={handleUnlikePost}
+                     handleUndislikePost={handleUndislikePost}
                   />
                }/>
 
