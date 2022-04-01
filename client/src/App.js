@@ -120,7 +120,6 @@ function App() {
                <Route path="/" element={
                   <Posts
                      currentUser={currentUser}
-                     userData={userData}
                      postData={postData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
