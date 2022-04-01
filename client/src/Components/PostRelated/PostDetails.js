@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import Comment from "./Comment";
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
+import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
 import {BsTrash} from "react-icons/bs";
@@ -136,22 +137,6 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
    }
 
    // Three states of the buttons
-   const likesPressed = <>
-                        <button
-                           className="likes-pressed"
-                           onClick={handleUnlike}
-                        >
-                           <FaThumbsUp/>&nbsp;{postLikes}
-                        </button>
-
-                        <button
-                           className="dislikes-button"
-                           onClick={handleDislikes}                     
-                        >
-                            <FaRegThumbsDown/>&nbsp;{postDislikes}
-                        </button>
-                      </>
-
    const dislikesPressed = <>
                         <button
                            className="likes-button"
@@ -270,7 +255,12 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                                     errorMessage={loginError}
                                 />
                               : isClicked === 2
-                                 ? likesPressed
+                                 ? <LikesPressed
+                                       likes={postLikes}
+                                       dislikes={postDislikes}
+                                       unlikeFunction={handleUnlike}
+                                       dislikesFunction={handleDislikes}
+                                   />
                                  : dislikesPressed
                            }
                         </div>

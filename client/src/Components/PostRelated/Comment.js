@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
 import "../../Stylings/Comment.css";
@@ -158,22 +159,6 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    }
 
    // Three states of the buttons
-   const likesPressed = <>
-                        <button
-                           className="likes-pressed"
-                           onClick={handleUnlike}
-                        >
-                           <FaThumbsUp/>&nbsp;{commentLikes}
-                        </button>
-
-                        <button
-                           className="dislikes-button"
-                           onClick={handleDislikes}                     
-                        >
-                            <FaRegThumbsDown/>&nbsp;{commentDislikes}
-                        </button>
-                      </>
-
    const dislikesPressed = <>
                         <button
                            className="likes-button"
@@ -235,7 +220,12 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                         errorMessage={commentError}
                     />
                   : isClicked === 2
-                     ? likesPressed
+                     ? <LikesPressed
+                           likes={commentLikes}
+                           dislikes={commentDislikes}
+                           unlikeFunction={handleUnlike}
+                           dislikesFunction={handleDislikes}
+                       />
                      : dislikesPressed}
             </div>
 
