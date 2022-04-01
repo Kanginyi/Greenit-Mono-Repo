@@ -19,6 +19,17 @@ function Post({currentUser, post, handleDelete}) {
       navigate(`/blogs/${post?.id}`);
    }
 
+   // Add ... after posts with more than 100 characters in length
+   let renderOnMainPage;
+   if (post?.blog_post?.length > 100) {
+      renderOnMainPage = post?.blog_post?.slice(0, 100) + "...";
+   } else {
+      renderOnMainPage = post?.blog_post;
+   }
+
+   const postDate = new Date(post.created_at).toLocaleDateString();
+   const postTime = new Date(post.created_at).toLocaleTimeString();
+
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes);
@@ -157,25 +168,6 @@ function Post({currentUser, post, handleDelete}) {
                            <FaThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>
-
-   if (postLikes > 99999) {
-      setPostLikes("99999+");
-   }
-
-   if (postDislikes > 99999) {
-      setPostDislikes("99999+");
-   }
-
-   // Add ... after posts with more than 100 characters in length
-   let renderOnMainPage;
-   if (post?.blog_post?.length > 100) {
-      renderOnMainPage = post?.blog_post?.slice(0, 100) + "...";
-   } else {
-      renderOnMainPage = post?.blog_post;
-   }
-
-   const postDate = new Date(post.created_at).toLocaleDateString();
-   const postTime = new Date(post.created_at).toLocaleTimeString();
    
    return (
       <div className="post-div">
