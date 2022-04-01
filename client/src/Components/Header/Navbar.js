@@ -23,6 +23,17 @@ function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreen
       setSearchClicked(prev => !prev);
    };
 
+   // Function to view random post
+   const viewRandomPost = () => {
+      // Map through postData, grab their ids, and return a new array with these ids
+      const postIDArray = postData?.map(post => post?.id);
+
+      // Grab a random number based on postIDArray's length and use that number as an index to randomly select an ID inside of postIDArray
+      const randomPostID = postIDArray[Math.floor(Math.random() * postIDArray?.length)];
+
+      navigate(`/blogs/${randomPostID}`)
+   };
+
    return (
       <>
          <nav className="nav">
@@ -41,7 +52,7 @@ function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreen
 
                <button onClick={() => navigate("/all_users")}>All Users</button>
 
-               <button onClick={() => navigate(`/blogs/${Math.floor(Math.random() * postData?.length) + 1}`)}>Random Post</button>
+               <button onClick={viewRandomPost}>Random Post</button>
 
                {/* Only show create post button if currentUser object exists */}
                {currentUser ? <button onClick={() => setShowCreatePost(true)}>Create Post</button> : null}
