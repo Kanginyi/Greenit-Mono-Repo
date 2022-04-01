@@ -6,19 +6,17 @@ import "../../Stylings/Post.css";
 import {BsTrash} from "react-icons/bs";
 import {FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
-function Post({currentUser, post, userData, handleDelete}) {
-   const userObj = userData?.filter(user => user?.id === post?.user?.id);
+function Post({currentUser, post, handleDelete}) {
+   const userObj = post?.user; 
 
    let navigate = useNavigate();
 
    const clickUser = () => {
-      navigate(`/all_users/${userObj[0]?.id}`);
+      navigate(`/all_users/${userObj?.id}`);
    }
 
-   const postID = post?.id;
-
    const viewMore = () => {
-      navigate(`/blogs/${postID}`);
+      navigate(`/blogs/${post?.id}`);
    }
 
    const [isClicked, setIsClicked] = useState(1);
@@ -29,7 +27,7 @@ function Post({currentUser, post, userData, handleDelete}) {
    // Likes and Dislikes handling functions
    const handleLikes = () => {
       if (currentUser) {
-         fetch(`/inc_likes/${postID}`, {
+         fetch(`/inc_likes/${post?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
@@ -39,7 +37,7 @@ function Post({currentUser, post, userData, handleDelete}) {
             });
 
       if (isClicked === 3) {
-         fetch(`/dec_dislikes/${postID}`, {
+         fetch(`/dec_dislikes/${post?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
@@ -56,7 +54,7 @@ function Post({currentUser, post, userData, handleDelete}) {
 
    const handleDislikes = () => {
       if (currentUser) {
-         fetch(`/inc_dislikes/${postID}`, {
+         fetch(`/inc_dislikes/${post?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
@@ -66,7 +64,7 @@ function Post({currentUser, post, userData, handleDelete}) {
             });
 
          if (isClicked === 2) {
-            fetch(`/dec_likes/${postID}`, {
+            fetch(`/dec_likes/${post?.id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
             })
@@ -83,7 +81,7 @@ function Post({currentUser, post, userData, handleDelete}) {
 
    const handleUnlike = () => {
       if (currentUser) {
-         fetch(`/dec_likes/${postID}`, {
+         fetch(`/dec_likes/${post?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
@@ -97,7 +95,7 @@ function Post({currentUser, post, userData, handleDelete}) {
 
    const handleUndislike = () => {
       if (currentUser) {
-         fetch(`/dec_dislikes/${postID}`, {
+         fetch(`/dec_dislikes/${post?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
@@ -191,11 +189,11 @@ function Post({currentUser, post, userData, handleDelete}) {
                         onClick={clickUser}
                         style={{cursor: "pointer"}}
                      >
-                        u/{userObj[0]?.username}
+                        u/{userObj?.username}
                      </span> on {postDate} at {postTime}
                </h3>
 
-               {currentUser?.username === userObj[0]?.username
+               {currentUser?.username === userObj?.username
                   ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>
