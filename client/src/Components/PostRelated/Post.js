@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+import DislikesPressed from "../Likes&DislikesButtons/DislikesPressed";
 import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
@@ -120,23 +121,6 @@ function Post({currentUser, post, handleDelete}) {
       }
       setIsClicked(1);
    }
-
-   // Three states of the buttons
-   const dislikesPressed = <>
-                        <button
-                           className="likes-button"
-                           onClick={handleLikes}                      
-                        >
-                           <FaRegThumbsUp/>&nbsp;{postLikes} 
-                        </button>
-
-                        <button
-                           className="dislikes-pressed"
-                           onClick={handleUndislike}                    
-                        >
-                           <FaThumbsDown/>&nbsp;{postDislikes}
-                        </button>
-                      </>
    
    return (
       <div className="post-div">
@@ -176,7 +160,12 @@ function Post({currentUser, post, handleDelete}) {
                               unlikeFunction={handleUnlike}
                               dislikesFunction={handleDislikes}
                           />
-                        : dislikesPressed
+                        : <DislikesPressed
+                              likes={postLikes}
+                              dislikes={postDislikes}
+                              likesFunction={handleLikes}
+                              undislikeFunction={handleUndislike}
+                          />
                   }
                </div>
                      &nbsp;

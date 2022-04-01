@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import Comment from "./Comment";
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
+import DislikesPressed from "../Likes&DislikesButtons/DislikesPressed";
 import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
@@ -136,23 +137,6 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
       setIsClicked(1);
    }
 
-   // Three states of the buttons
-   const dislikesPressed = <>
-                        <button
-                           className="likes-button"
-                           onClick={handleLikes}                      
-                        >
-                           <FaRegThumbsUp/>&nbsp;{postLikes}
-                        </button>
-
-                        <button
-                           className="dislikes-pressed"
-                           onClick={handleUndislike}                    
-                        >
-                           <FaThumbsDown/>&nbsp;{postDislikes}
-                        </button>
-                      </>  
-
    // Handle Comment Input
    const [commentError, setCommentError] = useState("");
    const [postComment, setPostComment] = useState({
@@ -261,7 +245,12 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                                        unlikeFunction={handleUnlike}
                                        dislikesFunction={handleDislikes}
                                    />
-                                 : dislikesPressed
+                                 : <DislikesPressed
+                                       likes={postLikes}
+                                       dislikes={postDislikes}
+                                       likesFunction={handleLikes}
+                                       undislikeFunction={handleUndislike}
+                                   />
                            }
                         </div>
                         &nbsp;
