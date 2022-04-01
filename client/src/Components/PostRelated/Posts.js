@@ -18,7 +18,7 @@ function Posts({currentUser, userData, postData, searchValue, handleDelete}) {
    const sortPosts = renderPosts?.sort((a, b) => b?.props?.post?.created_at?.localeCompare(a?.props?.post?.created_at));
 
    // If searchValue is an empty string, render all posts inside sortPosts. As searchValue gets updated, check each post's title OR each post author's username to see if they include the inputted searchValue
-   const filterPosts = searchValue === "" ? sortPosts : sortPosts.filter(blog => blog.props.post.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.props.post.user.username.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterPosts = searchValue === "" ? sortPosts : sortPosts?.filter(blog => blog?.props?.post?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()) || blog?.props?.post?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    return (
       <div>

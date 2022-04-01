@@ -20,7 +20,7 @@ function Users({userData, postData, commentData, searchValue}) {
    // Map through userData and render each User component by passing in the related information as props
    const renderUsers = userData?.map(user => {
       return <User
-               key={user.id}
+               key={user?.id}
                user={user}
                postData={postData}
                commentData={commentData}
@@ -28,7 +28,7 @@ function Users({userData, postData, commentData, searchValue}) {
    });
 
    // If searchValue is an empty string, render all users inside renderUsers. As searchValue gets updated, check each user's username to see if it includes the inputted searchValue
-   const filterUsers = searchValue === "" ? renderUsers : renderUsers.filter(user => user.props.username.toLowerCase().includes(searchValue.toLowerCase()));
+   const filterUsers = searchValue === "" ? renderUsers : renderUsers?.filter(user => user?.props?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {

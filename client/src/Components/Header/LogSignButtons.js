@@ -8,7 +8,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
 
    // Function to route to user's profile when user clicks related button
    const viewYourProfile = () => {
-      navigate(`/all_users/${currentUser.id}`);
+      navigate(`/all_users/${currentUser?.id}`);
    };
 
    // Function to logout user, setCurrentUser to null, and route back to homepage
