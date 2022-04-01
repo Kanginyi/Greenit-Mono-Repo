@@ -16,7 +16,7 @@ function LikesPressed({likes, dislikes, unlikeFunction, dislikesFunction}) {
             onClick={dislikesFunction}
             className="dislikes-button"                    
          >
-               <FaRegThumbsDown/>&nbsp;{dislikes}
+            <FaRegThumbsDown/>&nbsp;{dislikes}
          </button>
       </>
    );
