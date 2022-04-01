@@ -9,7 +9,6 @@ function Posts({currentUser, userData, postData, searchValue, handleDelete}) {
                key={post?.id}
                currentUser={currentUser}
                post={post}
-               userData={userData}
                handleDelete={handleDelete}
              />
    });
