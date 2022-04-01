@@ -8,7 +8,7 @@ import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 import "../../Stylings/Comment.css";
 
 import {BsTrash} from "react-icons/bs";
-import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
+import {FaEdit} from "react-icons/fa";
 
 function Comment({currentUser, comment, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
    let navigate = useNavigate();
@@ -218,7 +218,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                        />
                }
             </div>
-            
+
             <div className="comment-meta-data">
                <div className="comment-date-time">
                   <em>

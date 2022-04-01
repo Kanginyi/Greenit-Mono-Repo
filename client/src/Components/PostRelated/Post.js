@@ -8,7 +8,6 @@ import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
-import {FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
 function Post({currentUser, post, handleDelete}) {
    const userObj = post?.user; 

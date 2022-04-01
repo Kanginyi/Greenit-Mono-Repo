@@ -9,7 +9,7 @@ import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
 import {BsTrash} from "react-icons/bs";
-import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
+import {FaEdit} from "react-icons/fa";
 
 function PostDetails({currentUser, commentData, setCommentData, searchValue, handleDelete}) {
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
