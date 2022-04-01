@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+
 import ErrorPage from "../Helpers/ErrorPage";
 
-import {useNavigate, useParams} from "react-router-dom";
 import "../../Stylings/EditPost.css";
 
 function EditPost({currentUser, postData, setPostData}) {

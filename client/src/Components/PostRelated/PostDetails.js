@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import Comment from "./Comment";
-import Loader from "../Helpers/Loader";
-import ErrorPage from "../Helpers/ErrorPage";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+
+import Comment from "./Comment";
+import ErrorPage from "../Helpers/ErrorPage";
+import Loader from "../Helpers/Loader";
 
 import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";

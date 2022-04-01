@@ -1,10 +1,9 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 import CreatePost from "./CreatePost";
 import LogSignButtons from "./LogSignButtons";
 import SearchBar from "./SearchBar";
-
-import {useNavigate} from "react-router-dom";
 
 import "../../Stylings/Header.css";
 

@@ -1,8 +1,7 @@
-import React, {useState, useRef, useCallback, useEffect} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 import {useSpring, animated} from "react-spring";
-
-import {useNavigate} from "react-router-dom";
 
 import "../../Stylings/Form.css";
 

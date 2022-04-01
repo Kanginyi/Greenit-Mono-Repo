@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 import Navbar from "./Components/Header/Navbar";
 import ErrorPage from "./Components/Helpers/ErrorPage";
@@ -9,8 +10,6 @@ import PostDetails from "./Components/PostRelated/PostDetails";
 import Posts from "./Components/PostRelated/Posts";
 import UserInfo from "./Components/UserRelated/UserInfo";
 import Users from "./Components/UserRelated/Users";
-
-import {Route, Routes, useNavigate} from "react-router-dom";
 
 function App() {
    let navigate = useNavigate();

@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
-
-import {useNavigate, useParams} from "react-router-dom";
 
 import "../../Stylings/UserInfo.css";
 
