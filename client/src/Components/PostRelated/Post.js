@@ -33,7 +33,7 @@ function Post({currentUser, post, handleDelete}) {
    const [isClicked, setIsClicked] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes);
-   const [likesError, setLikesError] = useState("");
+   const [loginError, setLoginError] = useState("");
 
    // Likes and Dislikes handling functions
    const handleLikes = () => {
@@ -59,7 +59,7 @@ function Post({currentUser, post, handleDelete}) {
       }
          setIsClicked(2);
       } else {
-         setLikesError("Please login");
+         setLoginError("Please login");
       }
    }
 
@@ -86,7 +86,7 @@ function Post({currentUser, post, handleDelete}) {
          }
             setIsClicked(3);
       } else {
-         setLikesError("Please login");
+         setLoginError("Please login");
       }
    }
 
@@ -127,7 +127,7 @@ function Post({currentUser, post, handleDelete}) {
                            <FaRegThumbsUp/>&nbsp;{postLikes}
                         </button>
 
-                        <div className="error-message">{likesError}</div>
+                        <div className="error-message">{loginError}</div>
                         
                         <button
                            className="dislikes-button"
