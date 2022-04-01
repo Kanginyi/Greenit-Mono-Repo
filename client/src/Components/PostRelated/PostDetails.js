@@ -7,7 +7,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit, FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
 
-function PostDetails({currentUser, userData, commentData, setCommentData, searchValue, handleDelete}) {
+function PostDetails({currentUser, commentData, setCommentData, searchValue, handleDelete}) {
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
    const [currentBlogComments, setCurrentBlogComments] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
