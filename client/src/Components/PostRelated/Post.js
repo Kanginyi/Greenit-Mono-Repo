@@ -34,7 +34,7 @@ function Post({currentUser, post, userData, handleDelete}) {
          })
             .then(resp => resp.json())
             .then(data => {
-               setPostLikes(data.likes);
+               setPostLikes(data?.likes);
             });
 
       if (isClicked === 3) {
@@ -44,7 +44,7 @@ function Post({currentUser, post, userData, handleDelete}) {
          })
             .then(resp => resp.json())
             .then(data => {
-               setPostDislikes(data.dislikes);
+               setPostDislikes(data?.dislikes);
             });
       }
          setIsClicked(2);
@@ -61,7 +61,7 @@ function Post({currentUser, post, userData, handleDelete}) {
          })
             .then(resp => resp.json())
             .then(data => {
-               setPostDislikes(data.dislikes);
+               setPostDislikes(data?.dislikes);
             });
 
          if (isClicked === 2) {
@@ -71,7 +71,7 @@ function Post({currentUser, post, userData, handleDelete}) {
             })
                .then(resp => resp.json())
                .then(data => {
-                  setPostLikes(data.likes);
+                  setPostLikes(data?.likes);
                });
          }
             setIsClicked(3);
