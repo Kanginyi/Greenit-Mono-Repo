@@ -25,6 +25,8 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
          .then(resp => resp.json())
          .then(blog => {
             setCurrentBlogInfo(blog);
+            setPostLikes(blog?.likes);
+            setPostDislikes(blog?.dislikes);
             setCurrentBlogComments(blog?.comments);
             setIsLoaded(true);
          });
@@ -45,8 +47,8 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
 
    // Likes and Dislikes states
    const [isClicked, setIsClicked] = useState(1);
-   const [postLikes, setPostLikes] = useState(currentBlogInfo?.likes);
-   const [postDislikes, setPostDislikes] = useState(currentBlogInfo?.dislikes);
+   const [postLikes, setPostLikes] = useState(0);
+   const [postDislikes, setPostDislikes] = useState(0);
    const [likesError, setLikesError] = useState("");
 
    // Likes and Dislikes handling functions
@@ -138,7 +140,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                            className="likes-button"
                            onClick={handleLikes}
                         >
-                           <FaRegThumbsUp/>&nbsp;{currentBlogInfo ? currentBlogInfo?.likes : null}
+                           <FaRegThumbsUp/>&nbsp;{postLikes}
                         </button>
 
                         <div className="error-message">{likesError}</div>
@@ -147,7 +149,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                            className="dislikes-button"
                            onClick={handleDislikes}                      
                         >
-                            <FaRegThumbsDown/>&nbsp;{currentBlogInfo ? currentBlogInfo?.dislikes : null}
+                            <FaRegThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>
 
@@ -163,7 +165,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                            className="dislikes-button"
                            onClick={handleDislikes}                     
                         >
-                            <FaRegThumbsDown/>&nbsp;{currentBlogInfo ? currentBlogInfo?.dislikes : null}
+                            <FaRegThumbsDown/>&nbsp;{postDislikes}
                         </button>
                       </>
 
@@ -172,7 +174,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                            className="likes-button"
                            onClick={handleLikes}                      
                         >
-                           <FaRegThumbsUp/>&nbsp;{currentBlogInfo ? currentBlogInfo?.likes : null}
+                           <FaRegThumbsUp/>&nbsp;{postLikes}
                         </button>
 
                         <button
