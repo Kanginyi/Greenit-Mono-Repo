@@ -202,6 +202,10 @@ function App() {
                      postData={postData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
+                     handlePostLikes={handlePostLikes}
+                     handlePostDislikes={handlePostDislikes}
+                     handleUnlikePost={handleUnlikePost}
+                     handleUndislikePost={handleUndislikePost}
                   />
                }/>
 
