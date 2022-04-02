@@ -164,12 +164,12 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                               : clickedNum === 2
                                  ? <LikesPressed
                                        id={currentBlogInfo?.id}
-                                       likes={postLikes}
-                                       setLikes={setPostLikes}
-                                       dislikes={postDislikes}
-                                       setDislikes={setPostDislikes}
-                                       unlikeFunction={handleUnlikePost}
-                                       dislikesFunction={handlePostDislikes}
+                                       postLikes={postLikes}
+                                       setPostLikes={setPostLikes}
+                                       postDislikes={postDislikes}
+                                       setPostDislikes={setPostDislikes}
+                                       handleUnlikePost={handleUnlikePost}
+                                       handlePostDislikes={handlePostDislikes}
                                        clickedNum={clickedNum}
                                        setClickedNum={setClickedNum}
                                    />

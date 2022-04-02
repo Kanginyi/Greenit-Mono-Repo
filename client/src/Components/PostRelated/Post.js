@@ -78,12 +78,12 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                      : clickedNum === 2
                         ? <LikesPressed
                               id={post?.id}
-                              likes={postLikes}
-                              setLikes={setPostLikes}
-                              dislikes={postDislikes}
-                              setDislikes={setPostDislikes}
-                              unlikeFunction={handleUnlikePost}
-                              dislikesFunction={handlePostDislikes}
+                              postLikes={postLikes}
+                              setPostLikes={setPostLikes}
+                              postDislikes={postDislikes}
+                              setPostDislikes={setPostDislikes}
+                              handleUnlikePost={handleUnlikePost}
+                              handlePostDislikes={handlePostDislikes}
                               clickedNum={clickedNum}
                               setClickedNum={setClickedNum}
                           />
