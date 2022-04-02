@@ -2,26 +2,24 @@ import React from "react";
 
 import {FaThumbsUp, FaRegThumbsDown} from "react-icons/fa";
 
-function LikesPressed({id, likes, setLikes, dislikes, setDislikes, unlikeFunction, dislikesFunction, clickedNum, setClickedNum}) {
+function LikesPressed({id, postLikes, setPostLikes, postDislikes, setPostDislikes, handleUnlikePost, handlePostDislikes, clickedNum, setClickedNum}) {
    return (
       <>
          <button
-            onClick={() => unlikeFunction(id, setLikes, setClickedNum)}
+            onClick={() => handleUnlikePost(id, setPostLikes, setClickedNum)}
             className="likes-pressed"
          >
-            <FaThumbsUp/>&nbsp;{likes}
+            <FaThumbsUp/>&nbsp;{postLikes}
          </button>
 
          <button
-            onClick={() => dislikesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum)}
+            onClick={() => handlePostDislikes(id, setPostLikes, setPostDislikes, clickedNum, setClickedNum)}
             className="dislikes-button"                    
          >
-            <FaRegThumbsDown/>&nbsp;{dislikes}
+            <FaRegThumbsDown/>&nbsp;{postDislikes}
          </button>
       </>
    );
 }
 
 export default LikesPressed;
-
-// id, setLikes, setDislikes, clickedNum, setClickedNum
