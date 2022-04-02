@@ -11,11 +11,11 @@ function EditPost({currentUser, blogData, setBlogData}) {
    const URL = window.location.href;
    const editingID = parseInt(useParams().id);
 
-   const checkPostArray = blogData?.filter(post => URL.endsWith(post?.id));
+   const checkBlogArray = blogData?.filter(post => URL.endsWith(post?.id));
 
-   const checkPost = (checkPostArray?.filter(post => post?.id === editingID))[0];
+   const checkPost = (checkBlogArray?.filter(post => post?.id === editingID))[0];
    
-   const [editPost, setEditPost] = useState({
+   const [editBlog, setEditBlog] = useState({
       user_id: null,
       title: checkPost?.title,
       blog_post: checkPost?.blog_post,
@@ -25,8 +25,8 @@ function EditPost({currentUser, blogData, setBlogData}) {
    });
 
    const handleEditInputs = e => {
-      setEditPost({
-         ...editPost,
+      setEditBlog({
+         ...editBlog,
          user_id: currentUser?.id,
          [e.target.name]:e.target.value
       });
@@ -36,13 +36,13 @@ function EditPost({currentUser, blogData, setBlogData}) {
       fetch(`/blogs/${checkPost?.id}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"},
-         body: JSON.stringify(editPost)
+         body: JSON.stringify(editBlog)
       })
          .then(resp => {
             if (resp.ok) {
                resp.json()
-                  .then(editedPost => {
-                     setBlogData([editedPost, blogData]);
+                  .then(editedBlog => {
+                     setBlogData([editedBlog, blogData]);
                   })
             }
          })
