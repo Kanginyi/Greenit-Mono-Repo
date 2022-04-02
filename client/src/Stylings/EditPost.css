@@ -1,10 +1,10 @@
-.editing-post {
+.editing-blog {
    display: flex;
    flex-direction: column;
    align-items: center;
 }
 
-.editing-post input, .editing-post textarea {
+.editing-blog input, .editing-blog textarea {
    background: none;
 
    margin: 10px auto 25px;
@@ -20,12 +20,12 @@
    font-family: 'Raleway', sans-serif;
 }
 
-.editing-post input:focus, .editing-post textarea:focus {
+.editing-blog input:focus, .editing-blog textarea:focus {
    width: 80%;
    border-color: rgb(0, 173, 76);
 }
 
-.editing-post button {
+.editing-blog button {
    cursor: pointer;
 
    background-color: rgb(0, 173, 76);
@@ -40,16 +40,16 @@
    border-radius: 20px;
 }
 
-.editing-post button:hover {
+.editing-blog button:hover {
    color: black;
 }
 
-.editing-post button:active {
+.editing-blog button:active {
    transform: scale(.99);
-   animation: editPost 1.75s 1;
+   animation: editBlog 1.75s 1;
 }
 
-@keyframes editPost {
+@keyframes editBlog {
    0% {
        background: linear-gradient(to top right, rgb(0, 173, 76), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
    }

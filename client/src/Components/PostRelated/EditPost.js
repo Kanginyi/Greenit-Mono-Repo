@@ -11,17 +11,17 @@ function EditPost({currentUser, blogData, setBlogData}) {
    const URL = window.location.href;
    const editingID = parseInt(useParams().id);
 
-   const checkBlogArray = blogData?.filter(post => URL.endsWith(post?.id));
+   const checkBlogArray = blogData?.filter(blog => URL.endsWith(blog?.id));
 
-   const checkPost = (checkBlogArray?.filter(post => post?.id === editingID))[0];
+   const checkBlog = (checkBlogArray?.filter(blog => blog?.id === editingID))[0];
    
    const [editBlog, setEditBlog] = useState({
       user_id: null,
-      title: checkPost?.title,
-      blog_post: checkPost?.blog_post,
-      image_url: checkPost?.image_url,
-      likes: checkPost?.likes,
-      dislikes: checkPost?.dislikes
+      title: checkBlog?.title,
+      blog_post: checkBlog?.blog_post,
+      image_url: checkBlog?.image_url,
+      likes: checkBlog?.likes,
+      dislikes: checkBlog?.dislikes
    });
 
    const handleEditInputs = e => {
@@ -32,8 +32,8 @@ function EditPost({currentUser, blogData, setBlogData}) {
       });
    };
 
-   const updatePost = () => {
-      fetch(`/blogs/${checkPost?.id}`, {
+   const updateBlog = () => {
+      fetch(`/blogs/${checkBlog?.id}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"},
          body: JSON.stringify(editBlog)
@@ -46,15 +46,15 @@ function EditPost({currentUser, blogData, setBlogData}) {
                   })
             }
          })
-      navigate(`/blogs/${checkPost?.id}`);
+      navigate(`/blogs/${checkBlog?.id}`);
    };
       
 
    return (
       <>
-      {currentUser?.id === checkPost?.user?.id
+      {currentUser?.id === checkBlog?.user?.id
          ?
-            <div className="post-div editing-post">
+            <div className="blog-div editing-blog">
                <h2 className="username-color">Hello {currentUser?.username}!</h2>
                   <br/>
                <h3>You're Currently Editing:</h3>
@@ -64,7 +64,7 @@ function EditPost({currentUser, blogData, setBlogData}) {
                   type="text"
                   name="title"
                   onChange={handleEditInputs}
-                  defaultValue={checkPost?.title}
+                  defaultValue={checkBlog?.title}
                   autoComplete="off"
                   spellCheck="false"
                   required
@@ -74,7 +74,7 @@ function EditPost({currentUser, blogData, setBlogData}) {
                <textarea
                   name="blog_post"
                   onChange={handleEditInputs}
-                  defaultValue={checkPost?.blog_post}
+                  defaultValue={checkBlog?.blog_post}
                   rows="5"
                   required
                />
@@ -84,12 +84,12 @@ function EditPost({currentUser, blogData, setBlogData}) {
                   type="text"
                   name="image_url"
                   onChange={handleEditInputs}
-                  defaultValue={checkPost?.image_url}
+                  defaultValue={checkBlog?.image_url}
                   autoComplete="off"
                   spellCheck="false"
                />
 
-               <button onClick={updatePost}>
+               <button onClick={updateBlog}>
                   Update Post!
                </button>
             </div>
