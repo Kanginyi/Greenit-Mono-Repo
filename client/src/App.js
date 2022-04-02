@@ -7,9 +7,9 @@ import Loader from "./Components/Helpers/Loader";
 import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
 import EditBlog from "./Components/BlogRelated/EditBlog";
 import BlogDetails from "./Components/BlogRelated/BlogDetails";
-import Blogs from "./Components/BlogRelated/Blogs";
+import AllBlogs from "./Components/BlogRelated/AllBlogs";
 import UserInfo from "./Components/UserRelated/UserInfo";
-import Users from "./Components/UserRelated/Users";
+import AllUsers from "./Components/UserRelated/AllUsers";
 
 function App() {
    let navigate = useNavigate();
@@ -198,7 +198,7 @@ function App() {
             <Routes>
 
                <Route path="/" element={
-                  <Blogs
+                  <AllBlogs
                      currentUser={currentUser}
                      blogData={blogData}
                      searchValue={searchValue}
@@ -243,7 +243,7 @@ function App() {
                }/>
 
                <Route path="/all_users" element={
-                  <Users
+                  <AllUsers
                      userData={userData}
                      blogData={blogData}
                      commentData={commentData}

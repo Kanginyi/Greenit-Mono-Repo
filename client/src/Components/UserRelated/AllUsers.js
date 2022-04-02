@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import User from "./User";
 import Loader from "../Helpers/Loader";
 
-function Users({userData, blogData, commentData, searchValue}) {
+function AllUsers({userData, blogData, commentData, searchValue}) {
    // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
 
@@ -42,4 +42,4 @@ function Users({userData, blogData, commentData, searchValue}) {
    );
 }
 
-export default Users;
+export default AllUsers;
