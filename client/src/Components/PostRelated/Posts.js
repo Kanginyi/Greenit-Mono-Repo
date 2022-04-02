@@ -2,14 +2,14 @@ import React from "react";
 
 import Post from "./Post";
 
-function Posts({currentUser, blogData, searchValue, handleDelete, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function Posts({currentUser, blogData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    // Map through blogData and render each Post component by passing in the related information as props
    const renderBlogs = blogData?.map(blog => {
       return <Post
                key={blog?.id}
                currentUser={currentUser}
                blog={blog}
-               handleDelete={handleDelete}
+               handleDeleteBlog={handleDeleteBlog}
                handleBlogLikes={handleBlogLikes}
                handleBlogDislikes={handleBlogDislikes}
                handleUnlikeBlog={handleUnlikeBlog}

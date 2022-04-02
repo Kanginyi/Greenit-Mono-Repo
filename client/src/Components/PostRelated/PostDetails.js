@@ -11,7 +11,7 @@ import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function PostDetails({currentUser, commentData, setCommentData, searchValue, handleDelete, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function PostDetails({currentUser, commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
    const [currentBlogComments, setCurrentBlogComments] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
@@ -132,7 +132,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                      </h3>
          
                      {currentUser?.username === blogAuthor
-                        ? <BsTrash onClick={() => handleDelete(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
+                        ? <BsTrash onClick={() => handleDeleteBlog(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
                         : null}
                   </div>
 

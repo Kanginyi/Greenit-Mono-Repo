@@ -71,11 +71,11 @@ function App() {
    };
     
    // Function to handle deleting blogs using the id of the deleted blog
-   const handleDelete = id => {
-      let checkDelete = window.confirm("Are you sure you want to delete your post?");
+   const handleDeleteBlog = id => {
+      let confirmDelete = window.confirm("Are you sure you want to delete your post?");
 
-      // If the checkDelete returns true (because a user clicked confirm), then continue with delete actions
-      if (checkDelete) {
+      // If the confirmDelete returns true (because a user clicked confirm), then continue with delete actions
+      if (confirmDelete) {
          fetch(`/blogs/${id}`,{
             method : "DELETE"
          })
@@ -202,7 +202,7 @@ function App() {
                      currentUser={currentUser}
                      blogData={blogData}
                      searchValue={searchValue}
-                     handleDelete={handleDelete}
+                     handleDeleteBlog={handleDeleteBlog}
                      handleBlogLikes={handleBlogLikes}
                      handleBlogDislikes={handleBlogDislikes}
                      handleUnlikeBlog={handleUnlikeBlog}
@@ -226,7 +226,7 @@ function App() {
                      commentData={commentData}
                      setCommentData={setCommentData}
                      searchValue={searchValue}
-                     handleDelete={handleDelete}
+                     handleDeleteBlog={handleDeleteBlog}
                      handleBlogLikes={handleBlogLikes}
                      handleBlogDislikes={handleBlogDislikes}
                      handleUnlikeBlog={handleUnlikeBlog}

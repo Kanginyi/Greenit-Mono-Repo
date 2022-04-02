@@ -9,7 +9,7 @@ import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Post({currentUser, blog, handleDelete, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    const userObj = blog?.user; 
 
    let navigate = useNavigate();
@@ -55,7 +55,7 @@ function Post({currentUser, blog, handleDelete, handleBlogLikes, handleBlogDisli
                </h3>
 
                {currentUser?.username === userObj?.username
-                  ? <BsTrash onClick={() => handleDelete(blog.id)} className="delete-button" title="Delete Post"/>
+                  ? <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>
 
