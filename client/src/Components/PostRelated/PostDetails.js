@@ -49,7 +49,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
    const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // Likes and Dislikes states
-   const [isClicked, setIsClicked] = useState(1);
+   const [clickedNum, setClickedNum] = useState(1);
    const [postLikes, setPostLikes] = useState(0);
    const [postDislikes, setPostDislikes] = useState(0);
    const [loginError, setLoginError] = useState("");
@@ -147,7 +147,7 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
 
                   <div className="post-header">
                         <div className="likes-button-container">
-                           {isClicked === 1
+                           {clickedNum === 1
                               ? <NeitherPressed
                                     id={currentBlogInfo?.id}
                                     postLikes={postLikes}
@@ -156,12 +156,12 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                                     setPostDislikes={setPostDislikes}
                                     handlePostLikes={handlePostLikes}
                                     handlePostDislikes={handlePostDislikes}
-                                    isClicked={isClicked}
-                                    setIsClicked={setIsClicked}
+                                    clickedNum={clickedNum}
+                                    setClickedNum={setClickedNum}
                                     loginError={loginError}
                                     setLoginError={setLoginError}
                                 />
-                              : isClicked === 2
+                              : clickedNum === 2
                                  ? <LikesPressed
                                        id={currentBlogInfo?.id}
                                        likes={postLikes}
@@ -170,8 +170,8 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                                        setDislikes={setPostDislikes}
                                        unlikeFunction={handleUnlikePost}
                                        dislikesFunction={handlePostDislikes}
-                                       clickedNum={isClicked}
-                                       setClickedNum={setIsClicked}
+                                       clickedNum={clickedNum}
+                                       setClickedNum={setClickedNum}
                                    />
                                  : <DislikesPressed
                                        id={currentBlogInfo?.id}
@@ -181,8 +181,8 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                                        setDislikes={setPostDislikes}
                                        likesFunction={handlePostLikes}
                                        undislikeFunction={handleUndislikePost}
-                                       clickedNum={isClicked}
-                                       setClickedNum={setIsClicked}
+                                       clickedNum={clickedNum}
+                                       setClickedNum={setClickedNum}
                                    />
                            }
                         </div>

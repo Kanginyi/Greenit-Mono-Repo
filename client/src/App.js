@@ -93,7 +93,7 @@ function App() {
    // TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
 
    // Function to handle liking posts using the id of the liked blog
-   const handlePostLikes = (id, setPostLikes, setPostDislikes, isClicked, setIsClicked, setLoginError) => {
+   const handlePostLikes = (id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_likes/${id}`, {
             method: "PATCH",
@@ -102,7 +102,7 @@ function App() {
             .then(resp => resp.json())
             .then(data => setPostLikes(data?.likes));
 
-         if (isClicked === 3) {
+         if (clickedNum === 3) {
             fetch(`/dec_dislikes/${id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
@@ -110,14 +110,14 @@ function App() {
                .then(resp => resp.json())
                .then(data => setPostDislikes(data?.dislikes));
          }
-         setIsClicked(2); 
+         setClickedNum(2); 
       } else {
          setLoginError("Please login");
       }
    };
 
    // Function to handle disliking posts using the id of the disliked blog
-   const handlePostDislikes = (id, setPostLikes, setPostDislikes, isClicked, setIsClicked, setLoginError) => {
+   const handlePostDislikes = (id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_dislikes/${id}`, {
             method: "PATCH",
@@ -126,7 +126,7 @@ function App() {
             .then(resp => resp.json())
             .then(data => setPostDislikes(data?.dislikes));
 
-         if (isClicked === 2) {
+         if (clickedNum === 2) {
             fetch(`/dec_likes/${id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
@@ -134,13 +134,13 @@ function App() {
                .then(resp => resp.json())
                .then(data => setPostLikes(data?.likes));
          }
-         setIsClicked(3);
+         setClickedNum(3);
       } else {
          setLoginError("Please login");
       }
    };
 
-   const handleUnlikePost = (id, setPostLikes, setIsClicked) => {
+   const handleUnlikePost = (id, setPostLikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_likes/${id}`, {
             method: "PATCH",
@@ -149,10 +149,10 @@ function App() {
             .then(resp => resp.json())
             .then(data => setPostLikes(data?.likes));
       }
-      setIsClicked(1);
+      setClickedNum(1);
    };
 
-   const handleUndislikePost = (id, setPostDislikes, setIsClicked) => {
+   const handleUndislikePost = (id, setPostDislikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_dislikes/${id}`, {
             method: "PATCH",
@@ -161,7 +161,7 @@ function App() {
             .then(resp => resp.json())
             .then(data => setPostDislikes(data?.dislikes));
       }
-      setIsClicked(1);
+      setClickedNum(1);
    };
 
 

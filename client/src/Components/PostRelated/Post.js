@@ -33,7 +33,7 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
    const postDate = new Date(post.created_at).toLocaleDateString();
    const postTime = new Date(post.created_at).toLocaleTimeString();
 
-   const [isClicked, setIsClicked] = useState(1);
+   const [clickedNum, setClickedNum] = useState(1);
    const [postLikes, setPostLikes] = useState(post?.likes);
    const [postDislikes, setPostDislikes] = useState(post?.dislikes);
    const [loginError, setLoginError] = useState("");
@@ -61,7 +61,7 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
 
             <div className="post-header">
                <div className="likes-button-container">
-                  {isClicked === 1
+                  {clickedNum === 1
                      ? <NeitherPressed
                            id={post?.id}
                            postLikes={postLikes}
@@ -70,12 +70,12 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                            setPostDislikes={setPostDislikes}
                            handlePostLikes={handlePostLikes}
                            handlePostDislikes={handlePostDislikes}
-                           isClicked={isClicked}
-                           setIsClicked={setIsClicked}
+                           clickedNum={clickedNum}
+                           setClickedNum={setClickedNum}
                            loginError={loginError}
                            setLoginError={setLoginError}
                        />
-                     : isClicked === 2
+                     : clickedNum === 2
                         ? <LikesPressed
                               id={post?.id}
                               likes={postLikes}
@@ -84,8 +84,8 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                               setDislikes={setPostDislikes}
                               unlikeFunction={handleUnlikePost}
                               dislikesFunction={handlePostDislikes}
-                              clickedNum={isClicked}
-                              setClickedNum={setIsClicked}
+                              clickedNum={clickedNum}
+                              setClickedNum={setClickedNum}
                           />
                         : <DislikesPressed
                               id={post?.id}
@@ -95,8 +95,8 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                               setDislikes={setPostDislikes}
                               likesFunction={handlePostLikes}
                               undislikeFunction={handleUndislikePost}
-                              clickedNum={isClicked}
-                              setClickedNum={setIsClicked}
+                              clickedNum={clickedNum}
+                              setClickedNum={setClickedNum}
                           />
                   }
                </div>

@@ -2,11 +2,11 @@ import React from "react";
 
 import {FaRegThumbsUp, FaRegThumbsDown} from "react-icons/fa";
 
-function NeitherPressed({id, postLikes, setPostLikes, postDislikes, setPostDislikes, handlePostLikes, handlePostDislikes, isClicked, setIsClicked, loginError, setLoginError}) {
+function NeitherPressed({id, postLikes, setPostLikes, postDislikes, setPostDislikes, handlePostLikes, handlePostDislikes, clickedNum, setClickedNum, loginError, setLoginError}) {
    return (
       <>
          <button
-            onClick={() => handlePostLikes(id, setPostLikes, setPostDislikes, isClicked, setIsClicked, setLoginError)}
+            onClick={() => handlePostLikes(id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError)}
             className="likes-button"
          >
             <FaRegThumbsUp/>&nbsp;{postLikes}
@@ -15,7 +15,7 @@ function NeitherPressed({id, postLikes, setPostLikes, postDislikes, setPostDisli
          <div className="error-message">{loginError}</div>
 
          <button
-            onClick={() => handlePostDislikes(id, setPostLikes, setPostDislikes, isClicked, setIsClicked, setLoginError)}
+            onClick={() => handlePostDislikes(id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError)}
             className="dislikes-button"
          >
             <FaRegThumbsDown/>&nbsp;{postDislikes}
