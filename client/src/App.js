@@ -77,11 +77,11 @@ function App() {
             method : "DELETE"
          })
             .then(() => {
-               // deletePost variable to hold array that removes the deleted post from blogData and setBlogData to that new array
-               const deletePost = blogData?.filter(post => post?.id !== id);
-               setBlogData(deletePost);
+               // deleteBlog variable to hold array that removes the deleted blog from blogData and setBlogData to that new array
+               const deleteBlog = blogData?.filter(post => post?.id !== id);
+               setBlogData(deleteBlog);
 
-               // deleteRelatedComments variable to hold array that removes the deleted post's comments from commentData and setCommentData to that new array
+               // deleteRelatedComments variable to hold array that removes the deleted blog's comments from commentData and setCommentData to that new array
                const deleteRelatedComments = commentData?.filter(comment => comment?.blog?.id !== id)
                setCommentData(deleteRelatedComments);
             })
