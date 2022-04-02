@@ -39,9 +39,9 @@ function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
    const [loginError, setLoginError] = useState("");
 
    return (
-      <div className="post-div">
+      <div className="blog-div">
          
-         <article className="single-post">
+         <article className="single-blog">
             <div className="user-info">
                <h3>
                   Posted by&nbsp;
@@ -59,7 +59,7 @@ function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                   : null}
             </div>
 
-            <div className="post-header">
+            <div className="blog-header">
                <div className="likes-button-container">
                   {clickedNum === 1
                      ? <NeitherPressed
@@ -101,10 +101,10 @@ function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                   }
                </div>
                      &nbsp;
-               <h2 className="post-title">{blog.title}</h2>
+               <h2 className="blog-title">{blog.title}</h2>
             </div>
 
-            <div className="post-info-underline"></div>
+            <div className="blog-info-underline"></div>
 
             {blog.image_url ? <img src={blog.image_url} alt={blog.title}/> : null}
 
@@ -121,7 +121,7 @@ function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                }
             </em>
                <br/>
-            <button onClick={viewMore} className="post-view-more">
+            <button onClick={viewMore} className="blog-view-more">
                VIEW MORE
             </button>
          </div>

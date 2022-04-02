@@ -116,9 +116,9 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
       <>
       {!currentBlogInfo.errors
          ?
-            <div className="post-div">
+            <div className="blog-div">
 
-               <article className="single-post">
+               <article className="single-blog">
                   <div className="user-info">
                      <h3>
                         Posted by&nbsp;
@@ -137,15 +137,15 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                   </div>
 
                   {currentUser?.username === blogAuthor
-                     ? <div className="edit-post-container">
-                           <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-post">
+                     ? <div className="edit-blog-container">
+                           <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-blog">
                               <FaEdit/> Edit Post
                            </div>
                      </div>
                      : null
                   }
 
-                  <div className="post-header">
+                  <div className="blog-header">
                         <div className="likes-button-container">
                            {clickedNum === 1
                               ? <NeitherPressed
@@ -187,10 +187,10 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                            }
                         </div>
                         &nbsp;
-                     <h2 className="post-title">{currentBlogInfo?.title}</h2>
+                     <h2 className="blog-title">{currentBlogInfo?.title}</h2>
                   </div>
  
-                  <div className="post-info-underline"></div>
+                  <div className="blog-info-underline"></div>
 
                   {
                      currentBlogInfo?.image_url
@@ -198,15 +198,15 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
                      : null
                   }
 
-                  <div className="post-content-container">
+                  <div>
                      <p>{currentBlogInfo?.blog_post}</p>
                   </div>
                </article>
 
                <details>
-                  <summary className="post-comment-dropdown">JOIN THE CONVERSATION</summary>
+                  <summary className="blog-comment-dropdown">JOIN THE CONVERSATION</summary>
 
-                  <form className="post-comment-form">
+                  <form className="blog-comment-form">
                      <textarea
                         onChange={handleComment}
                         type="text"

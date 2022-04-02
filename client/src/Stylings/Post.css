@@ -1,17 +1,17 @@
 /* PT Serif Regular 400 Font */
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
 
-.post-div:nth-child(1) {
+.blog-div:nth-child(1) {
    margin-top: 10rem;
 }
 
-.post-div {
+.blog-div {
    background-color: white;
    padding: 10px;
    margin: 2rem 0;
 }
 
-.post-div:hover {
+.blog-div:hover {
    box-shadow: 1px 1px 4px 4px rgba(0, 173, 76, 0.4);
 }
 
@@ -39,7 +39,7 @@
    background-size: 100% 2px;
 }
 
-.edit-post-container {
+.edit-blog-container {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -47,7 +47,7 @@
    margin-bottom: -0.35rem;
 }
 
-.edit-post {
+.edit-blog {
    margin-top: -0.5rem;
 
    width: fit-content;
@@ -75,14 +75,10 @@
    }
 }
 
-.post-header {
+.blog-header {
    display: flex;
    align-items: center;
 }
-/* 
-.single-post p {
-   color: rgb(0, 115, 50);
-} */
 
 .likes-button-container {
    display: flex;
@@ -183,24 +179,24 @@
    color: white;
 }
 
-.post-title {
+.blog-title {
    font-family: 'PT Serif', serif;
    font-size: clamp(1.25em, 5vw, 2.1rem);
    margin-bottom: 0;
 }
 
-.post-info-underline {
+.blog-info-underline {
    background-color: rgb(0, 173, 76);
    height: 5px;
    margin-top: 7.5px;
 }
 
-.single-post img {
+.single-blog img {
    margin-top: .6em;
    width: 100%;
 }
 
-.single-post p {
+.single-blog p {
    margin-top: 7px;
    margin-bottom: 15px;
 
@@ -212,7 +208,7 @@
    text-align: center;
 }
 
-.post-view-more {
+.blog-view-more {
    background: none;
    border: 3px solid rgb(0, 173, 76);
    border-radius: 3px;
@@ -229,12 +225,12 @@
    cursor: pointer;
 }
 
-.post-view-more:hover, .post-view-more:focus-visible {
+.blog-view-more:hover, .blog-view-more:focus-visible {
    box-shadow: inset 0 0 0 2em rgb(0, 173, 76);
    color: white;
 }
 
-.post-comment-dropdown {
+.blog-comment-dropdown {
    color: rgb(0, 173, 76);
    font-size: 1.15em;
    font-weight: 600;
@@ -246,18 +242,18 @@
    cursor: pointer;
 }
 
-.post-comment-form {
+.blog-comment-form {
    display: flex;
    flex-direction: column;
    align-items: center;
 }
 
-.post-comment-form textarea {
+.blog-comment-form textarea {
    width: 95%;
    font-size: 1.15em;
 }
 
-.post-comment-form button {
+.blog-comment-form button {
    width: 150px;
 
    margin: 5px;
@@ -277,22 +273,22 @@
    cursor: pointer;
 }
 
-.post-comment-form button:hover, .post-comment-form button:focus-visible {
+.blog-comment-form button:hover, .blog-comment-form button:focus-visible {
    background-color: rgb(0, 210, 100);
 }
 
-.post-comment-form button:active {
+.blog-comment-form button:active {
    box-shadow: 0 0 0 1.5em rgba(0, 0, 0, 0);
-   animation: postComment .35s;
+   animation: blogComment .35s;
 }
 
-@keyframes postComment {
+@keyframes blogComment {
    0% {
       box-shadow: 0 0 0 0 rgb(0, 173, 76);
    }
 }
 
-.post-comment-form div {
+.blog-comment-form div {
    text-align: center;
    font-size: 1.25em;
 }
