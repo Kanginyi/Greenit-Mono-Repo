@@ -5,7 +5,7 @@ import {useSpring, animated} from "react-spring";
 
 import "../../Stylings/Form.css";
 
-function Form({currentUser, blogData, setBlogData, showCreatePost, setShowCreatePost}) {
+function CreatePost({currentUser, blogData, setBlogData, showCreatePost, setShowCreatePost}) {
    let navigate = useNavigate();
 
    // State to handle newly created blog's initial values
@@ -133,4 +133,4 @@ function Form({currentUser, blogData, setBlogData, showCreatePost, setShowCreate
    );
 }
 
-export default Form;
+export default CreatePost;
