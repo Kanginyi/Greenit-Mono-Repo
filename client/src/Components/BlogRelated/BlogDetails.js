@@ -11,7 +11,7 @@ import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function PostDetails({currentUser, commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function BlogDetails({currentUser, commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
    const [currentBlogComments, setCurrentBlogComments] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
@@ -241,4 +241,4 @@ function PostDetails({currentUser, commentData, setCommentData, searchValue, han
    );
 }
 
-export default PostDetails;
+export default BlogDetails;

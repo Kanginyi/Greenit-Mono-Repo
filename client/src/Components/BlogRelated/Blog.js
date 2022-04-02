@@ -5,11 +5,11 @@ import DislikesPressed from "../Likes&DislikesButtons/DislikesPressed";
 import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
-import "../../Stylings/Post.css";
+import "../../Stylings/Blog.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    const userObj = blog?.user; 
 
    let navigate = useNavigate();
@@ -130,4 +130,4 @@ function Post({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
    );
 }
 
-export default Post;
+export default Blog;

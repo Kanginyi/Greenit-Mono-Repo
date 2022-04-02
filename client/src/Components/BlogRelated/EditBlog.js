@@ -3,9 +3,9 @@ import {useNavigate, useParams} from "react-router-dom";
 
 import ErrorPage from "../Helpers/ErrorPage";
 
-import "../../Stylings/EditPost.css";
+import "../../Stylings/EditBlog.css";
 
-function EditPost({currentUser, blogData, setBlogData}) {
+function EditBlog({currentUser, blogData, setBlogData}) {
    let navigate = useNavigate();
 
    const URL = window.location.href;
@@ -100,4 +100,4 @@ function EditPost({currentUser, blogData, setBlogData}) {
    );
 }
 
-export default EditPost;
+export default EditBlog;

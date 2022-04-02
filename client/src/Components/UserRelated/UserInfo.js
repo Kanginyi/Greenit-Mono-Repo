@@ -76,18 +76,18 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    // Clicked User's blogs
    const sortBlogs = userBlogsInfo?.sort((a, b) => b?.created_at?.localeCompare(a?.created_at));
 
-   const renderPosts = sortBlogs?.map(blog => {
-      let post;
+   const renderBlogs = sortBlogs?.map(blog => {
+      let blogPost;
       if (blog?.blog_post?.length < 15) {
-         post = blog?.blog_post;
+         blogPost = blog?.blog_post;
       } else {
-         post = blog?.blog_post?.slice(0, 15) + "...";
+         blogPost = blog?.blog_post?.slice(0, 15) + "...";
       }
 
-      const postDate = new Date(blog?.created_at).toLocaleDateString();
-      const postTime = new Date(blog?.created_at).toLocaleTimeString();
+      const blogDate = new Date(blog?.created_at).toLocaleDateString();
+      const blogTime = new Date(blog?.created_at).toLocaleTimeString();
 
-      const deletePost = () => {
+      const deleteBlog = () => {
          let checkDelete = window.confirm(`Are you sure you want to delete "${blog?.title}"?`);
    
          if (checkDelete) {
@@ -95,19 +95,19 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                method: "DELETE"
             })
                .then(() => {
-                  const deleteBlog = userBlogsInfo?.filter(singlePost => singlePost?.id !== blog?.id);
+                  const deletePost = userBlogsInfo?.filter(eachBlog => eachBlog?.id !== blog?.id);
 
-                  setUserBlogsInfo(deleteBlog);
+                  setUserBlogsInfo(deletePost);
 
-                  const deleteRelatedComments = userCommentsInfo?.filter(singleComment => singleComment?.blog?.id !== blog?.id);
+                  const deleteRelatedComments = userCommentsInfo?.filter(eachComment => eachComment?.blog?.id !== blog?.id);
 
                   setUserCommentsInfo(deleteRelatedComments);
 
-                  const removePost = blogData?.filter(singlePost => singlePost?.id !== blog?.id);
+                  const removePost = blogData?.filter(eachBlog => eachBlog?.id !== blog?.id);
 
                   setBlogData(removePost);
 
-                  const removeComments = commentData?.filter(singleComment => singleComment?.blog?.id !== blog?.id);
+                  const removeComments = commentData?.filter(eachComment => eachComment?.blog?.id !== blog?.id);
 
                   setCommentData(removeComments);
                })
@@ -123,7 +123,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
 
                   <div>
                      <h4>{blog?.title}</h4>
-                     <em>{post}</em>
+                     <em>{blogPost}</em>
                      <p>
                         {blog?.likes === 1 ? `${blog?.likes} Like` : `${blog?.likes} Likes`}
                            &nbsp;|&nbsp;
@@ -131,7 +131,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                            &nbsp;|&nbsp;
                         {blog?.comments?.length === 1 ? `${blog?.comments?.length} Comment` : `${blog?.comments?.length} Comments`}
                      </p>
-                     <p className="post-comments-footer"><em>Posted on {postDate} at {postTime}</em></p>
+                     <p className="blog-comments-footer"><em>Posted on {blogDate} at {blogTime}</em></p>
                   </div>
                </div>
 
@@ -139,7 +139,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                   ?
                      <div className="user-info-actions">
                         <BsTrash
-                           onClick={deletePost}
+                           onClick={deleteBlog}
                            className="delete-button"
                            title={`Delete "${blog?.title}"`}
                         />
@@ -228,7 +228,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
          </div>
    });
 
-   const filterPosts = searchValue === "" ? renderPosts : renderPosts?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterPosts = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 

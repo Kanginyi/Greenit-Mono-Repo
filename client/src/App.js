@@ -5,9 +5,9 @@ import Navbar from "./Components/Header/Navbar";
 import ErrorPage from "./Components/Helpers/ErrorPage";
 import Loader from "./Components/Helpers/Loader";
 import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
-import EditPost from "./Components/PostRelated/EditPost";
-import PostDetails from "./Components/PostRelated/PostDetails";
-import Posts from "./Components/PostRelated/Posts";
+import EditBlog from "./Components/BlogRelated/EditBlog";
+import BlogDetails from "./Components/BlogRelated/BlogDetails";
+import Blogs from "./Components/BlogRelated/Blogs";
 import UserInfo from "./Components/UserRelated/UserInfo";
 import Users from "./Components/UserRelated/Users";
 
@@ -198,7 +198,7 @@ function App() {
             <Routes>
 
                <Route path="/" element={
-                  <Posts
+                  <Blogs
                      currentUser={currentUser}
                      blogData={blogData}
                      searchValue={searchValue}
@@ -221,7 +221,7 @@ function App() {
                }/>
 
                <Route path="/blogs/:id" element={
-                  <PostDetails
+                  <BlogDetails
                      currentUser={currentUser}
                      commentData={commentData}
                      setCommentData={setCommentData}
@@ -235,7 +235,7 @@ function App() {
                }/>
 
                <Route path="/editing/:id" element={
-                  <EditPost
+                  <EditBlog
                      currentUser={currentUser}
                      blogData={blogData}
                      setBlogData={setBlogData}
