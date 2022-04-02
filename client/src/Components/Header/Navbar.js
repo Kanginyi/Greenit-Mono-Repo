@@ -9,7 +9,7 @@ import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreenit, setShowSignup}) {
+function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreenit, setShowSignup}) {
    let navigate = useNavigate();
 
    // State to handle whether search bar is shown or not
@@ -24,8 +24,8 @@ function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreen
 
    // Function to view random post
    const viewRandomPost = () => {
-      // Map through postData, grab each blog's ids, and return a new array with these ids
-      const postIDArray = postData?.map(post => post?.id);
+      // Map through blogData, grab each blog's ids, and return a new array with these ids
+      const postIDArray = blogData?.map(post => post?.id);
 
       // Grab a random number based on postIDArray's length and use that number as the index to randomly select an ID inside of postIDArray
       const randomPostID = postIDArray[Math.floor(Math.random() * postIDArray?.length)];
@@ -68,8 +68,8 @@ function Navbar({currentUser, setCurrentUser, postData, setPostData, searchGreen
          
          <CreatePost
             currentUser={currentUser}
-            postData={postData}
-            setPostData={setPostData}
+            blogData={blogData}
+            setBlogData={setBlogData}
             showCreatePost={showCreatePost}
             setShowCreatePost={setShowCreatePost}
          />

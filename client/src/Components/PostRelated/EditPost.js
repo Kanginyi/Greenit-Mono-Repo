@@ -5,13 +5,13 @@ import ErrorPage from "../Helpers/ErrorPage";
 
 import "../../Stylings/EditPost.css";
 
-function EditPost({currentUser, postData, setPostData}) {
+function EditPost({currentUser, blogData, setBlogData}) {
    let navigate = useNavigate();
 
    const URL = window.location.href;
    const editingID = parseInt(useParams().id);
 
-   const checkPostArray = postData?.filter(post => URL.endsWith(post?.id));
+   const checkPostArray = blogData?.filter(post => URL.endsWith(post?.id));
 
    const checkPost = (checkPostArray?.filter(post => post?.id === editingID))[0];
    
@@ -42,7 +42,7 @@ function EditPost({currentUser, postData, setPostData}) {
             if (resp.ok) {
                resp.json()
                   .then(editedPost => {
-                     setPostData([editedPost, postData]);
+                     setBlogData([editedPost, blogData]);
                   })
             }
          })

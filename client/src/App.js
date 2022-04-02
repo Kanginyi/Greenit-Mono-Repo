@@ -34,7 +34,7 @@ function App() {
    const [isLoaded, setIsLoaded] = useState(false);
    
    // States to handle initial fetches for ALL initial posts, users, and comments
-   const [postData, setPostData] = useState([]);
+   const [blogData, setBlogData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
 
@@ -42,7 +42,7 @@ function App() {
       fetch("/blogs")
          .then(resp => resp.json())
          .then(data => {
-            setPostData(data);
+            setBlogData(data);
             setIsLoaded(true);
          });
    }, []);
@@ -77,9 +77,9 @@ function App() {
             method : "DELETE"
          })
             .then(() => {
-               // deletePost variable to hold array that removes the deleted post from postData and setPostData to that new array
-               const deletePost = postData?.filter(post => post?.id !== id);
-               setPostData(deletePost);
+               // deletePost variable to hold array that removes the deleted post from blogData and setBlogData to that new array
+               const deletePost = blogData?.filter(post => post?.id !== id);
+               setBlogData(deletePost);
 
                // deleteRelatedComments variable to hold array that removes the deleted post's comments from commentData and setCommentData to that new array
                const deleteRelatedComments = commentData?.filter(comment => comment?.blog?.id !== id)
@@ -186,8 +186,8 @@ function App() {
             <Navbar
                currentUser={currentUser}
                setCurrentUser={setCurrentUser}
-               postData={postData}
-               setPostData={setPostData}
+               blogData={blogData}
+               setBlogData={setBlogData}
                searchGreenit={searchGreenit}
                setShowSignup={setShowSignup}
             />
@@ -199,7 +199,7 @@ function App() {
                <Route path="/" element={
                   <Posts
                      currentUser={currentUser}
-                     postData={postData}
+                     blogData={blogData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
                      handlePostLikes={handlePostLikes}
@@ -236,15 +236,15 @@ function App() {
                <Route path="/editing/:id" element={
                   <EditPost
                      currentUser={currentUser}
-                     postData={postData}
-                     setPostData={setPostData}
+                     blogData={blogData}
+                     setBlogData={setBlogData}
                   />
                }/>
 
                <Route path="/all_users" element={
                   <Users
                      userData={userData}
-                     postData={postData}
+                     blogData={blogData}
                      commentData={commentData}
                      searchValue={searchValue}
                   />
@@ -256,8 +256,8 @@ function App() {
                      setCurrentUser={setCurrentUser}
                      userData={userData}
                      setUserData={setUserData}
-                     postData={postData}
-                     setPostData={setPostData}
+                     blogData={blogData}
+                     setBlogData={setBlogData}
                      commentData={commentData}
                      setCommentData={setCommentData}
                      searchValue={searchValue}

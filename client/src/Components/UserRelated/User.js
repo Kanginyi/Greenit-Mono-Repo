@@ -3,11 +3,11 @@ import {useNavigate} from "react-router-dom";
 
 import "../../Stylings/Users.css";
 
-function User({user, postData, commentData}) {
+function User({user, blogData, commentData}) {
    let navigate = useNavigate();
 
-   // Filter through postData & commentData to find all blogs & comments related to each individual user
-   const checkBlogs = postData?.filter(blog => blog?.user?.id === user?.id);
+   // Filter through blogData & commentData to find all blogs & comments related to each individual user
+   const checkBlogs = blogData?.filter(blog => blog?.user?.id === user?.id);
    const checkComments = commentData?.filter(comment => comment?.user?.id === user?.id);
 
    // Function to route to clicked user's profile when user clicks related div

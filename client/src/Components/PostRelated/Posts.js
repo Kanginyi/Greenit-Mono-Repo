@@ -2,9 +2,9 @@ import React from "react";
 
 import Post from "./Post";
 
-function Posts({currentUser, postData, searchValue, handleDelete, handlePostLikes, handlePostDislikes, handleUnlikePost, handleUndislikePost}) {
-   // Map through postData and render each Post component by passing in the related information as props
-   const renderPosts = postData?.map(post => {
+function Posts({currentUser, blogData, searchValue, handleDelete, handlePostLikes, handlePostDislikes, handleUnlikePost, handleUndislikePost}) {
+   // Map through blogData and render each Post component by passing in the related information as props
+   const renderPosts = blogData?.map(post => {
       return <Post
                key={post?.id}
                currentUser={currentUser}

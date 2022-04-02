@@ -10,7 +10,7 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 import placeholder_img from "../../Images/placeholder.png";
 
-function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData, setPostData, commentData, setCommentData, searchValue}) {
+function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData, setBlogData, commentData, setCommentData, searchValue}) {
    let navigate = useNavigate();
 
    const clickedID = parseInt(useParams().id);
@@ -103,9 +103,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
 
                   setUserCommentsInfo(deleteRelatedComments);
 
-                  const removePost = postData?.filter(singlePost => singlePost?.id !== blog?.id);
+                  const removePost = blogData?.filter(singlePost => singlePost?.id !== blog?.id);
 
-                  setPostData(removePost);
+                  setBlogData(removePost);
 
                   const removeComments = commentData?.filter(singleComment => singleComment?.blog?.id !== blog?.id);
 
@@ -247,8 +247,8 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, postData,
                const removeUser = userData?.filter(user => user?.id !== currentUserInfo?.id);
                setUserData(removeUser);
 
-               const removePosts = postData?.filter(post => post?.user?.id !== currentUserInfo?.id);
-               setPostData(removePosts);
+               const removePosts = blogData?.filter(post => post?.user?.id !== currentUserInfo?.id);
+               setBlogData(removePosts);
 
                const removeComments = commentData?.filter(comment => comment?.user?.id !== currentUserInfo?.id);
                setCommentData(removeComments);

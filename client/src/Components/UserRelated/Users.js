@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import User from "./User";
 import Loader from "../Helpers/Loader";
 
-function Users({userData, postData, commentData, searchValue}) {
+function Users({userData, blogData, commentData, searchValue}) {
    // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
 
@@ -22,7 +22,7 @@ function Users({userData, postData, commentData, searchValue}) {
       return <User
                key={user?.id}
                user={user}
-               postData={postData}
+               blogData={blogData}
                commentData={commentData}
              />
    });
