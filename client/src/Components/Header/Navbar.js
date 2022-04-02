@@ -25,12 +25,12 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
    // Function to view random post
    const viewRandomPost = () => {
       // Map through blogData, grab each blog's ids, and return a new array with these ids
-      const postIDArray = blogData?.map(post => post?.id);
+      const blogIDArray = blogData?.map(post => post?.id);
 
-      // Grab a random number based on postIDArray's length and use that number as the index to randomly select an ID inside of postIDArray
-      const randomPostID = postIDArray[Math.floor(Math.random() * postIDArray?.length)];
+      // Grab a random number based on blogIDArray's length and use that number as the index to randomly select an ID inside of blogIDArray
+      const randomBlogID = blogIDArray[Math.floor(Math.random() * blogIDArray?.length)];
 
-      navigate(`/blogs/${randomPostID}`)
+      navigate(`/blogs/${randomBlogID}`)
    };
 
    return (
