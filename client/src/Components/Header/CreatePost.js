@@ -84,11 +84,11 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
       <>
       {showCreateBlog
          ?
-            <section className="form-background" onClick={closeForm} ref={formRef}>
+            <section className="blog-form-background" onClick={closeForm} ref={formRef}>
                <animated.div style={animation}>
-                  <div className="create-post-form">
+                  <div className="create-blog-div">
                      <button onClick={() => setShowCreateBlog(false)} className="x-button">X</button>
-                     <form className="form-modal" onSubmit={submitGreenitPost}>
+                     <form className="create-blog-form" onSubmit={submitGreenitPost}>
 
                         <p>Title <span className="required-red">*</span></p>
                         <input

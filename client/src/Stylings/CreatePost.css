@@ -1,4 +1,4 @@
-.form-background {
+.blog-form-background {
    width: 100%;
    height: 100%;
    background-color: rgba(0, 0, 0, 0.75);
@@ -12,7 +12,7 @@
    z-index: 5;
 }
 
-.create-post-form {
+.create-blog-div {
    background-color: #DAE6DC;
    width: 100%;
    text-align: center;
@@ -48,17 +48,15 @@
    color: red;
 }
 
-.form-modal {
+.create-blog-form {
    display: flex;
    flex-direction: column;
 
    padding: 10%;
    width: 100%;
-   
-   /* overflow-y: auto; */
 }
 
-.form-modal p {
+.create-blog-form p {
    font-size: 1.15em;
    font-weight: 600;
    margin-bottom: -10px;
@@ -67,7 +65,7 @@
 /* Raleway Regular 400 Font */
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
-.form-modal input, .form-modal textarea {
+.create-blog-form input, .create-blog-form textarea {
    background: none;
 
    margin: 20px auto;
@@ -83,7 +81,7 @@
    font-family: 'Raleway', sans-serif;
 }
 
-.form-modal input:focus, .form-modal textarea:focus {
+.create-blog-form input:focus, .create-blog-form textarea:focus {
    width: 100%;
    border-color: rgb(0, 173, 76);
 }
