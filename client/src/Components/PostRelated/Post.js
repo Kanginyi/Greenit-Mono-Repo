@@ -9,7 +9,7 @@ import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Post({currentUser, post, handleDelete}) {
+function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDislikes, handleUnlikePost, handleUndislikePost}) {
    const userObj = post?.user; 
 
    let navigate = useNavigate();
@@ -39,87 +39,87 @@ function Post({currentUser, post, handleDelete}) {
    const [loginError, setLoginError] = useState("");
 
    // Likes and Dislikes handling functions
-   const handleLikes = () => {
-      if (currentUser) {
-         fetch(`/inc_likes/${post?.id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"}
-         })
-            .then(resp => resp.json())
-            .then(data => {
-               setPostLikes(data?.likes);
-            });
+   // const handleLikes = () => {
+   //    if (currentUser) {
+   //       fetch(`/inc_likes/${post?.id}`, {
+   //          method: "PATCH",
+   //          headers: {"Content-Type": "application/json"}
+   //       })
+   //          .then(resp => resp.json())
+   //          .then(data => {
+   //             setPostLikes(data?.likes);
+   //          });
 
-      if (isClicked === 3) {
-         fetch(`/dec_dislikes/${post?.id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"}
-         })
-            .then(resp => resp.json())
-            .then(data => {
-               setPostDislikes(data?.dislikes);
-            });
-      }
-         setIsClicked(2);
-      } else {
-         setLoginError("Please login");
-      }
-   }
+   //    if (isClicked === 3) {
+   //       fetch(`/dec_dislikes/${post?.id}`, {
+   //          method: "PATCH",
+   //          headers: {"Content-Type": "application/json"}
+   //       })
+   //          .then(resp => resp.json())
+   //          .then(data => {
+   //             setPostDislikes(data?.dislikes);
+   //          });
+   //    }
+   //       setIsClicked(2);
+   //    } else {
+   //       setLoginError("Please login");
+   //    }
+   // }
 
-   const handleDislikes = () => {
-      if (currentUser) {
-         fetch(`/inc_dislikes/${post?.id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"}
-         })
-            .then(resp => resp.json())
-            .then(data => {
-               setPostDislikes(data?.dislikes);
-            });
+   // const handleDislikes = () => {
+   //    if (currentUser) {
+   //       fetch(`/inc_dislikes/${post?.id}`, {
+   //          method: "PATCH",
+   //          headers: {"Content-Type": "application/json"}
+   //       })
+   //          .then(resp => resp.json())
+   //          .then(data => {
+   //             setPostDislikes(data?.dislikes);
+   //          });
 
-         if (isClicked === 2) {
-            fetch(`/dec_likes/${post?.id}`, {
-               method: "PATCH",
-               headers: {"Content-Type": "application/json"}
-            })
-               .then(resp => resp.json())
-               .then(data => {
-                  setPostLikes(data?.likes);
-               });
-         }
-            setIsClicked(3);
-      } else {
-         setLoginError("Please login");
-      }
-   }
+   //       if (isClicked === 2) {
+   //          fetch(`/dec_likes/${post?.id}`, {
+   //             method: "PATCH",
+   //             headers: {"Content-Type": "application/json"}
+   //          })
+   //             .then(resp => resp.json())
+   //             .then(data => {
+   //                setPostLikes(data?.likes);
+   //             });
+   //       }
+   //          setIsClicked(3);
+   //    } else {
+   //       setLoginError("Please login");
+   //    }
+   // }
 
-   const handleUnlike = () => {
-      if (currentUser) {
-         fetch(`/dec_likes/${post?.id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"}
-         })
-            .then(resp => resp.json())
-            .then(data => {
-               setPostLikes(data?.likes);
-            });
-      }
-      setIsClicked(1);
-   }
+   // const handleUnlike = () => {
+   //    if (currentUser) {
+   //       fetch(`/dec_likes/${post?.id}`, {
+   //          method: "PATCH",
+   //          headers: {"Content-Type": "application/json"}
+   //       })
+   //          .then(resp => resp.json())
+   //          .then(data => {
+   //             setPostLikes(data?.likes);
+   //          });
+   //    }
+   //    setIsClicked(1);
+   // }
 
-   const handleUndislike = () => {
-      if (currentUser) {
-         fetch(`/dec_dislikes/${post?.id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"}
-         })
-            .then(resp => resp.json())
-            .then(data => {
-               setPostDislikes(data?.dislikes);
-            });
-      }
-      setIsClicked(1);
-   }
+   // const handleUndislike = () => {
+   //    if (currentUser) {
+   //       fetch(`/dec_dislikes/${post?.id}`, {
+   //          method: "PATCH",
+   //          headers: {"Content-Type": "application/json"}
+   //       })
+   //          .then(resp => resp.json())
+   //          .then(data => {
+   //             setPostDislikes(data?.dislikes);
+   //          });
+   //    }
+   //    setIsClicked(1);
+   // }
    
    return (
       <div className="post-div">
@@ -146,24 +146,40 @@ function Post({currentUser, post, handleDelete}) {
                <div className="likes-button-container">
                   {isClicked === 1
                      ? <NeitherPressed
+                           id={post?.id}
                            likes={postLikes}
+                           setLikes={setPostLikes}
                            dislikes={postDislikes}
-                           likesFunction={handleLikes}
-                           dislikesFunction={handleDislikes}
+                           setDislikes={setPostDislikes}
+                           likesFunction={handlePostLikes}
+                           dislikesFunction={handlePostDislikes}
+                           clickedNum={isClicked}
+                           setClickedNum={setIsClicked}
                            errorMessage={loginError}
+                           setErrorMessage={setLoginError}
                        />
                      : isClicked === 2
                         ? <LikesPressed
+                              id={post?.id}
                               likes={postLikes}
+                              setLikes={setPostLikes}
                               dislikes={postDislikes}
-                              unlikeFunction={handleUnlike}
-                              dislikesFunction={handleDislikes}
+                              setDislikes={setPostDislikes}
+                              unlikeFunction={handleUnlikePost}
+                              dislikesFunction={handlePostDislikes}
+                              clickedNum={isClicked}
+                              setClickedNum={setIsClicked}
                           />
                         : <DislikesPressed
+                              id={post?.id}
                               likes={postLikes}
+                              setLikes={setPostLikes}
                               dislikes={postDislikes}
-                              likesFunction={handleLikes}
-                              undislikeFunction={handleUndislike}
+                              setDislikes={setPostDislikes}
+                              likesFunction={handlePostLikes}
+                              undislikeFunction={handleUndislikePost}
+                              clickedNum={isClicked}
+                              setClickedNum={setIsClicked}
                           />
                   }
                </div>
