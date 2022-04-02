@@ -32,6 +32,9 @@ function App() {
 
    // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
+
+   // State to handle whether to show Signup component or Login component
+   const [showSignup, setShowSignup] = useState(false);
    
    // States to handle initial fetches for ALL initial posts, users, and comments
    const [blogData, setBlogData] = useState([]);
@@ -89,10 +92,9 @@ function App() {
       }
    };
 
-   
-   // TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
-
-   // Function to handle liking posts using the id of the liked blog
+   // Function to handle liking blogs using the id, related setter functions, and related state of the liked blo
+   // If currentUser object exists, then increment likes by 1, and setPostLikes to updated number. If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1 and setPostDislikes to updated number.
+   // If currentUser object doesn't exist, then set and render "Please login"
    const handlePostLikes = (id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_likes/${id}`, {
@@ -116,7 +118,9 @@ function App() {
       }
    };
 
-   // Function to handle disliking posts using the id of the disliked blog
+   // Function to handle disliking blogs using the id, related setter functions, and related state of the disliked blog
+   // If currentUser object exists, then increment dislikes by 1, and setPostDislikes to updated number. If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1 and setPostLikes to updated number.
+   // If currentUser object doesn't exist, then set and render "Please login"
    const handlePostDislikes = (id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_dislikes/${id}`, {
@@ -140,6 +144,8 @@ function App() {
       }
    };
 
+   // Function to handle unliking blogs using the id and related setter functions of the unliked blog
+   // If blog is already liked, decrement likes number by 1, and setPostLikes to updated number
    const handleUnlikePost = (id, setPostLikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_likes/${id}`, {
@@ -152,6 +158,8 @@ function App() {
       setClickedNum(1);
    };
 
+   // Function to handle undisliking blogs using the id and related setter functions of the undisliked blog
+   // If blog is already disliked, decrement dislikes number by 1, and setPostDislikes to updated number
    const handleUndislikePost = (id, setPostDislikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_dislikes/${id}`, {
@@ -163,13 +171,6 @@ function App() {
       }
       setClickedNum(1);
    };
-
-
-   // TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
-
-
-   // State to handle whether to show Signup component or Login component
-   const [showSignup, setShowSignup] = useState(false);
 
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
