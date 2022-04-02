@@ -36,7 +36,7 @@ function App() {
    // State to handle whether to show Signup component or Login component
    const [showSignup, setShowSignup] = useState(false);
    
-   // States to handle initial fetches for ALL initial posts, users, and comments
+   // States to handle initial fetches for ALL initial blogs, users, and comments
    const [blogData, setBlogData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
@@ -70,7 +70,7 @@ function App() {
       setSearchValue(e.target.value);
    };
     
-   // Function to handle deleting posts using the id of the deleted blog
+   // Function to handle deleting blogs using the id of the deleted blog
    const handleDelete = id => {
       let checkDelete = window.confirm("Are you sure you want to delete your post?");
 
@@ -81,7 +81,7 @@ function App() {
          })
             .then(() => {
                // deleteBlog variable to hold array that removes the deleted blog from blogData and setBlogData to that new array
-               const deleteBlog = blogData?.filter(post => post?.id !== id);
+               const deleteBlog = blogData?.filter(blog => blog?.id !== id);
                setBlogData(deleteBlog);
 
                // deleteRelatedComments variable to hold array that removes the deleted blog's comments from commentData and setCommentData to that new array
@@ -93,16 +93,16 @@ function App() {
    };
 
    // Function to handle liking blogs using the id, related setter functions, and related state of the liked blo
-   // If currentUser object exists, then increment likes by 1, and setPostLikes to updated number. If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1 and setPostDislikes to updated number.
+   // If currentUser object exists, then increment likes by 1, and setBlogLikes to updated number. If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1 and setBlogDislikes to updated number.
    // If currentUser object doesn't exist, then set and render "Please login"
-   const handlePostLikes = (id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError) => {
+   const handleBlogLikes = (id, setBlogLikes, setBlogDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_likes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data?.likes));
+            .then(data => setBlogLikes(data?.likes));
 
          if (clickedNum === 3) {
             fetch(`/dec_dislikes/${id}`, {
@@ -110,7 +110,7 @@ function App() {
                headers: {"Content-Type": "application/json"}
             })
                .then(resp => resp.json())
-               .then(data => setPostDislikes(data?.dislikes));
+               .then(data => setBlogDislikes(data?.dislikes));
          }
          setClickedNum(2); 
       } else {
@@ -119,16 +119,16 @@ function App() {
    };
 
    // Function to handle disliking blogs using the id, related setter functions, and related state of the disliked blog
-   // If currentUser object exists, then increment dislikes by 1, and setPostDislikes to updated number. If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1 and setPostLikes to updated number.
+   // If currentUser object exists, then increment dislikes by 1, and setBlogDislikes to updated number. If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1 and setBlogLikes to updated number.
    // If currentUser object doesn't exist, then set and render "Please login"
-   const handlePostDislikes = (id, setPostLikes, setPostDislikes, clickedNum, setClickedNum, setLoginError) => {
+   const handleBlogDislikes = (id, setBlogLikes, setBlogDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_dislikes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data?.dislikes));
+            .then(data => setBlogDislikes(data?.dislikes));
 
          if (clickedNum === 2) {
             fetch(`/dec_likes/${id}`, {
@@ -136,7 +136,7 @@ function App() {
                headers: {"Content-Type": "application/json"}
             })
                .then(resp => resp.json())
-               .then(data => setPostLikes(data?.likes));
+               .then(data => setBlogLikes(data?.likes));
          }
          setClickedNum(3);
       } else {
@@ -145,29 +145,29 @@ function App() {
    };
 
    // Function to handle unliking blogs using the id and related setter functions of the unliked blog
-   // If blog is already liked, decrement likes number by 1, and setPostLikes to updated number
-   const handleUnlikePost = (id, setPostLikes, setClickedNum) => {
+   // If blog is already liked, decrement likes number by 1, and setBlogLikes to updated number
+   const handleUnlikeBlog = (id, setBlogLikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_likes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostLikes(data?.likes));
+            .then(data => setBlogLikes(data?.likes));
       }
       setClickedNum(1);
    };
 
    // Function to handle undisliking blogs using the id and related setter functions of the undisliked blog
-   // If blog is already disliked, decrement dislikes number by 1, and setPostDislikes to updated number
-   const handleUndislikePost = (id, setPostDislikes, setClickedNum) => {
+   // If blog is already disliked, decrement dislikes number by 1, and setBlogDislikes to updated number
+   const handleUndislikeBlog = (id, setBlogDislikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_dislikes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setPostDislikes(data?.dislikes));
+            .then(data => setBlogDislikes(data?.dislikes));
       }
       setClickedNum(1);
    };
@@ -203,10 +203,10 @@ function App() {
                      blogData={blogData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
-                     handlePostLikes={handlePostLikes}
-                     handlePostDislikes={handlePostDislikes}
-                     handleUnlikePost={handleUnlikePost}
-                     handleUndislikePost={handleUndislikePost}
+                     handleBlogLikes={handleBlogLikes}
+                     handleBlogDislikes={handleBlogDislikes}
+                     handleUnlikeBlog={handleUnlikeBlog}
+                     handleUndislikeBlog={handleUndislikeBlog}
                   />
                }/>
 
@@ -227,10 +227,10 @@ function App() {
                      setCommentData={setCommentData}
                      searchValue={searchValue}
                      handleDelete={handleDelete}
-                     handlePostLikes={handlePostLikes}
-                     handlePostDislikes={handlePostDislikes}
-                     handleUnlikePost={handleUnlikePost}
-                     handleUndislikePost={handleUndislikePost}
+                     handleBlogLikes={handleBlogLikes}
+                     handleBlogDislikes={handleBlogDislikes}
+                     handleUnlikeBlog={handleUnlikeBlog}
+                     handleUndislikeBlog={handleUndislikeBlog}
                   />
                }/>
 

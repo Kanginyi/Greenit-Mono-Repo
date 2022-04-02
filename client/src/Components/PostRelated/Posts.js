@@ -2,30 +2,30 @@ import React from "react";
 
 import Post from "./Post";
 
-function Posts({currentUser, blogData, searchValue, handleDelete, handlePostLikes, handlePostDislikes, handleUnlikePost, handleUndislikePost}) {
+function Posts({currentUser, blogData, searchValue, handleDelete, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    // Map through blogData and render each Post component by passing in the related information as props
-   const renderBlogs = blogData?.map(post => {
+   const renderBlogs = blogData?.map(blog => {
       return <Post
-               key={post?.id}
+               key={blog?.id}
                currentUser={currentUser}
-               post={post}
+               blog={blog}
                handleDelete={handleDelete}
-               handlePostLikes={handlePostLikes}
-               handlePostDislikes={handlePostDislikes}
-               handleUnlikePost={handleUnlikePost}
-               handleUndislikePost={handleUndislikePost}
+               handleBlogLikes={handleBlogLikes}
+               handleBlogDislikes={handleBlogDislikes}
+               handleUnlikeBlog={handleUnlikeBlog}
+               handleUndislikeBlog={handleUndislikeBlog}
              />
    });
 
    // Sort through renderBlogs's Post components and display them from newest to oldest by their "created_at" information
-   const sortBlogs = renderBlogs?.sort((a, b) => b?.props?.post?.created_at?.localeCompare(a?.props?.post?.created_at));
+   const sortBlogs = renderBlogs?.sort((a, b) => b?.props?.blog?.created_at?.localeCompare(a?.props?.blog?.created_at));
 
-   // If searchValue is an empty string, render all posts inside sortBlogs. As searchValue gets updated, check each post's title OR each post author's username to see if they include the inputted searchValue
-   const filterPosts = searchValue === "" ? sortBlogs : sortBlogs?.filter(blog => blog?.props?.post?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()) || blog?.props?.post?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   // If searchValue is an empty string, render all blogs inside sortBlogs. As searchValue gets updated, check each blog's title OR each blog author's username to see if they include the inputted searchValue
+   const filterBlogs = searchValue === "" ? sortBlogs : sortBlogs?.filter(blog => blog?.props?.blog?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()) || blog?.props?.blog?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    return (
       <div>
-         {filterPosts}
+         {filterBlogs}
       </div>
    );
 }

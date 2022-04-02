@@ -15,17 +15,17 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
    // State to handle whether search bar is shown or not
    const [searchClicked, setSearchClicked] = useState(false);
    // State to handle whether CreatePost component is shown or not
-   const [showCreatePost, setShowCreatePost] = useState(false);
+   const [showCreateBlog, setShowCreateBlog] = useState(false);
 
    // Function to show or hide search bar when user clicks related button
    const showSearchBar = () => {
       setSearchClicked(prev => !prev);
    };
 
-   // Function to view random post
-   const viewRandomPost = () => {
+   // Function to view random blog
+   const viewRandomBlog = () => {
       // Map through blogData, grab each blog's ids, and return a new array with these ids
-      const blogIDArray = blogData?.map(post => post?.id);
+      const blogIDArray = blogData?.map(blog => blog?.id);
 
       // Grab a random number based on blogIDArray's length and use that number as the index to randomly select an ID inside of blogIDArray
       const randomBlogID = blogIDArray[Math.floor(Math.random() * blogIDArray?.length)];
@@ -51,10 +51,10 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
 
                <button onClick={() => navigate("/all_users")}>All Users</button>
 
-               <button onClick={viewRandomPost}>Random Post</button>
+               <button onClick={viewRandomBlog}>Random Post</button>
 
                {/* Only show create post button if currentUser object exists */}
-               {currentUser ? <button onClick={() => setShowCreatePost(true)}>Create Post</button> : null}
+               {currentUser ? <button onClick={() => setShowCreateBlog(true)}>Create Post</button> : null}
             </div>
 
             <LogSignButtons
@@ -70,8 +70,8 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
             currentUser={currentUser}
             blogData={blogData}
             setBlogData={setBlogData}
-            showCreatePost={showCreatePost}
-            setShowCreatePost={setShowCreatePost}
+            showCreateBlog={showCreateBlog}
+            setShowCreateBlog={setShowCreateBlog}
          />
       </>
    );

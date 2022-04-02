@@ -9,8 +9,8 @@ import "../../Stylings/Post.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDislikes, handleUnlikePost, handleUndislikePost}) {
-   const userObj = post?.user; 
+function Post({currentUser, blog, handleDelete, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+   const userObj = blog?.user; 
 
    let navigate = useNavigate();
 
@@ -19,23 +19,23 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
    }
 
    const viewMore = () => {
-      navigate(`/blogs/${post?.id}`);
+      navigate(`/blogs/${blog?.id}`);
    }
 
-   // Add ... after posts with more than 100 characters in length
+   // Add ... after blogs with more than 100 characters in length
    let renderOnMainPage;
-   if (post?.blog_post?.length > 100) {
-      renderOnMainPage = post?.blog_post?.slice(0, 100) + "...";
+   if (blog?.blog_post?.length > 100) {
+      renderOnMainPage = blog?.blog_post?.slice(0, 100) + "...";
    } else {
-      renderOnMainPage = post?.blog_post;
+      renderOnMainPage = blog?.blog_post;
    }
 
-   const postDate = new Date(post.created_at).toLocaleDateString();
-   const postTime = new Date(post.created_at).toLocaleTimeString();
+   const blogDate = new Date(blog.created_at).toLocaleDateString();
+   const blogTime = new Date(blog.created_at).toLocaleTimeString();
 
    const [clickedNum, setClickedNum] = useState(1);
-   const [postLikes, setPostLikes] = useState(post?.likes);
-   const [postDislikes, setPostDislikes] = useState(post?.dislikes);
+   const [blogLikes, setBlogLikes] = useState(blog?.likes);
+   const [blogDislikes, setBlogDislikes] = useState(blog?.dislikes);
    const [loginError, setLoginError] = useState("");
 
    return (
@@ -51,11 +51,11 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                         style={{cursor: "pointer"}}
                      >
                         u/{userObj?.username}
-                     </span> on {postDate} at {postTime}
+                     </span> on {blogDate} at {blogTime}
                </h3>
 
                {currentUser?.username === userObj?.username
-                  ? <BsTrash onClick={() => handleDelete(post.id)} className="delete-button" title="Delete Post"/>
+                  ? <BsTrash onClick={() => handleDelete(blog.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>
 
@@ -63,13 +63,13 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                <div className="likes-button-container">
                   {clickedNum === 1
                      ? <NeitherPressed
-                           id={post?.id}
-                           postLikes={postLikes}
-                           setPostLikes={setPostLikes}
-                           postDislikes={postDislikes}
-                           setPostDislikes={setPostDislikes}
-                           handlePostLikes={handlePostLikes}
-                           handlePostDislikes={handlePostDislikes}
+                           id={blog?.id}
+                           blogLikes={blogLikes}
+                           setBlogLikes={setBlogLikes}
+                           blogDislikes={blogDislikes}
+                           setBlogDislikes={setBlogDislikes}
+                           handleBlogLikes={handleBlogLikes}
+                           handleBlogDislikes={handleBlogDislikes}
                            clickedNum={clickedNum}
                            setClickedNum={setClickedNum}
                            loginError={loginError}
@@ -77,36 +77,36 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                        />
                      : clickedNum === 2
                         ? <LikesPressed
-                              id={post?.id}
-                              postLikes={postLikes}
-                              setPostLikes={setPostLikes}
-                              postDislikes={postDislikes}
-                              setPostDislikes={setPostDislikes}
-                              handleUnlikePost={handleUnlikePost}
-                              handlePostDislikes={handlePostDislikes}
+                              id={blog?.id}
+                              blogLikes={blogLikes}
+                              setBlogLikes={setBlogLikes}
+                              blogDislikes={blogDislikes}
+                              setBlogDislikes={setBlogDislikes}
+                              handleUnlikeBlog={handleUnlikeBlog}
+                              handleBlogDislikes={handleBlogDislikes}
                               clickedNum={clickedNum}
                               setClickedNum={setClickedNum}
                           />
                         : <DislikesPressed
-                              id={post?.id}
-                              postLikes={postLikes}
-                              setPostLikes={setPostLikes}
-                              postDislikes={postDislikes}
-                              setPostDislikes={setPostDislikes}
-                              handlePostLikes={handlePostLikes}
-                              handleUndislikePost={handleUndislikePost}
+                              id={blog?.id}
+                              blogLikes={blogLikes}
+                              setBlogLikes={setBlogLikes}
+                              blogDislikes={blogDislikes}
+                              setBlogDislikes={setBlogDislikes}
+                              handleBlogLikes={handleBlogLikes}
+                              handleUndislikeBlog={handleUndislikeBlog}
                               clickedNum={clickedNum}
                               setClickedNum={setClickedNum}
                           />
                   }
                </div>
                      &nbsp;
-               <h2 className="post-title">{post.title}</h2>
+               <h2 className="post-title">{blog.title}</h2>
             </div>
 
             <div className="post-info-underline"></div>
 
-            {post.image_url ? <img src={post.image_url} alt={post.title}/> : null}
+            {blog.image_url ? <img src={blog.image_url} alt={blog.title}/> : null}
 
             <p>
                {renderOnMainPage}
@@ -115,9 +115,9 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
 
          <div className="view-more-container">
             <em>
-               {post?.comments?.length === 1
-                  ? `${post?.comments?.length} Total Comment`
-                  : `${post?.comments?.length} Total Comments`
+               {blog?.comments?.length === 1
+                  ? `${blog?.comments?.length} Total Comment`
+                  : `${blog?.comments?.length} Total Comments`
                }
             </em>
                <br/>

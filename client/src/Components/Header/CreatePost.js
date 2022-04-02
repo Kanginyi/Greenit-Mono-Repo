@@ -3,9 +3,9 @@ import {useNavigate} from "react-router-dom";
 
 import {useSpring, animated} from "react-spring";
 
-import "../../Stylings/Form.css";
+import "../../Stylings/CreatePost.css";
 
-function CreatePost({currentUser, blogData, setBlogData, showCreatePost, setShowCreatePost}) {
+function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShowCreateBlog}) {
    let navigate = useNavigate();
 
    // State to handle newly created blog's initial values
@@ -27,7 +27,7 @@ function CreatePost({currentUser, blogData, setBlogData, showCreatePost, setShow
       });
    };
 
-   // Function to create post using information inside of blogForm
+   // Function to create a new blog using information inside of blogForm
    // Didn't put currentUser check here because Create Post button shouldn't be available unless someone's logged in and the currentUser object exists
    const submitGreenitPost = e => {
       e.preventDefault();
@@ -40,14 +40,14 @@ function CreatePost({currentUser, blogData, setBlogData, showCreatePost, setShow
          .then(resp => {
             if (resp.ok) {
                resp.json()
-                  .then(post => {
-                     setBlogData([post, ...blogData]);
+                  .then(blog => {
+                     setBlogData([blog, ...blogData]);
                   })
             }
          })
       // Clear all information inside of blogForm, hide CreatePost component, navigate to homepage
       setBlogForm({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: 0});
-      setShowCreatePost(false);
+      setShowCreateBlog(false);
       navigate("/");
    };
 
@@ -55,16 +55,16 @@ function CreatePost({currentUser, blogData, setBlogData, showCreatePost, setShow
    const formRef = useRef();
    const closeForm = e => {
       if (formRef.current === e.target) {
-         setShowCreatePost(false);
+         setShowCreateBlog(false);
       }
    };
 
    // Close the modal using the "Escape" key
    const escPress = useCallback(e => {
-      if (e.key === "Escape" && showCreatePost) {
-         setShowCreatePost(false);
+      if (e.key === "Escape" && showCreateBlog) {
+         setShowCreateBlog(false);
       }
-   }, [showCreatePost, setShowCreatePost]);
+   }, [showCreateBlog, setShowCreateBlog]);
 
    useEffect(() => {
       document.addEventListener("keydown", escPress);
@@ -76,18 +76,18 @@ function CreatePost({currentUser, blogData, setBlogData, showCreatePost, setShow
       config: {
          duration: 275
       },
-      opacity: showCreatePost ? 1 : 0,
-      transform: showCreatePost ? `translateY(0%)` : `translateY(-300%)`
+      opacity: showCreateBlog ? 1 : 0,
+      transform: showCreateBlog ? `translateY(0%)` : `translateY(-300%)`
    });
 
    return (
       <>
-      {showCreatePost
+      {showCreateBlog
          ?
             <section className="form-background" onClick={closeForm} ref={formRef}>
                <animated.div style={animation}>
                   <div className="create-post-form">
-                     <button onClick={() => setShowCreatePost(false)} className="x-button">X</button>
+                     <button onClick={() => setShowCreateBlog(false)} className="x-button">X</button>
                      <form className="form-modal" onSubmit={submitGreenitPost}>
 
                         <p>Title <span className="required-red">*</span></p>
