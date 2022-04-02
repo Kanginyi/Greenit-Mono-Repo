@@ -9,7 +9,8 @@ function Signup({setCurrentUser, setUserData}) {
    const [password, setPassword] = useState("");
    const [errorMessage, setErrorMessage] = useState([]);
 
-   // Function handle signing up with new user information. After signing up, setCurrentUser to new user's information, add that new user object to userData array, and setUserData to that new array.
+   // Function handle signing up with new user information.
+   // After signing up, setCurrentUser to new user's information, add that new user object to userData array, and setUserData to that new array.
    const handleSignup = e => {
       e.preventDefault();
 
