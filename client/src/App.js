@@ -93,75 +93,75 @@ function App() {
    // TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
 
    // Function to handle liking posts using the id of the liked blog
-   const handlePostLikes = (id, setLikes, setDislikes, clickedNum, setClickedNum, setErrorMessage) => {
+   const handlePostLikes = (id, setPostLikes, setPostDislikes, isClicked, setIsClicked, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_likes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setLikes(data?.likes));
+            .then(data => setPostLikes(data?.likes));
 
-         if (clickedNum === 3) {
+         if (isClicked === 3) {
             fetch(`/dec_dislikes/${id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
             })
                .then(resp => resp.json())
-               .then(data => setDislikes(data?.dislikes));
+               .then(data => setPostDislikes(data?.dislikes));
          }
-         setClickedNum(2); 
+         setIsClicked(2); 
       } else {
-         setErrorMessage("Please login");
+         setLoginError("Please login");
       }
    };
 
    // Function to handle disliking posts using the id of the disliked blog
-   const handlePostDislikes = (id, setLikes, setDislikes, clickedNum, setClickedNum, setErrorMessage) => {
+   const handlePostDislikes = (id, setPostLikes, setPostDislikes, isClicked, setIsClicked, setLoginError) => {
       if (currentUser) {
          fetch(`/inc_dislikes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setDislikes(data?.dislikes));
+            .then(data => setPostDislikes(data?.dislikes));
 
-         if (clickedNum === 2) {
+         if (isClicked === 2) {
             fetch(`/dec_likes/${id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
             })
                .then(resp => resp.json())
-               .then(data => setLikes(data?.likes));
+               .then(data => setPostLikes(data?.likes));
          }
-         setClickedNum(3);
+         setIsClicked(3);
       } else {
-         setErrorMessage("Please login");
+         setLoginError("Please login");
       }
    };
 
-   const handleUnlikePost = (id, setLikes, setClickedNum) => {
+   const handleUnlikePost = (id, setPostLikes, setIsClicked) => {
       if (currentUser) {
          fetch(`/dec_likes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setLikes(data?.likes));
+            .then(data => setPostLikes(data?.likes));
       }
-      setClickedNum(1);
+      setIsClicked(1);
    };
 
-   const handleUndislikePost = (id, setDislikes, setClickedNum) => {
+   const handleUndislikePost = (id, setPostDislikes, setIsClicked) => {
       if (currentUser) {
          fetch(`/dec_dislikes/${id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
          })
             .then(resp => resp.json())
-            .then(data => setDislikes(data?.dislikes));
+            .then(data => setPostDislikes(data?.dislikes));
       }
-      setClickedNum(1);
+      setIsClicked(1);
    };
 
 
