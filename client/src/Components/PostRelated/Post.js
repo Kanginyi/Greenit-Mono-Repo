@@ -64,16 +64,16 @@ function Post({currentUser, post, handleDelete, handlePostLikes, handlePostDisli
                   {isClicked === 1
                      ? <NeitherPressed
                            id={post?.id}
-                           likes={postLikes}
-                           setLikes={setPostLikes}
-                           dislikes={postDislikes}
-                           setDislikes={setPostDislikes}
-                           likesFunction={handlePostLikes}
-                           dislikesFunction={handlePostDislikes}
-                           clickedNum={isClicked}
-                           setClickedNum={setIsClicked}
-                           errorMessage={loginError}
-                           setErrorMessage={setLoginError}
+                           postLikes={postLikes}
+                           setPostLikes={setPostLikes}
+                           postDislikes={postDislikes}
+                           setPostDislikes={setPostDislikes}
+                           handlePostLikes={handlePostLikes}
+                           handlePostDislikes={handlePostDislikes}
+                           isClicked={isClicked}
+                           setIsClicked={setIsClicked}
+                           loginError={loginError}
+                           setLoginError={setLoginError}
                        />
                      : isClicked === 2
                         ? <LikesPressed
