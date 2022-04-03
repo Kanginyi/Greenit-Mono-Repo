@@ -197,24 +197,40 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
             <div className="comment-likes-container">
                {clickedNum === 1
                   ? <NeitherPressed
+                        id={comment?.id}
                         likes={commentLikes}
+                        setLikes={setCommentLikes}
                         dislikes={commentDislikes}
+                        setDislikes={setCommentDislikes}
                         likesFunction={handleLikes}
                         dislikesFunction={handleDislikes}
-                        errorMessage={commentError}
+                        clickedNum={clickedNum}
+                        setClickedNum={setClickedNum}
+                        loginError={commentError}
+                        setLoginError={setCommentError}
                     />
                   : clickedNum === 2
                      ? <LikesPressed
+                           id={comment?.id}
                            likes={commentLikes}
+                           setLikes={setCommentLikes}
                            dislikes={commentDislikes}
+                           setDislikes={setCommentDislikes}
                            unlikeFunction={handleUnlike}
                            dislikesFunction={handleDislikes}
+                           clickedNum={clickedNum}
+                           setClickedNum={setClickedNum}
                        />
                      : <DislikesPressed
+                           id={comment?.id}
                            likes={commentLikes}
+                           setLikes={setCommentLikes}
                            dislikes={commentDislikes}
+                           setDislikes={setCommentDislikes}
                            likesFunction={handleLikes}
                            undislikeFunction={handleUndislike}
+                           clickedNum={clickedNum}
+                           setClickedNum={setClickedNum}
                        />
                }
             </div>
