@@ -59,8 +59,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
                setCommentData(deleteComment);
 
-               const deletePostComment = currentBlogComments?.filter(singleComment => singleComment?.id !== comment?.id);
-               setCurrentBlogComments(deletePostComment);
+               const deleteBlogComment = currentBlogComments?.filter(singleComment => singleComment?.id !== comment?.id);
+               setCurrentBlogComments(deleteBlogComment);
             })
       }
    };
