@@ -74,7 +74,7 @@ function App() {
    const handleDeleteBlog = id => {
       let confirmDelete = window.confirm("Are you sure you want to delete your post?");
 
-      // If the confirmDelete returns true (because a user clicked confirm), then continue with delete actions
+      // If confirmDelete returns true (because a user clicked confirm), then continue with delete actions
       if (confirmDelete) {
          fetch(`/blogs/${id}`,{
             method : "DELETE"

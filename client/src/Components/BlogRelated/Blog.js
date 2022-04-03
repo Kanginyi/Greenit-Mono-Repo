@@ -14,6 +14,10 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
    
    const blogAuthorObj = blog?.user;
 
+   // Date & Time information for when the blog was created/posted
+   const blogDate = new Date(blog.created_at).toLocaleDateString();
+   const blogTime = new Date(blog.created_at).toLocaleTimeString();
+
    // State to handle whether a blog has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
    // State to handle blog's likes & dislikes
@@ -31,10 +35,6 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
    const viewMore = () => {
       navigate(`/blogs/${blog?.id}`);
    }
-
-   // Date & Time information for when the blog was created/posted
-   const blogDate = new Date(blog.created_at).toLocaleDateString();
-   const blogTime = new Date(blog.created_at).toLocaleTimeString();
 
    // If blog's content is more than 100 characters in length, max it out to 100 characters, add "..." after it, and set shortBlogDesc to the shortened content.
    // If blog's content is less than 100 characters in length, just set shortBlogDesc to the original content.
