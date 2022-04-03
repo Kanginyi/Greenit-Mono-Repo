@@ -19,11 +19,19 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    const commentDate = new Date(comment?.created_at).toLocaleDateString();
    const commentTime = new Date(comment?.created_at).toLocaleTimeString();
 
-   const [showCommentInput, setShowCommentInput] = useState(false);
+   // Function to navigate to comment user's profile when user clicks related username
+   const viewUserInfo = () => {
+      navigate(`/all_users/${commentUser?.id}`);
+   };
+
+   // State to handle whether to show the comment editing input or not
+   const [showCommentEditInput, setShowCommentEditInput] = useState(false);
+   // State to handle the edited comment's information; spread the passed down comment object as the initial value
    const [editComment, setEditComment] = useState({
       ...comment
    });
 
+   // Function to update editComment state based on inputted values from showCommentEdit's input
    const handleCommentEdit = e => {
       setEditComment({
          ...editComment,
@@ -32,6 +40,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
       });
    };
 
+   // Function to update the relevant comment using comment's id and the information inside of the editComment object
+   // After the response comes back okay, setCommentData array to include the updatedComment object, and hide the comment editing input
    const updateComment = () => {
       fetch(`/comments/${comment?.id}`, {
          method: "PATCH",
@@ -43,24 +53,40 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                resp.json()
                   .then(updatedComment => {
                      setCommentData(commentData, updatedComment);
-                     setShowCommentInput(false);
+                     setShowCommentEditInput(false);
                   })
             }
          })
    };
 
-   const deleteComment = () => {
-      let checkDelete = window.confirm("Are you sure you want to delete your comment?");
+   // Close comment editing input using the "Escape" key
+   const escPress = useCallback(e => {
+      if (e.key === "Escape" && showCommentEditInput) {
+         setShowCommentEditInput(false);
+      }
+   }, [showCommentEditInput, setShowCommentEditInput]);
 
-      if (checkDelete) {
+   useEffect(() => {
+      document.addEventListener("keydown", escPress);
+      return () => document.removeEventListener("keydown", escPress);
+   }, [escPress]);
+
+   // Function to handle deleting comments using the id of the deleted comment
+   const deleteComment = () => {
+      let confirmDelete = window.confirm("Are you sure you want to delete your comment?");
+
+      // If confirmDelete returns true (because a user clicked confirm), then continue with delete actions
+      if (confirmDelete) {
          fetch(`/comments/${comment?.id}`, {
             method: "DELETE"
          })
             .then(() => {
-               const deleteComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
+               // deleteComment variable to hold array that removes the deleted comment from commentData and setCommentData to that new array
+               const deleteComment = commentData?.filter(eachComment => eachComment?.id !== comment?.id);
                setCommentData(deleteComment);
 
-               const deleteBlogComment = currentBlogComments?.filter(singleComment => singleComment?.id !== comment?.id);
+               // deleteBlogComment variable to hold array that removes the deleted comment from the current blog's comments array and setCurrentBlogComments to that new array
+               const deleteBlogComment = currentBlogComments?.filter(eachComment => eachComment?.id !== comment?.id);
                setCurrentBlogComments(deleteBlogComment);
             })
       }
@@ -74,8 +100,12 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    // State to handle whether "Please login" is shown or not
    const [commentError, setCommentError] = useState("");
 
-   // Likes and Dislikes handling functions
-   const handleLikes = () => {
+   // Function to handle liking comments using the id of the liked comment
+   // If the currentUser object exists, then increment likes by 1, setCommentLikes to the updated number, and also setEditComment to the updated number to update the editComment object's likes
+   // If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1, setCommentDislikes to the updated number, and also setEditComment to the updated number to update the editComment object's dislikes
+   // setClickedNum to 2 (where likes button is pressed)
+   // If the currentUser object doesn't exist, then set and render "Please login"
+   const handleCommentLikes = () => {
       if (currentUser) {
          fetch(`/inc_comment_likes/${comment?.id}`, {
             method: "PATCH",
@@ -83,28 +113,33 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
          })
             .then(resp => resp.json())
             .then(data => {
-               setCommentLikes(data.likes);
-               setEditComment({...editComment, likes: data.likes});
-            });
-
-      if (clickedNum === 3) {
-         fetch(`/dec_comment_dislikes/${comment?.id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"}
-         })
-            .then(resp => resp.json())
-            .then(data => {
-               setCommentDislikes(data.dislikes);
-               setEditComment({...editComment, dislikes: data.dislikes});
-            });
-      }
+               setCommentLikes(data?.likes);
+               setEditComment({...editComment, likes: data?.likes});
+            })
+         
+         if (clickedNum === 3) {
+            fetch(`/dec_comment_dislikes/${comment?.id}`, {
+               method: "PATCH",
+               headers: {"Content-Type": "application/json"}
+            })
+               .then(resp => resp.json())
+               .then(data => {
+                  setCommentDislikes(data?.dislikes);
+                  setEditComment({...editComment, dislikes: data?.dislikes});
+               });
+         }
          setClickedNum(2);
       } else {
          setCommentError("Please login");
       }
-   }
+   };
 
-   const handleDislikes = () => {
+   // Function to handle disliking comments using the id of the disliked comment
+   // If the currentUser object exists, then increment dislikes by 1, setCommentDislikes to the updated number, and also setEditComment to the updated number to update the editComment object's dislikes
+   // If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1, setCommentLikes to the updated number, and also setEditComment to the updated number to update the editComment object's likes
+   // setClickedNum to 3 (where dislikes button is pressed)
+   // If the currentUser object doesn't exist, then set and render "Please login"
+   const handleCommentDislikes = () => {
       if (currentUser) {
          fetch(`/inc_comment_dislikes/${comment?.id}`, {
             method: "PATCH",
@@ -112,8 +147,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
          })
             .then(resp => resp.json())
             .then(data => {
-               setCommentDislikes(data.dislikes);
-               setEditComment({...editComment, dislikes: data.dislikes});
+               setCommentDislikes(data?.dislikes);
+               setEditComment({...editComment, dislikes: data?.dislikes});
             });
 
          if (clickedNum === 2) {
@@ -123,17 +158,20 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
             })
                .then(resp => resp.json())
                .then(data => {
-                  setCommentLikes(data.likes);
-                  setEditComment({...editComment, likes: data.likes});
+                  setCommentLikes(data?.likes);
+                  setEditComment({...editComment, likes: data?.likes});
                });
          }
-            setClickedNum(3);
+         setClickedNum(3);
       } else {
          setCommentError("Please login");
       }
-   }
+   };
 
-   const handleUnlike = () => {
+   // Function to handle unliking comments using the id of the unliked comment
+   // If comment is already liked, decrement likes by 1, setCommentLikes to the updated number, and also setEditComment to the updated number to update the editComment object's likes
+   // setClickedNum to 1 (where neither button is pressed)
+   const handleUnlikeComment = () => {
       if (currentUser) {
          fetch(`/dec_comment_likes/${comment?.id}`, {
             method: "PATCH",
@@ -142,13 +180,16 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
             .then(resp => resp.json())
             .then(data => {
                setCommentLikes(data?.likes);
-               setEditComment({...editComment, likes: data.likes});
+               setEditComment({...editComment, likes: data?.likes});
             });
       }
       setClickedNum(1);
-   }
+   };
 
-   const handleUndislike = () => {
+   // Function to handle undisliking comments using the id of the undisliked comment
+   // If comment is already disliked, decrement dislikes by 1, setCommentDislikes to the updated number, and also setEditComment to the updated number to update the editComment object's dislikes
+   // setClickedNum to 1 (where neither button is pressed)
+   const handleUndislikeComment = () => {
       if (currentUser) {
          fetch(`/dec_comment_dislikes/${comment?.id}`, {
             method: "PATCH",
@@ -157,28 +198,17 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
             .then(resp => resp.json())
             .then(data => {
                setCommentDislikes(data?.dislikes);
-               setEditComment({...editComment, dislikes: data.dislikes});
+               setEditComment({...editComment, dislikes: data?.dislikes});
             });
       }
       setClickedNum(1);
-   }
-
-   // Close commentInput using the "Escape" key
-   const escPress = useCallback(e => {
-      if (e.key === "Escape" && showCommentInput) {
-         setShowCommentInput(false);
-      }
-   }, [showCommentInput, setShowCommentInput]);
-
-   useEffect(() => {
-      document.addEventListener("keydown", escPress);
-      return () => document.removeEventListener("keydown", escPress);
-   }, [escPress]);
+   };
 
    return (
       <div className="comment-section">
          <div className="comment-text">
-            {showCommentInput
+            {/* If showCommentEditInput is true, then show input to let the user edit the relevant comment. */}
+            {showCommentEditInput
                ? <div className="comment-text-edit">
                      Currently Editing:
                      <input
@@ -207,8 +237,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                         setLikes={setCommentLikes}
                         dislikes={commentDislikes}
                         setDislikes={setCommentDislikes}
-                        likesFunction={handleLikes}
-                        dislikesFunction={handleDislikes}
+                        likesFunction={handleCommentLikes}
+                        dislikesFunction={handleCommentDislikes}
                         clickedNum={clickedNum}
                         setClickedNum={setClickedNum}
                         loginError={commentError}
@@ -221,8 +251,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                            setLikes={setCommentLikes}
                            dislikes={commentDislikes}
                            setDislikes={setCommentDislikes}
-                           unlikeFunction={handleUnlike}
-                           dislikesFunction={handleDislikes}
+                           unlikeFunction={handleUnlikeComment}
+                           dislikesFunction={handleCommentDislikes}
                            clickedNum={clickedNum}
                            setClickedNum={setClickedNum}
                        />
@@ -232,8 +262,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                            setLikes={setCommentLikes}
                            dislikes={commentDislikes}
                            setDislikes={setCommentDislikes}
-                           likesFunction={handleLikes}
-                           undislikeFunction={handleUndislike}
+                           likesFunction={handleCommentLikes}
+                           undislikeFunction={handleUndislikeComment}
                            clickedNum={clickedNum}
                            setClickedNum={setClickedNum}
                        />
@@ -246,11 +276,12 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                      Posted on {commentDate} at {commentTime}
                   </em>
                   
+                  {/* If currentUser's username is the same as the commentUser's username, give the user the options to either edit or delete the comment */}
                   {currentUser?.username === commentUser?.username
                      ? <div className="comment-user-actions">
                            &nbsp;
                         <FaEdit
-                           onClick={() => setShowCommentInput(prev => !prev)}
+                           onClick={() => setShowCommentEditInput(prev => !prev)}
                            className="user-edit"
                            title="Edit Comment"
                         />
@@ -266,7 +297,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                </div>
 
                <p className="comment-username">
-                  -<span onClick={() => navigate(`/all_users/${commentUser?.id}`)} style={{cursor: "pointer"}}>
+                  -<span onClick={viewUserInfo} style={{cursor: "pointer"}}>
                      {commentUser?.username}
                   </span>
                </p>
