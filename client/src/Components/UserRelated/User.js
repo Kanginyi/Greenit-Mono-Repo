@@ -10,7 +10,7 @@ function User({user, blogData, commentData}) {
    const checkBlogs = blogData?.filter(blog => blog?.user?.id === user?.id);
    const checkComments = commentData?.filter(comment => comment?.user?.id === user?.id);
 
-   // Function to route to clicked Greenit user's profile when user clicks related div
+   // Function to navigate to clicked user's profile when user clicks related div
    const viewUserInfo = () => {
       navigate(`/all_users/${user?.id}`);
    };

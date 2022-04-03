@@ -12,15 +12,14 @@ import {BsTrash} from "react-icons/bs";
 function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    let navigate = useNavigate();
    
-   const userObj = blog?.user; 
+   const blogAuthorObj = blog?.user;
 
-
-
-   const clickUser = () => {
-      navigate(`/all_users/${userObj?.id}`);
+   // Function to navigate to blog author's profile when user clicks related username
+   const viewUserInfo = () => {
+      navigate(`/all_users/${blogAuthorObj?.id}`);
    }
 
-   // Function 
+   // Function to navigate to view more information about the clicked blog when user clicked related button
    const viewMore = () => {
       navigate(`/blogs/${blog?.id}`);
    }
@@ -50,14 +49,14 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                   Posted by&nbsp;
                      <span
                         className="username-color"
-                        onClick={clickUser}
+                        onClick={viewUserInfo}
                         style={{cursor: "pointer"}}
                      >
-                        u/{userObj?.username}
+                        u/{blogAuthorObj?.username}
                      </span> on {blogDate} at {blogTime}
                </h3>
 
-               {currentUser?.username === userObj?.username
+               {currentUser?.username === blogAuthorObj?.username
                   ? <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>

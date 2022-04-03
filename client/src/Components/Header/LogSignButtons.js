@@ -6,12 +6,12 @@ import {FaRegSmileBeam} from "react-icons/fa";
 function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
    let navigate = useNavigate();
 
-   // Function to route to user's profile when user clicks related button
+   // Function to navigate to clicked user's profile when user clicks related button
    const viewYourProfile = () => {
       navigate(`/all_users/${currentUser?.id}`);
    };
 
-   // Function to logout user, setCurrentUser to null, and route back to homepage
+   // Function to logout user, setCurrentUser to null, and navigate back to homepage
    const toLogout = () => {
       fetch("/logout", {
          method: "DELETE"
@@ -22,14 +22,14 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
       navigate("/");
    };
 
-   // Function to route to Login component because showSignup is false
+   // Function to navigate to Login component when showSignup is false
    const toLogin = () => {
       setShowSignup(false);
 
       navigate("/welcome");
    };
 
-   // Function to route to Signup component because showSignup is true
+   // Function to navigate to Signup component when showSignup is true
    const toSignup = () => {
       setShowSignup(true);
 
