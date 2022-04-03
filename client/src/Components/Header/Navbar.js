@@ -30,7 +30,7 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
       // Grab a random number based on blogIDArray's length and use that number as the index to randomly select an ID inside of blogIDArray
       const randomBlogID = blogIDArray[Math.floor(Math.random() * blogIDArray?.length)];
 
-      navigate(`/blogs/${randomBlogID}`)
+      navigate(`/blogs/${randomBlogID}`);
    };
 
    return (
@@ -53,7 +53,7 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
 
                <button onClick={viewRandomBlog}>Random Post</button>
 
-               {/* Only show Create Post button if currentUser object exists */}
+               {/* Only show Create Post button if the currentUser object exists */}
                {currentUser ? <button onClick={() => setShowCreateBlog(true)}>Create Post</button> : null}
             </div>
 

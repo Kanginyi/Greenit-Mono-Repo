@@ -29,21 +29,21 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
    // Function to navigate to blog author's profile when user clicks related username
    const viewUserInfo = () => {
       navigate(`/all_users/${blogAuthorObj?.id}`);
-   }
+   };
 
    // Function to navigate to blog's full page to view more information about the clicked blog when user clicks related button
    const viewMore = () => {
       navigate(`/blogs/${blog?.id}`);
-   }
+   };
 
-   // If blog's content is more than 100 characters in length, max it out to 100 characters, add "..." after it, and set shortBlogDesc to the shortened content.
-   // If blog's content is less than 100 characters in length, just set shortBlogDesc to the original content.
+   // If blog's content is more than 100 characters in length, max it out to 100 characters, add "..." after it, and set shortBlogDesc to the shortened content
+   // If blog's content is less than 100 characters in length, just set shortBlogDesc to the original content
    let shortBlogDesc;
    if (blog?.blog_post?.length > 100) {
       shortBlogDesc = blog?.blog_post?.slice(0, 100) + "...";
    } else {
       shortBlogDesc = blog?.blog_post;
-   }
+   };
 
    return (
       <div className="blog-div">
@@ -61,7 +61,7 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                      </span> on {blogDate} at {blogTime}
                </h3>
 
-               {/* If currentUser's username is the same as the blogAuthor's username, give the user the option to delete the blog */}
+               {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to delete the blog */}
                {currentUser?.username === blogAuthorObj?.username
                   ? <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
                   : null}
@@ -125,7 +125,7 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
 
          <div className="view-more-container">
             <em>
-               {/* Proper grammar based on the amount of comments */}
+               {/* Proper grammar based on the amount of comments on the blog*/}
                {blog?.comments?.length === 1
                   ? `${blog?.comments?.length} Total Comment`
                   : `${blog?.comments?.length} Total Comments`
