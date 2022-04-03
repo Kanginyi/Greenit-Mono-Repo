@@ -35,7 +35,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
          });
    }, [clickedID]);
 
-   // Date & Time for the blog header
+   // Date & Time information for when the blog was created/posted
    const blogDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
    const blogTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
 

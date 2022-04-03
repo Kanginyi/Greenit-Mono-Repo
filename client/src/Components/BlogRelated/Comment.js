@@ -15,6 +15,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
 
    const commentUser = comment?.user;
 
+   // Date & Time information for when the comment was created/posted
    const commentDate = new Date(comment?.created_at).toLocaleDateString();
    const commentTime = new Date(comment?.created_at).toLocaleTimeString();
 

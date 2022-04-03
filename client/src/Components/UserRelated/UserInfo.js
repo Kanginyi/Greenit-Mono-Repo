@@ -84,6 +84,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
          blogPost = blog?.blog_post?.slice(0, 15) + "...";
       }
 
+      // Date & Time information for when the blog was created/posted
       const blogDate = new Date(blog?.created_at).toLocaleDateString();
       const blogTime = new Date(blog?.created_at).toLocaleTimeString();
 
@@ -159,6 +160,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    const sortComments = userCommentsInfo?.sort((a, b) => b?.created_at?.localeCompare(a?.created_at));
 
    const renderComments = sortComments?.map(comment => {
+      // Date & Time information for when the comment was created/posted
       const commentDate = new Date(comment?.created_at).toLocaleDateString();
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
       
@@ -258,6 +260,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
       }
    };
 
+   // Date & Time information for when the user's account was created
    const accountDate = new Date(currentUserInfo?.created_at).toLocaleDateString();
    const accountTime = new Date(currentUserInfo?.created_at).toLocaleTimeString();
 
