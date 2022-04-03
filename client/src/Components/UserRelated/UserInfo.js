@@ -87,25 +87,25 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
       const blogDate = new Date(blog?.created_at).toLocaleDateString();
       const blogTime = new Date(blog?.created_at).toLocaleTimeString();
 
-      const deleteBlog = () => {
-         let checkDelete = window.confirm(`Are you sure you want to delete "${blog?.title}"?`);
+      const deleteUserBlog = () => {
+         let confirmDelete = window.confirm(`Are you sure you want to delete "${blog?.title}"?`);
    
-         if (checkDelete) {
+         if (confirmDelete) {
             fetch(`/blogs/${blog?.id}`, {
                method: "DELETE"
             })
                .then(() => {
-                  const deletePost = userBlogsInfo?.filter(eachBlog => eachBlog?.id !== blog?.id);
+                  const deleteBlog = userBlogsInfo?.filter(eachBlog => eachBlog?.id !== blog?.id);
 
-                  setUserBlogsInfo(deletePost);
+                  setUserBlogsInfo(deleteBlog);
 
                   const deleteRelatedComments = userCommentsInfo?.filter(eachComment => eachComment?.blog?.id !== blog?.id);
 
                   setUserCommentsInfo(deleteRelatedComments);
 
-                  const removePost = blogData?.filter(eachBlog => eachBlog?.id !== blog?.id);
+                  const removeBlog = blogData?.filter(eachBlog => eachBlog?.id !== blog?.id);
 
-                  setBlogData(removePost);
+                  setBlogData(removeBlog);
 
                   const removeComments = commentData?.filter(eachComment => eachComment?.blog?.id !== blog?.id);
 
@@ -139,7 +139,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                   ?
                      <div className="user-info-actions">
                         <BsTrash
-                           onClick={deleteBlog}
+                           onClick={deleteUserBlog}
                            className="delete-button"
                            title={`Delete "${blog?.title}"`}
                         />
@@ -163,9 +163,9 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
       const commentTime = new Date(comment?.created_at).toLocaleTimeString();
       
       const deleteComment = () => {
-         let checkDelete = window.confirm(`Are you sure you want to delete your comment on "${comment?.blog?.title}"?`);
+         let confirmDelete = window.confirm(`Are you sure you want to delete your comment on "${comment?.blog?.title}"?`);
    
-         if (checkDelete) {
+         if (confirmDelete) {
             fetch(`/comments/${comment?.id}`, {
                method: "DELETE"
             })
@@ -205,7 +205,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                         &nbsp;|&nbsp;
                      {comment?.dislikes === 1 ? `${comment?.dislikes} Dislike` : `${comment?.dislikes} Dislikes`}                  
                   </p>
-                  <p className="post-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
+                  <p className="blog-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
                </div>
 
                {currentUser?.username === currentUserInfo?.username
@@ -228,12 +228,12 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
          </div>
    });
 
-   const filterPosts = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
-   // Show/hide posts/comments
-   const [hidePosts, setHidePosts] = useState(false);
+   // Show/hide blogs/comments
+   const [hideBlogs, setHideBlogs] = useState(false);
    const [hideComments, setHideComments] = useState(false);
 
    const deleteUser = () => {
@@ -247,8 +247,8 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                const removeUser = userData?.filter(user => user?.id !== currentUserInfo?.id);
                setUserData(removeUser);
 
-               const removePosts = blogData?.filter(post => post?.user?.id !== currentUserInfo?.id);
-               setBlogData(removePosts);
+               const removeBlogs = blogData?.filter(blog => blog?.user?.id !== currentUserInfo?.id);
+               setBlogData(removeBlogs);
 
                const removeComments = commentData?.filter(comment => comment?.user?.id !== currentUserInfo?.id);
                setCommentData(removeComments);
@@ -322,13 +322,13 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                            ?  <>
                                  <h3>Total Posts: {userBlogsInfo?.length}
                                     <button
-                                       onClick={() => setHidePosts(prev => !prev)}
+                                       onClick={() => setHideBlogs(prev => !prev)}
                                     >
-                                       {!hidePosts ? "Hide Posts" : "Show Posts"}</button>
+                                       {!hideBlogs ? "Hide Posts" : "Show Posts"}</button>
                                  </h3>
                                  
                                  <div className="user-info-scroll">
-                                    {!hidePosts ? filterPosts : null}
+                                    {!hideBlogs ? filterBlogs : null}
                                  </div>
                               </>
                            : <h3>No current posts :^(</h3>
