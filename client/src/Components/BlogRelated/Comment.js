@@ -65,7 +65,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
       }
    };
 
-   const [isClicked, setIsClicked] = useState(1);
+   const [clickedNum, setClickedNum] = useState(1);
    const [commentLikes, setCommentLikes] = useState(editComment?.likes);
    const [commentDislikes, setCommentDislikes] = useState(editComment?.dislikes);
    const [commentError, setCommentError] = useState("");
@@ -83,7 +83,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                setEditComment({...editComment, likes: data.likes});
             });
 
-      if (isClicked === 3) {
+      if (clickedNum === 3) {
          fetch(`/dec_comment_dislikes/${comment?.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"}
@@ -94,7 +94,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                setEditComment({...editComment, dislikes: data.dislikes});
             });
       }
-         setIsClicked(2);
+         setClickedNum(2);
       } else {
          setCommentError("Please login");
       }
@@ -112,7 +112,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                setEditComment({...editComment, dislikes: data.dislikes});
             });
 
-         if (isClicked === 2) {
+         if (clickedNum === 2) {
             fetch(`/dec_comment_likes/${comment?.id}`, {
                method: "PATCH",
                headers: {"Content-Type": "application/json"}
@@ -123,7 +123,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                   setEditComment({...editComment, likes: data.likes});
                });
          }
-            setIsClicked(3);
+            setClickedNum(3);
       } else {
          setCommentError("Please login");
       }
@@ -141,7 +141,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                setEditComment({...editComment, likes: data.likes});
             });
       }
-      setIsClicked(1);
+      setClickedNum(1);
    }
 
    const handleUndislike = () => {
@@ -156,7 +156,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                setEditComment({...editComment, dislikes: data.dislikes});
             });
       }
-      setIsClicked(1);
+      setClickedNum(1);
    }
 
    // Close commentInput using the "Escape" key
@@ -195,7 +195,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
 
          <div className="comment-information">
             <div className="comment-likes-container">
-               {isClicked === 1
+               {clickedNum === 1
                   ? <NeitherPressed
                         likes={commentLikes}
                         dislikes={commentDislikes}
@@ -203,7 +203,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                         dislikesFunction={handleDislikes}
                         errorMessage={commentError}
                     />
-                  : isClicked === 2
+                  : clickedNum === 2
                      ? <LikesPressed
                            likes={commentLikes}
                            dislikes={commentDislikes}
