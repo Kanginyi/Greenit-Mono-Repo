@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom";
 
+import AllBlogs from "./Components/BlogRelated/AllBlogs";
+import BlogDetails from "./Components/BlogRelated/BlogDetails";
+import EditBlog from "./Components/BlogRelated/EditBlog";
 import Navbar from "./Components/Header/Navbar";
 import ErrorPage from "./Components/Helpers/ErrorPage";
 import Loader from "./Components/Helpers/Loader";
 import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
-import EditBlog from "./Components/BlogRelated/EditBlog";
-import BlogDetails from "./Components/BlogRelated/BlogDetails";
-import AllBlogs from "./Components/BlogRelated/AllBlogs";
-import UserInfo from "./Components/UserRelated/UserInfo";
 import AllUsers from "./Components/UserRelated/AllUsers";
+import UserInfo from "./Components/UserRelated/UserInfo";
 
 function App() {
    let navigate = useNavigate();
