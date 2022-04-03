@@ -69,6 +69,7 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
 
             <div className="blog-header">
                <div className="likes-button-container">
+                  {/* Based on clickedNum's value(1, 2, or 3), render the relevant component based on whether no buttons are pressed, the likes button is pressed, or the dislikes button is pressed.*/}
                   {clickedNum === 1
                      ? <NeitherPressed
                            id={blog?.id}
