@@ -8,7 +8,7 @@ import "../../Stylings/CreatePost.css";
 function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShowCreateBlog}) {
    let navigate = useNavigate();
 
-   // State to handle newly created blog's initial values
+   // State to handle newly created blog's information
    const [blogForm, setBlogForm] = useState({
       user_id: null,
       title: "",
@@ -27,7 +27,7 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
       });
    };
 
-   // Function to create a new blog using information inside of blogForm
+   // Function to create a new blog using information inside of the blogForm object
    // Didn't put currentUser check here because Create Post button shouldn't be available unless someone's logged in and the currentUser object exists
    const submitGreenitPost = e => {
       e.preventDefault();

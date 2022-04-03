@@ -62,7 +62,7 @@ function App() {
          .then(data => setCommentData(data));
    }, []);
 
-   // State to handle search bar value
+   // State to handle search bar's inputted value
    const [searchValue, setSearchValue] = useState("");
 
    // Function to update searchValue's state based on search bar's inputted values
