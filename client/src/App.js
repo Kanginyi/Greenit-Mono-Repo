@@ -93,7 +93,9 @@ function App() {
    };
 
    // Function to handle liking blogs using the id, related setter functions, and related state of the liked blo
-   // If currentUser object exists, then increment likes by 1 and setLikes to updated number. If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1 and setDislikes to updated number.
+   // If currentUser object exists, then increment likes by 1 and setLikes to the updated number
+   // If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1 and setDislikes to the updated number
+   // setClickedNum to 2 (where likes button is pressed)
    // If currentUser object doesn't exist, then set and render "Please login"
    const handleBlogLikes = (id, setLikes, setDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
@@ -119,7 +121,9 @@ function App() {
    };
 
    // Function to handle disliking blogs using the id, related setter functions, and related state of the disliked blog
-   // If currentUser object exists, then increment dislikes by 1 and setDislikes to updated number. If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1 and setLikes to updated number.
+   // If currentUser object exists, then increment dislikes by 1 and setDislikes to the updated number
+   // If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1 and setLikes to the updated number
+   // setClickedNum to 3 (where dislikes button is pressed)
    // If currentUser object doesn't exist, then set and render "Please login"
    const handleBlogDislikes = (id, setLikes, setDislikes, clickedNum, setClickedNum, setLoginError) => {
       if (currentUser) {
@@ -145,7 +149,8 @@ function App() {
    };
 
    // Function to handle unliking blogs using the id and related setter functions of the unliked blog
-   // If blog is already liked, decrement likes by 1 and setLikes to updated number
+   // If blog is already liked, decrement likes by 1 and setLikes to the updated number
+   // setClickedNum to 1 (where neither button is pressed)
    const handleUnlikeBlog = (id, setLikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_likes/${id}`, {
@@ -159,7 +164,8 @@ function App() {
    };
 
    // Function to handle undisliking blogs using the id and related setter functions of the undisliked blog
-   // If blog is already disliked, decrement dislikes by 1 and setDislikes to updated number
+   // If blog is already disliked, decrement dislikes by 1 and setDislikes to the updated number
+   // setClickedNum to 1 (where neither button is pressed)
    const handleUndislikeBlog = (id, setDislikes, setClickedNum) => {
       if (currentUser) {
          fetch(`/dec_dislikes/${id}`, {
