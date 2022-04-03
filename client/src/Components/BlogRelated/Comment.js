@@ -66,9 +66,12 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
       }
    };
 
+   // State to handle whether a comment has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
+   // State to handle comment's likes & dislikes
    const [commentLikes, setCommentLikes] = useState(editComment?.likes);
    const [commentDislikes, setCommentDislikes] = useState(editComment?.dislikes);
+   // State to handle whether "Please login" is shown or not
    const [commentError, setCommentError] = useState("");
 
    // Likes and Dislikes handling functions

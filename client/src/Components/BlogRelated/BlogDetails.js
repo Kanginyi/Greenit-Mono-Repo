@@ -48,10 +48,12 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
 
    const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
-   // Likes and Dislikes states
+   // State to handle whether a blog has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
+   // State to handle blog's likes & dislikes
    const [blogLikes, setBlogLikes] = useState(0);
    const [blogDislikes, setBlogDislikes] = useState(0);
+   // State to handle whether "Please login" is shown or not
    const [loginError, setLoginError] = useState("");
 
    // Handle Comment Input
