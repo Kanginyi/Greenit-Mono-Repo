@@ -199,6 +199,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
 
          <div className="comment-information">
             <div className="comment-likes-container">
+               {/* Based on clickedNum's value(1, 2, or 3), render the relevant component based on whether no buttons are pressed, the likes button is pressed, or the dislikes button is pressed.*/}
                {clickedNum === 1
                   ? <NeitherPressed
                         id={comment?.id}
