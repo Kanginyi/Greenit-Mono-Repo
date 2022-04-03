@@ -2,25 +2,25 @@ import React from "react";
 
 import {FaRegThumbsUp, FaRegThumbsDown} from "react-icons/fa";
 
-function NeitherPressed({id, blogLikes, setBlogLikes, blogDislikes, setBlogDislikes, handleBlogLikes, handleBlogDislikes, clickedNum, setClickedNum, loginError, setLoginError}) {
+function NeitherPressed({id, likes, setLikes, dislikes, setDislikes, likesFunction, dislikesFunction, clickedNum, setClickedNum, loginError, setLoginError}) {
    return (
       <>
-         {/* Anonymous function to trigger handleBlogLikes when button is clicked. Pass in the required parameters to handle liking blogs through handleBlogLikes in App.js */}
+         {/* Anonymous function to trigger likesFunction when button is clicked. Pass in the required parameters to handle liking blogs through likesFunction in App.js */}
          <button
-            onClick={() => handleBlogLikes(id, setBlogLikes, setBlogDislikes, clickedNum, setClickedNum, setLoginError)}
+            onClick={() => likesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum, setLoginError)}
             className="likes-button"
          >
-            <FaRegThumbsUp/>&nbsp;{blogLikes}
+            <FaRegThumbsUp/>&nbsp;{likes}
          </button>
 
          <div className="error-message">{loginError}</div>
 
-         {/* Anonymous function to trigger handleBlogDislikes when button is clicked. Pass in the required parameters to handle disliking blogs through handleBlogDislikes in App.js */}  
+         {/* Anonymous function to trigger dislikesFunction when button is clicked. Pass in the required parameters to handle disliking blogs through dislikesFunction in App.js */}  
          <button
-            onClick={() => handleBlogDislikes(id, setBlogLikes, setBlogDislikes, clickedNum, setClickedNum, setLoginError)}
+            onClick={() => dislikesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum, setLoginError)}
             className="dislikes-button"
          >
-            <FaRegThumbsDown/>&nbsp;{blogDislikes}
+            <FaRegThumbsDown/>&nbsp;{dislikes}
          </button>
       </>
    );

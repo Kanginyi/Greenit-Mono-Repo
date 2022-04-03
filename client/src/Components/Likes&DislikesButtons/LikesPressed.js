@@ -2,23 +2,23 @@ import React from "react";
 
 import {FaThumbsUp, FaRegThumbsDown} from "react-icons/fa";
 
-function LikesPressed({id, blogLikes, setBlogLikes, blogDislikes, setBlogDislikes, handleUnlikeBlog, handleBlogDislikes, clickedNum, setClickedNum}) {
+function LikesPressed({id, likes, setLikes, dislikes, setDislikes, unlikeFunction, dislikesFunction, clickedNum, setClickedNum}) {
    return (
       <>
-         {/* Anonymous function to trigger handleUnlikeBlog when button is clicked. Pass in the required parameters to handle unliking blogs through handleUnlikeBlog in App.js */}
+         {/* Anonymous function to trigger unlikeFunction when button is clicked. Pass in the required parameters to handle unliking blogs through unlikeFunction in App.js */}
          <button
-            onClick={() => handleUnlikeBlog(id, setBlogLikes, setClickedNum)}
+            onClick={() => unlikeFunction(id, setLikes, setClickedNum)}
             className="likes-pressed"
          >
-            <FaThumbsUp/>&nbsp;{blogLikes}
+            <FaThumbsUp/>&nbsp;{likes}
          </button>
 
-         {/* Anonymous function to trigger handleBlogDislikes when button is clicked. Pass in the required parameters to handle disliking blogs through handleBlogDislikes in App.js */}
+         {/* Anonymous function to trigger dislikesFunction when button is clicked. Pass in the required parameters to handle disliking blogs through dislikesFunction in App.js */}
          <button
-            onClick={() => handleBlogDislikes(id, setBlogLikes, setBlogDislikes, clickedNum, setClickedNum)}
+            onClick={() => dislikesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum)}
             className="dislikes-button"                    
          >
-            <FaRegThumbsDown/>&nbsp;{blogDislikes}
+            <FaRegThumbsDown/>&nbsp;{dislikes}
          </button>
       </>
    );

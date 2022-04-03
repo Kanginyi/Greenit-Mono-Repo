@@ -150,12 +150,12 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                            {clickedNum === 1
                               ? <NeitherPressed
                                     id={currentBlogInfo?.id}
-                                    blogLikes={blogLikes}
-                                    setBlogLikes={setBlogLikes}
-                                    blogDislikes={blogDislikes}
-                                    setBlogDislikes={setBlogDislikes}
-                                    handleBlogLikes={handleBlogLikes}
-                                    handleBlogDislikes={handleBlogDislikes}
+                                    likes={blogLikes}
+                                    setLikes={setBlogLikes}
+                                    dislikes={blogDislikes}
+                                    setDislikes={setBlogDislikes}
+                                    likesFunction={handleBlogLikes}
+                                    dislikesFunction={handleBlogDislikes}
                                     clickedNum={clickedNum}
                                     setClickedNum={setClickedNum}
                                     loginError={loginError}
@@ -164,23 +164,23 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                               : clickedNum === 2
                                  ? <LikesPressed
                                        id={currentBlogInfo?.id}
-                                       blogLikes={blogLikes}
-                                       setBlogLikes={setBlogLikes}
-                                       blogDislikes={blogDislikes}
-                                       setBlogDislikes={setBlogDislikes}
-                                       handleUnlikeBlog={handleUnlikeBlog}
-                                       handleBlogDislikes={handleBlogDislikes}
+                                       likes={blogLikes}
+                                       setLikes={setBlogLikes}
+                                       dislikes={blogDislikes}
+                                       setDislikes={setBlogDislikes}
+                                       unlikeFunction={handleUnlikeBlog}
+                                       dislikesFunction={handleBlogDislikes}
                                        clickedNum={clickedNum}
                                        setClickedNum={setClickedNum}
                                    />
                                  : <DislikesPressed
                                        id={currentBlogInfo?.id}
-                                       blogLikes={blogLikes}
-                                       setBlogLikes={setBlogLikes}
-                                       blogDislikes={blogDislikes}
-                                       setBlogDislikes={setBlogDislikes}
-                                       handleBlogLikes={handleBlogLikes}
-                                       handleUndislikeBlog={handleUndislikeBlog}
+                                       likes={blogLikes}
+                                       setLikes={setBlogLikes}
+                                       dislikes={blogDislikes}
+                                       setDislikes={setBlogDislikes}
+                                       likesFunction={handleBlogLikes}
+                                       undislikeFunction={handleUndislikeBlog}
                                        clickedNum={clickedNum}
                                        setClickedNum={setClickedNum}
                                    />

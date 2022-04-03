@@ -10,14 +10,17 @@ import "../../Stylings/Blog.css";
 import {BsTrash} from "react-icons/bs";
 
 function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+   let navigate = useNavigate();
+   
    const userObj = blog?.user; 
 
-   let navigate = useNavigate();
+
 
    const clickUser = () => {
       navigate(`/all_users/${userObj?.id}`);
    }
 
+   // Function 
    const viewMore = () => {
       navigate(`/blogs/${blog?.id}`);
    }
@@ -64,12 +67,12 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                   {clickedNum === 1
                      ? <NeitherPressed
                            id={blog?.id}
-                           blogLikes={blogLikes}
-                           setBlogLikes={setBlogLikes}
-                           blogDislikes={blogDislikes}
-                           setBlogDislikes={setBlogDislikes}
-                           handleBlogLikes={handleBlogLikes}
-                           handleBlogDislikes={handleBlogDislikes}
+                           likes={blogLikes}
+                           setLikes={setBlogLikes}
+                           dislikes={blogDislikes}
+                           setDislikes={setBlogDislikes}
+                           likesFunction={handleBlogLikes}
+                           dislikesFunction={handleBlogDislikes}
                            clickedNum={clickedNum}
                            setClickedNum={setClickedNum}
                            loginError={loginError}
@@ -78,23 +81,23 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                      : clickedNum === 2
                         ? <LikesPressed
                               id={blog?.id}
-                              blogLikes={blogLikes}
-                              setBlogLikes={setBlogLikes}
-                              blogDislikes={blogDislikes}
-                              setBlogDislikes={setBlogDislikes}
-                              handleUnlikeBlog={handleUnlikeBlog}
-                              handleBlogDislikes={handleBlogDislikes}
+                              likes={blogLikes}
+                              setLikes={setBlogLikes}
+                              dislikes={blogDislikes}
+                              setDislikes={setBlogDislikes}
+                              unlikeFunction={handleUnlikeBlog}
+                              dislikesFunction={handleBlogDislikes}
                               clickedNum={clickedNum}
                               setClickedNum={setClickedNum}
                           />
                         : <DislikesPressed
                               id={blog?.id}
-                              blogLikes={blogLikes}
-                              setBlogLikes={setBlogLikes}
-                              blogDislikes={blogDislikes}
-                              setBlogDislikes={setBlogDislikes}
-                              handleBlogLikes={handleBlogLikes}
-                              handleUndislikeBlog={handleUndislikeBlog}
+                              likes={blogLikes}
+                              setLikes={setBlogLikes}
+                              dislikes={blogDislikes}
+                              setDislikes={setBlogDislikes}
+                              likesFunction={handleBlogLikes}
+                              undislikeFunction={handleUndislikeBlog}
                               clickedNum={clickedNum}
                               setClickedNum={setClickedNum}
                           />
