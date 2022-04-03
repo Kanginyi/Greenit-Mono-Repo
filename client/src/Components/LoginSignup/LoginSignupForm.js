@@ -20,6 +20,7 @@ function LoginSignupForm({currentUser, setCurrentUser, setUserData, showSignup, 
                      <Login setCurrentUser={setCurrentUser}/>
                }
 
+               {/* Based on the showSignup state, conditionally render Login or Signup elements */}
                <div className="login-signup-footer">
                   <p>
                      {showSignup ? "Already have an account?" : "Don't have an account?"}
