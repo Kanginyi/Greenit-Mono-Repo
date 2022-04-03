@@ -3,7 +3,7 @@ import React from "react";
 import Blog from "./Blog";
 
 function AllBlogs({currentUser, blogData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
-   // Map through blogData and render each Post component by passing in the related information as props
+   // Map through blogData and render each Blog component by passing in the related information as props
    const renderBlogs = blogData?.map(blog => {
       return <Blog
                key={blog?.id}
