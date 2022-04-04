@@ -116,7 +116,10 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
             <div className="blog-info-underline"></div>
 
             {/* Only render something if blog's image exists */}
-            {blog.image_url ? <img src={blog.image_url} alt={blog.title}/> : null}
+            {blog.image_url
+               ? <img src={blog.image_url} alt={blog.title}/>
+               : null
+            }
 
             <p>
                {shortBlogDesc}
