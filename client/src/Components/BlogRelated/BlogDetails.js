@@ -12,19 +12,20 @@ import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
 function BlogDetails({currentUser, commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
-   const [currentBlogInfo, setCurrentBlogInfo] = useState({});
-   const [currentBlogComments, setCurrentBlogComments] = useState([]);
-   const [isLoaded, setIsLoaded] = useState(false);
-
-   // Blog Post ID
-   const clickedID = parseInt(useParams().id);
-
-   const blogAuthor = currentBlogInfo?.user?.username;
-
    let navigate = useNavigate();
 
+   // State to handle current blog's information
+   const [currentBlogInfo, setCurrentBlogInfo] = useState({});
+   // State to handle current blog's comments
+   const [currentBlogComments, setCurrentBlogComments] = useState([]);
+   // State to handle whether to show Loader component or not
+   const [isLoaded, setIsLoaded] = useState(false);
+
+   // Blog post's id
+   const blogID = parseInt(useParams().id);
+
    useEffect(() => {
-      fetch(`/blogs/${clickedID}`)
+      fetch(`/blogs/${blogID}`)
          .then(resp => resp.json())
          .then(blog => {
             setCurrentBlogInfo(blog);
@@ -33,20 +34,13 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
             setCurrentBlogComments(blog?.comments);
             setIsLoaded(true);
          });
-   }, [clickedID]);
+   }, [blogID]);
+
+   const blogAuthor = currentBlogInfo?.user?.username;
 
    // Date & Time information for when the blog was created/posted
    const blogDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
    const blogTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
-
-   // Render all comments onto the page
-   const renderComments = currentBlogComments?.map(comment => {
-      return <Comment key={comment.id} currentUser={currentUser} comment={comment} commentData={commentData} setCommentData={setCommentData} currentBlogComments={currentBlogComments} setCurrentBlogComments={setCurrentBlogComments}/>
-   });
-
-   const sortComments = renderComments?.sort((a, b) => a?.props?.comment?.created_at?.localeCompare(b?.props?.comment?.created_at));
-
-   const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // State to handle whether a blog has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
@@ -56,9 +50,16 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    // State to handle whether "Please login" is shown or not
    const [loginError, setLoginError] = useState("");
 
-   // Handle Comment Input
-   const [commentError, setCommentError] = useState("");
-   const [blogComment, setBlogComment] = useState({
+   // Function to navigate to blog author's profile when user clicks username
+   const viewUserInfo = () => {
+      navigate(`/all_users/${currentBlogInfo?.user?.id}`);
+   };
+
+   // State to handle whether "Please login" is shown or not for comments
+   const [commentLoginError, setCommentLoginError] = useState("");
+   
+   // State to handle newly created comment's information; set the initial value to an object with its content set to match the backend :comment schema with default values
+   const [newBlogComment, setNewBlogComment] = useState({
       comment_text: "", 
       user_id: currentUser?.id,
       blog_id: currentBlogInfo?.id,
@@ -66,23 +67,27 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
       dislikes: 0
    });
 
-   const handleComment = e => {
-      setBlogComment({
-         ...blogComment,
+   // Function to update newBlogComment state based on inputted value from Join The Conversation textarea
+   const handleNewCommentText = e => {
+      setNewBlogComment({
+         ...newBlogComment,
          user_id: currentUser?.id,
          blog_id: currentBlogInfo?.id,
          [e.target.name]:e.target.value
       })
-   }
+   };
 
-   const submitComment = e => {
+   // Function to create a new comment on the related blog using information inside of the newBlogComment object
+   // If the currentUser object exists and after the response comes back okay; setCurrentBlogComments array to include the newBlogComment object and setCommentData array to include the newBlogComment object
+   // If the currentUser object doesn't exist, then set and render "Please login"
+   const submitNewBlogComment = e => {
       e.preventDefault();
 
       if (currentUser) {
          fetch("/comments", {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(blogComment)
+            body: JSON.stringify(newBlogComment)
          })
             .then(resp => {
                if (resp.ok) {
@@ -94,10 +99,10 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                }
             });
       } else {
-         setCommentError("Please login");
+         setCommentLoginError("Please login");
       }
-      
-      setBlogComment({
+      // Clear all information inside of newBlogComment to default values
+      setNewBlogComment({
          comment_text: "",
          user_id: currentUser?.id,
          blog_id: currentBlogInfo?.id,
@@ -106,10 +111,29 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
       });
    };
 
-   // State for hiding comments
+   // State to handle whether to hide all comments or not
    const [hideComments, setHideComments] = useState(false);
 
-   // Loading screen component
+   // Map through currentBlogComments and render each Comment component by passing in the related information as props
+   const renderComments = currentBlogComments?.map(comment => {
+      return <Comment
+               key={comment?.id}
+               currentUser={currentUser}
+               comment={comment}
+               commentData={commentData} 
+               setCommentData={setCommentData}
+               currentBlogComments={currentBlogComments}
+               setCurrentBlogComments={setCurrentBlogComments}
+             />
+   });
+
+   // Sort throught renderComments's Comment components and display them from oldest to newest by their "created_at" information
+   const sortComments = renderComments?.sort((a, b) => a?.props?.comment?.created_at?.localeCompare(b?.props?.comment?.created_at));
+
+   // If searchValue is an empty string, render all blogs inside sortComments. As searchValue gets updated, check each comment user's username to see if they include the inputted searchValue
+   const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+
+   // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
    }
@@ -126,7 +150,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                         Posted by&nbsp;
                            <span
                               className="username-color"
-                              onClick={() => navigate(`/all_users/${currentBlogInfo?.user?.id}`)}
+                              onClick={viewUserInfo}
                               style={{cursor: "pointer"}}
                            >
                               u/{blogAuthor}
@@ -195,8 +219,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
  
                   <div className="blog-info-underline"></div>
 
-                  {
-                     currentBlogInfo?.image_url
+                  {currentBlogInfo?.image_url
                      ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
                      : null
                   }
@@ -211,16 +234,16 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
 
                   <form className="blog-comment-form">
                      <textarea
-                        onChange={handleComment}
+                        onChange={handleNewCommentText}
                         type="text"
                         name="comment_text"
-                        value={blogComment.comment_text}
+                        value={newBlogComment.comment_text}
                         rows="5"
                      />
 
                      <br/>
-                     <button onClick={submitComment}>Add Comment!</button>
-                     <div className="error-message">{commentError}</div>
+                     <button onClick={submitNewBlogComment}>Add Comment!</button>
+                     <div className="error-message">{commentLoginError}</div>
                      <br/>
                   </form>
                </details>
