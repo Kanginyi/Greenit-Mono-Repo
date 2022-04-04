@@ -4,13 +4,14 @@ import {useNavigate} from "react-router-dom";
 function Signup({setCurrentUser, setUserData}) {
    let navigate = useNavigate();
 
-   // States to handle inputted values for username & password. errorMessage will handle and render any errors related to username & password
+   // States to handle inputted values for username & password
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
+   // State to handle and any errors related to both username & password
    const [errorMessage, setErrorMessage] = useState([]);
 
-   // Function handle signing up with new user information.
-   // After signing up, setCurrentUser to new user's information, add that new user object to userData array, and setUserData to that new array.
+   // Function to handle signing up with new user information
+   // After signing up and the response comes back okay; setCurrentUser to new user's information, add that new user object to userData array, and setUserData to that new array
    const handleSignup = e => {
       e.preventDefault();
 

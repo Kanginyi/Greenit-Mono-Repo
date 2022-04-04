@@ -8,9 +8,9 @@ import "../../Stylings/CreatePost.css";
 function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShowCreateBlog}) {
    let navigate = useNavigate();
 
-   // State to handle newly created blog's information
-   const [blogForm, setBlogForm] = useState({
-      user_id: null,
+   // State to handle newly created blog's information; set the initial value to an object with its content set to match the backend :blog schema with default values
+   const [newBlog, setNewBlog] = useState({
+      user_id: currentUser?.id,
       title: "",
       blog_post: "",
       image_url: "",
@@ -18,24 +18,24 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
       dislikes: 0
    });
 
-   // Function to update blogForm state based on inputted values from Create Post's form
-   const handleInputChange = e => {
-      setBlogForm({
-         ...blogForm,
+   // Function to update newBlog state based on inputted values from Create Post's form
+   const handleNewBlogInputs = e => {
+      setNewBlog({
+         ...newBlog,
          user_id: currentUser?.id,
          [e.target.name]:e.target.value
       });
    };
 
-   // Function to create a new blog using information inside of the blogForm object
+   // Function to create a new blog using information inside of the newBlog object
    // Didn't put currentUser check here because Create Post button shouldn't be available unless someone's logged in and the currentUser object exists
-   const submitGreenitPost = e => {
+   const submitNewBlog = e => {
       e.preventDefault();
       
       fetch("/blogs", {
          method: "POST",
          headers: {"Content-Type" : "application/json"},
-         body: JSON.stringify(blogForm)
+         body: JSON.stringify(newBlog)
       })
          .then(resp => {
             if (resp.ok) {
@@ -45,8 +45,8 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
                   })
             }
          })
-      // Clear all information inside of blogForm, hide CreatePost component, navigate to homepage
-      setBlogForm({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: 0});
+      // Clear all information inside of newBlog, hide CreatePost component, navigate to homepage
+      setNewBlog({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: 0});
       setShowCreateBlog(false);
       navigate("/");
    };
@@ -88,24 +88,24 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
                <animated.div style={animation}>
                   <div className="create-blog-div">
                      <button onClick={() => setShowCreateBlog(false)} className="x-button">X</button>
-                     <form className="create-blog-form" onSubmit={submitGreenitPost}>
+                     <form className="create-blog-form" onSubmit={submitNewBlog}>
 
                         <p>Title <span className="required-red">*</span></p>
                         <input
-                           onChange={handleInputChange}
+                           onChange={handleNewBlogInputs}
                            type="text"
                            name="title"
-                           value={blogForm.title}
+                           value={newBlog.title}
                            autoComplete="off"
                            required
                         />
 
                         <p>Content <span className="required-red">*</span></p>
                         <textarea
-                           onChange={handleInputChange}
+                           onChange={handleNewBlogInputs}
                            type="text"
                            name="blog_post"
-                           value={blogForm.blog_post}
+                           value={newBlog.blog_post}
                            required
                            rows="5"
                            cols="50"
@@ -113,10 +113,10 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
 
                         <p>Image</p>
                         <input
-                           onChange={handleInputChange}
+                           onChange={handleNewBlogInputs}
                            type="text"
                            name="image_url"
-                           value={blogForm.image_url}
+                           value={newBlog.image_url}
                            autoComplete="off"
                         />
 

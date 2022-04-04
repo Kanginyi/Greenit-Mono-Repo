@@ -26,7 +26,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
 
    // State to handle whether to show the comment editing input or not
    const [showCommentEditInput, setShowCommentEditInput] = useState(false);
-   // State to handle the edited comment's information; spread the passed down comment object as the initial value
+   // State to handle the edited comment's information; set the initial value to the spread out comment object
    const [editComment, setEditComment] = useState({
       ...comment
    });
