@@ -136,7 +136,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
-   }
+   };
    
    return (
       <>

@@ -267,7 +267,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    // Loading screen component
    if (!isLoaded) {
       return <Loader/>
-   }
+   };
 
    return (
       <>
