@@ -140,6 +140,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    
    return (
       <>
+      {/* If currentBlogInfo's errors object doesn't exist, render the currentBlogInfo's information. If not, render ErrorPage component */}
       {!currentBlogInfo.errors
          ?
             <div className="blog-div">
@@ -157,11 +158,13 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                            </span> on {blogDate} at {blogTime}
                      </h3>
          
+                     {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to delete the blog */}
                      {currentUser?.username === blogAuthor
                         ? <BsTrash onClick={() => handleDeleteBlog(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
                         : null}
                   </div>
 
+                  {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to edit the blog */}
                   {currentUser?.username === blogAuthor
                      ? <div className="edit-blog-container">
                            <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-blog">
@@ -219,6 +222,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
  
                   <div className="blog-info-underline"></div>
 
+                  {/* Only render something if blog's image exists */}
                   {currentBlogInfo?.image_url
                      ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
                      : null
@@ -248,6 +252,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                   </form>
                </details>
 
+               {/* If filterComment's length isn't a falsey value (0), show the "Show/Hide Comments" button */}
                {filterComments?.length
                   ?  <div className="show-hide-container">
                         <button onClick={() => setHideComments(prev => !prev)}>
@@ -257,6 +262,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                   : null
                }
 
+               {/* If hideComments state is true, show nothing. If not, show all comments rendered through filterComments */}
                {hideComments ? null : filterComments}
                
             </div>
