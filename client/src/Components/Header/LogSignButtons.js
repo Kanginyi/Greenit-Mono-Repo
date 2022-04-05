@@ -38,7 +38,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
 
    return (
       <div className="user-section">
-         {/* If the currentUser object exists, conditionally render username & logout buttons OR signup & login buttons*/}
+         {/* If a user is logged in (the currentUser object exists), then render username & logout buttons. If not, then render signup & login buttons  */}
          {
             currentUser
          ?

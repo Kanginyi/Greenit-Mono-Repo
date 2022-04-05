@@ -101,10 +101,10 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    const [commentError, setCommentError] = useState("");
 
    // Function to handle liking comments using the id of the liked comment
-   // If the currentUser object exists, then increment likes by 1, setCommentLikes to the updated number, and also setEditComment to the updated number to update the editComment object's likes
+   // If a user is already logged in (the currentUser object exists), then increment likes by 1, setCommentLikes to the updated number, and also setEditComment to the updated number to update the editComment object's likes
    // If clickedNum state is 3 (where dislikes button is pressed), then also decrement dislikes by 1, setCommentDislikes to the updated number, and also setEditComment to the updated number to update the editComment object's dislikes
    // setClickedNum to 2 (where likes button is pressed)
-   // If the currentUser object doesn't exist, then set and render "Please login"
+   // If a user isn't logged in (the currentUser object doesn't exist), then set and render "Please login"
    const handleCommentLikes = () => {
       if (currentUser) {
          fetch(`/inc_comment_likes/${comment?.id}`, {
@@ -135,10 +135,10 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    };
 
    // Function to handle disliking comments using the id of the disliked comment
-   // If the currentUser object exists, then increment dislikes by 1, setCommentDislikes to the updated number, and also setEditComment to the updated number to update the editComment object's dislikes
+   // If a user is already logged in (the currentUser object exists), then increment dislikes by 1, setCommentDislikes to the updated number, and also setEditComment to the updated number to update the editComment object's dislikes
    // If clickedNum state is 2 (where likes button is pressed), then also decrement likes by 1, setCommentLikes to the updated number, and also setEditComment to the updated number to update the editComment object's likes
    // setClickedNum to 3 (where dislikes button is pressed)
-   // If the currentUser object doesn't exist, then set and render "Please login"
+   // If a user isn't logged in (the currentUser object doesn't exist), then set and render "Please login"
    const handleCommentDislikes = () => {
       if (currentUser) {
          fetch(`/inc_comment_dislikes/${comment?.id}`, {

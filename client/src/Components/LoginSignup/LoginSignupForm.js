@@ -9,7 +9,7 @@ import "../../Stylings/LoginSignupForm.css";
 function LoginSignupForm({currentUser, setCurrentUser, setUserData, showSignup, setShowSignup}) {
    return (
       <>
-      {/* If a user is logged in already (currentUser object exists), then render ErrorPage component. If not, then show Signup/Login components*/}
+      {/* If a user is already logged in (the currentUser object exists), then render ErrorPage component. If not, then render Signup/Login components*/}
       {!currentUser
          ?
             <div className="login-signup-container">   

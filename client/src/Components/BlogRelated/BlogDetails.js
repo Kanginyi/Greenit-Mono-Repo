@@ -78,8 +78,8 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    };
 
    // Function to create a new comment on the related blog using information inside of the newBlogComment object
-   // If the currentUser object exists and after the response comes back okay; setCurrentBlogComments array to include the newBlogComment object and setCommentData array to include the newBlogComment object
-   // If the currentUser object doesn't exist, then set and render "Please login"
+   // If a user is already logged in (the currentUser object exists) and after the response comes back okay; setCurrentBlogComments array to include the newBlogComment object and setCommentData array to include the newBlogComment object
+   // If a user isn't logged in (the currentUser object doesn't exist), then set and render "Please login"
    const submitNewBlogComment = e => {
       e.preventDefault();
 

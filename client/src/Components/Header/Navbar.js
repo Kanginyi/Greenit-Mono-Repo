@@ -53,7 +53,7 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
 
                <button onClick={viewRandomBlog}>Random Post</button>
 
-               {/* Only show Create Post button if the currentUser object exists */}
+               {/* Only render Create Post button if a user is logged in (the currentUser object exists) */}
                {currentUser ? <button onClick={() => setShowCreateBlog(true)}>Create Post</button> : null}
             </div>
 
