@@ -30,8 +30,6 @@ function AllUsers({userData, blogData, commentData, searchValue}) {
    // If searchValue is an empty string, render all users inside renderUsers. As searchValue gets updated, check each user's username to see if it includes the inputted searchValue
    const filterUsers = searchValue === "" ? renderUsers : renderUsers?.filter(user => user?.props?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
-   console.log(renderUsers);
-
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
