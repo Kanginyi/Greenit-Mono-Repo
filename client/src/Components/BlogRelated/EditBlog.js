@@ -1,58 +1,68 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
 import ErrorPage from "../Helpers/ErrorPage";
+import Loader from "../Helpers/Loader";
 
 import "../../Stylings/EditBlog.css";
 
 function EditBlog({currentUser, blogData, setBlogData}) {
    let navigate = useNavigate();
 
-   const URL = window.location.href;
-   const editingID = parseInt(useParams().id);
+   // State to handle current editing blog's information
+   const [editBlogInfo, setEditBlogInfo] = useState({});
+   // State to handle whether to show Loader component or not
+   const [isLoaded, setIsLoaded] = useState(false);
 
-   const checkBlogArray = blogData?.filter(blog => URL.endsWith(blog?.id));
+   // Blog post's id
+   const blogID = parseInt(useParams().id);
 
-   const checkBlog = (checkBlogArray?.filter(blog => blog?.id === editingID))[0];
-   
-   const [editBlog, setEditBlog] = useState({
-      user_id: null,
-      title: checkBlog?.title,
-      blog_post: checkBlog?.blog_post,
-      image_url: checkBlog?.image_url,
-      likes: checkBlog?.likes,
-      dislikes: checkBlog?.dislikes
-   });
+   useEffect(() => {
+      fetch(`/blogs/${blogID}`)
+         .then(resp => resp.json())
+         .then(blog => {
+            setEditBlogInfo(blog);
+            setIsLoaded(true);
+         }) 
+   }, [blogID]);
 
+   // Function to update editBlogInfo state based on inputted values from component's inputs
    const handleEditInputs = e => {
-      setEditBlog({
-         ...editBlog,
+      setEditBlogInfo({
+         ...editBlogInfo,
          user_id: currentUser?.id,
          [e.target.name]:e.target.value
       });
    };
 
+   // Function to update relevant blog using blog's id and the information inside of the editBlogInfo object
+   // After the response comes back okay, setBlogData array to include the updatedBlog object
    const updateBlog = () => {
-      fetch(`/blogs/${checkBlog?.id}`, {
+      fetch(`/blogs/${blogID}`, {
          method: "PATCH",
          headers: {"Content-Type": "application/json"},
-         body: JSON.stringify(editBlog)
+         body: JSON.stringify(editBlogInfo)
       })
          .then(resp => {
             if (resp.ok) {
                resp.json()
-                  .then(editedBlog => {
-                     setBlogData([editedBlog, blogData]);
+                  .then(updatedBlog => {
+                     setBlogData(blogData, updatedBlog);
                   })
             }
          })
-      navigate(`/blogs/${checkBlog?.id}`);
+      navigate(`/blogs/${blogID}`);
    };
-      
+
+   // If isLoaded is still false, show Loader component
+   if (!isLoaded) {
+      return <Loader />
+   };
 
    return (
       <>
-      {currentUser?.id === checkBlog?.user?.id
+      {/* If currentUser's id is the same as the editBlogInfo's id, render the options to edit the blog post. If not, then render ErrorPage component */}
+      {currentUser?.id === editBlogInfo?.user?.id
          ?
             <div className="blog-div editing-blog">
                <h2 className="username-color">Hello {currentUser?.username}!</h2>
@@ -64,7 +74,7 @@ function EditBlog({currentUser, blogData, setBlogData}) {
                   type="text"
                   name="title"
                   onChange={handleEditInputs}
-                  defaultValue={checkBlog?.title}
+                  defaultValue={editBlogInfo?.title}
                   autoComplete="off"
                   spellCheck="false"
                   required
@@ -74,7 +84,7 @@ function EditBlog({currentUser, blogData, setBlogData}) {
                <textarea
                   name="blog_post"
                   onChange={handleEditInputs}
-                  defaultValue={checkBlog?.blog_post}
+                  defaultValue={editBlogInfo?.blog_post}
                   rows="5"
                   required
                />
@@ -84,7 +94,7 @@ function EditBlog({currentUser, blogData, setBlogData}) {
                   type="text"
                   name="image_url"
                   onChange={handleEditInputs}
-                  defaultValue={checkBlog?.image_url}
+                  defaultValue={editBlogInfo?.image_url}
                   autoComplete="off"
                   spellCheck="false"
                />
