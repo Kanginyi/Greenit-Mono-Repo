@@ -230,9 +230,11 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
          </div>
    });
 
-   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   console.log(renderComments);
 
-   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[1]?.props?.children[0]?.props?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+
+   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[0]?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // Show/hide blogs/comments
    const [hideBlogs, setHideBlogs] = useState(false);
