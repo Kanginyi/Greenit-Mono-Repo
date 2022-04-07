@@ -58,7 +58,11 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                         style={{cursor: "pointer"}}
                      >
                         u/{blogAuthorObj?.username}
-                     </span> on {blogDate} at {blogTime}
+                     </span>&nbsp;
+                     
+                     <time dateTime={`${blogDate} ${blogTime}`}>
+                        on {blogDate} at {blogTime}
+                     </time>
                </h3>
 
                {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to delete the blog */}

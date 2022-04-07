@@ -273,7 +273,10 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
             <div className="comment-meta-data">
                <div className="comment-date-time">
                   <em>
-                     Posted on {commentDate} at {commentTime}
+                     Posted on&nbsp;
+                     <time dateTime={`${commentDate} ${commentTime}`}>
+                        {commentDate} at {commentTime}
+                     </time>
                   </em>
                   
                   {/* If currentUser's username is the same as the commentUser's username, give the user the options to either edit or delete the comment */}

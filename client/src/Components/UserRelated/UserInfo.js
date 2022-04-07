@@ -132,7 +132,14 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                            &nbsp;|&nbsp;
                         {blog?.comments?.length === 1 ? `${blog?.comments?.length} Comment` : `${blog?.comments?.length} Comments`}
                      </p>
-                     <p className="blog-comments-footer"><em>Posted on {blogDate} at {blogTime}</em></p>
+                     <p className="blog-comments-footer">
+                        <em>
+                           Posted on&nbsp;
+                           <time dateTime={`${blogDate} ${blogTime}`}>
+                              {blogDate} at {blogTime}
+                           </time>
+                        </em>
+                     </p>
                   </div>
                </div>
 
@@ -207,7 +214,14 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                         &nbsp;|&nbsp;
                      {comment?.dislikes === 1 ? `${comment?.dislikes} Dislike` : `${comment?.dislikes} Dislikes`}                  
                   </p>
-                  <p className="blog-comments-footer"><em>Posted on {commentDate} at {commentTime}</em></p>
+                  <p className="blog-comments-footer">
+                     <em>
+                        Posted on&nbsp;
+                        <time dateTime={`${commentDate} ${commentTime}`}>
+                           {commentDate} at {commentTime}
+                        </time>
+                     </em>
+                  </p>
                </div>
 
                {currentUser?.username === currentUserInfo?.username
