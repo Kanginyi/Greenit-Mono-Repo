@@ -133,6 +133,37 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    // If searchValue is an empty string, render all blogs inside sortComments. As searchValue gets updated, check each comment user's username to see if they include the inputted searchValue
    const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
+   const [showCommentOptions, setShowCommentOptions] = useState(false);
+   const [commentOptionValue, setCommentOptionValue] = useState("Oldest");
+   const showSortCommentOptions = () => {
+      setShowCommentOptions(prev => !prev);
+   };
+
+   const handleSortComments = e => {
+      switch (e.target.value) {
+         case "oldest":
+            setCommentOptionValue("Oldest");
+            break;
+         case "most-liked":
+            setCommentOptionValue("Most Liked");
+            break;
+         case "most-interactions":
+            setCommentOptionValue("Most Interactions");
+            break;
+         case "most-disliked":
+            setCommentOptionValue("Most Disliked");
+            break;
+         case "newest":
+            setCommentOptionValue("Newest");
+            break;
+         default:
+            setCommentOptionValue("Oldest");
+      }
+      setShowCommentOptions(false);
+   };
+
+   console.log(commentOptionValue);
+
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
       return <Loader/>
@@ -263,6 +294,33 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                            {hideComments ? "Show Comments" : "Hide Comments"}
                         </button>
                      </div>
+                  : null
+               }
+
+               {filterComments?.length >= 2
+                  ? <div className="sort-comments-options">
+                        {!hideComments
+                           ? <p>Sort Comments:</p>
+                           : null
+                        }
+
+                        {!hideComments
+                           ?
+                              <>
+                              {showCommentOptions
+                                 ? <>
+                                    <button onClick={handleSortComments} value="oldest">Oldest</button>
+                                    <button onClick={handleSortComments} value="most-liked">Most Liked</button>
+                                    <button onClick={handleSortComments} value="most-interactions">Most Interactions</button>
+                                    <button onClick={handleSortComments} value="most-disliked">Most Disliked</button>
+                                    <button onClick={handleSortComments} value="newest">Newest</button>
+                                 </>
+                                 : <button onClick={showSortCommentOptions}>{commentOptionValue}</button>
+                              }
+                              </>
+                           : null
+                        }
+                    </div>
                   : null
                }
 
