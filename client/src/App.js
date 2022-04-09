@@ -41,6 +41,7 @@ function App() {
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
 
+   // Initial fetch for all blogs data
    useEffect(() => {
       fetch("/blogs")
          .then(resp => resp.json())
@@ -50,12 +51,14 @@ function App() {
          });
    }, []);
 
+   // Initial fetch for all users data
    useEffect(() => {
       fetch("/users")
          .then(resp => resp.json())
          .then(data => setUserData(data));
    }, []);
    
+   // Initial fetch for all comments data
    useEffect(() => {
       fetch("/comments")
          .then(resp => resp.json())
