@@ -133,36 +133,35 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    // If searchValue is an empty string, render all blogs inside sortComments. As searchValue gets updated, check each comment user's username to see if they include the inputted searchValue
    const filterComments = searchValue === "" ? sortComments : sortComments?.filter(comment => comment?.props?.comment?.user?.username?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
-   const [showCommentOptions, setShowCommentOptions] = useState(false);
-   const [commentOptionValue, setCommentOptionValue] = useState("Oldest");
-   const showSortCommentOptions = () => {
-      setShowCommentOptions(prev => !prev);
-   };
+   // **********RELATED TO SORTING COMMENTS************//
+   // const [showCommentOptions, setShowCommentOptions] = useState(false);
+   // const [commentOptionValue, setCommentOptionValue] = useState("Oldest");
+   // const showSortCommentOptions = () => {
+   //    setShowCommentOptions(prev => !prev);
+   // };
 
-   const handleSortComments = e => {
-      switch (e.target.value) {
-         case "oldest":
-            setCommentOptionValue("Oldest");
-            break;
-         case "most-liked":
-            setCommentOptionValue("Most Liked");
-            break;
-         case "most-interactions":
-            setCommentOptionValue("Most Interactions");
-            break;
-         case "most-disliked":
-            setCommentOptionValue("Most Disliked");
-            break;
-         case "newest":
-            setCommentOptionValue("Newest");
-            break;
-         default:
-            setCommentOptionValue("Oldest");
-      }
-      setShowCommentOptions(false);
-   };
-
-   console.log(commentOptionValue);
+   // const handleSortComments = e => {
+   //    switch (e.target.value) {
+   //       case "oldest":
+   //          setCommentOptionValue("Oldest");
+   //          break;
+   //       case "most-liked":
+   //          setCommentOptionValue("Most Liked");
+   //          break;
+   //       case "most-interactions":
+   //          setCommentOptionValue("Most Interactions");
+   //          break;
+   //       case "most-disliked":
+   //          setCommentOptionValue("Most Disliked");
+   //          break;
+   //       case "newest":
+   //          setCommentOptionValue("Newest");
+   //          break;
+   //       default:
+   //          setCommentOptionValue("Oldest");
+   //    }
+   //    setShowCommentOptions(false);
+   // };
 
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
@@ -297,7 +296,8 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                   : null
                }
 
-               {filterComments?.length >= 2
+               {/* THINGS RELATED TO SORTING CCOMMENTS */}
+               {/* {filterComments?.length >= 2
                   ? <div className="sort-comments-options">
                         {!hideComments
                            ? <p>Sort Comments:</p>
@@ -322,7 +322,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                         }
                     </div>
                   : null
-               }
+               } */}
 
                {/* If hideComments state is true, show nothing. If not, show all comments rendered through filterComments */}
                {hideComments ? null : filterComments}
