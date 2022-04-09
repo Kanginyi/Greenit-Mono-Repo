@@ -17,6 +17,7 @@ function EditBlog({currentUser, blogData, setBlogData}) {
    // Blog post's id
    const blogID = parseInt(useParams().id);
 
+   // Fetch to get the current editing blog's information
    useEffect(() => {
       fetch(`/blogs/${blogID}`)
          .then(resp => resp.json())

@@ -24,6 +24,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    // Blog post's id
    const blogID = parseInt(useParams().id);
 
+   // Fetch to get the current viewing blog's information and set its related likes, dislikes, and comments to each related state
    useEffect(() => {
       fetch(`/blogs/${blogID}`)
          .then(resp => resp.json())
