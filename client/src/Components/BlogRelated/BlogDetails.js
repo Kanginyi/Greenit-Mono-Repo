@@ -326,9 +326,13 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                } */}
 
                {/* If hideComments state is true, show nothing. If not, show all comments rendered through filterComments */}
-               <div className="comment-section">
-                  {hideComments ? null : filterComments}
-               </div>
+               {hideComments
+                  ? null
+                  : <div className="comment-section">
+                        {filterComments}
+                   </div>
+               }
+
                
             </div>
          :
