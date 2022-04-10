@@ -205,7 +205,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    };
 
    return (
-      <div className="comment-section">
+      <div>
          <div className="comment-text">
             {/* If showCommentEditInput is true, then show input to let the user edit the relevant comment. */}
             {showCommentEditInput
