@@ -206,24 +206,48 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
 
    return (
       <div>
-         <div className="comment-text">
-            {/* If showCommentEditInput is true, then show input to let the user edit the relevant comment. */}
-            {showCommentEditInput
-               ? <div className="comment-text-edit">
-                     Currently Editing:
-                     <input
-                        type="text"
-                        name="comment_text"
-                        onChange={handleCommentEdit}
-                        defaultValue={editComment?.comment_text}
-                        autoComplete="off"
-                        spellCheck="false"
-                        required
-                     />
+         <div className="comment-actions">
+            {currentUser?.username === commentUser?.username
+               ? <div className="comment-user-edit">
+                  <FaEdit
+                     onClick={() => setShowCommentEditInput(prev => !prev)}
+                     className="user-edit"
+                     title="Edit Comment"
+                  />
+                 </div>
+               : null
+            }
 
-                     <button onClick={updateComment}>Edit Comment</button>
-                  </div>
-                : <p>{editComment?.comment_text}</p>
+            {/* If showCommentEditInput is true, then show input to let the user edit the relevant comment. */}
+            <div className="comment-text">
+               {showCommentEditInput
+                  ? <div className="comment-text-edit">
+                        Currently Editing:
+                        <input
+                           type="text"
+                           name="comment_text"
+                           onChange={handleCommentEdit}
+                           defaultValue={editComment?.comment_text}
+                           autoComplete="off"
+                           spellCheck="false"
+                           required
+                        />
+
+                        <button onClick={updateComment}>Edit Comment</button>
+                     </div>
+                  : <p>{editComment?.comment_text}</p>
+               }
+            </div>
+
+            {currentUser?.username === commentUser?.username
+               ? <div className="comment-user-delete">
+                     <BsTrash
+                        onClick={deleteComment}
+                        className="delete-button"
+                        title="Delete Comment"
+                     />
+                 </div>
+               : null
             }
          </div>
 
@@ -280,7 +304,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                   </em>
                   
                   {/* If currentUser's username is the same as the commentUser's username, give the user the options to either edit or delete the comment */}
-                  {currentUser?.username === commentUser?.username
+                  {/* {currentUser?.username === commentUser?.username
                      ? <div className="comment-user-actions">
                            &nbsp;
                         <FaEdit
@@ -296,7 +320,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                         />
                      </div>
                      : null
-                  }
+                  } */}
                </div>
 
                <p className="comment-username">
