@@ -207,6 +207,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    return (
       <div>
          <div className="comment-actions">
+            {/* If currentUser's username is the same as the commentUser's username, give the user the option to edit the related comment */}
             {currentUser?.username === commentUser?.username
                ? <div className="comment-user-edit">
                   <FaEdit
@@ -239,6 +240,7 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                }
             </div>
 
+            {/* If currentUser's username is the same as the commentUser's username, give the user the option to delete the related comment */}
             {currentUser?.username === commentUser?.username
                ? <div className="comment-user-delete">
                      <BsTrash
@@ -302,25 +304,6 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                         {commentDate} at {commentTime}
                      </time>
                   </em>
-                  
-                  {/* If currentUser's username is the same as the commentUser's username, give the user the options to either edit or delete the comment */}
-                  {/* {currentUser?.username === commentUser?.username
-                     ? <div className="comment-user-actions">
-                           &nbsp;
-                        <FaEdit
-                           onClick={() => setShowCommentEditInput(prev => !prev)}
-                           className="user-edit"
-                           title="Edit Comment"
-                        />
-
-                        <BsTrash
-                           onClick={deleteComment}
-                           className="delete-button"
-                           title="Delete Comment"
-                        />
-                     </div>
-                     : null
-                  } */}
                </div>
 
                <p className="comment-username">
