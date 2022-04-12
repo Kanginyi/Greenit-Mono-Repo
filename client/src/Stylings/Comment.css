@@ -11,7 +11,7 @@
    color: #5E5E5E;
 
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
    align-items: center;
 }
 
@@ -26,6 +26,9 @@
 .comment-text {
    min-width: 10%;
    overflow-wrap: break-word;
+
+   margin-left: auto;
+   margin-right: auto;
 }
 
 .comment-actions:hover, .comment-actions:focus-visible {
