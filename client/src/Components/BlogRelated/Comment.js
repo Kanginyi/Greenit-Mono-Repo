@@ -207,8 +207,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    return (
       <div>
          <div className="comment-actions">
-            {/* If currentUser's username is the same as the commentUser's username, give the user the option to edit the related comment */}
-            {currentUser?.username === commentUser?.username
+            {/* If currentUser's id is the same as the commentUser's id, give the user the option to edit the related comment */}
+            {currentUser?.id === commentUser?.id
                ? <div className="comment-user-edit">
                   <FaEdit
                      onClick={() => setShowCommentEditInput(prev => !prev)}
@@ -240,8 +240,8 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
                }
             </div>
 
-            {/* If currentUser's username is the same as the commentUser's username, give the user the option to delete the related comment */}
-            {currentUser?.username === commentUser?.username
+            {/* If currentUser's id is the same as the commentUser's id, give the user the option to delete the related comment */}
+            {currentUser?.id === commentUser?.id
                ? <div className="comment-user-delete">
                      <BsTrash
                         onClick={deleteComment}

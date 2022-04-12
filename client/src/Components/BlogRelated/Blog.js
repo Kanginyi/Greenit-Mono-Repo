@@ -65,8 +65,8 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                      </time>
                </h3>
 
-               {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to delete the blog */}
-               {currentUser?.username === blogAuthorObj?.username
+               {/* If the currentUser's id is the same as the blogAuthor's id, give the user the option to delete the blog */}
+               {currentUser?.id === blogAuthorObj?.id
                   ? <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
                   : null}
             </div>
