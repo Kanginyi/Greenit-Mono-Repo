@@ -37,7 +37,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
          });
    }, [blogID]);
 
-   const blogAuthor = currentBlogInfo?.user?.username;
+   const blogAuthorObj = currentBlogInfo?.user;
 
    // Date & Time information for when the blog was created/posted
    const blogDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
@@ -185,7 +185,7 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                               onClick={viewUserInfo}
                               style={{cursor: "pointer"}}
                            >
-                              u/{blogAuthor}
+                              u/{blogAuthorObj?.username}
                            </span>&nbsp;
                            
                            <time dateTime={`${blogDate} ${blogTime}`}>
@@ -193,14 +193,14 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                            </time>
                      </h3>
          
-                     {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to delete the blog */}
-                     {currentUser?.username === blogAuthor
+                     {/* If the currentUser's id is the same as the blogAuthorObj's id, give the user the option to delete the blog */}
+                     {currentUser?.id === blogAuthorObj?.id
                         ? <BsTrash onClick={() => handleDeleteBlog(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
                         : null}
                   </div>
 
-                  {/* If the currentUser's username is the same as the blogAuthor's username, give the user the option to edit the blog */}
-                  {currentUser?.username === blogAuthor
+                  {/* If the currentUser's id is the same as the blogAuthorObj's id, give the user the option to edit the blog */}
+                  {currentUser?.id === blogAuthorObj?.id
                      ? <div className="edit-blog-container">
                            <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-blog">
                               <FaEdit/> Edit Post
