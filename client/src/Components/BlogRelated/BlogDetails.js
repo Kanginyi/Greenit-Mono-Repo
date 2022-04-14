@@ -186,10 +186,10 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                               style={{cursor: "pointer"}}
                            >
                               u/{blogAuthorObj?.username}
-                           </span>&nbsp;
+                           </span> on&nbsp;
                            
                            <time dateTime={`${blogDate} ${blogTime}`}>
-                              on {blogDate} at {blogTime}
+                              {blogDate} at {blogTime}
                            </time>
                      </h3>
          
