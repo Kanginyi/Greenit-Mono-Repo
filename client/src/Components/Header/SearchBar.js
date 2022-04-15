@@ -5,7 +5,7 @@ function SearchBar({searchGreenit}) {
       <div className="search-bar">
          <input
             onChange={searchGreenit}
-            type="text"
+            type="search"
             placeholder="Search Greenit..."
          />
       </div>
