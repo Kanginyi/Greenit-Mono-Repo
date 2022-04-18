@@ -21,7 +21,7 @@ function UserInfoBlogs({blog, currentUser, blogData, setBlogData, commentData, s
    const blogDate = new Date(blog?.created_at).toLocaleDateString();
    const blogTime = new Date(blog?.created_at).toLocaleTimeString();
 
-   // Function to handle deleting related user's blog's using the id of the deleted blog
+   // Function to handle deleting related user's blogs using the id of the deleted blog
    const deleteUserBlog = () => {
       let confirmDelete = window.confirm(`Are you sure you want to delete "${blog?.title}"?`);
 
