@@ -36,7 +36,7 @@ function App() {
    // State to handle whether to show Signup component or Login component
    const [showSignup, setShowSignup] = useState(false);
    
-   // States to handle initial fetches for ALL initial blogs, users, and comments data
+   // States to handle all initial blogs, users, and comments data
    const [blogData, setBlogData] = useState([]);
    const [userData, setUserData] = useState([]);
    const [commentData, setCommentData] = useState([]);
