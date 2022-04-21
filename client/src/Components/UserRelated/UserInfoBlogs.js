@@ -63,7 +63,7 @@ function UserInfoBlogs({blog, currentUser, blogData, setBlogData, commentData, s
                <h4>{blog?.title}</h4>
                <em>{blogPost}</em>
                <p>
-                  {/* Proper grammer based on the amount of likes, dislikes, and comments on the blog */}
+                  {/* Proper grammar based on the amount of likes, dislikes, and comments on the blog */}
                   {blog?.likes === 1 ? `${blog?.likes} Like` : `${blog?.likes} Likes`}
                      &nbsp;|&nbsp;
                   {blog?.dislikes === 1 ? `${blog?.dislikes} Dislike` : `${blog?.dislikes} Dislikes`}
