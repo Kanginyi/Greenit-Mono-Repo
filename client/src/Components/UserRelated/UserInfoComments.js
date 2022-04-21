@@ -56,6 +56,7 @@ function UserInfoComments({comment, currentUser, commentData, setCommentData, cu
             <h4>{comment?.blog?.title}</h4>
             <em>{comment?.comment_text}</em>
             <p>
+               {/* Proper grammar based on the amount of likes and dislikes on the comment */}
                {comment?.likes === 1 ? `${comment?.likes} Like` : `${comment?.likes} Likes`}
                   &nbsp;|&nbsp;
                {comment?.dislikes === 1 ? `${comment?.dislikes} Dislike` : `${comment?.dislikes} Dislikes`}                  
@@ -70,6 +71,7 @@ function UserInfoComments({comment, currentUser, commentData, setCommentData, cu
             </p>
          </div>
 
+         {/* If the currentUser's id is the same as the currentUserInfo's id, give the user the options to delete or edit the blog */}
          {currentUser?.id === currentUserInfo?.id
             ?
                <div className="user-info-actions">
