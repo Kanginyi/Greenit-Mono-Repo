@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
 import UserInfoBlogs from "./UserInfoBlogs";
+import UserInfoComments from "./UserInfoComments";
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
 
@@ -91,99 +92,36 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    // Map through sortBlogs and render each UserInfoBlogs component by passing in the related information as props
    const renderBlogs = sortBlogs?.map(blog => {
       return <UserInfoBlogs
-         blog={blog}
-         currentUser={currentUser}
-         blogData={blogData}
-         setBlogData={setBlogData}
-         commentData={commentData}
-         setCommentData={setCommentData}
-         currentUserInfo={currentUserInfo}
-         userBlogsInfo={userBlogsInfo}
-         setUserBlogsInfo={setUserBlogsInfo}
-         userCommentsInfo={userCommentsInfo}
-         setUserCommentsInfo={setUserCommentsInfo}
-      />
+               blog={blog}
+               currentUser={currentUser}
+               blogData={blogData}
+               setBlogData={setBlogData}
+               commentData={commentData}
+               setCommentData={setCommentData}
+               currentUserInfo={currentUserInfo}
+               userBlogsInfo={userBlogsInfo}
+               setUserBlogsInfo={setUserBlogsInfo}
+               userCommentsInfo={userCommentsInfo}
+               setUserCommentsInfo={setUserCommentsInfo}
+             />
    });
 
    // Sort through userCommentsInfo and order them from newest to oldest by their "created_at" information
    const sortComments = userCommentsInfo?.sort((a, b) => b?.created_at?.localeCompare(a?.created_at));
 
+   // Map through sortComments and render each UserInfoComments component by passing in the related information as props
    const renderComments = sortComments?.map(comment => {
-      // Date & Time information for when the comment was created/posted
-      const commentDate = new Date(comment?.created_at).toLocaleDateString();
-      const commentTime = new Date(comment?.created_at).toLocaleTimeString();
-      
-      const deleteComment = () => {
-         let confirmDelete = window.confirm(`Are you sure you want to delete your comment on "${comment?.blog?.title}"?`);
-   
-         if (confirmDelete) {
-            fetch(`/comments/${comment?.id}`, {
-               method: "DELETE"
-            })
-               .then(() => {
-                  const deleteComment = userCommentsInfo?.filter(singleComment => singleComment?.id !== comment?.id);
-
-                  setUserCommentsInfo(deleteComment);
-
-                  // const blogRelatedToDeleteComment = (userBlogsInfo?.filter(singlePost => singlePost?.id === comment?.blog?.id))[0];
-
-                  // const deleteCommentOnBlog = blogRelatedToDeleteComment?.comments?.filter(singleComment => singleComment?.id !== comment?.id);
-
-                  // console.log("Blog Related to Delete Comment:", blogRelatedToDeleteComment);
-                  // Object that's holding blog relatedToDeletedComment
-
-                  // console.log("DeleteCommentOnBlog:", deleteCommentOnBlog)
-                  // Array that's holding remaining related comments
-                  
-                  // setUserBlogsInfo();
-
-                  const removeComment = commentData?.filter(singleComment => singleComment?.id !== comment?.id);
-
-                  setCommentData(removeComment);
-               })
-         }
-      }
-
-      return<div className="user-info-comments">
-               <div
-                  onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
-                  className="user-comment-container"
-               >
-                  <h4>{comment?.blog?.title}</h4>
-                  <em>{comment?.comment_text}</em>
-                  <p>
-                     {comment?.likes === 1 ? `${comment?.likes} Like` : `${comment?.likes} Likes`}
-                        &nbsp;|&nbsp;
-                     {comment?.dislikes === 1 ? `${comment?.dislikes} Dislike` : `${comment?.dislikes} Dislikes`}                  
-                  </p>
-                  <p className="blog-comments-footer">
-                     <em>
-                        Posted on&nbsp;
-                        <time dateTime={`${commentDate} ${commentTime}`}>
-                           {commentDate} at {commentTime}
-                        </time>
-                     </em>
-                  </p>
-               </div>
-
-               {currentUser?.id === currentUserInfo?.id
-                  ?
-                     <div className="user-info-actions">
-                        <BsTrash
-                           onClick={deleteComment}
-                           className="delete-button"
-                           title={`Delete your comment on "${comment?.blog?.title}"`}
-                        />
-
-                        <FaEdit
-                           onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
-                           className="user-edit"
-                           title={`Head to "${comment?.blog?.title}" to edit your comment`}
-                        />
-                     </div>
-                  : null
-               }
-         </div>
+      return <UserInfoComments
+               comment={comment}
+               currentUser={currentUser}
+               commentData={commentData}
+               setCommentData={setCommentData}
+               currentUserInfo={currentUserInfo}
+               userBlogsInfo={userBlogsInfo}
+               setUserBlogsInfo={setUserBlogsInfo}
+               userCommentsInfo={userCommentsInfo}
+               setUserCommentsInfo={setUserCommentsInfo}
+             />
    });
 
    // If searchValue is an empty string, render all blogs inside renderBlogs. As searchValue gets updated, check each blog's title to see if they include the inputted searchValue
@@ -226,8 +164,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    // Date & Time information for when the user's account was created
    const accountDate = new Date(currentUserInfo?.created_at).toLocaleDateString();
    const accountTime = new Date(currentUserInfo?.created_at).toLocaleTimeString();
-
-   console.log(currentUserInfo)
 
    // If isLoaded is still false, show Loader component
    if (!isLoaded) {
