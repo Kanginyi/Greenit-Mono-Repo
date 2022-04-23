@@ -43,10 +43,6 @@ function UserInfoComments({comment, currentUser, commentData, setCommentData, cu
       }
    };
 
-   // delted based off commenbt.id
-
-   // console.log(userCommentsInfo);
-
    return (
       <div className="user-info-comments">
          <div
