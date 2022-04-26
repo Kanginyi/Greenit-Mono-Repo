@@ -20,9 +20,36 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    const [currentBlogComments, setCurrentBlogComments] = useState([]);
    // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
+   // State to handle whether to hide all comments or not
+   const [hideComments, setHideComments] = useState(false);
+
+   // State to handle whether a blog has been liked or disliked
+   const [clickedNum, setClickedNum] = useState(1);
+   // State to handle blog's likes & dislikes
+   const [blogLikes, setBlogLikes] = useState(0);
+   const [blogDislikes, setBlogDislikes] = useState(0);
+   // State to handle whether "Please login" is shown or not
+   const [loginError, setLoginError] = useState("");
+
+   // State to handle whether "Please login" is shown or not for comments
+   const [commentLoginError, setCommentLoginError] = useState("");
+   // State to handle newly created comment's information; set the initial value to an object with its content set to match the backend :comment schema with default values
+   const [newBlogComment, setNewBlogComment] = useState({
+      comment_text: "", 
+      user_id: currentUser?.id,
+      blog_id: currentBlogInfo?.id,
+      likes: 0,
+      dislikes: 0
+   });
 
    // Blog post's id
    const blogID = parseInt(useParams().id);
+
+   const blogAuthorObj = currentBlogInfo?.user;
+
+   // Date & Time information for when the blog was created/posted
+   const blogDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
+   const blogTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
 
    // Fetch to get the current viewing blog's information and set its related likes, dislikes, and comments to each related state
    useEffect(() => {
@@ -37,36 +64,10 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
          });
    }, [blogID]);
 
-   const blogAuthorObj = currentBlogInfo?.user;
-
-   // Date & Time information for when the blog was created/posted
-   const blogDate = new Date(currentBlogInfo?.created_at).toLocaleDateString();
-   const blogTime = new Date(currentBlogInfo?.created_at).toLocaleTimeString();
-
-   // State to handle whether a blog has been liked or disliked
-   const [clickedNum, setClickedNum] = useState(1);
-   // State to handle blog's likes & dislikes
-   const [blogLikes, setBlogLikes] = useState(0);
-   const [blogDislikes, setBlogDislikes] = useState(0);
-   // State to handle whether "Please login" is shown or not
-   const [loginError, setLoginError] = useState("");
-
    // Function to navigate to blog author's profile when user clicks username
    const viewUserInfo = () => {
       navigate(`/all_users/${currentBlogInfo?.user?.id}`);
    };
-
-   // State to handle whether "Please login" is shown or not for comments
-   const [commentLoginError, setCommentLoginError] = useState("");
-   
-   // State to handle newly created comment's information; set the initial value to an object with its content set to match the backend :comment schema with default values
-   const [newBlogComment, setNewBlogComment] = useState({
-      comment_text: "", 
-      user_id: currentUser?.id,
-      blog_id: currentBlogInfo?.id,
-      likes: 0,
-      dislikes: 0
-   });
 
    // Function to update newBlogComment state based on inputted value from Join The Conversation textarea
    const handleNewCommentText = e => {
@@ -111,9 +112,6 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
          dislikes: 0
       });
    };
-
-   // State to handle whether to hide all comments or not
-   const [hideComments, setHideComments] = useState(false);
 
    // Map through currentBlogComments and render each Comment component by passing in the related information as props
    const renderComments = currentBlogComments?.map(comment => {

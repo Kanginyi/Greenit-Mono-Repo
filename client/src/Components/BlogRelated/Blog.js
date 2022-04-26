@@ -11,12 +11,6 @@ import {BsTrash} from "react-icons/bs";
 
 function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    let navigate = useNavigate();
-   
-   const blogAuthorObj = blog?.user;
-
-   // Date & Time information for when the blog was created/posted
-   const blogDate = new Date(blog.created_at).toLocaleDateString();
-   const blogTime = new Date(blog.created_at).toLocaleTimeString();
 
    // State to handle whether a blog has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
@@ -25,6 +19,12 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
    const [blogDislikes, setBlogDislikes] = useState(blog?.dislikes);
    // State to handle whether "Please login" is shown or not
    const [loginError, setLoginError] = useState("");
+
+   const blogAuthorObj = blog?.user;
+
+   // Date & Time information for when the blog was created/posted
+   const blogDate = new Date(blog.created_at).toLocaleDateString();
+   const blogTime = new Date(blog.created_at).toLocaleTimeString();
 
    // Function to navigate to blog author's profile when user clicks related username
    const viewUserInfo = () => {

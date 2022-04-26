@@ -7,7 +7,10 @@ function Login({setCurrentUser}) {
    // States to handle inputted values for username & password. errorMessage will handle and render any errors related to username & password
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
+   // State to handle any errors related to both username & password
    const [errorMessage, setErrorMessage] = useState("");
+   // State to handle show password functionality
+   const [passwordInput, setPasswordInput] = useState("password");
 
    // Function to handle logging in with existing user credentials. After logging in, setCurrentUser to fetched user's object
    const handleLogin = e => {
@@ -33,9 +36,6 @@ function Login({setCurrentUser}) {
             }
          })
    };
-
-   // State to handle show password functionality
-   const [passwordInput, setPasswordInput] = useState("password");
 
    // Function to show or hide password when user clicks related checkbox
    const showPassword = () => {

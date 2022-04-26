@@ -9,6 +9,8 @@ function Signup({setCurrentUser, setUserData}) {
    const [password, setPassword] = useState("");
    // State to handle and any errors related to both username & password
    const [errorMessage, setErrorMessage] = useState([]);
+   // State to handle show password functionality
+   const [passwordInput, setPasswordInput] = useState("password");
 
    // Function to handle signing up with new user information
    // After signing up and the response comes back okay; setCurrentUser to new user's information, add that new user object to userData array, and setUserData to that new array
@@ -42,9 +44,6 @@ function Signup({setCurrentUser, setUserData}) {
             }
          })
    };
-
-   // State to handle show password functionality
-   const [passwordInput, setPasswordInput] = useState("password");
 
    // Function to show or hide password when user clicks related checkbox
    const showPassword = () => {

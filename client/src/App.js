@@ -17,6 +17,18 @@ function App() {
    // State to handle current user's information
    const [currentUser, setCurrentUser] = useState(null);
 
+   // States to handle all initial blogs, users, and comments data
+   const [blogData, setBlogData] = useState([]);
+   const [userData, setUserData] = useState([]);
+   const [commentData, setCommentData] = useState([]);
+
+   // State to handle whether to show Loader component or not
+   const [isLoaded, setIsLoaded] = useState(false);
+   // State to handle whether to show Signup component or Login component
+   const [showSignup, setShowSignup] = useState(false);
+   // State to handle search bar's inputted value
+   const [searchValue, setSearchValue] = useState("");
+
    // Setting current user's information when someone logs in
    useEffect(() => {
       fetch("/me")
@@ -29,18 +41,7 @@ function App() {
             }
          })
    }, []);
-
-   // State to handle whether to show Loader component or not
-   const [isLoaded, setIsLoaded] = useState(false);
-
-   // State to handle whether to show Signup component or Login component
-   const [showSignup, setShowSignup] = useState(false);
    
-   // States to handle all initial blogs, users, and comments data
-   const [blogData, setBlogData] = useState([]);
-   const [userData, setUserData] = useState([]);
-   const [commentData, setCommentData] = useState([]);
-
    // Initial fetch for all blogs data
    useEffect(() => {
       fetch("/blogs")
@@ -64,9 +65,6 @@ function App() {
          .then(resp => resp.json())
          .then(data => setCommentData(data));
    }, []);
-
-   // State to handle search bar's inputted value
-   const [searchValue, setSearchValue] = useState("");
 
    // Function to update searchValue's state based on search bar's inputted values
    const searchGreenit = e => {

@@ -14,9 +14,6 @@ import {FaEdit} from "react-icons/fa";
 function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData, setBlogData, commentData, setCommentData, searchValue}) {
    let navigate = useNavigate();
 
-   // Clicked user's id
-   const userID = parseInt(useParams().id);
-
    // State to handle current user's information
    const [currentUserInfo, setCurrentUserInfo] = useState({});
    // State to handle clicked user's blog's information
@@ -28,12 +25,18 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
 
    // State to handle whether to show the username editing input or not
    const [showUserInput, setShowUserInput] = useState(false);
+   // States to handle whether to hide all blogs/comments or not
+   const [hideBlogs, setHideBlogs] = useState(false);
+   const [hideComments, setHideComments] = useState(false);
    // State to handle whether error messages are rendered or not
    const [errorMessage, setErrorMessage] = useState("");
    // State to handle the edited username's information; set the initial value to an object with its username key set to currentUser's username
    const [editUsername, setEditUsername] = useState({
       username: currentUser?.username
    });
+
+   // Clicked user's id
+   const userID = parseInt(useParams().id);
    
    // Fetch to get the current clicked user's information and set its related username, blogs, and comments to each related state
    useEffect(() => {
@@ -129,10 +132,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
 
    // If searchValue is an empty string, render all comments inside renderComments. As searchValue gets updated, check each comment's text to see if they include the inputted searchValue
    const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[0]?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
-
-   // States to handle whether to hide all blogs/comments or not
-   const [hideBlogs, setHideBlogs] = useState(false);
-   const [hideComments, setHideComments] = useState(false);
 
    // Function to handle deleting user using the id of the deleted blog
    const deleteUser = () => {
