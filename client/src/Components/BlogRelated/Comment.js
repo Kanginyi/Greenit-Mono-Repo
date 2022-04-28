@@ -12,6 +12,13 @@ import {FaEdit} from "react-icons/fa";
 
 function Comment({currentUser, comment, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
    let navigate = useNavigate();
+   
+   // State to handle whether to show the comment editing input or not
+   const [showCommentEditInput, setShowCommentEditInput] = useState(false);
+   // State to handle the edited comment's information; set the initial value to the spread out comment object
+   const [editComment, setEditComment] = useState({
+      ...comment
+   });
 
    // State to handle whether a comment has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
@@ -20,13 +27,6 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
    const [commentDislikes, setCommentDislikes] = useState(editComment?.dislikes);
    // State to handle whether "Please login" is shown or not
    const [commentError, setCommentError] = useState("");
-   
-   // State to handle whether to show the comment editing input or not
-   const [showCommentEditInput, setShowCommentEditInput] = useState(false);
-   // State to handle the edited comment's information; set the initial value to the spread out comment object
-   const [editComment, setEditComment] = useState({
-      ...comment
-   });
 
    const commentUser = comment?.user;
 
