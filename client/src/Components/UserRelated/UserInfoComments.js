@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function UserInfoComments({comment, currentUser, commentData, setCommentData, currentUserInfo, userBlogsInfo, setUserBlogsInfo, userCommentsInfo, setUserCommentsInfo}) {
+function UserInfoComments({comment, currentUser, commentData, setCommentData, currentUserInfo, userCommentsInfo, setUserCommentsInfo}) {
    let navigate = useNavigate();
 
    // Date & Time information for when the comment was created/posted
@@ -28,17 +28,6 @@ function UserInfoComments({comment, currentUser, commentData, setCommentData, cu
                // removeComment variable to hold array that removes the deleted comment from commentData and setCommentData to that new array
                const removeComment = commentData?.filter(eachComment => eachComment?.id !== comment?.id);
                setCommentData(removeComment);
-
-               // // Filter for the blog
-               // let relatedBlog = (userBlogsInfo?.filter(eachBlog => eachBlog?.id === comment?.blog?.id))[0];
-
-               // // Remove comment from that blog's comment's array
-               // const deleteCommentonBlog = relatedBlog?.comments?.filter(eachComment => eachComment?.id !== comment?.id);
-
-               // setUserBlogsInfo(userBlogsInfo, relatedBlog);
-               // relatedBlog["comments"] = deleteCommentonBlog;
-
-               // console.log(relatedBlog);
             })
       }
    };
