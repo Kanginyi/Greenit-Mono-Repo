@@ -197,20 +197,18 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                         }
 
                         {/* If currentUser's id is the same as the currentUserInfo's id, give the user the option to edit their username */}
-                        {currentUser?.id === currentUserInfo?.id
-                        ? <FaEdit
-                           onClick={() => setShowUserInput(prev => !prev)}
-                           className="user-info-edit"
-                           title="Update Username"
-                        />
-                        : null
+                        {currentUser?.id === currentUserInfo?.id &&
+                           <FaEdit
+                              onClick={() => setShowUserInput(prev => !prev)}
+                              className="user-info-edit"
+                              title="Update Username"
+                           />
                         }
                      </h2>
 
                      {/* If currentUser's id is the same as the currentUserInfo's id, give the user the option to delete their Greenit account */}
-                     {currentUser?.id === currentUserInfo?.id
-                        ? <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
-                        : null
+                     {currentUser?.id === currentUserInfo?.id &&
+                        <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
                      }
                   </div>
 
@@ -232,19 +230,18 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                            ?  <>
                                  <h3>Total Posts: {userBlogsInfo?.length}
                                     {/* If filterBlog's length isn't a falsey value (0), show "Hide Posts" button */}
-                                    {filterBlogs?.length
-                                       ? <button
+                                    {filterBlogs?.length &&
+                                       <button
                                           onClick={() => setHideBlogs(prev => !prev)}
                                        >
                                           {!hideBlogs ? "Hide Posts" : "Show Posts"}
-                                         </button>
-                                       : null
+                                       </button>
                                     }
                                  </h3>
                                  
                                  {/* If hideBlogs state is false, render all filtered blogs in filterBlogs */}
                                  <div className="user-info-scroll">
-                                    {!hideBlogs ? filterBlogs : null}
+                                    {!hideBlogs && filterBlogs}
                                  </div>
                               </>
                            : <h3>No current posts :^(</h3>
@@ -259,19 +256,18 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                            ?  <>
                                  <h3>Total Comments: {userCommentsInfo?.length}
                                     {/* If filterComment's length isn't a falsey value (0), show "Hide Comments" button */}
-                                    {filterComments?.length
-                                       ? <button
-                                             onClick={() => setHideComments(prev => !prev)}
-                                         >
-                                             {!hideComments ? "Hide Comments" : "Show Comments"}
-                                         </button>
-                                       : null
+                                    {filterComments?.length &&
+                                       <button
+                                          onClick={() => setHideComments(prev => !prev)}
+                                       >
+                                          {!hideComments ? "Hide Comments" : "Show Comments"}
+                                       </button>
                                     }
                                  </h3>
 
                                  {/* If hideComments state is false, render all filtered comments in filterComments */}
                                  <div className="user-info-scroll">
-                                    {!hideComments ? filterComments : null}
+                                    {!hideComments && filterComments}
                                  </div>
                               </>
                            : <h3>No current comments :^(</h3>      
