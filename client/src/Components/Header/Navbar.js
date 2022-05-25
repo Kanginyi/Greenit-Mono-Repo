@@ -9,14 +9,8 @@ import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-import {useSelector, useDispatch} from "react-redux";
-import {trueFalse} from "../../Redux/Features/booleanSlice";
-
 function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreenit, setShowSignup}) {
    let navigate = useNavigate();
-
-   const startFalse = useSelector((state => state.boolean.value));
-   const dispatch = useDispatch();
 
    // State to handle whether search bar is shown or not
    const [searchClicked, setSearchClicked] = useState(false);
@@ -24,12 +18,8 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
    const [showCreateBlog, setShowCreateBlog] = useState(false);
 
    // Function to show or hide search bar when user clicks related button
-   // const showSearchBar = () => {
-   //    setSearchClicked(prev => !prev);
-   // };
-
    const showSearchBar = () => {
-      dispatch(trueFalse());
+      setSearchClicked(prev => !prev);
    };
 
    // Function to view random blog
@@ -64,7 +54,11 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
                <button onClick={viewRandomBlog}>Random Post</button>
 
                {/* Only render Create Post button if a user is logged in (the currentUser object exists) */}
-               {currentUser ? <button onClick={() => dispatch(trueFalse())}>Create Post</button> : null}
+               {currentUser &&
+                  <button onClick={() => setShowCreateBlog(true)}>
+                     Create Post
+                  </button>
+               }
             </div>
 
             <LogSignButtons
@@ -74,7 +68,7 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
             />
          </nav>
 
-         {searchClicked ? <SearchBar searchGreenit={searchGreenit}/> : null}
+         {searchClicked && <SearchBar searchGreenit={searchGreenit}/>}
          
          <CreatePost
             currentUser={currentUser}

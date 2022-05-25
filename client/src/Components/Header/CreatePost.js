@@ -82,52 +82,49 @@ function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShow
 
    return (
       <>
-      {showCreateBlog
-         ?
-            <section className="blog-form-background" onClick={closeForm} ref={formRef}>
-               <animated.div style={animation}>
-                  <div className="create-blog-div">
-                     <button onClick={() => setShowCreateBlog(false)} className="x-button">X</button>
-                     <form className="create-blog-form" onSubmit={submitNewBlog}>
+      {showCreateBlog &&
+         <section className="blog-form-background" onClick={closeForm} ref={formRef}>
+            <animated.div style={animation}>
+               <div className="create-blog-div">
+                  <button onClick={() => setShowCreateBlog(false)} className="x-button">X</button>
+                  <form className="create-blog-form" onSubmit={submitNewBlog}>
 
-                        <p>Title <span className="required-red">*</span></p>
-                        <input
-                           onChange={handleNewBlogInputs}
-                           type="text"
-                           name="title"
-                           value={newBlog.title}
-                           autoComplete="off"
-                           required
-                        />
+                     <p>Title <span className="required-red">*</span></p>
+                     <input
+                        onChange={handleNewBlogInputs}
+                        type="text"
+                        name="title"
+                        value={newBlog.title}
+                        autoComplete="off"
+                        required
+                     />
 
-                        <p>Content <span className="required-red">*</span></p>
-                        <textarea
-                           onChange={handleNewBlogInputs}
-                           type="text"
-                           name="blog_post"
-                           value={newBlog.blog_post}
-                           required
-                           rows="5"
-                           cols="50"
-                        />
+                     <p>Content <span className="required-red">*</span></p>
+                     <textarea
+                        onChange={handleNewBlogInputs}
+                        type="text"
+                        name="blog_post"
+                        value={newBlog.blog_post}
+                        required
+                        rows="5"
+                        cols="50"
+                     />
 
-                        <p>Image</p>
-                        <input
-                           onChange={handleNewBlogInputs}
-                           type="text"
-                           name="image_url"
-                           value={newBlog.image_url}
-                           autoComplete="off"
-                        />
+                     <p>Image</p>
+                     <input
+                        onChange={handleNewBlogInputs}
+                        type="text"
+                        name="image_url"
+                        value={newBlog.image_url}
+                        autoComplete="off"
+                     />
 
-                        <button id="submit-form-button">Submit!</button>                     
-                     </form>
+                     <button id="submit-form-button">Submit!</button>                     
+                  </form>
 
-                  </div>
-               </animated.div>
-            </section>
-         :
-            null
+               </div>
+            </animated.div>
+         </section>
       }
       </>
    );
