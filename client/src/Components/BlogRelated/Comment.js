@@ -208,15 +208,14 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
       <div>
          <div className="comment-actions">
             {/* If currentUser's id is the same as the commentUser's id, give the user the option to edit the related comment */}
-            {currentUser?.id === commentUser?.id
-               ? <div className="comment-user-edit">
+            {currentUser?.id === commentUser?.id &&
+               <div className="comment-user-edit">
                   <FaEdit
                      onClick={() => setShowCommentEditInput(prev => !prev)}
                      className="user-edit"
                      title="Edit Comment"
                   />
-                 </div>
-               : null
+               </div>
             }
 
             {/* If showCommentEditInput is true, then show input to let the user edit the relevant comment. */}
@@ -241,15 +240,14 @@ function Comment({currentUser, comment, commentData, setCommentData, currentBlog
             </div>
 
             {/* If currentUser's id is the same as the commentUser's id, give the user the option to delete the related comment */}
-            {currentUser?.id === commentUser?.id
-               ? <div className="comment-user-delete">
-                     <BsTrash
-                        onClick={deleteComment}
-                        className="delete-button"
-                        title="Delete Comment"
-                     />
-                 </div>
-               : null
+            {currentUser?.id === commentUser?.id &&
+               <div className="comment-user-delete">
+                  <BsTrash
+                     onClick={deleteComment}
+                     className="delete-button"
+                     title="Delete Comment"
+                  />
+               </div>
             }
          </div>
 
