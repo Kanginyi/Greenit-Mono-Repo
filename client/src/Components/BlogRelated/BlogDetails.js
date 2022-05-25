@@ -192,19 +192,18 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                      </h3>
          
                      {/* If the currentUser's id is the same as the blogAuthorObj's id, give the user the option to delete the blog */}
-                     {currentUser?.id === blogAuthorObj?.id
-                        ? <BsTrash onClick={() => handleDeleteBlog(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
-                        : null}
+                     {currentUser?.id === blogAuthorObj?.id &&
+                        <BsTrash onClick={() => handleDeleteBlog(currentBlogInfo?.id)} className="delete-button" title="Delete Post"/>
+                     }
                   </div>
 
                   {/* If the currentUser's id is the same as the blogAuthorObj's id, give the user the option to edit the blog */}
-                  {currentUser?.id === blogAuthorObj?.id
-                     ? <div className="edit-blog-container">
+                  {currentUser?.id === blogAuthorObj?.id &&
+                     <div className="edit-blog-container">
                            <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-blog">
                               <FaEdit/> Edit Post
                            </div>
                      </div>
-                     : null
                   }
 
                   <div className="blog-header">
@@ -256,9 +255,8 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                   <div className="blog-info-underline"></div>
 
                   {/* Only render something if blog's image exists */}
-                  {currentBlogInfo?.image_url
-                     ? <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
-                     : null
+                  {currentBlogInfo?.image_url &&
+                     <img src={currentBlogInfo?.image_url} alt={currentBlogInfo?.title}/>
                   }
 
                   <div>
@@ -286,13 +284,12 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                </details>
 
                {/* If filterComment's length isn't a falsey value (0), show the "Show/Hide Comments" button */}
-               {filterComments?.length
-                  ?  <div className="show-hide-container">
-                        <button onClick={() => setHideComments(prev => !prev)}>
-                           {hideComments ? "Show Comments" : "Hide Comments"}
-                        </button>
-                     </div>
-                  : null
+               {filterComments?.length &&
+                  <div className="show-hide-container">
+                     <button onClick={() => setHideComments(prev => !prev)}>
+                        {hideComments ? "Show Comments" : "Hide Comments"}
+                     </button>
+                  </div>
                }
 
                {/* THINGS RELATED TO SORTING CCOMMENTS */}
@@ -324,11 +321,10 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
                } */}
 
                {/* If hideComments state is true, show nothing. If not, show all comments rendered through filterComments */}
-               {hideComments
-                  ? null
-                  : <div className="comment-section">
+               {!hideComments &&
+                  <div className="comment-section">
                         {filterComments}
-                   </div>
+                  </div>
                }
 
                
