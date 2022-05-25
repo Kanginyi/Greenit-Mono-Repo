@@ -66,9 +66,9 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
                </h3>
 
                {/* If the currentUser's id is the same as the blogAuthor's id, give the user the option to delete the blog */}
-               {currentUser?.id === blogAuthorObj?.id
-                  ? <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
-                  : null}
+               {currentUser?.id === blogAuthorObj?.id &&
+                  <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
+               }
             </div>
 
             <div className="blog-header">
@@ -120,9 +120,8 @@ function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogD
             <div className="blog-info-underline"></div>
 
             {/* Only render something if blog's image exists */}
-            {blog.image_url
-               ? <img src={blog.image_url} alt={blog.title}/>
-               : null
+            {blog.image_url &&
+               <img src={blog.image_url} alt={blog.title}/>
             }
 
             <p>
