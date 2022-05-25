@@ -8,7 +8,7 @@ export const booleanSlice = createSlice({
    name: "boolean",
    initialState,
    reducers: {
-      trueFalse: (state) => {
+      trueFalse: state => {
          state.value = !state.value;
       }
    }
