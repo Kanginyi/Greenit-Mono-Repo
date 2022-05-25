@@ -48,6 +48,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
                   onClick={viewYourProfile}
                   className="username-color signup-button"
                   style={{fontWeight: "600"}}
+                  title="View Your Profile"
                >
                   <FaRegSmileBeam/>&nbsp;{currentUser?.username}
                </button>
