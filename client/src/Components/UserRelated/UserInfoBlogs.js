@@ -82,22 +82,20 @@ function UserInfoBlogs({blog, currentUser, blogData, setBlogData, commentData, s
          </div>
 
          {/* If the currentUser's id is the same as the currentUserInfo's id, give the user the options to delete or edit the blog */}
-         {currentUser?.id === currentUserInfo?.id
-            ?
-               <div className="user-info-actions">
-                  <BsTrash
-                     onClick={deleteUserBlog}
-                     className="delete-button"
-                     title={`Delete "${blog?.title}"`}
-                  />
+         {currentUser?.id === currentUserInfo?.id &&
+            <div className="user-info-actions">
+               <BsTrash
+                  onClick={deleteUserBlog}
+                  className="delete-button"
+                  title={`Delete "${blog?.title}"`}
+               />
 
-                  <FaEdit
-                     onClick={() => navigate(`/editing/${blog?.id}`)}
-                     className="user-edit"
-                     title={`Edit "${blog?.title}"`}
-                  />
-               </div>
-            : null
+               <FaEdit
+                  onClick={() => navigate(`/editing/${blog?.id}`)}
+                  className="user-edit"
+                  title={`Edit "${blog?.title}"`}
+               />
+            </div>
          }
       </div>
    );

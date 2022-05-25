@@ -57,22 +57,20 @@ function UserInfoComments({comment, currentUser, commentData, setCommentData, cu
          </div>
 
          {/* If the currentUser's id is the same as the currentUserInfo's id, give the user the options to delete or edit the blog */}
-         {currentUser?.id === currentUserInfo?.id
-            ?
-               <div className="user-info-actions">
-                  <BsTrash
-                     onClick={deleteUserComment}
-                     className="delete-button"
-                     title={`Delete your comment on "${comment?.blog?.title}"`}
-                  />
+         {currentUser?.id === currentUserInfo?.id &&
+            <div className="user-info-actions">
+               <BsTrash
+                  onClick={deleteUserComment}
+                  className="delete-button"
+                  title={`Delete your comment on "${comment?.blog?.title}"`}
+               />
 
-                  <FaEdit
-                     onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
-                     className="user-edit"
-                     title={`Head to "${comment?.blog?.title}" to edit your comment`}
-                  />
-               </div>
-            : null
+               <FaEdit
+                  onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
+                  className="user-edit"
+                  title={`Head to "${comment?.blog?.title}" to edit your comment`}
+               />
+            </div>
          }
       </div>
    );
