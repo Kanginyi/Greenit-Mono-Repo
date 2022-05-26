@@ -5,21 +5,25 @@ import CreatePost from "./CreatePost";
 import LogSignButtons from "./LogSignButtons";
 import SearchBar from "./SearchBar";
 
+import {useDispatch, useSelector} from "react-redux";
+import {trueFalse} from "../../Redux/Features/booleanSlice";
+
 import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
 function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreenit, setShowSignup}) {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
 
    // State to handle whether search bar is shown or not
-   const [searchClicked, setSearchClicked] = useState(false);
+   const searchClicked = useSelector(state => state.boolean.value);
    // State to handle whether CreatePost component is shown or not
    const [showCreateBlog, setShowCreateBlog] = useState(false);
 
    // Function to show or hide search bar when user clicks related button
    const showSearchBar = () => {
-      setSearchClicked(prev => !prev);
+      dispatch(trueFalse());
    };
 
    // Function to view random blog
