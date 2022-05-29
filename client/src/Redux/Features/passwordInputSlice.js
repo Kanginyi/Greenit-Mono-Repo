@@ -8,12 +8,12 @@ export const passwordInputSlice = createSlice({
    name: "passwordInput",
    initialState,
    reducers: {
-      showPassword: (state, action) => {
+      setPasswordInput: (state, action) => {
          state.value = action.payload;
       }
    }
 });
 
-export const {showPassword} = passwordInputSlice.actions;
+export const {setPasswordInput} = passwordInputSlice.actions;
 
 export default passwordInputSlice.reducer;
