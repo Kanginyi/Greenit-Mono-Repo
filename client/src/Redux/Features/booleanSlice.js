@@ -8,12 +8,12 @@ export const booleanSlice = createSlice({
    name: "boolean",
    initialState,
    reducers: {
-      trueFalse: state => {
+      toggleSearch: state => {
          state.value = !state.value;
       }
    }
 });
 
-export const {trueFalse} = booleanSlice.actions;
+export const {toggleSearch} = booleanSlice.actions;
 
 export default booleanSlice.reducer;

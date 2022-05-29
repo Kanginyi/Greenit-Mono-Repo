@@ -6,7 +6,7 @@ import LogSignButtons from "./LogSignButtons";
 import SearchBar from "./SearchBar";
 
 import {useDispatch, useSelector} from "react-redux";
-import {trueFalse} from "../../Redux/Features/booleanSlice";
+import {toggleSearch} from "../../Redux/Features/booleanSlice";
 
 import "../../Stylings/Header.css";
 
@@ -23,7 +23,7 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
 
    // Function to show or hide search bar when user clicks related button
    const showSearchBar = () => {
-      dispatch(trueFalse());
+      dispatch(toggleSearch());
    };
 
    // Function to view random blog
