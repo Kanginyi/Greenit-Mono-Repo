@@ -1,12 +1,16 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 
+import {useSelector} from "react-redux";
+
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 import placeholder_img from "../../Images/placeholder.png";
 
-function UserInfoBlogs({blog, currentUser, blogData, setBlogData, commentData, setCommentData, currentUserInfo, userBlogsInfo, setUserBlogsInfo, userCommentsInfo, setUserCommentsInfo}) {
+function UserInfoBlogs({blog, blogData, setBlogData, commentData, setCommentData, currentUserInfo, userBlogsInfo, setUserBlogsInfo, userCommentsInfo, setUserCommentsInfo}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // If blog's content is less than 15 characters in length, set blogPost to the original content
    // If blog's content is more than 15 characters in length, max it out to 15 characters, add "..." after it, and set blogPost to the shortened content
