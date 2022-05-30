@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-function Login({setCurrentUser}) {
+import {useDispatch} from "react-redux";
+import {setCurrentUser} from "../../Redux/Features/currentUserSlice";
+
+function Login() {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
 
    // States to handle inputted values for username & password. errorMessage will handle and render any errors related to username & password
    const [username, setUsername] = useState("");
@@ -25,7 +29,7 @@ function Login({setCurrentUser}) {
             if (resp.ok) {
                resp.json()
                   .then(user => {
-                     setCurrentUser(user);
+                     dispatch(setCurrentUser(user));
                      navigate("/");
                   })
             } else {
