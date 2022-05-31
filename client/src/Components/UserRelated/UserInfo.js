@@ -14,11 +14,14 @@ import "../../Stylings/UserInfo.css";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function UserInfo({userData, setUserData, blogData, setBlogData, commentData, setCommentData, searchValue}) {
+function UserInfo({userData, setUserData, blogData, setBlogData, commentData, setCommentData}) {
    let navigate = useNavigate();
    const dispatch = useDispatch();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
+   // State to handle search bar's inputted value
+   const searchValue = useSelector(state => state.searchValue.value);
 
    // State to handle current user's information
    const [currentUserInfo, setCurrentUserInfo] = useState({});
