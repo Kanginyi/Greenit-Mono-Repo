@@ -4,9 +4,13 @@ import Login from "./Login";
 import Signup from "./Signup";
 import ErrorPage from '../Helpers/ErrorPage';
 
+import {useSelector} from "react-redux";
+
 import "../../Stylings/LoginSignupForm.css";
 
-function LoginSignupForm({currentUser, setCurrentUser, setUserData, showSignup, setShowSignup}) {
+function LoginSignupForm({setUserData, showSignup, setShowSignup}) {
+   const currentUser = useSelector(state => state.currentUser.value);
+
    return (
       <>
       {/* If a user is already logged in (the currentUser object exists), then render ErrorPage component. If not, then render Signup/Login components*/}
@@ -15,9 +19,9 @@ function LoginSignupForm({currentUser, setCurrentUser, setUserData, showSignup, 
             <div className="login-signup-container">   
                {showSignup
                   ? 
-                     <Signup setCurrentUser={setCurrentUser} setUserData={setUserData}/>
+                     <Signup setUserData={setUserData}/>
                   : 
-                     <Login setCurrentUser={setCurrentUser}/>
+                     <Login/>
                }
 
                {/* Based on the showSignup state, conditionally render Login or Signup elements */}
