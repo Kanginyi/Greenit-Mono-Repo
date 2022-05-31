@@ -45,8 +45,6 @@ function App() {
             }
          })
    }, [dispatch]);
-
-   console.log(currentUser);
    
    // Initial fetch for all blogs data
    useEffect(() => {
