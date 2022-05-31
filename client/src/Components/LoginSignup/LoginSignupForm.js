@@ -9,6 +9,7 @@ import {useSelector} from "react-redux";
 import "../../Stylings/LoginSignupForm.css";
 
 function LoginSignupForm({setUserData, showSignup, setShowSignup}) {
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    return (

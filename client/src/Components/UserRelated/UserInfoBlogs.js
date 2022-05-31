@@ -10,6 +10,7 @@ import placeholder_img from "../../Images/placeholder.png";
 function UserInfoBlogs({blog, blogData, setBlogData, commentData, setCommentData, currentUserInfo, userBlogsInfo, setUserBlogsInfo, userCommentsInfo, setUserCommentsInfo}) {
    let navigate = useNavigate();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    // If blog's content is less than 15 characters in length, set blogPost to the original content

@@ -16,6 +16,7 @@ function Navbar({blogData, setBlogData, searchGreenit, setShowSignup}) {
    let navigate = useNavigate();
    const dispatch = useDispatch();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle whether search bar is shown or not

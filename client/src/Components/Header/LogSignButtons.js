@@ -10,6 +10,7 @@ function LogSignButtons({setShowSignup}) {
    let navigate = useNavigate();
    const dispatch = useDispatch();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    // Function to navigate to clicked user's profile when user clicks related button

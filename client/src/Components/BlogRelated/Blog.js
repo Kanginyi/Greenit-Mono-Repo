@@ -14,6 +14,7 @@ import {BsTrash} from "react-icons/bs";
 function Blog({blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    let navigate = useNavigate();
 
+   // State to handle current user's information  
    const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle whether a blog has been liked or disliked

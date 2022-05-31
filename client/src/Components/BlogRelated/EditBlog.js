@@ -11,6 +11,7 @@ import "../../Stylings/EditBlog.css";
 function EditBlog({blogData, setBlogData}) {
    let navigate = useNavigate();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle current editing blog's information

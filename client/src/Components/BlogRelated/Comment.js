@@ -15,6 +15,7 @@ import {FaEdit} from "react-icons/fa";
 function Comment({comment, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
    let navigate = useNavigate();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
    
    // State to handle whether to show the comment editing input or not

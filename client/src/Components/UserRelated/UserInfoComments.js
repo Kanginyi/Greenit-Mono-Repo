@@ -9,6 +9,7 @@ import {FaEdit} from "react-icons/fa";
 function UserInfoComments({comment, commentData, setCommentData, currentUserInfo, userCommentsInfo, setUserCommentsInfo}) {
    let navigate = useNavigate();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    // Date & Time information for when the comment was created/posted
