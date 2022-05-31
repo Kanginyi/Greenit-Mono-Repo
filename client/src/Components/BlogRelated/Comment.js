@@ -5,13 +5,17 @@ import DislikesPressed from "../Likes&DislikesButtons/DislikesPressed";
 import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
+import {useSelector} from "react-redux";
+
 import "../../Stylings/Comment.css";
 
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function Comment({currentUser, comment, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
+function Comment({comment, commentData, setCommentData, currentBlogComments, setCurrentBlogComments}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
    
    // State to handle whether to show the comment editing input or not
    const [showCommentEditInput, setShowCommentEditInput] = useState(false);
