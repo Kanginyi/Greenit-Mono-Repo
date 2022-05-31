@@ -11,11 +11,15 @@ import LoginSignupForm from "./Components/LoginSignup/LoginSignupForm";
 import AllUsers from "./Components/UserRelated/AllUsers";
 import UserInfo from "./Components/UserRelated/UserInfo";
 
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentUser} from "./Redux/Features/currentUserSlice";
+
 function App() {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
 
    // State to handle current user's information
-   const [currentUser, setCurrentUser] = useState(null);
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // States to handle all initial blogs, users, and comments data
    const [blogData, setBlogData] = useState([]);
@@ -36,11 +40,13 @@ function App() {
             if (resp.ok) {
                resp.json()
                   .then(user => {
-                     setCurrentUser(user);
+                     dispatch(setCurrentUser(user));
                   })
             }
          })
-   }, []);
+   }, [dispatch]);
+
+   console.log(currentUser);
    
    // Initial fetch for all blogs data
    useEffect(() => {
@@ -192,8 +198,6 @@ function App() {
             <a href="#main-content" id="skip-nav">Skip Navigation</a>
 
             <Navbar
-               currentUser={currentUser}
-               setCurrentUser={setCurrentUser}
                blogData={blogData}
                setBlogData={setBlogData}
                searchGreenit={searchGreenit}
@@ -206,7 +210,6 @@ function App() {
 
                <Route path="/" element={
                   <AllBlogs
-                     currentUser={currentUser}
                      blogData={blogData}
                      searchValue={searchValue}
                      handleDeleteBlog={handleDeleteBlog}
@@ -219,8 +222,6 @@ function App() {
 
                <Route path="/welcome" element={
                   <LoginSignupForm
-                     currentUser={currentUser}
-                     setCurrentUser={setCurrentUser}
                      setUserData={setUserData}
                      showSignup={showSignup}
                      setShowSignup={setShowSignup}
@@ -229,7 +230,6 @@ function App() {
 
                <Route path="/blogs/:id" element={
                   <BlogDetails
-                     currentUser={currentUser}
                      commentData={commentData}
                      setCommentData={setCommentData}
                      searchValue={searchValue}
@@ -243,7 +243,6 @@ function App() {
 
                <Route path="/editing/:id" element={
                   <EditBlog
-                     currentUser={currentUser}
                      blogData={blogData}
                      setBlogData={setBlogData}
                   />
@@ -260,8 +259,6 @@ function App() {
 
                <Route path="/all_users/:id" element={
                   <UserInfo
-                     currentUser={currentUser}
-                     setCurrentUser={setCurrentUser}
                      userData={userData}
                      setUserData={setUserData}
                      blogData={blogData}
