@@ -135,10 +135,10 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
    });
 
    // If searchValue is an empty string, render all blogs inside renderBlogs. As searchValue gets updated, check each blog's title to see if they include the inputted searchValue
-   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[0]?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.blog?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // If searchValue is an empty string, render all comments inside renderComments. As searchValue gets updated, check each comment's text to see if they include the inputted searchValue
-   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[0]?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.comment?.comment_text?.toLowerCase()?.includes(searchValue?.toLowerCase()) || comment?.props?.comment?.blog?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // Function to handle deleting user using the id of the deleted blog
    const deleteUser = () => {
