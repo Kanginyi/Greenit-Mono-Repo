@@ -12,9 +12,11 @@ import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreenit, setShowSignup}) {
+function Navbar({blogData, setBlogData, searchGreenit, setShowSignup}) {
    let navigate = useNavigate();
    const dispatch = useDispatch();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle whether search bar is shown or not
    const searchClicked = useSelector(state => state.boolean.value);
@@ -66,8 +68,6 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
             </div>
 
             <LogSignButtons
-               currentUser={currentUser}
-               setCurrentUser={setCurrentUser}
                setShowSignup={setShowSignup}
             />
          </nav>
@@ -75,7 +75,6 @@ function Navbar({currentUser, setCurrentUser, blogData, setBlogData, searchGreen
          {searchClicked && <SearchBar searchGreenit={searchGreenit}/>}
          
          <CreatePost
-            currentUser={currentUser}
             blogData={blogData}
             setBlogData={setBlogData}
             showCreateBlog={showCreateBlog}
