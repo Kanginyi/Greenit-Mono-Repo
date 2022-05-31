@@ -237,12 +237,13 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                            ?  <>
                                  <h3>Total Posts: {userBlogsInfo?.length}
                                     {/* If filterBlog's length isn't a falsey value (0), show "Hide Posts" button */}
-                                    {filterBlogs?.length &&
-                                       <button
-                                          onClick={() => setHideBlogs(prev => !prev)}
-                                       >
+                                    {filterBlogs?.length
+                                       ? <button
+                                             onClick={() => setHideBlogs(prev => !prev)}
+                                         >
                                           {!hideBlogs ? "Hide Posts" : "Show Posts"}
-                                       </button>
+                                         </button>
+                                       : null
                                     }
                                  </h3>
                                  
@@ -263,12 +264,13 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                            ?  <>
                                  <h3>Total Comments: {userCommentsInfo?.length}
                                     {/* If filterComment's length isn't a falsey value (0), show "Hide Comments" button */}
-                                    {filterComments?.length &&
-                                       <button
-                                          onClick={() => setHideComments(prev => !prev)}
-                                       >
+                                    {filterComments?.length
+                                       ? <button
+                                             onClick={() => setHideComments(prev => !prev)}
+                                         >
                                           {!hideComments ? "Hide Comments" : "Show Comments"}
-                                       </button>
+                                         </button>
+                                       : null
                                     }
                                  </h3>
 
