@@ -5,12 +5,16 @@ import DislikesPressed from "../Likes&DislikesButtons/DislikesPressed";
 import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
+import {useSelector} from "react-redux";
+
 import "../../Stylings/Blog.css";
 
 import {BsTrash} from "react-icons/bs";
 
-function Blog({currentUser, blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function Blog({blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle whether a blog has been liked or disliked
    const [clickedNum, setClickedNum] = useState(1);
