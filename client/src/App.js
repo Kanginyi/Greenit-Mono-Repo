@@ -21,8 +21,6 @@ function App() {
 
    // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
-   // State to handle search bar's inputted value
-   const searchValue = useSelector(state => state.searchValue.value);
 
    // States to handle all initial blogs, users, and comments data
    const [blogData, setBlogData] = useState([]);
