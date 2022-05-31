@@ -46,6 +46,7 @@ ________________________________________________________________________
 
 - Ruby 2.7.4
 - React
+- Redux
 - NodeJS (v16) and npm
 - Heroku CLI
 - PostgreSQL
