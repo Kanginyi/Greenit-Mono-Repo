@@ -1,10 +1,16 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentUser} from '../../Redux/Features/currentUserSlice';
+
 import {FaRegSmileBeam} from "react-icons/fa";
 
-function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
+function LogSignButtons({setShowSignup}) {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // Function to navigate to clicked user's profile when user clicks related button
    const viewYourProfile = () => {
@@ -17,7 +23,7 @@ function LogSignButtons({currentUser, setCurrentUser, setShowSignup}) {
          method: "DELETE"
       });
  
-      setCurrentUser(null);
+      dispatch(setCurrentUser(null));
       
       navigate("/");
    };
