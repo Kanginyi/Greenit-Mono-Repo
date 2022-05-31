@@ -5,6 +5,7 @@ import Blog from "./Blog";
 import {useSelector} from "react-redux";
 
 function AllBlogs({blogData, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+   // State to handle search bar's inputted value
    const searchValue = useSelector(state => state.searchValue.value);
 
    // Map through blogData and render each Blog component by passing in the related information as props
