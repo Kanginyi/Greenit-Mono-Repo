@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setCurrentUser} from "../../Redux/Features/currentUserSlice";
-import {setPasswordInput} from "../../Redux/Features/passwordInputSlice";
 
 function Signup({setUserData}) {
    let navigate = useNavigate();
@@ -15,7 +14,7 @@ function Signup({setUserData}) {
    // State to handle and any errors related to both username & password
    const [errorMessage, setErrorMessage] = useState([]);
    // State to handle show password functionality
-   const passwordInput = useSelector(state => state.passwordInput.value);
+   const [passwordInput, setPasswordInput] = useState("password");
 
    // Function to handle signing up with new user information
    // After signing up and the response comes back okay; setCurrentUser to new user's information, add that new user object to userData array, and setUserData to that new array
@@ -53,9 +52,9 @@ function Signup({setUserData}) {
    // Function to show or hide password when user clicks related checkbox
    const showPassword = () => {
       if (passwordInput === "password") {
-         dispatch(setPasswordInput("text"));
+         setPasswordInput("text");
       } else {
-         dispatch(setPasswordInput("password"));
+         setPasswordInput("password");
       }
    };
 
