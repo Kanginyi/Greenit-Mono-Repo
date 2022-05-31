@@ -8,11 +8,15 @@ import DislikesPressed from "../Likes&DislikesButtons/DislikesPressed";
 import LikesPressed from "../Likes&DislikesButtons/LikesPressed";
 import NeitherPressed from "../Likes&DislikesButtons/NeitherPressed";
 
+import {useSelector} from "react-redux";
+
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function BlogDetails({currentUser, commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function BlogDetails({commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle current blog's information
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
@@ -117,7 +121,6 @@ function BlogDetails({currentUser, commentData, setCommentData, searchValue, han
    const renderComments = currentBlogComments?.map(comment => {
       return <Comment
                key={comment?.id}
-               currentUser={currentUser}
                comment={comment}
                commentData={commentData} 
                setCommentData={setCommentData}

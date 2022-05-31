@@ -1,11 +1,15 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 
+import {useSelector} from "react-redux";
+
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function UserInfoComments({comment, currentUser, commentData, setCommentData, currentUserInfo, userCommentsInfo, setUserCommentsInfo}) {
+function UserInfoComments({comment, commentData, setCommentData, currentUserInfo, userCommentsInfo, setUserCommentsInfo}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // Date & Time information for when the comment was created/posted
    const commentDate = new Date(comment?.created_at).toLocaleDateString();

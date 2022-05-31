@@ -6,13 +6,19 @@ import UserInfoComments from "./UserInfoComments";
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
 
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentUser} from "../../Redux/Features/currentUserSlice";
+
 import "../../Stylings/UserInfo.css";
 
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData, setBlogData, commentData, setCommentData, searchValue}) {
+function UserInfo({userData, setUserData, blogData, setBlogData, commentData, setCommentData, searchValue}) {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle current user's information
    const [currentUserInfo, setCurrentUserInfo] = useState({});
@@ -74,7 +80,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                resp.json()
                   .then(updatedUser => {
                      setErrorMessage("");
-                     setCurrentUser(updatedUser);
+                     dispatch(setCurrentUser(updatedUser));
                      setCurrentUserInfo(updatedUser);
                      setUserData(userData, updatedUser);
                      setShowUserInput(false);
@@ -96,7 +102,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    const renderBlogs = sortBlogs?.map(blog => {
       return <UserInfoBlogs
                blog={blog}
-               currentUser={currentUser}
                blogData={blogData}
                setBlogData={setBlogData}
                commentData={commentData}
@@ -116,7 +121,6 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
    const renderComments = sortComments?.map(comment => {
       return <UserInfoComments
                comment={comment}
-               currentUser={currentUser}
                commentData={commentData}
                setCommentData={setCommentData}
                currentUserInfo={currentUserInfo}
@@ -155,7 +159,7 @@ function UserInfo({currentUser, setCurrentUser, userData, setUserData, blogData,
                const removeUserComments = commentData?.filter(comment => comment?.user?.id !== currentUserInfo?.id);
                setCommentData(removeUserComments);
             })
-         setCurrentUser(null);
+         dispatch(setCurrentUser(null));
          navigate("/");
       }
    };

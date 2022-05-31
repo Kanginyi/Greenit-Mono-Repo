@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {useDispatch, useSelector} from "react-redux";
+import {setCurrentUser} from "../../Redux/Features/currentUserSlice";
 import {setPasswordInput} from "../../Redux/Features/passwordInputSlice";
 
-function Signup({setCurrentUser, setUserData}) {
+function Signup({setUserData}) {
    let navigate = useNavigate();
    const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ function Signup({setCurrentUser, setUserData}) {
             if (resp.ok) {
                resp.json()
                   .then(user => {
-                     setCurrentUser(user);
+                     dispatch(setCurrentUser(user));
                      setUserData(allUsers => [...allUsers, user]);
                      navigate("/");
                   })

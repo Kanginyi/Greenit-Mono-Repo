@@ -3,10 +3,14 @@ import {useNavigate} from "react-router-dom";
 
 import {useSpring, animated} from "react-spring";
 
+import {useSelector} from "react-redux";
+
 import "../../Stylings/CreatePost.css";
 
-function CreatePost({currentUser, blogData, setBlogData, showCreateBlog, setShowCreateBlog}) {
+function CreatePost({blogData, setBlogData, showCreateBlog, setShowCreateBlog}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle newly created blog's information; set the initial value to an object with its content set to match the backend :blog schema with default values
    const [newBlog, setNewBlog] = useState({

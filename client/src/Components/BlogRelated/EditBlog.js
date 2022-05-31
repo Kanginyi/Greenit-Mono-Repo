@@ -4,10 +4,14 @@ import {useNavigate, useParams} from "react-router-dom";
 import ErrorPage from "../Helpers/ErrorPage";
 import Loader from "../Helpers/Loader";
 
+import {useSelector} from "react-redux";
+
 import "../../Stylings/EditBlog.css";
 
-function EditBlog({currentUser, blogData, setBlogData}) {
+function EditBlog({blogData, setBlogData}) {
    let navigate = useNavigate();
+
+   const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle current editing blog's information
    const [editBlogInfo, setEditBlogInfo] = useState({});
