@@ -3,7 +3,12 @@ import React, {useEffect, useState} from 'react';
 import User from "./User";
 import Loader from "../Helpers/Loader";
 
-function AllUsers({userData, blogData, commentData, searchValue}) {
+import {useSelector} from "react-redux";
+
+function AllUsers({userData, blogData, commentData}) {
+   // State to handle search bar's inputted value
+   const searchValue = useSelector(state => state.searchValue.value);
+
    // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
 
