@@ -13,6 +13,7 @@ import UserInfo from "./Components/UserRelated/UserInfo";
 
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentUser} from "./Redux/Features/currentUserSlice";
+import {setSearchValue} from "./Redux/Features/searchValueSlice";
 
 function App() {
    let navigate = useNavigate();
@@ -30,8 +31,6 @@ function App() {
    const [isLoaded, setIsLoaded] = useState(false);
    // State to handle whether to show Signup component or Login component
    const [showSignup, setShowSignup] = useState(false);
-   // State to handle search bar's inputted value
-   const [searchValue, setSearchValue] = useState("");
 
    // Setting current user's information when someone logs in
    useEffect(() => {
@@ -72,7 +71,7 @@ function App() {
 
    // Function to update searchValue's state based on search bar's inputted values
    const searchGreenit = e => {
-      setSearchValue(e.target.value);
+      dispatch(setSearchValue(e.target.value));
    };
     
    // Function to handle deleting blogs using the id of the deleted blog
@@ -209,7 +208,6 @@ function App() {
                <Route path="/" element={
                   <AllBlogs
                      blogData={blogData}
-                     searchValue={searchValue}
                      handleDeleteBlog={handleDeleteBlog}
                      handleBlogLikes={handleBlogLikes}
                      handleBlogDislikes={handleBlogDislikes}
@@ -230,7 +228,6 @@ function App() {
                   <BlogDetails
                      commentData={commentData}
                      setCommentData={setCommentData}
-                     searchValue={searchValue}
                      handleDeleteBlog={handleDeleteBlog}
                      handleBlogLikes={handleBlogLikes}
                      handleBlogDislikes={handleBlogDislikes}
@@ -251,7 +248,6 @@ function App() {
                      userData={userData}
                      blogData={blogData}
                      commentData={commentData}
-                     searchValue={searchValue}
                   />
                }/>
 
@@ -263,7 +259,6 @@ function App() {
                      setBlogData={setBlogData}
                      commentData={commentData}
                      setCommentData={setCommentData}
-                     searchValue={searchValue}
                   />
                }/>
 

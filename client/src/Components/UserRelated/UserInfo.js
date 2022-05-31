@@ -14,11 +14,14 @@ import "../../Stylings/UserInfo.css";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function UserInfo({userData, setUserData, blogData, setBlogData, commentData, setCommentData, searchValue}) {
+function UserInfo({userData, setUserData, blogData, setBlogData, commentData, setCommentData}) {
    let navigate = useNavigate();
    const dispatch = useDispatch();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
+   // State to handle search bar's inputted value
+   const searchValue = useSelector(state => state.searchValue.value);
 
    // State to handle current user's information
    const [currentUserInfo, setCurrentUserInfo] = useState({});
@@ -132,10 +135,10 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
    });
 
    // If searchValue is an empty string, render all blogs inside renderBlogs. As searchValue gets updated, check each blog's title to see if they include the inputted searchValue
-   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.children[0]?.props?.children[1]?.props?.children[0]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterBlogs = searchValue === "" ? renderBlogs : renderBlogs?.filter(blog => blog?.props?.blog?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // If searchValue is an empty string, render all comments inside renderComments. As searchValue gets updated, check each comment's text to see if they include the inputted searchValue
-   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.children[0]?.props?.children[1]?.props?.children?.toLowerCase()?.includes(searchValue?.toLowerCase()));
+   const filterComments = searchValue === "" ? renderComments : renderComments?.filter(comment => comment?.props?.comment?.comment_text?.toLowerCase()?.includes(searchValue?.toLowerCase()) || comment?.props?.comment?.blog?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()));
 
    // Function to handle deleting user using the id of the deleted blog
    const deleteUser = () => {
@@ -234,12 +237,13 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                            ?  <>
                                  <h3>Total Posts: {userBlogsInfo?.length}
                                     {/* If filterBlog's length isn't a falsey value (0), show "Hide Posts" button */}
-                                    {filterBlogs?.length &&
-                                       <button
-                                          onClick={() => setHideBlogs(prev => !prev)}
-                                       >
+                                    {filterBlogs?.length
+                                       ? <button
+                                             onClick={() => setHideBlogs(prev => !prev)}
+                                         >
                                           {!hideBlogs ? "Hide Posts" : "Show Posts"}
-                                       </button>
+                                         </button>
+                                       : null
                                     }
                                  </h3>
                                  
@@ -260,12 +264,13 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                            ?  <>
                                  <h3>Total Comments: {userCommentsInfo?.length}
                                     {/* If filterComment's length isn't a falsey value (0), show "Hide Comments" button */}
-                                    {filterComments?.length &&
-                                       <button
-                                          onClick={() => setHideComments(prev => !prev)}
-                                       >
+                                    {filterComments?.length
+                                       ? <button
+                                             onClick={() => setHideComments(prev => !prev)}
+                                         >
                                           {!hideComments ? "Hide Comments" : "Show Comments"}
-                                       </button>
+                                         </button>
+                                       : null
                                     }
                                  </h3>
 

@@ -13,10 +13,13 @@ import {useSelector} from "react-redux";
 import {BsTrash} from "react-icons/bs";
 import {FaEdit} from "react-icons/fa";
 
-function BlogDetails({commentData, setCommentData, searchValue, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
+function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, handleUnlikeBlog, handleUndislikeBlog}) {
    let navigate = useNavigate();
 
+   // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
+   // State to handle search bar's inputted value
+   const searchValue = useSelector(state => state.searchValue.value);
 
    // State to handle current blog's information
    const [currentBlogInfo, setCurrentBlogInfo] = useState({});
@@ -287,12 +290,13 @@ function BlogDetails({commentData, setCommentData, searchValue, handleDeleteBlog
                </details>
 
                {/* If filterComment's length isn't a falsey value (0), show the "Show/Hide Comments" button */}
-               {filterComments?.length &&
-                  <div className="show-hide-container">
-                     <button onClick={() => setHideComments(prev => !prev)}>
-                        {hideComments ? "Show Comments" : "Hide Comments"}
-                     </button>
-                  </div>
+               {filterComments?.length
+                  ? <div className="show-hide-container">
+                        <button onClick={() => setHideComments(prev => !prev)}>
+                           {hideComments ? "Show Comments" : "Hide Comments"}
+                        </button>
+                    </div>
+                  : null
                }
 
                {/* THINGS RELATED TO SORTING CCOMMENTS */}
