@@ -4,13 +4,18 @@ import Login from "./Login";
 import Signup from "./Signup";
 import ErrorPage from '../Helpers/ErrorPage';
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setShowSignup} from "../../Redux/Features/showSignupSlice";
 
 import "../../Stylings/LoginSignupForm.css";
 
-function LoginSignupForm({setUserData, showSignup, setShowSignup}) {
+function LoginSignupForm({setUserData}) {
+   const dispatch = useDispatch();
+
    // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
+   // State to handle whether to show Signup or Login component
+   const showSignup = useSelector(state => state.showSignup.value);
 
    return (
       <>
@@ -32,7 +37,7 @@ function LoginSignupForm({setUserData, showSignup, setShowSignup}) {
                   </p>
 
                   <button
-                     onClick={() => setShowSignup(prev => !prev)}
+                     onClick={() => dispatch(setShowSignup(!showSignup))}
                   >
                      {showSignup ? "Login" : "Signup" }
                   </button>
