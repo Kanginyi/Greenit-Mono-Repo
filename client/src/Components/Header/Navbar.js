@@ -5,7 +5,8 @@ import CreatePost from "./CreatePost";
 import LogSignButtons from "./LogSignButtons";
 import SearchBar from "./SearchBar";
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setShowCreateBlog} from "../../Redux/Features/showCreateBlogSlice";
 
 import "../../Stylings/Header.css";
 
@@ -13,14 +14,13 @@ import greenit_logo from "../../Images/greenit-logo.png";
 
 function Navbar({blogData, setBlogData, searchGreenit}) {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
 
    // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
 
    // State to handle whether search bar is shown or not
    const [searchClicked, setSearchClicked] = useState(false);
-   // State to handle whether CreatePost component is shown or not
-   const [showCreateBlog, setShowCreateBlog] = useState(false);
 
    // Function to show or hide search bar when user clicks related button
    const showSearchBar = () => {
@@ -60,7 +60,7 @@ function Navbar({blogData, setBlogData, searchGreenit}) {
 
                {/* Only render Create Post button if a user is logged in (the currentUser object exists) */}
                {currentUser &&
-                  <button onClick={() => setShowCreateBlog(true)}>
+                  <button onClick={() => dispatch(setShowCreateBlog(true))}>
                      Create Post
                   </button>
                }
@@ -74,8 +74,6 @@ function Navbar({blogData, setBlogData, searchGreenit}) {
          <CreatePost
             blogData={blogData}
             setBlogData={setBlogData}
-            showCreateBlog={showCreateBlog}
-            setShowCreateBlog={setShowCreateBlog}
          />
       </>
    );
