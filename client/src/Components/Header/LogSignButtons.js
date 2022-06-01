@@ -3,10 +3,11 @@ import {useNavigate} from "react-router-dom";
 
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentUser} from '../../Redux/Features/currentUserSlice';
+import {setShowSignup} from '../../Redux/Features/showSignupSlice';
 
 import {FaRegSmileBeam} from "react-icons/fa";
 
-function LogSignButtons({setShowSignup}) {
+function LogSignButtons() {
    let navigate = useNavigate();
    const dispatch = useDispatch();
 
@@ -25,21 +26,18 @@ function LogSignButtons({setShowSignup}) {
       });
  
       dispatch(setCurrentUser(null));
-      
       navigate("/");
    };
 
    // Function to navigate to Login component when showSignup is false
    const toLogin = () => {
-      setShowSignup(false);
-
+      dispatch(setShowSignup(false));
       navigate("/welcome");
    };
 
    // Function to navigate to Signup component when showSignup is true
    const toSignup = () => {
-      setShowSignup(true);
-
+      dispatch(setShowSignup(true));
       navigate("/welcome");
    };
 
