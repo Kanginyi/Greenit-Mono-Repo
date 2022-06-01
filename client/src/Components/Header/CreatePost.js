@@ -3,15 +3,19 @@ import {useNavigate} from "react-router-dom";
 
 import {useSpring, animated} from "react-spring";
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setShowCreateBlog} from "../../Redux/Features/showCreateBlogSlice";
 
 import "../../Stylings/CreatePost.css";
 
-function CreatePost({blogData, setBlogData, showCreateBlog, setShowCreateBlog}) {
+function CreatePost({blogData, setBlogData}) {
    let navigate = useNavigate();
+   const dispatch = useDispatch();
 
    // State to handle current user's information
    const currentUser = useSelector(state => state.currentUser.value);
+   // State to handle whether CreatePost component is shown or not
+   const showCreateBlog = useSelector(state => state.showCreateBlog.value);
 
    // State to handle newly created blog's information; set the initial value to an object with its content set to match the backend :blog schema with default values
    const [newBlog, setNewBlog] = useState({
@@ -52,7 +56,7 @@ function CreatePost({blogData, setBlogData, showCreateBlog, setShowCreateBlog}) 
          })
       // Clear all information inside of newBlog, hide CreatePost component, navigate to homepage
       setNewBlog({user_id: "", title: "", blog_post: "", image_url: "", likes: 0, dislikes: 0});
-      setShowCreateBlog(false);
+      dispatch(setShowCreateBlog(false));
       navigate("/");
    };
 
@@ -60,16 +64,16 @@ function CreatePost({blogData, setBlogData, showCreateBlog, setShowCreateBlog}) 
    const formRef = useRef();
    const closeForm = e => {
       if (formRef.current === e.target) {
-         setShowCreateBlog(false);
+         dispatch(setShowCreateBlog(false));
       }
    };
 
    // Close the modal using the "Escape" key
    const escPress = useCallback(e => {
       if (e.key === "Escape" && showCreateBlog) {
-         setShowCreateBlog(false);
+         dispatch(setShowCreateBlog(false));
       }
-   }, [showCreateBlog, setShowCreateBlog]);
+   }, [dispatch, showCreateBlog]);
 
    useEffect(() => {
       document.addEventListener("keydown", escPress);
@@ -91,7 +95,7 @@ function CreatePost({blogData, setBlogData, showCreateBlog, setShowCreateBlog}) 
          <section className="blog-form-background" onClick={closeForm} ref={formRef}>
             <animated.div style={animation}>
                <div className="create-blog-div">
-                  <button onClick={() => setShowCreateBlog(false)} className="x-button">X</button>
+                  <button onClick={() => dispatch(setShowCreateBlog(false))} className="x-button">X</button>
                   <form className="create-blog-form" onSubmit={submitNewBlog}>
 
                      <p>Title <span className="required-red">*</span></p>
