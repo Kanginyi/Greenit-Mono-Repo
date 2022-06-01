@@ -17,8 +17,6 @@ function CreatePost({blogData, setBlogData}) {
    // State to handle whether CreatePost component is shown or not
    const showCreateBlog = useSelector(state => state.showCreateBlog.value);
 
-   console.log(showCreateBlog);
-
    // State to handle newly created blog's information; set the initial value to an object with its content set to match the backend :blog schema with default values
    const [newBlog, setNewBlog] = useState({
       user_id: currentUser?.id,
