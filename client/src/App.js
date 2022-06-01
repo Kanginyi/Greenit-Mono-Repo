@@ -29,9 +29,7 @@ function App() {
 
    // State to handle whether to show Loader component or not
    const [isLoaded, setIsLoaded] = useState(false);
-   // State to handle whether to show Signup component or Login component
-   const [showSignup, setShowSignup] = useState(false);
-
+   
    // Setting current user's information when someone logs in
    useEffect(() => {
       fetch("/me")
@@ -198,7 +196,6 @@ function App() {
                blogData={blogData}
                setBlogData={setBlogData}
                searchGreenit={searchGreenit}
-               setShowSignup={setShowSignup}
             />
          </header>
 
@@ -219,8 +216,6 @@ function App() {
                <Route path="/welcome" element={
                   <LoginSignupForm
                      setUserData={setUserData}
-                     showSignup={showSignup}
-                     setShowSignup={setShowSignup}
                   />
                }/>
 

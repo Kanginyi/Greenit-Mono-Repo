@@ -11,7 +11,7 @@ import "../../Stylings/Header.css";
 
 import greenit_logo from "../../Images/greenit-logo.png";
 
-function Navbar({blogData, setBlogData, searchGreenit, setShowSignup}) {
+function Navbar({blogData, setBlogData, searchGreenit}) {
    let navigate = useNavigate();
 
    // State to handle current user's information
@@ -66,9 +66,7 @@ function Navbar({blogData, setBlogData, searchGreenit, setShowSignup}) {
                }
             </div>
 
-            <LogSignButtons
-               setShowSignup={setShowSignup}
-            />
+            <LogSignButtons/>
          </nav>
 
          {searchClicked && <SearchBar searchGreenit={searchGreenit}/>}
