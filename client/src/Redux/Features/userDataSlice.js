@@ -14,6 +14,6 @@ export const userDataSlice = createSlice({
    }
 });
 
-export const {setBlogData} = userDataSlice.actions;
+export const {setUserData} = userDataSlice.actions;
 
 export default userDataSlice.reducer;
