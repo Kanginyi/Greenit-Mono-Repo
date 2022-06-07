@@ -104,6 +104,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
    // Map through sortBlogs and render each UserInfoBlogs component by passing in the related information as props
    const renderBlogs = sortBlogs?.map(blog => {
       return <UserInfoBlogs
+               key={blog?.id}
                blog={blog}
                blogData={blogData}
                setBlogData={setBlogData}
@@ -123,6 +124,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
    // Map through sortComments and render each UserInfoComments component by passing in the related information as props
    const renderComments = sortComments?.map(comment => {
       return <UserInfoComments
+               key={comment?.id}
                comment={comment}
                commentData={commentData}
                setCommentData={setCommentData}
