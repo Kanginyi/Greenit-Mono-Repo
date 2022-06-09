@@ -8,6 +8,8 @@ import searchValueReducer from "./Features/searchValueSlice";
 import showCreateBlogReducer from "./Features/showCreateBlogSlice";
 import showSignupReducer from "./Features/showSignupSlice";
 
+import blogCommentsReducer from "./Features/blogCommentsSlice";
+
 export default configureStore({
    reducer: {
       currentUser: currentUserReducer,
@@ -16,6 +18,8 @@ export default configureStore({
       userData: userDataReducer,
       searchValue: searchValueReducer,
       showCreateBlog: showCreateBlogReducer,
-      showSignup: showSignupReducer
+      showSignup: showSignupReducer,
+
+      blogComments: blogCommentsReducer
    }
 });
