@@ -5,7 +5,7 @@
 }
 
 #skip-nav {
-   background-color: rgb(0, 173, 76);
+   background-color: var(--grenit-color);
    color: white;
 
    padding: .75rem 1.5rem;
@@ -50,7 +50,7 @@
    cursor: pointer;
    display: flex;
    align-items: center;
-   color: rgb(0, 173, 76);
+   color: var(--grenit-color);
 
    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    font-weight: 700;
@@ -84,7 +84,7 @@
 }
 
 .category-bar button:hover, .category-bar button:focus-visible {
-   box-shadow: inset 0 -5px 0 0 rgb(0, 173, 76);
+   box-shadow: inset 0 -5px 0 0 var(--grenit-color);
 }
 
 .search-bar {
@@ -95,7 +95,7 @@
 }
 
 .search-bar input {
-   border: 2px solid rgb(0, 173, 76);
+   border: 2px solid var(--grenit-color);
    border-radius: 20px;
    padding-left: 0.75em;
    padding-right: 0.15em;
@@ -105,11 +105,11 @@
    width: 100%;
 
    font-size: 1.2rem;
-   color: rgb(0, 173, 76);
+   color: var(--grenit-color);
 }
 
 .search-bar input:focus {
-   border: 2px solid rgb(0, 173, 76);
+   border: 2px solid var(--grenit-color);
 }
 
 .search-bar input[type="search"]::-webkit-search-cancel-button {
@@ -154,7 +154,7 @@
 }
 
 .login-button:hover, .signup-button:hover {
-   background-color: rgb(0, 173, 76);
+   background-color: var(--grenit-color);
    color: white;
 }
 
@@ -164,18 +164,18 @@
 
 @keyframes loginSignup {
    0% {
-       background: linear-gradient(to top right, rgb(0, 173, 76), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--grenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
    }
    2% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgb(0, 173, 76), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), var(--grenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
    }
    4% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(0, 173, 76), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--grenit-color), rgba(220, 220, 220, 0.5));
    }
    6% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(0, 173, 76));
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--grenit-color));
    }
    8% {
-       background: rgb(0, 173, 76);
+       background: var(--grenit-color);
    }
 }

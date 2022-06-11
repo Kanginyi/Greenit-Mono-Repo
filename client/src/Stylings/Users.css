@@ -22,7 +22,7 @@
 
 .user-div h2 span {
    text-decoration: none;
-   background-image: linear-gradient(90deg, white, rgb(0, 173, 76));
+   background-image: linear-gradient(90deg, white, var(--grenit-color));
    background-size: 0% 3px;
    background-repeat: no-repeat;
    background-position: left bottom;
