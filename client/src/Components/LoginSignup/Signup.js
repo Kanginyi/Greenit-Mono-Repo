@@ -67,6 +67,7 @@ function Signup({setUserData}) {
             <input
                type="text"
                name="username"
+               className="text-align-center"
                placeholder="Enter a Username!"
                maxLength={30}
                value={username}
@@ -77,6 +78,7 @@ function Signup({setUserData}) {
             <input
                type={passwordInput}
                name="password"
+               className="text-align-center"
                placeholder="Enter a Password!"
                value={password}
                onChange={e => setPassword(e.target.value)}

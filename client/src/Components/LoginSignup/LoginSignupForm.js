@@ -22,7 +22,7 @@ function LoginSignupForm({setUserData}) {
       {/* If a user is already logged in (the currentUser object exists), then render ErrorPage component. If not, then render Signup/Login components*/}
       {!currentUser
          ?
-            <div className="login-signup-container">   
+            <div className="login-signup-container text-align-center">   
                {showSignup
                   ? 
                      <Signup setUserData={setUserData}/>

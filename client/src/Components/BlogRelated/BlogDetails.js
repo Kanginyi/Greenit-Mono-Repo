@@ -271,7 +271,7 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
                </article>
 
                <details>
-                  <summary className="blog-comment-dropdown">JOIN THE CONVERSATION</summary>
+                  <summary className="blog-comment-dropdown text-align-center">JOIN THE CONVERSATION</summary>
 
                   <form className="blog-comment-form">
                      <textarea

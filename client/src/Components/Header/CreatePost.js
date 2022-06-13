@@ -94,12 +94,13 @@ function CreatePost({blogData, setBlogData}) {
       {showCreateBlog &&
          <section className="blog-form-background" onClick={closeForm} ref={formRef}>
             <animated.div style={animation}>
-               <div className="create-blog-div">
+               <div className="create-blog-div text-align-center">
                   <button onClick={() => dispatch(setShowCreateBlog(false))} className="x-button">X</button>
                   <form className="create-blog-form" onSubmit={submitNewBlog}>
 
                      <p>Title <span className="required-red">*</span></p>
                      <input
+                        className="text-align-center"
                         onChange={handleNewBlogInputs}
                         type="text"
                         name="title"
@@ -110,6 +111,7 @@ function CreatePost({blogData, setBlogData}) {
 
                      <p>Content <span className="required-red">*</span></p>
                      <textarea
+                        className="text-align-center"
                         onChange={handleNewBlogInputs}
                         type="text"
                         name="blog_post"
@@ -121,6 +123,7 @@ function CreatePost({blogData, setBlogData}) {
 
                      <p>Image</p>
                      <input
+                        className="text-align-center"
                         onChange={handleNewBlogInputs}
                         type="text"
                         name="image_url"

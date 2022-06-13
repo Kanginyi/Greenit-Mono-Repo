@@ -79,6 +79,7 @@ function EditBlog({blogData, setBlogData}) {
                <input
                   type="text"
                   name="title"
+                  className="text-align-center"
                   onChange={handleEditInputs}
                   defaultValue={editBlogInfo?.title}
                   autoComplete="off"
@@ -89,6 +90,7 @@ function EditBlog({blogData, setBlogData}) {
                <h4>Content: <span className="required-red">*</span></h4>
                <textarea
                   name="blog_post"
+                  className="text-align-center"
                   onChange={handleEditInputs}
                   defaultValue={editBlogInfo?.blog_post}
                   rows="5"
@@ -99,6 +101,7 @@ function EditBlog({blogData, setBlogData}) {
                <input
                   type="text"
                   name="image_url"
+                  className="text-align-center"
                   onChange={handleEditInputs}
                   defaultValue={editBlogInfo?.image_url}
                   autoComplete="off"

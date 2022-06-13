@@ -134,7 +134,7 @@ function Blog({blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, hand
             </p>
          </article>
 
-         <div className="view-more-container">
+         <div className="view-more-container text-align-center">
             <em>
                {/* Proper grammar based on the amount of comments on the blog*/}
                {blog?.comments?.length === 1

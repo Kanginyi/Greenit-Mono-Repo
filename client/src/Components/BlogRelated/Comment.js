@@ -211,7 +211,7 @@ function Comment({comment, commentData, setCommentData, currentBlogComments, set
 
    return (
       <div>
-         <div className="comment-actions">
+         <div className="comment-actions text-align-center">
             {/* If currentUser's id is the same as the commentUser's id, give the user the option to edit the related comment */}
             {currentUser?.id === commentUser?.id &&
                <div className="comment-user-edit">
@@ -231,6 +231,7 @@ function Comment({comment, commentData, setCommentData, currentBlogComments, set
                         <input
                            type="text"
                            name="comment_text"
+                           className="text-align-center"
                            onChange={handleCommentEdit}
                            defaultValue={editComment?.comment_text}
                            autoComplete="off"
