@@ -170,6 +170,7 @@
 .blog-comments-footer {
    font-size: clamp(.725em, 3vw, .95em);
    color: #afd3b5;
+   color: #AFD3B5;
 }
 
 .user-info-scroll::-webkit-scrollbar {
