@@ -1,5 +1,5 @@
 :root {
-   --grenit-color: rgb(0, 173, 76);
+   --greenit-color: rgb(0, 173, 76);
 }
 
 html {
@@ -42,7 +42,7 @@ main {
 }
 
 .username-color {
-   color: var(--grenit-color);
+   color: var(--greenit-color);
 }
 
 .error-message {
