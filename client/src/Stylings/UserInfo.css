@@ -89,7 +89,7 @@
 .user-info-divs button, #clicked-username button {
    width: fit-content;
 
-   background-color: rgb(225, 225, 225);
+   background-color: var(--gray-main);
    letter-spacing: .05em;
    color: var(--greenit-color);
 
@@ -99,7 +99,7 @@
 .user-info-divs button:active, .user-info-divs button:focus-visible, #clicked-username button:active, #clicked-username button:focus-visible {
    transform: scale(.95);
    background-color: var(--greenit-color);
-   color: rgb(225, 225, 225);
+   color: var(--gray-main);
 }
 
 .user-info-blogs, .user-info-comments {
@@ -153,7 +153,7 @@
 }
 
 .user-info-blogs:hover, .user-info-comments:hover {
-   background-color: rgb(225, 225, 225);
+   background-color: var(--gray-main);
 }
 
 .user-info-scroll {

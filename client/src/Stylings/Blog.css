@@ -300,7 +300,7 @@
 
    border-radius: 20px;
 
-   background-color: rgb(225, 225, 225);
+   background-color: var(--gray-main);
    letter-spacing: .05em;
    color: var(--greenit-color);
 
@@ -310,7 +310,7 @@
 .show-hide-container button:active {
    transform: scale(.95);
    background-color: var(--greenit-color);
-   color: rgb(225, 225, 225);
+   color: var(--gray-main);
 }
 
 .sort-comments-options {
@@ -336,7 +336,7 @@
    border: 0.5px solid var(--greenit-color);
    padding: 1.75px;
 
-   background-color: rgb(225, 225, 225);
+   background-color: var(--gray-main);
    letter-spacing: .025em;
    color: var(--greenit-color);
 
