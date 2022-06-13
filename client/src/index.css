@@ -1,5 +1,7 @@
 :root {
+   /* Colors */
    --greenit-color: rgb(0, 173, 76);
+   --greenit-opac: rgba(0, 173, 76, 0.4);
 }
 
 html {
