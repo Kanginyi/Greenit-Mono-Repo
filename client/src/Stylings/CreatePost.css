@@ -15,7 +15,6 @@
 .create-blog-div {
    background-color: #DAE6DC;
    width: 100%;
-   text-align: center;
 
    border-radius: 0 0 20px 20px;
 }
@@ -71,7 +70,6 @@
    margin: 20px auto;
    padding: 15px 10px;
    border: 2px solid var(--greenit-color);
-   text-align: center;
 
    width: 90%;
    outline: none;

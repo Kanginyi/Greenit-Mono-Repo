@@ -8,7 +8,6 @@
 
    height: 70vh;
 
-   text-align: center;
    background-color: white;
    box-shadow: 0 1px 1px 0 rgb(175, 211, 181);
 }
@@ -52,7 +51,6 @@
    margin: 15px;
    padding: 10px 30px;
    border: 2px solid var(--greenit-color);
-   text-align: center;
 
    width: 85%;
    outline: none;

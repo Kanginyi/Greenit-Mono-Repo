@@ -7,7 +7,6 @@
    border-radius: 100px;
    padding: 12.5px 30px;
 
-   text-align: center;
    color: #5E5E5E;
 
    display: flex;
@@ -50,8 +49,6 @@
    
    padding: 5px 10px;
    margin: 10px auto;
-
-   text-align: center;
 }
 
 .comment-text-edit input:hover, .comment-text-edit input:focus-visible {

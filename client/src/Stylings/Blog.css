@@ -204,10 +204,6 @@
    padding-right: 20px;
 }
 
-.view-more-container {
-   text-align: center;
-}
-
 .blog-view-more {
    background: none;
    border: 3px solid var(--greenit-color);
@@ -238,7 +234,6 @@
 
    margin-bottom: 1em;
 
-   text-align: center;
    cursor: pointer;
 }
 
@@ -289,7 +284,6 @@
 }
 
 .blog-comment-form div {
-   text-align: center;
    font-size: 1.25em;
 }
 
