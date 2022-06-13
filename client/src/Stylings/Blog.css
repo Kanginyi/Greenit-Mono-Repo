@@ -123,19 +123,19 @@
 
 @keyframes likesActive {
    0% {
-       background: linear-gradient(to top right, rgb(8, 187, 86), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, rgb(8, 187, 86), var(--gray-opac), var(--gray-opac), var(--gray-opac));
    }
    2% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgb(8, 187, 86), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--gray-opac), rgb(8, 187, 86), var(--gray-opac), var(--gray-opac));
    }
    4% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(8, 187, 86), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--gray-opac), var(--gray-opac), rgb(8, 187, 86), var(--gray-opac));
    }
    6% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(8, 187, 86));
+       background: linear-gradient(to top right, var(--gray-opac), var(--gray-opac), var(--gray-opac), rgb(8, 187, 86));
    }
    8% {
-       background: rgba(220, 220, 220, 0.5);
+       background: var(--gray-opac);
    }
 }
 
@@ -145,19 +145,19 @@
 
 @keyframes dislikesActive {
    0% {
-       background: linear-gradient(to top right, rgb(255, 25, 25), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, rgb(255, 25, 25), var(--gray-opac), var(--gray-opac), var(--gray-opac));
    }
    2% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgb(255, 25, 25), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--gray-opac), rgb(255, 25, 25), var(--gray-opac), var(--gray-opac));
    }
    4% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(255, 25, 25), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--gray-opac), var(--gray-opac), rgb(255, 25, 25), var(--gray-opac));
    }
    6% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgb(255, 25, 25));
+       background: linear-gradient(to top right, var(--gray-opac), var(--gray-opac), var(--gray-opac), rgb(255, 25, 25));
    }
    8% {
-       background: rgba(220, 220, 220, 0.5);
+       background: var(--gray-opac);
    }
 }
 

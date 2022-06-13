@@ -164,16 +164,16 @@
 
 @keyframes loginSignup {
    0% {
-       background: linear-gradient(to top right, var(--greenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--greenit-color), var(--gray-opac), var(--gray-opac), var(--gray-opac));
    }
    2% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), var(--greenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--gray-opac), var(--greenit-color), var(--gray-opac), var(--gray-opac));
    }
    4% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--greenit-color), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--gray-opac), var(--gray-opac), var(--greenit-color), var(--gray-opac));
    }
    6% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--greenit-color));
+       background: linear-gradient(to top right, var(--gray-opac), var(--gray-opac), var(--gray-opac), var(--greenit-color));
    }
    8% {
        background: var(--greenit-color);
