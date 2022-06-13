@@ -31,6 +31,10 @@ main {
    max-width: 725px;
 }
 
+.text-align-center {
+   text-align: center;
+}
+
 .username-color {
    color: var(--greenit-color);
 }
