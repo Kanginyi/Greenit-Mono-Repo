@@ -9,7 +9,7 @@
 
    margin: 10px auto 25px;
    padding: 10px 7.5px;
-   border: 2px solid var(--grenit-color);
+   border: 2px solid var(--greenit-color);
    text-align: center;
 
    width: 70%;
@@ -22,13 +22,13 @@
 
 .editing-blog input:focus, .editing-blog textarea:focus {
    width: 80%;
-   border-color: var(--grenit-color);
+   border-color: var(--greenit-color);
 }
 
 .editing-blog button {
    cursor: pointer;
 
-   background-color: var(--grenit-color);
+   background-color: var(--greenit-color);
 
    font-weight: 700;
    font-size: .9em;
@@ -51,18 +51,18 @@
 
 @keyframes editBlog {
    0% {
-       background: linear-gradient(to top right, var(--grenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, var(--greenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
    }
    2% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), var(--grenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), var(--greenit-color), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5));
    }
    4% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--grenit-color), rgba(220, 220, 220, 0.5));
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--greenit-color), rgba(220, 220, 220, 0.5));
    }
    6% {
-       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--grenit-color));
+       background: linear-gradient(to top right, rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), rgba(220, 220, 220, 0.5), var(--greenit-color));
    }
    8% {
-       background: var(--grenit-color);
+       background: var(--greenit-color);
    }
 }

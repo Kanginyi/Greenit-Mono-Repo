@@ -10,13 +10,13 @@
    width: 300px;
    height: 300px;
 
-   color: var(--grenit-color);
+   color: var(--greenit-color);
    text-align: center;
    line-height: 300px;
    letter-spacing: 4px;
    font-size: 2em;
    font-family: sans-serif;
-   text-shadow: 0 0 8px var(--grenit-color);
+   text-shadow: 0 0 8px var(--greenit-color);
    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -30,8 +30,8 @@
    height: 100%;
 
    border: 3px solid transparent;
-   border-top: 5px solid var(--grenit-color);
-   border-right: 5px solid var(--grenit-color);
+   border-top: 5px solid var(--greenit-color);
+   border-right: 5px solid var(--greenit-color);
    border-radius: 50%;
    animation: animateRing 2s linear infinite;
 }
@@ -72,9 +72,9 @@
    width: 16px;
    height: 16px;
 
-   background-color: var(--grenit-color);
+   background-color: var(--greenit-color);
    border-radius: 50%;
-   box-shadow: 0 0 20px var(--grenit-color);
+   box-shadow: 0 0 20px var(--greenit-color);
 }
 
 @keyframes animateSpan
