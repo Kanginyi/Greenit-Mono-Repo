@@ -103,7 +103,7 @@
 }
 
 .user-info-blogs, .user-info-comments {
-   border-bottom: 1px solid rgba(0, 173, 76, 0.4);
+   border-bottom: 1px solid var(--greenit-opac);
 }
 
 .user-info-blogs:last-child, .user-info-comments:last-child {
@@ -121,7 +121,7 @@
    max-width: 150px;
    width: fit-content;
 
-   border-right: 1px solid rgba(0, 173, 76, 0.4);
+   border-right: 1px solid var(--greenit-opac);
 }
 
 .user-info-blogs div {
@@ -153,11 +153,11 @@
 }
 
 .user-info-blogs:hover, .user-info-comments:hover {
-   box-shadow: 4px 0 4px 4px rgba(0, 173, 76, 0.4);
+   background-color: rgb(225, 225, 225);
 }
 
 .user-info-scroll {
-   border: 2px solid rgba(0, 173, 76, 0.4);
+   border: 2px solid var(--greenit-opac);
 
    max-height: 310px;
    overflow-x: hidden;
@@ -185,5 +185,5 @@
 }
 
 .user-info-scroll::-webkit-scrollbar-track {
-   background-color: rgba(0, 173, 76, 0.4);
+   background-color: var(--greenit-opac);
 }

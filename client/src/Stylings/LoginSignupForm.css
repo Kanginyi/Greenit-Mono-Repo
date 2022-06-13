@@ -13,7 +13,7 @@
 }
 
 .login-signup-container:hover {
-   box-shadow: 1px 1px 4px 4px rgba(0, 173, 76, 0.4);
+   box-shadow: 1px 1px 4px 4px var(--greenit-opac);
 }
 
 .login-signup-container h2 {
