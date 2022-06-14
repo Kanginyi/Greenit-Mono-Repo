@@ -3,7 +3,7 @@
 }
 
 .comment-actions {
-   border: 2px solid rgb(220, 220, 220);
+   border: 2px solid var(--gray-main);
    border-radius: 100px;
    padding: 12.5px 30px;
 
