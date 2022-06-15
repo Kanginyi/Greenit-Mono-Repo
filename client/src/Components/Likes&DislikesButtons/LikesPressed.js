@@ -8,7 +8,7 @@ function LikesPressed({id, likes, setLikes, dislikes, setDislikes, unlikeFunctio
          {/* Anonymous function to trigger unlikeFunction when button is clicked. Pass in the required parameters to handle unliking blogs through functions in App.js or Comment.js*/}
          <button
             onClick={() => unlikeFunction(id, setLikes, setClickedNum)}
-            className="likes-pressed"
+            className="likes-pressed cursor-pointer"
          >
             <FaThumbsUp/>&nbsp;{likes}
          </button>
@@ -16,7 +16,7 @@ function LikesPressed({id, likes, setLikes, dislikes, setDislikes, unlikeFunctio
          {/* Anonymous function to trigger dislikesFunction when button is clicked. Pass in the required parameters to handle disliking blogs through functions in App.js or Comment.js */}
          <button
             onClick={() => dislikesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum)}
-            className="dislikes-button"                    
+            className="dislikes-button cursor-pointer"                    
          >
             <FaRegThumbsDown/>&nbsp;{dislikes}
          </button>
