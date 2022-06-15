@@ -58,8 +58,6 @@
    padding: 5px;
    border-radius: 20px;
 
-   cursor: pointer;
-
    animation: doubleCheck 2.25s infinite;
 }
 
@@ -217,8 +215,6 @@
    font-size: .9em;
    font-weight: 600;
    letter-spacing: 1px;
-
-   cursor: pointer;
 }
 
 .blog-view-more:hover, .blog-view-more:focus-visible {
@@ -233,8 +229,6 @@
    letter-spacing: .03em;
 
    margin-bottom: 1em;
-
-   cursor: pointer;
 }
 
 .blog-comment-form {
@@ -264,8 +258,6 @@
    color: white;
 
    transition: .25s;
-
-   cursor: pointer;
 }
 
 .blog-comment-form button:hover, .blog-comment-form button:focus-visible {
@@ -303,8 +295,6 @@
    background-color: var(--gray-main);
    letter-spacing: .05em;
    color: var(--greenit-color);
-
-   cursor: pointer;
 }
 
 .show-hide-container button:active {
@@ -339,8 +329,6 @@
    background-color: var(--gray-main);
    letter-spacing: .025em;
    color: var(--greenit-color);
-
-   cursor: pointer;
 }
 
 .sort-comments-options button:hover {

@@ -63,8 +63,6 @@
 
    background-color: var(--greenit-color);
    color: white;
-
-   cursor: pointer;
 }
 
 .comment-text-edit button:active {

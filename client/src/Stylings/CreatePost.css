@@ -35,8 +35,6 @@
    position: absolute;
    top: 5px;
    right: 5px;
-   
-   cursor: pointer;
 }
 
 .x-button:active {
@@ -84,8 +82,7 @@
    border-color: var(--greenit-color);
 }
 
-#submit-form-button {
-   cursor: pointer;
+.submit-form-button {
    background-color: var(--greenit-color);
    color: #DAE6DC;
 
@@ -98,11 +95,11 @@
    border-radius: 20px;
 }
 
-#submit-form-button:active {
+.submit-form-button:active {
    transform: scale(.99);
    background-color: var(--greenit-color);
 }
 
-#submit-form-button:hover{
+.submit-form-button:hover{
    color: rgb(0, 70, 30);
 }

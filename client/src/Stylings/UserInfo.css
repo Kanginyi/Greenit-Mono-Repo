@@ -48,7 +48,6 @@
 }
 
 .user-info-edit {
-   cursor: pointer;
    margin-left: 7.5px;
 }
 
@@ -92,8 +91,6 @@
    background-color: var(--gray-main);
    letter-spacing: .05em;
    color: var(--greenit-color);
-
-   cursor: pointer;
 }
 
 .user-info-divs button:active, .user-info-divs button:focus-visible, #clicked-username button:active, #clicked-username button:focus-visible {
@@ -142,10 +139,6 @@
    flex-direction: column;
    justify-content: space-between;
    align-items: center;
-}
-
-.user-blog-container, .user-comment-container {
-   cursor: pointer;
 }
 
 .user-info-blogs h4, .user-info-comments h4 {

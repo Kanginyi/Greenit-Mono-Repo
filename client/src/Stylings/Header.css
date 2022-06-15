@@ -47,7 +47,6 @@
 }
 
 .logo-box {
-   cursor: pointer;
    display: flex;
    align-items: center;
    color: var(--greenit-color);
@@ -70,8 +69,6 @@
 }
 
 .category-bar button {
-   cursor: pointer;
-
    font-size: clamp(.9em, 3vw, 1.25em);
    font-weight: 700;
 
@@ -136,7 +133,6 @@
 }
 
 .user-section button {
-   cursor: pointer;
    min-width: 7em;
    border: 1px solid rgb(200, 200, 200);
    border-radius: 20px;

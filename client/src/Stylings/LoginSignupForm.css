@@ -37,10 +37,6 @@
    }
 }
 
-.login-signup-container button {
-   cursor: pointer;
-}
-
 .login-signup-container input[type="text"], .login-signup-container input[type="password"] {
    color: var(--greenit-color);
 
@@ -72,8 +68,6 @@
    color: #86BB90;
 
    margin-bottom: .5em;
-
-   cursor: pointer;
 }
 
 .login-signup-container input[type="checkbox"] {
