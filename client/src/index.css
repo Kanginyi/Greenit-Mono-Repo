@@ -43,6 +43,12 @@ main {
    cursor: pointer;
 }
 
+.flex-center-all {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 .username-color {
    color: var(--greenit-color);
 }
