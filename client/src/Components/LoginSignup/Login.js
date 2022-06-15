@@ -51,9 +51,9 @@ function Login() {
    };
 
    return (
-      <div className="login-container">
+      <div className="login-container flex-center-all">
          <h2>LOGIN</h2>
-         <form onSubmit={handleLogin}>
+         <form onSubmit={handleLogin} className="flex-center-all">
             <h3>Please enter your username and password!</h3>
 
             <input 

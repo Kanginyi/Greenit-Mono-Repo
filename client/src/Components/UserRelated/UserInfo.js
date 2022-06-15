@@ -183,7 +183,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
       {/* If currentUserInfo object exists, then render the currentUserInfo's information. If not, render ErrorPage component */}
       {currentUserInfo
          ?
-            <div className="user-info-container-parent">
+            <div className="user-info-container-parent flex-center-all">
                <div className="user-info-container">
                   <div className="user-info-header">
                      <h2 id="clicked-username" className="username-color">

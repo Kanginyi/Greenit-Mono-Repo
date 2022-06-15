@@ -92,12 +92,12 @@ function CreatePost({blogData, setBlogData}) {
    return (
       <>
       {showCreateBlog &&
-         <section className="blog-form-background" onClick={closeForm} ref={formRef}>
+         <section className="blog-form-background flex-center-all" onClick={closeForm} ref={formRef}>
             <animated.div style={animation}>
                <div className="create-blog-div text-align-center">
                   <button
                      onClick={() => dispatch(setShowCreateBlog(false))}
-                     className="x-button cursor-pointer"
+                     className="x-button cursor-pointer flex-center-all"
                   >
                      X
                   </button>

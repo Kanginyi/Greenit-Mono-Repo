@@ -51,7 +51,7 @@ function LogSignButtons() {
             <>
                <button
                   onClick={viewYourProfile}
-                  className="username-color signup-button cursor-pointer"
+                  className="username-color signup-button cursor-pointer flex-center-all"
                   style={{fontWeight: "600"}}
                   title="View Your Profile"
                >

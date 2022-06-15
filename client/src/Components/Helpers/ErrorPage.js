@@ -9,7 +9,7 @@ function ErrorPage() {
    let navigate = useNavigate();
 
    return (
-      <div className="gtfo-logo">
+      <div className="gtfo-logo flex-center-all">
          <h2>
             What are you doing here?
          </h2>

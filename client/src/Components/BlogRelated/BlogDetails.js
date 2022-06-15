@@ -296,7 +296,7 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
 
                {/* If filterComment's length isn't a falsey value (0), show the "Show/Hide Comments" button */}
                {filterComments?.length
-                  ? <div className="show-hide-container">
+                  ? <div className="show-hide-container flex-center-all">
                         <button
                            className="cursor-pointer"
                            onClick={() => setHideComments(prev => !prev)}
@@ -309,7 +309,7 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
 
                {/* THINGS RELATED TO SORTING CCOMMENTS */}
                {/* {filterComments?.length >= 2
-                  ? <div className="sort-comments-options">
+                  ? <div className="sort-comments-options flex-center-all">
                         {!hideComments
                            ? <p>Sort Comments:</p>
                            : null

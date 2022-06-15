@@ -59,9 +59,9 @@ function Signup({setUserData}) {
    };
 
    return (
-      <div className="signup-container">
+      <div className="signup-container flex-center-all">
          <h2>SIGNUP</h2>
-         <form onSubmit={handleSignup}>
+         <form onSubmit={handleSignup} className="flex-center-all">
             <h3>Please enter your desired username and password!</h3>
 
             <input
