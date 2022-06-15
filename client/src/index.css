@@ -39,6 +39,10 @@ main {
    text-align: center;
 }
 
+.cursor-pointer {
+   cursor: pointer;
+}
+
 .username-color {
    color: var(--greenit-color);
 }
