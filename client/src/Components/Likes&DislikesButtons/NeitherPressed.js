@@ -8,7 +8,7 @@ function NeitherPressed({id, likes, setLikes, dislikes, setDislikes, likesFuncti
          {/* Anonymous function to trigger likesFunction when button is clicked. Pass in the required parameters to handle liking blogs through functions in App.js or Comment.js */}
          <button
             onClick={() => likesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum, setLoginError)}
-            className="likes-button cursor-pointer"
+            className="likes-button cursor-pointer flex-center-all"
          >
             <FaRegThumbsUp/>&nbsp;{likes}
          </button>
@@ -18,7 +18,7 @@ function NeitherPressed({id, likes, setLikes, dislikes, setDislikes, likesFuncti
          {/* Anonymous function to trigger dislikesFunction when button is clicked. Pass in the required parameters to handle disliking blogs through functions in App.js or Comment.js */}  
          <button
             onClick={() => dislikesFunction(id, setLikes, setDislikes, clickedNum, setClickedNum, setLoginError)}
-            className="dislikes-button cursor-pointer"
+            className="dislikes-button cursor-pointer flex-center-all"
          >
             <FaRegThumbsDown/>&nbsp;{dislikes}
          </button>
