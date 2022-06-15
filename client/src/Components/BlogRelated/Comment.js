@@ -217,7 +217,7 @@ function Comment({comment, commentData, setCommentData, currentBlogComments, set
                <div className="comment-user-edit">
                   <FaEdit
                      onClick={() => setShowCommentEditInput(prev => !prev)}
-                     className="user-edit"
+                     className="user-edit cursor-pointer"
                      title="Edit Comment"
                   />
                </div>
@@ -250,7 +250,7 @@ function Comment({comment, commentData, setCommentData, currentBlogComments, set
                <div className="comment-user-delete">
                   <BsTrash
                      onClick={deleteComment}
-                     className="delete-button"
+                     className="delete-button cursor-pointer"
                      title="Delete Comment"
                   />
                </div>
@@ -311,7 +311,7 @@ function Comment({comment, commentData, setCommentData, currentBlogComments, set
                </div>
 
                <p className="comment-username">
-                  -<span onClick={viewUserInfo} style={{cursor: "pointer"}}>
+                  -<span className="cursor-pointer" onClick={viewUserInfo}>
                      {commentUser?.username}
                   </span>
                </p>

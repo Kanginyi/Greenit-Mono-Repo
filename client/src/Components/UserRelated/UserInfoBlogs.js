@@ -91,13 +91,13 @@ function UserInfoBlogs({blog, blogData, setBlogData, commentData, setCommentData
             <div className="user-info-actions">
                <BsTrash
                   onClick={deleteUserBlog}
-                  className="delete-button"
+                  className="delete-button cursor-pointer"
                   title={`Delete "${blog?.title}"`}
                />
 
                <FaEdit
                   onClick={() => navigate(`/editing/${blog?.id}`)}
-                  className="user-edit"
+                  className="user-edit cursor-pointer"
                   title={`Edit "${blog?.title}"`}
                />
             </div>

@@ -66,13 +66,13 @@ function UserInfoComments({comment, commentData, setCommentData, currentUserInfo
             <div className="user-info-actions">
                <BsTrash
                   onClick={deleteUserComment}
-                  className="delete-button"
+                  className="delete-button cursor-pointer"
                   title={`Delete your comment on "${comment?.blog?.title}"`}
                />
 
                <FaEdit
                   onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
-                  className="user-edit"
+                  className="user-edit cursor-pointer"
                   title={`Head to "${comment?.blog?.title}" to edit your comment`}
                />
             </div>

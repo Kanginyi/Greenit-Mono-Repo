@@ -217,7 +217,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
 
                      {/* If currentUser's id is the same as the currentUserInfo's id, give the user the option to delete their Greenit account */}
                      {currentUser?.id === currentUserInfo?.id &&
-                        <BsTrash className="delete-button" onClick={deleteUser} title="Delete Your Account :^("/>
+                        <BsTrash className="delete-button cursor-pointer" onClick={deleteUser} title="Delete Your Account :^("/>
                      }
                   </div>
 

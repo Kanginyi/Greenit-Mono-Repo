@@ -58,9 +58,8 @@ function Blog({blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, hand
                <h3>
                   Posted by&nbsp;
                      <span
-                        className="username-color"
+                        className="username-color cursor-pointer"
                         onClick={viewUserInfo}
-                        style={{cursor: "pointer"}}
                      >
                         u/{blogAuthorObj?.username}
                      </span> on&nbsp;
@@ -72,7 +71,7 @@ function Blog({blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, hand
 
                {/* If the currentUser's id is the same as the blogAuthor's id, give the user the option to delete the blog */}
                {currentUser?.id === blogAuthorObj?.id &&
-                  <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button" title="Delete Post"/>
+                  <BsTrash onClick={() => handleDeleteBlog(blog.id)} className="delete-button cursor-pointer" title="Delete Post"/>
                }
             </div>
 
