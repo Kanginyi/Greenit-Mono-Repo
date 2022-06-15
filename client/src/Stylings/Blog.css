@@ -277,12 +277,6 @@
    font-size: 1.25em;
 }
 
-.show-hide-container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
 .show-hide-container button {
    width: fit-content;
 
@@ -301,18 +295,15 @@
    color: var(--gray-main);
 }
 
-.sort-comments-options {
-   display: flex;
+/* THINGS RELATED TO SORTING COMMENTS */
+/* .sort-comments-options {
    flex-direction: column;
-   justify-content: center;
-   align-items: center;
 
    margin-top: 10px;
    margin-bottom: 10px;
 }
 
-/* THINGS RELATED TO SORTING COMMENTS */
-/* .sort-comments-options p {
+.sort-comments-options p {
    margin-bottom: 3.5px;
 
    font-weight: 700;

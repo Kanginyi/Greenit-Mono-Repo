@@ -5,10 +5,7 @@
    background-color: white;
    box-shadow: 0 1px 8px 0 #afd3b5;
    
-   display: flex;
    flex-direction: column;
-   justify-content: center;
-   align-items: center;
 }
 
 .user-info-container {
