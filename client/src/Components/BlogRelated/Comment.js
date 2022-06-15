@@ -239,7 +239,12 @@ function Comment({comment, commentData, setCommentData, currentBlogComments, set
                            required
                         />
 
-                        <button onClick={updateComment}>Edit Comment</button>
+                        <button
+                           className="cursor-pointer"
+                           onClick={updateComment}
+                        >
+                           Edit Comment
+                        </button>
                      </div>
                   : <p>{editComment?.comment_text}</p>
                }

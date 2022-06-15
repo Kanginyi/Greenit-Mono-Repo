@@ -205,7 +205,7 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
                   {/* If the currentUser's id is the same as the blogAuthorObj's id, give the user the option to edit the blog */}
                   {currentUser?.id === blogAuthorObj?.id &&
                      <div className="edit-blog-container">
-                           <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-blog">
+                           <div onClick={() => navigate(`/editing/${currentBlogInfo?.id}`)} className="edit-blog cursor-pointer">
                               <FaEdit/> Edit Post
                            </div>
                      </div>
@@ -270,7 +270,7 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
                </article>
 
                <details>
-                  <summary className="blog-comment-dropdown text-align-center">JOIN THE CONVERSATION</summary>
+                  <summary className="blog-comment-dropdown text-align-center cursor-pointer">JOIN THE CONVERSATION</summary>
 
                   <form className="blog-comment-form">
                      <textarea
@@ -281,17 +281,26 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
                         rows="5"
                      />
 
-                     <br/>
-                     <button onClick={submitNewBlogComment}>Add Comment!</button>
+                        <br/>
+                     <button
+                        onClick={submitNewBlogComment}
+                        className="cursor-pointer"
+                     >
+                        Add Comment!
+                     </button>
+
                      <div className="error-message">{commentLoginError}</div>
-                     <br/>
+                        <br/>
                   </form>
                </details>
 
                {/* If filterComment's length isn't a falsey value (0), show the "Show/Hide Comments" button */}
                {filterComments?.length
                   ? <div className="show-hide-container">
-                        <button onClick={() => setHideComments(prev => !prev)}>
+                        <button
+                           className="cursor-pointer"
+                           onClick={() => setHideComments(prev => !prev)}
+                        >
                            {hideComments ? "Show Comments" : "Hide Comments"}
                         </button>
                     </div>
@@ -317,7 +326,12 @@ function BlogDetails({commentData, setCommentData, handleDeleteBlog, handleBlogL
                                     <button onClick={handleSortComments} value="most-disliked">Most Disliked</button>
                                     <button onClick={handleSortComments} value="newest">Newest</button>
                                  </>
-                                 : <button onClick={showSortCommentOptions}>{commentOptionValue}</button>
+                                 : <button
+                                    className="cursor-pointer"
+                                    onClick={showSortCommentOptions}
+                                 >
+                                    {commentOptionValue}
+                                 </button>
                               }
                               </>
                            : null

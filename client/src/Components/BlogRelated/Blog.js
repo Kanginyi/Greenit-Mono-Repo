@@ -142,7 +142,7 @@ function Blog({blog, handleDeleteBlog, handleBlogLikes, handleBlogDislikes, hand
                }
             </em>
                <br/>
-            <button onClick={viewMore} className="blog-view-more">
+            <button onClick={viewMore} className="blog-view-more cursor-pointer">
                VIEW MORE
             </button>
          </div>

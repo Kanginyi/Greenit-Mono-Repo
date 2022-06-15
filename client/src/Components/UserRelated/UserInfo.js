@@ -200,7 +200,12 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                                  required
                               />
 
-                              <button onClick={updateUsername}>Update Username</button>
+                              <button
+                                 onClick={updateUsername}
+                                 className="cursor-pointer"
+                              >
+                                 Update Username
+                              </button>
                              </>
                            : `u/${editUsername?.username}`
                         }
@@ -209,7 +214,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                         {currentUser?.id === currentUserInfo?.id &&
                            <FaEdit
                               onClick={() => setShowUserInput(prev => !prev)}
-                              className="user-info-edit"
+                              className="user-info-edit cursor-pointer"
                               title="Update Username"
                            />
                         }
@@ -241,6 +246,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                                     {/* If filterBlog's length isn't a falsey value (0), show "Hide Posts" button */}
                                     {filterBlogs?.length
                                        ? <button
+                                             className="cursor-pointer"
                                              onClick={() => setHideBlogs(prev => !prev)}
                                          >
                                           {!hideBlogs ? "Hide Posts" : "Show Posts"}
@@ -268,6 +274,7 @@ function UserInfo({userData, setUserData, blogData, setBlogData, commentData, se
                                     {/* If filterComment's length isn't a falsey value (0), show "Hide Comments" button */}
                                     {filterComments?.length
                                        ? <button
+                                             className="cursor-pointer"
                                              onClick={() => setHideComments(prev => !prev)}
                                          >
                                           {!hideComments ? "Hide Comments" : "Show Comments"}

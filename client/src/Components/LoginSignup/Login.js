@@ -76,7 +76,7 @@ function Login() {
                autoComplete="off"
             />
 
-            <label>
+            <label className="cursor-pointer">
                <input
                   type="checkbox"
                   onChange={showPassword}
@@ -84,7 +84,7 @@ function Login() {
                &nbsp;Show Password
             </label>
 
-            <button type="submit" className="login-button">LOGIN</button>
+            <button type="submit" className="login-button cursor-pointer">LOGIN</button>
 
             <div className="error-message login-error">{errorMessage}</div>
          </form>

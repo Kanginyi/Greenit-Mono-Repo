@@ -51,7 +51,7 @@ function LogSignButtons() {
             <>
                <button
                   onClick={viewYourProfile}
-                  className="username-color signup-button"
+                  className="username-color signup-button cursor-pointer"
                   style={{fontWeight: "600"}}
                   title="View Your Profile"
                >
@@ -60,7 +60,7 @@ function LogSignButtons() {
 
                <button
                   onClick={toLogout}
-                  className="login-button"
+                  className="login-button cursor-pointer"
                >
                   Logout
                </button>
@@ -70,14 +70,14 @@ function LogSignButtons() {
             <>
                <button
                   onClick={toSignup}
-                  className="signup-button"
+                  className="signup-button cursor-pointer"
                >
                   Signup
                </button>
 
                <button
                   onClick={toLogin}
-                  className="login-button"
+                  className="login-button cursor-pointer"
                >
                   Login
                </button>

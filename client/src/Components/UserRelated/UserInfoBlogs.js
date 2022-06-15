@@ -59,7 +59,7 @@ function UserInfoBlogs({blog, blogData, setBlogData, commentData, setCommentData
       <div className="user-info-blogs">
          <div
             onClick={() => navigate(`/blogs/${blog?.id}`)}
-            className="user-blog-container"
+            className="user-blog-container cursor-pointer"
          >
             {/* If blog.image_url exists, show that image. If not, show the placeholder image */}
             <img src={blog?.image_url ? blog?.image_url : placeholder_img} alt={blog?.title}/>

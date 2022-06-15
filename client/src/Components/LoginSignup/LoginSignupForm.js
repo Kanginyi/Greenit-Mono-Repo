@@ -38,6 +38,7 @@ function LoginSignupForm({setUserData}) {
 
                   <button
                      onClick={() => dispatch(setShowSignup(!showSignup))}
+                     className="cursor-pointer"
                   >
                      {showSignup ? "Login" : "Signup" }
                   </button>

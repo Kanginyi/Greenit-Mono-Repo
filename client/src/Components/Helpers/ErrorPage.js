@@ -18,6 +18,7 @@ function ErrorPage() {
             src={greenit_logo}
             alt="Greenit Logo, telling you to get outta here"
             title="Take me home!!"
+            className="cursor-pointer"
             onClick={() => navigate("/")}
          />
             <br/><br/>

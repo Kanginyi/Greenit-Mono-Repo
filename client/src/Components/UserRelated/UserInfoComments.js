@@ -41,7 +41,7 @@ function UserInfoComments({comment, commentData, setCommentData, currentUserInfo
       <div className="user-info-comments">
          <div
             onClick={() => navigate(`/blogs/${comment?.blog?.id}`)}
-            className="user-comment-container"
+            className="user-comment-container cursor-pointer"
          >
             <h4>{comment?.blog?.title}</h4>
             <em>{comment?.comment_text}</em>

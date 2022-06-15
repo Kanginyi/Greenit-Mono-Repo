@@ -95,7 +95,12 @@ function CreatePost({blogData, setBlogData}) {
          <section className="blog-form-background" onClick={closeForm} ref={formRef}>
             <animated.div style={animation}>
                <div className="create-blog-div text-align-center">
-                  <button onClick={() => dispatch(setShowCreateBlog(false))} className="x-button">X</button>
+                  <button
+                     onClick={() => dispatch(setShowCreateBlog(false))}
+                     className="x-button cursor-pointer"
+                  >
+                     X
+                  </button>
                   <form className="create-blog-form" onSubmit={submitNewBlog}>
 
                      <p>Title <span className="required-red">*</span></p>
@@ -131,7 +136,7 @@ function CreatePost({blogData, setBlogData}) {
                         autoComplete="off"
                      />
 
-                     <button id="submit-form-button">Submit!</button>                     
+                     <button className="submit-form-button cursor-pointer">Submit!</button>                     
                   </form>
 
                </div>

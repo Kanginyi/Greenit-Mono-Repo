@@ -85,7 +85,7 @@ function Signup({setUserData}) {
                autoComplete="off"
             />
 
-            <label>
+            <label className="cursor-pointer">
                <input
                   type="checkbox"
                   onChange={showPassword}
@@ -93,7 +93,7 @@ function Signup({setUserData}) {
                &nbsp;Show Password
             </label>
 
-            <button type="submit" className="signup-button">SIGNUP</button>
+            <button type="submit" className="signup-button cursor-pointer">SIGNUP</button>
 
             <div className="error-message signup-error">
                {errorMessage?.map(error => <p>{error}</p>)}

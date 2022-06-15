@@ -52,15 +52,18 @@ function Navbar({blogData, setBlogData, searchGreenit}) {
             </a>
 
             <div className="category-bar">
-               <button onClick={showSearchBar}>Search</button>
+               <button onClick={showSearchBar} className="cursor-pointer">Search</button>
 
-               <button onClick={() => navigate("/all_users")}>All Users</button>
+               <button onClick={() => navigate("/all_users")} className="cursor-pointer">All Users</button>
 
-               <button onClick={viewRandomBlog}>Random Post</button>
+               <button onClick={viewRandomBlog} className="cursor-pointer">Random Post</button>
 
                {/* Only render Create Post button if a user is logged in (the currentUser object exists) */}
                {currentUser &&
-                  <button onClick={() => dispatch(setShowCreateBlog(true))}>
+                  <button
+                     onClick={() => dispatch(setShowCreateBlog(true))}
+                     className="cursor-pointer"
+                  >
                      Create Post
                   </button>
                }

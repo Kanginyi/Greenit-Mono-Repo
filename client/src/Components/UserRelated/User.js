@@ -16,7 +16,7 @@ function User({user, blogData, commentData}) {
    };
   
    return (
-      <div className="user-div" onClick={viewUserInfo}>
+      <div className="user-div cursor-pointer" onClick={viewUserInfo}>
          <h2 className="username-color text-align-center">
             <span>{user?.username}</span>
          </h2>

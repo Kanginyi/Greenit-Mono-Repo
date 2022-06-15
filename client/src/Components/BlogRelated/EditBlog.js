@@ -70,7 +70,7 @@ function EditBlog({blogData, setBlogData}) {
       {/* If currentUser's id is the same as the editBlogInfo's id, render the options to edit the blog post. If not, then render ErrorPage component */}
       {currentUser?.id === editBlogInfo?.user?.id
          ?
-            <div className="blog-div editing-blog">
+            <div className="editing-blog blog-div">
                <h2 className="username-color">Hello {currentUser?.username}!</h2>
                   <br/>
                <h3>You're Currently Editing:</h3>
@@ -108,7 +108,7 @@ function EditBlog({blogData, setBlogData}) {
                   spellCheck="false"
                />
 
-               <button onClick={updateBlog}>
+               <button onClick={updateBlog} className="cursor-pointer">
                   Update Post!
                </button>
             </div>
