@@ -90,12 +90,6 @@
    line-height: 1.3em;
 }
 
-.likes-button, .dislikes-button, .likes-pressed, .dislikes-pressed {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
 .likes-button {
    color: var(--greenit-color);
 }
