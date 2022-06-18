@@ -288,33 +288,3 @@
    background-color: var(--greenit-color);
    color: var(--gray-main);
 }
-
-/* THINGS RELATED TO SORTING COMMENTS */
-/* .sort-comments-options {
-   flex-direction: column;
-
-   margin-top: 10px;
-   margin-bottom: 10px;
-}
-
-.sort-comments-options p {
-   margin-bottom: 3.5px;
-
-   font-weight: 700;
-}
-
-.sort-comments-options button {
-   width: 118.23px;
-
-   border: 0.5px solid var(--greenit-color);
-   padding: 1.75px;
-
-   background-color: var(--gray-main);
-   letter-spacing: .025em;
-   color: var(--greenit-color);
-}
-
-.sort-comments-options button:hover {
-   background-color: var(--greenit-color);
-   color: white;
-} */
