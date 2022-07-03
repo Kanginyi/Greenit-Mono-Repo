@@ -37,7 +37,7 @@
 .login-signup-container input[type="text"], .login-signup-container input[type="password"] {
    color: var(--greenit-color);
 
-   background: #DAE6DC;
+   background: var(--pastel-greenit);
 
    font-weight: 600;
 
@@ -73,7 +73,7 @@
 
    border-radius: 50%;
    appearance: none;
-   background-color: #DAE6DC;
+   background-color: var(--pastel-greenit);
 
    transition: box-shadow 0.3s;
 }
@@ -98,14 +98,14 @@
    border-radius: 20px;
    border: 1px solid var(--greenit-color);
 
-   background-color: #DAE6DC;
+   background-color: var(--pastel-greenit);
    letter-spacing: .05em;
    color: var(--greenit-color);
 }
 
 .login-signup-footer button:active {
    background-color: var(--greenit-color);
-   color: #DAE6DC;
+   color: var(--pastel-greenit);
 }
 
 .login-container, .signup-container {

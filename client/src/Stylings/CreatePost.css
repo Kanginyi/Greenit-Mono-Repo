@@ -9,7 +9,7 @@
 }
 
 .create-blog-div {
-   background-color: #DAE6DC;
+   background-color: var(--pastel-greenit);;
    width: 100%;
 
    border-radius: 0 0 20px 20px;
@@ -76,7 +76,7 @@
 
 .submit-form-button {
    background-color: var(--greenit-color);
-   color: #DAE6DC;
+   color: var(--pastel-greenit);
 
    font-weight: 700;
    font-size: 1.05em;
