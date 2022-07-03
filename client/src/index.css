@@ -2,6 +2,7 @@
    /* Colors */
    --greenit-color: rgb(0, 173, 76);
    --greenit-opac: rgba(0, 173, 76, 0.4);
+   --pastel-greenit: rgb(218, 230, 220);
    --gray-main: rgb(225, 225, 225);
    --gray-opac: rgba(225, 225, 225, 0.5);
 }
